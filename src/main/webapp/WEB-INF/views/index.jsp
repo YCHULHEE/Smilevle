@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>DirEngine - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Smilevle</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -31,25 +31,7 @@
   </head>
   <body>
     
-  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">smilevle.</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="oi oi-menu"></span> 메뉴
-      </button>
-
-      <div class="collapse navbar-collapse" id="ftco-nav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="index.html" class="nav-link">메인</a></li>
-          <li class="nav-item"><a href="about.html" class="nav-link">스마이블 소개</a></li>
-          <li class="nav-item"><a href="tour.html" class="nav-link">여행지</a></li>
-          <li class="nav-item"><a href="hotel.html" class="nav-link">숙소</a></li>
-          <li class="nav-item"><a href="blog.html" class="nav-link">동네마켓</a></li>
-          <li class="nav-item cta"><a href="contact.html" class="nav-link"><span>로그인</span></a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <jsp:include page="/WEB-INF/views/include/common/menu.jsp"/>
     <!-- END nav -->
     
     <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');">
@@ -89,8 +71,8 @@
       </div>
     </div>
 	
-	<jsp:include page="/WEB-INF/views/include/test.jsp"/>
-    <jsp:include page="/WEB-INF/views/include/tourContainer.jsp"/>
+	<jsp:include page="/WEB-INF/views/include/tourlist/tourlistContainer.jsp"/>
+    <jsp:include page="/WEB-INF/views/include/stay/StayContainer.jsp"/>
     
     <section class="ftco-section">
     	<div class="container">
@@ -475,6 +457,35 @@
         </div>
       </div>
     </footer>
+
+<!-- Modal 종훈씨 작업 로그인 -->
+	<div class="modal fade" id="SignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" id="myModalLabel">Smilevle</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form action="<%=request.getContextPath()%>/index.do" method="post" class="signup-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="아이디" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="패스워드" required="required">
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-blue btn-block">로그인</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer text-center">
+                    <a href="#">비밀번호 찾기 /</a>
+                    <a href="#">회원 가입</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
