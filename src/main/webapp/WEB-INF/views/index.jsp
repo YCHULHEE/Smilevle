@@ -472,7 +472,7 @@
                             <input type="text" class="form-control" placeholder="아이디" required="required">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="패스워드" required="required">
+                            <input type="password" class="form-control" placeholder="패스워드" required="required">
                         </div>
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-blue btn-block">로그인</button>
