@@ -7,7 +7,7 @@
     		<div class="row justify-content-start mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate">
           	<span class="subheading">Featured</span>
-            <h2 class="mb-4"><strong>여행지 추천</strong> Travel </h2>
+            <h2 class="mb-4"><strong>이번 달 여행지는?</strong> Gangwon </h2>
           </div>
         </div>
     		<div class="row">
