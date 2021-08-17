@@ -73,6 +73,7 @@
 	
 	<jsp:include page="/WEB-INF/views/include/tourlist/tourlistContainer.jsp"/>
     <jsp:include page="/WEB-INF/views/include/stay/StayContainer.jsp"/>
+
     
     <section class="ftco-section">
     	<div class="container">
