@@ -14,7 +14,7 @@
           <li class="nav-item"><a href="tour.jsp" class="nav-link">여행지</a></li>
           <li class="nav-item"><a href="stay.jsp" class="nav-link">숙소</a></li>
           <li class="nav-item"><a href="usedtrade.jsp" class="nav-link">동네마켓</a></li>
-          <li class="nav-item"><a href="rivew.jsp" class="nav-link">리뷰</a></li>
+          <li class="nav-item"><a href="review.jsp" class="nav-link">리뷰</a></li>
           <li class="nav-item cta"><a href="#" class="nav-link" data-toggle="modal" data-target="#SignIn"><span>로그인</span></a></li>
         </ul>
       </div>
