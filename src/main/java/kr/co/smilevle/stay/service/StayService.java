@@ -16,7 +16,7 @@ import kr.co.smilevle.stay.model.Stay;
 
 public class StayService {
 	private StayDao stayDao = new StayDao();
-	// 회원 가입을 진행하는 함수.
+
 	public List<Stay> printStayMain() {
 		Connection conn = null;
 		try {
