@@ -15,13 +15,7 @@ import kr.co.smilevle.tourlist.model.Tourlist;
 import kr.co.smilevle.util.parser.TourlistParser;
 
 public class TourlistService {
-	public static List<Tourlist> printTourListMain() throws IOException{
-		 	
-
-		return null;
-	}
-	
-	public List<Tourlist> select(String size, String areaCode) throws IOException {
+	public List<Tourlist> printTourListMain(String size, String areaCode) throws IOException{
 		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); /*URL*/	String serviceKey = "=ygq6ckNSsXQ8IGk3A5TnTfFiz6osFZwGkzBBfT6fJzmabC0H1Wd67USpVx3Oyfq88cAKcBpgQbvFz0VZQldbVA%3D%3D";
 		String serviceKeyDecoded = URLDecoder.decode(serviceKey, "UTF-8");
 
@@ -67,10 +61,6 @@ public class TourlistService {
 		TourlistParser tourlistParser = new TourlistParser();
 		
 		return tourlistParser.selectMainInfo(parsingUrl);
-	}
-	
-	public static void main(String[] args) throws IOException {
-		List<Tourlist> list = printTourListMain();
 	}
 	
 }

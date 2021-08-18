@@ -16,10 +16,10 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import kr.co.smilevle.tourlist.model.Tourlist;
+import kr.co.smilevle.event.model.Event;
 
-public class TourlistParser {
-	public List<Tourlist> selectMainInfo(String parsingUrl) {
+public class EventParser {
+	public List<Event> selectMainInfo(String parsingUrl) {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = null;
 		try {
@@ -44,29 +44,31 @@ public class TourlistParser {
 		// 대장 노드
 		NodeList nList = doc.getElementsByTagName("item");
 //      System.out.println("파싱할 리스트 수 : " + nList.getLength());
-		List<Tourlist> tourlists = new ArrayList<Tourlist>();
+		List<Event> eventList = new ArrayList<Event>();
 		
 		for (int i = 0; i < nList.getLength(); i++) {
 			Node nNode = nList.item(i);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element eElement = (Element) nNode;
-				Tourlist tourlist = new Tourlist();
+				Event event = new Event();
 
-				tourlist.setTitle(getTagValue("title", eElement));
-				tourlist.setAddress(getTagValue("addr1", eElement));
-				tourlist.setTel(getTagValue("tel", eElement));
+				event.setTitle(getTagValue("title", eElement));
+				event.setAddress(getTagValue("addr1", eElement));
+				event.setTel(getTagValue("tel", eElement));
 				// 더블로 넣을시 parsedouble 때문에 속도가 느려짐.
-				tourlist.setMapX((getTagValue("mapx", eElement)));
-				tourlist.setMapY((getTagValue("mapy", eElement)));
-				tourlist.setFirstImage((getTagValue("firstimage", eElement)));
-				tourlist.setcontentId((getTagValue("contentid", eElement)));
-				tourlist.setReadCount(Integer.parseInt((getTagValue("readcount", eElement))));
-				tourlist.setareaCode((getTagValue("areacode", eElement)));
+				event.setMapX((getTagValue("mapx", eElement)));
+				event.setMapY((getTagValue("mapy", eElement)));
+				event.setFirstImage((getTagValue("firstimage", eElement)));
+				event.setContentId((getTagValue("contentid", eElement)));
+				event.setReadCount(Integer.parseInt((getTagValue("readcount", eElement))));
+				event.setAreaCode((getTagValue("areacode", eElement)));
+				event.setEventStartDate((getTagValue("eventstartdate", eElement)));
+				event.setEventEndDate((getTagValue("eventenddate", eElement)));
 				
-				tourlists.add(tourlist);
+				eventList.add(event);
 			}
 		}	
-		return tourlists;
+		return eventList;
 	}
 	
 	private static String getTagValue(String tag, Element eElement) {

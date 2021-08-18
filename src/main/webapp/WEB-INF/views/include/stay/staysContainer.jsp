@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-/* StayDao stayDao = new StayDao();
-List<Stay> list = stayDao.select();
-request.setAttribute("list", list);
-pageContext.setAttribute("list", list); */
 
-%>
 <section class="ftco-section bg-light">
 	<div class="container">
 		<div class="row justify-content-start mb-5 pb-3">
