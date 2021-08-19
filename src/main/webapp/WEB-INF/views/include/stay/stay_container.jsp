@@ -16,7 +16,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="destination-slider owl-carousel ftco-animate">
-			<c:forEach var="stay" items="${list}">
+			<c:forEach var="stay" items="${stayList}">
 				<div class="col-sm col-md-6 col-lg ftco-animate">
 					<div class="destination">
 						<a href="#" class="img img-2 d-flex justify-content-center align-items-center"

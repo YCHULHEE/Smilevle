@@ -71,8 +71,8 @@
       </div>
     </div>
 	
-	<jsp:include page="/WEB-INF/views/include/tourlist/tourlistContainer.jsp"/>
-    <jsp:include page="/WEB-INF/views/include/stay/staysContainer.jsp"/> 
+	<jsp:include page="/WEB-INF/views/include/travel/travel_dest_container.jsp"/>
+    <jsp:include page="/WEB-INF/views/include/stay/stay_container.jsp"/> 
 
     
     <section class="ftco-section">
@@ -257,7 +257,7 @@
 
 
    <!--  이벤트 표시 -->
-  	<jsp:include page="/WEB-INF/views/include/event/eventContainer.jsp"/>
+  	<jsp:include page="/WEB-INF/views/include/event/event_container.jsp"/>
 		
 	<section class="ftco-section-parallax">
       <div class="parallax-img d-flex align-items-center">

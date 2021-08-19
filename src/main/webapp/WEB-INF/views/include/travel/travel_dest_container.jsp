@@ -13,17 +13,17 @@
     		<div class="row">
     			<div class="col-md-12">
     				<div class="destination-slider owl-carousel ftco-animate">
-    					<c:forEach var="tourList" items="${tourList}">
+    					<c:forEach var="travelDest" items="${travelDestList}">
     					<div class="item">
 		    				<div class="destination">
-		    					<a href="#" class="img d-flex justify-content-center align-items-center" 
-		    					style="background-image: url(${tourList.firstImage})"> 
+		    					<a href="travelOne.do" class="img d-flex justify-content-center align-items-center" 
+		    					style="background-image: url(${travelDest.firstImage})"> 
 		    						<div class="icon d-flex justify-content-center align-items-center">
 		    							<span class="icon-search2"></span>
 		    						</div>
 		    					</a>
 		    					<div class="text p-3">
-		    						<h3><a href="#">${tourList.title}</a></h3>
+		    						<h3><a href="travelOne.do">${travelDest.title}</a></h3>
 		    						<span class="listing">15 Listing</span>
 		    					</div>
 		    				</div>

@@ -16,10 +16,10 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import kr.co.smilevle.tourlist.model.Tourlist;
+import kr.co.smilevle.travel.model.TravelDest;
 
-public class TourlistParser {
-	public List<Tourlist> selectMainInfo(String parsingUrl) {
+public class TravelDestParser {
+	public List<TravelDest> selectMainInfo(String parsingUrl) {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = null;
 		try {
@@ -44,13 +44,13 @@ public class TourlistParser {
 		// 대장 노드
 		NodeList nList = doc.getElementsByTagName("item");
 //      System.out.println("파싱할 리스트 수 : " + nList.getLength());
-		List<Tourlist> tourlists = new ArrayList<Tourlist>();
+		List<TravelDest> tourlists = new ArrayList<TravelDest>();
 		
 		for (int i = 0; i < nList.getLength(); i++) {
 			Node nNode = nList.item(i);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element eElement = (Element) nNode;
-				Tourlist tourlist = new Tourlist();
+				TravelDest tourlist = new TravelDest();
 
 				tourlist.setTitle(getTagValue("title", eElement));
 				tourlist.setAddress(getTagValue("addr1", eElement));

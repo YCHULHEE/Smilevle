@@ -1,6 +1,6 @@
-package kr.co.smilevle.tourlist.model;
+package kr.co.smilevle.travel.model;
 
-public class Tourlist {
+public class TravelDest {
 	private String contentId;
 	private String title;
 	private String areaCode;
@@ -11,7 +11,7 @@ public class Tourlist {
 	private String mapX;
 	private String mapY;
 	
-	public Tourlist() {
+	public TravelDest() {
 	
 	}
 	public String getcontentId() {
@@ -68,7 +68,7 @@ public class Tourlist {
 	public void setMapY(String mapY) {
 		this.mapY = mapY;
 	}
-	public Tourlist(String contentId, String title, String areaCode, String address, String firstImage, int readCount,
+	public TravelDest(String contentId, String title, String areaCode, String address, String firstImage, int readCount,
 			String tel, String mapX, String mapY) {
 		super();
 		this.contentId = contentId;

@@ -1,4 +1,4 @@
-package kr.co.smilevle.tourlist.service;
+package kr.co.smilevle.travel.service;
 
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -9,13 +9,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
 
+import kr.co.smilevle.travel.model.TravelDest;
+import kr.co.smilevle.util.parser.TravelDestParser;
 
-
-import kr.co.smilevle.tourlist.model.Tourlist;
-import kr.co.smilevle.util.parser.TourlistParser;
-
-public class TourlistService {
-	public List<Tourlist> printTourListMain(String size, String areaCode) throws IOException{
+public class TravelDestService {
+	public List<TravelDest> printTourListMain(String size, String areaCode) throws IOException{
 		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); /*URL*/	String serviceKey = "=ygq6ckNSsXQ8IGk3A5TnTfFiz6osFZwGkzBBfT6fJzmabC0H1Wd67USpVx3Oyfq88cAKcBpgQbvFz0VZQldbVA%3D%3D";
 		String serviceKeyDecoded = URLDecoder.decode(serviceKey, "UTF-8");
 
@@ -58,7 +56,7 @@ public class TourlistService {
         String parsingUrl = sb.toString();
 		System.out.println(parsingUrl);
 		
-		TourlistParser tourlistParser = new TourlistParser();
+		TravelDestParser tourlistParser = new TravelDestParser();
 		
 		return tourlistParser.selectMainInfo(parsingUrl);
 	}
