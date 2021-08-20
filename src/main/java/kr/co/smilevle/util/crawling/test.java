@@ -1,4 +1,4 @@
-package kr.co.smilevle.crawling;
+package kr.co.smilevle.util.crawling;
 
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;

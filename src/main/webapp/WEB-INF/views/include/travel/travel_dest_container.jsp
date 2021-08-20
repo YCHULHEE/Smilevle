@@ -16,6 +16,7 @@
     					<c:forEach var="travelDest" items="${travelDestList}">
     					<div class="item">
 		    				<div class="destination">
+		    					<input type="hidden" name="contentId" value="${tavelDest.contentId}">
 		    					<a href="travelOne.do" class="img d-flex justify-content-center align-items-center" 
 		    					style="background-image: url(${travelDest.firstImage})"> 
 		    						<div class="icon d-flex justify-content-center align-items-center">

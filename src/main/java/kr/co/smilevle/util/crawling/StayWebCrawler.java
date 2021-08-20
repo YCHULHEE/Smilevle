@@ -1,4 +1,4 @@
-package kr.co.smilevle.crawling;
+package kr.co.smilevle.util.crawling;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
@@ -23,7 +23,7 @@ import org.xml.sax.SAXException;
 import kr.co.smilevle.stay.model.Stay;
 
 
-public class WebCrawler {
+public class StayWebCrawler {
 	public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay"); /* URL */
@@ -35,14 +35,14 @@ public class WebCrawler {
 		urlBuilder.append("&" + URLEncoder.encode("ServiceKey", "UTF-8") + "="
 				+ URLEncoder.encode(serviceKeyDecoded, "UTF-8")); /* 공공데이터포털에서 발급받은 인증키 */
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "="
-				+ URLEncoder.encode("100", "UTF-8")); /* 한 페이지 결과 수 */
+				+ URLEncoder.encode("500", "UTF-8")); /* 한 페이지 결과 수 */
 		urlBuilder.append(
-				"&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /* 현재 페이지 번호 */
+				"&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("2", "UTF-8")); /* 현재 페이지 번호 */
 		urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "="
 				+ URLEncoder.encode("ETC", "UTF-8")); /* IOS(아이폰),AND(안드로이드),WIN(원도우폰),ETC */
 		urlBuilder.append("&" + URLEncoder.encode("MobileApp", "UTF-8") + "="
 				+ URLEncoder.encode("AppTest", "UTF-8")); /* 서비스명=어플명 */
-		urlBuilder.append("&" + URLEncoder.encode("arrange", "UTF-8") + "=" + URLEncoder.encode("O",
+		urlBuilder.append("&" + URLEncoder.encode("arrange", "UTF-8") + "=" + URLEncoder.encode("P",
 				"UTF-8")); /* (A=제목순,B=조회순,C=수정순,D=생성일순) 대표이미지가 반드시 있는 정렬 (O=제목순, P=조회순, Q=수정일순, R=생성일순) */
 		urlBuilder.append("&" + URLEncoder.encode("listYN", "UTF-8") + "="
 				+ URLEncoder.encode("Y", "UTF-8")); /* 목록구분(Y=목록,N=개수) */
@@ -109,7 +109,7 @@ public class WebCrawler {
 				System.out.println(getTagValue("mapx", eElement));// 사업장명
 				System.out.println(getTagValue("mapy", eElement));// 사업장명
 				System.out.println(getTagValue("firstimage", eElement));// 사업장명
-				System.out.println(getTagValue("firstimage1", eElement));// 사업장명
+				System.out.println(getTagValue("contentId", eElement));// 사업장명
 				System.out.println(getTagValue("readcount", eElement));// 사업장명
 				System.out.println(getTagValue("areacode", eElement));// 사업장명
 				
@@ -118,12 +118,16 @@ public class WebCrawler {
 				stay.setAddress(getTagValue("addr1", eElement));
 				stay.setTel(getTagValue("tel", eElement));
 				// 더블로 넣을시 parsedouble 때문에 속도가 느려짐.
-				stay.setMapX((getTagValue("mapx", eElement)));
-				stay.setMapY((getTagValue("mapy", eElement)));
-				stay.setFirstImage((getTagValue("firstimage", eElement)));
-				stay.setSecondImage((getTagValue("firstimage1", eElement)));
-				stay.setReadCount(Integer.parseInt((getTagValue("readcount", eElement))));
-				stay.setAreacode((getTagValue("areacode", eElement)));
+				stay.setMapX(getTagValue("mapx", eElement));
+				stay.setMapY(getTagValue("mapy", eElement));
+				stay.setFirstImage(getTagValue("firstimage", eElement));
+				if(!getTagValue("contentid", eElement).equals("")) {
+					stay.setContentId(Integer.parseInt(getTagValue("contentid", eElement)));
+				} else {
+					continue;
+				}
+				stay.setReadCount(Integer.parseInt(getTagValue("readcount", eElement)));
+				stay.setAreaCode(getTagValue("areacode", eElement));
 				try {
 					CrawlingDao.insertStay(stay);
 				} catch (SQLException e) {

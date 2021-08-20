@@ -28,8 +28,6 @@ public class TravelDestParser {
 			e.printStackTrace();
 		}
 
-		// 이 메소드 DocumentBuilder.parse(String)는 URI를 가져 와서 열려고 시도합니다.
-		// 컨텐츠를 직접 제공하려면 컨텐츠를 InputStream또는 Reader로 지정해야합니다 .
 		Document doc = null;
 		try {
 			doc = dBuilder.parse(new InputSource(new StringReader(parsingUrl)));
@@ -38,35 +36,37 @@ public class TravelDestParser {
 		}
 		doc.getDocumentElement().normalize();
 
-		// doc.getDocumentElement().getNodeName() => 최상위 노드 확인
-//      System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
 
-		// 대장 노드
 		NodeList nList = doc.getElementsByTagName("item");
-//      System.out.println("파싱할 리스트 수 : " + nList.getLength());
-		List<TravelDest> tourlists = new ArrayList<TravelDest>();
+
+		List<TravelDest> travelDests = new ArrayList<TravelDest>();
 		
 		for (int i = 0; i < nList.getLength(); i++) {
 			Node nNode = nList.item(i);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element eElement = (Element) nNode;
-				TravelDest tourlist = new TravelDest();
+				TravelDest travelDest = new TravelDest();
 
-				tourlist.setTitle(getTagValue("title", eElement));
-				tourlist.setAddress(getTagValue("addr1", eElement));
-				tourlist.setTel(getTagValue("tel", eElement));
+				travelDest.setTitle(getTagValue("title", eElement));
+				travelDest.setAddress(getTagValue("addr1", eElement));
+				travelDest.setTel(getTagValue("tel", eElement));
 				// 더블로 넣을시 parsedouble 때문에 속도가 느려짐.
-				tourlist.setMapX((getTagValue("mapx", eElement)));
-				tourlist.setMapY((getTagValue("mapy", eElement)));
-				tourlist.setFirstImage((getTagValue("firstimage", eElement)));
-				tourlist.setcontentId((getTagValue("contentid", eElement)));
-				tourlist.setReadCount(Integer.parseInt((getTagValue("readcount", eElement))));
-				tourlist.setareaCode((getTagValue("areacode", eElement)));
+				travelDest.setMapX((getTagValue("mapx", eElement)));
+				travelDest.setMapY((getTagValue("mapy", eElement)));
+				travelDest.setFirstImage((getTagValue("firstimage", eElement)));
+				if(getTagValue("contentid", eElement) == "")
+					if(!getTagValue("contentid", eElement).equals("")) {
+						travelDest.setContentId(Integer.parseInt(getTagValue("contentid", eElement)));
+					} else {
+						continue;
+					}
+				travelDest.setReadCount(Integer.parseInt((getTagValue("readcount", eElement))));
+				travelDest.setAreaCode((getTagValue("areacode", eElement)));
 				
-				tourlists.add(tourlist);
+				travelDests.add(travelDest);
 			}
 		}	
-		return tourlists;
+		return travelDests;
 	}
 	
 	private static String getTagValue(String tag, Element eElement) {

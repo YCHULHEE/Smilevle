@@ -18,7 +18,7 @@ public class MainPageHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		StayService stayService = new StayService();
-		TravelDestService tourlistService = new TravelDestService();
+		TravelDestService travelDestService = new TravelDestService();
 		EventService eventService = new EventService();
 		
 		List<Stay> stayList = new ArrayList<Stay>();
@@ -26,7 +26,7 @@ public class MainPageHandler implements CommandHandler{
 		List<Event> eventList = new ArrayList<Event>();
 		
 		
-		travelDestList = tourlistService.printTourListMain("20", "32");
+		travelDestList = travelDestService.printTourListMain("20", "32");
 		stayList = stayService.printStayMain();
 		eventList = eventService.printEventMain("8", "32");
 		
