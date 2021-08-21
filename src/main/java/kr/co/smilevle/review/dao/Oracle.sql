@@ -3,7 +3,8 @@ create table review(
 	writer_id varchar2(50) not null,
 	writer_name varchar2(50) not null,
 	title varchar2(255) not null,
-	address varchar2(255) not null,
+	areacode number not null,
+	location_name varchar2(255) not null,
 	rate number(2,1) not null,
 	content long,
 	regdate timestamp not null,
@@ -12,3 +13,5 @@ create table review(
 );
 
 select * from review;
+
+drop table review;
