@@ -3,7 +3,7 @@ package kr.co.smilevle.review.model;
 import java.util.Date;
 
 public class Review {
-	private int number;
+	private Integer number;
 	private Writer writer;
 	private String title;
 	private int areacode;
@@ -14,7 +14,7 @@ public class Review {
 	private Date modDate;
 	private int readCount;
 	
-	public Review(int number, Writer writer, String title, int areacode, String locationName, double rate,
+	public Review(Integer number, Writer writer, String title, int areacode, String locationName, double rate,
 			String content, Date regDate, Date modDate, int readCount) {
 		super();
 		this.number = number;
@@ -29,7 +29,7 @@ public class Review {
 		this.readCount = readCount;
 	}
 
-	public int getNumber() {
+	public Integer getNumber() {
 		return number;
 	}
 

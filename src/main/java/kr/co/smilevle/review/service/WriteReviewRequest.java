@@ -1,7 +1,8 @@
 package kr.co.smilevle.review.service;
 
-import java.io.Writer;
 import java.util.Map;
+
+import kr.co.smilevle.review.model.Writer;
 
 public class WriteReviewRequest {
 	private Writer writer;
