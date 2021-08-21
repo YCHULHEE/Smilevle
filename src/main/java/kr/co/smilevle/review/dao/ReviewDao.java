@@ -22,9 +22,9 @@ public class ReviewDao {
 			pstmt.setString(1, review.getWriter().getId());
 			pstmt.setString(2, review.getWriter().getName());
 			pstmt.setString(3, review.getTitle());
-			pstmt.setInt(4, review.getAreacode());
+			pstmt.setString(4, review.getAreacode());
 			pstmt.setString(5, review.getLocationName());
-			pstmt.setDouble(6, review.getRate());
+			pstmt.setString(6, review.getRate());
 			pstmt.setString(7, review.getContent());
 			pstmt.setTimestamp(8, toTimestamp(review.getRegDate()));
 			pstmt.setTimestamp(9, toTimestamp(review.getModDate()));

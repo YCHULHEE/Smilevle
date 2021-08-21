@@ -7,12 +7,12 @@ import kr.co.smilevle.review.model.Writer;
 public class WriteReviewRequest {
 	private Writer writer;
 	private String title;
-	private int areacode;
+	private String areacode;
 	private String locationName;
-	private double rate;
+	private String rate;
 	private String content;
 	
-	public WriteReviewRequest(Writer writer, String title, int areacode, String locationName, double rate,
+	public WriteReviewRequest(Writer writer, String title, String areacode, String locationName, String rate,
 			String content) {
 		super();
 		this.writer = writer;
@@ -31,7 +31,7 @@ public class WriteReviewRequest {
 		return title;
 	}
 
-	public int getAreacode() {
+	public String getAreacode() {
 		return areacode;
 	}
 
@@ -39,7 +39,7 @@ public class WriteReviewRequest {
 		return locationName;
 	}
 
-	public double getRate() {
+	public String getRate() {
 		return rate;
 	}
 
@@ -49,6 +49,8 @@ public class WriteReviewRequest {
 	
 	public void validate(Map<String, Boolean> errors) {
 		checkEmpty(errors, title, "title");
+		checkEmpty(errors, areacode, "areacode");
+		checkEmpty(errors, rate, "rate");
 		checkEmpty(errors, locationName, "locationName");
 	}
 	

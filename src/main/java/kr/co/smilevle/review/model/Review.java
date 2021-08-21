@@ -6,15 +6,15 @@ public class Review {
 	private Integer number;
 	private Writer writer;
 	private String title;
-	private int areacode;
+	private String areacode;
 	private String locationName;
-	private double rate;
+	private String rate;
 	private String content;
 	private Date regDate;
 	private Date modDate;
 	private int readCount;
 	
-	public Review(Integer number, Writer writer, String title, int areacode, String locationName, double rate,
+	public Review(Integer number, Writer writer, String title, String areacode, String locationName, String rate,
 			String content, Date regDate, Date modDate, int readCount) {
 		super();
 		this.number = number;
@@ -41,7 +41,7 @@ public class Review {
 		return title;
 	}
 
-	public int getAreacode() {
+	public String getAreacode() {
 		return areacode;
 	}
 
@@ -49,7 +49,7 @@ public class Review {
 		return locationName;
 	}
 
-	public double getRate() {
+	public String getRate() {
 		return rate;
 	}
 
