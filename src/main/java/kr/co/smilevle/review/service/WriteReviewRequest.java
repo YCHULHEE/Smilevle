@@ -46,7 +46,12 @@ public class WriteReviewRequest {
 		return content;
 	}
 	
-	public void validate(Map<String, Boolean> errors, String value, String fieldName) {
+	public void validate(Map<String, Boolean> errors) {
+		checkEmpty(errors, title, "title");
+		checkEmpty(errors, locationName, "locationName");
+	}
+	
+	private void checkEmpty(Map<String, Boolean> errors, String value, String fieldName) {
 		if(value == null || value.isEmpty()) {
 			errors.put(fieldName, Boolean.TRUE);
 		}
