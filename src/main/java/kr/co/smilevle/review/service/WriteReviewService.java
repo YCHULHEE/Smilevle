@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
 
+import kr.co.smilevle.jdbc.JdbcUtil;
 import kr.co.smilevle.jdbc.connection.ConnectionProvider;
 import kr.co.smilevle.review.dao.ReviewDao;
 import kr.co.smilevle.review.model.Review;
@@ -18,9 +19,17 @@ public class WriteReviewService {
 			conn = ConnectionProvider.getConnection();
 			
 			Review review = toReview(writeReq);
+			Review savedReview = reviewDao.insert(conn, review);
+			if(savedReview == null) {
+				throw new RuntimeException("fail to insert review");
+			}
+			return savedReview.getNumber();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch(RuntimeException e) {
+			throw e;
+		} finally {
+			JdbcUtil.close(conn);
 		}
 	}
 
