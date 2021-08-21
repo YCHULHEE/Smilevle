@@ -19,21 +19,6 @@
       </param-value>
    </context-param>
    
-   
-   <context-param>
-      <param-name>poolConfig2</param-name>
-      <param-value>
-         jdbcDriver=org.mariadb.jdbc.Driver
-         jdbcUrl=jdbc:mariadb://localhost:3306/board
-         dbUser=user01
-         dbPass=1234
-         validationQuery=select 1
-         minIdle=3
-         maxTotal=30
-         poolName=board
-      </param-value>
-   </context-param>
-   
    <filter>
       <filter-name>encodingFilter</filter-name>
       <filter-class>kr.co.smilevle.util.CharacterEncodingFilter</filter-class>
