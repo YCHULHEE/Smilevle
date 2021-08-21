@@ -12,6 +12,6 @@ create table review(
 	read_cnt number
 );
 
-select * from review;
+create sequence review_seq;
 
-drop table review;
+select * from review;
