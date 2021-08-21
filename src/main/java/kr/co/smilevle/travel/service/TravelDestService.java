@@ -5,14 +5,24 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
 
+
+import kr.co.smilevle.jdbc.connection.ConnectionProvider;
+import kr.co.smilevle.travel.dao.TravelContentDao;
+import kr.co.smilevle.travel.dao.TravelDao;
 import kr.co.smilevle.travel.model.TravelDest;
+import kr.co.smilevle.travel.model.TravelDestContent;
 import kr.co.smilevle.util.parser.TravelDestParser;
 
 public class TravelDestService {
+	private TravelDao travelDao = new TravelDao();
+	private TravelContentDao contentDao = new TravelContentDao();
+	
 	public List<TravelDest> printTourListMain(String size, String areaCode) throws IOException{
 		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); /*URL*/	String serviceKey = "=ygq6ckNSsXQ8IGk3A5TnTfFiz6osFZwGkzBBfT6fJzmabC0H1Wd67USpVx3Oyfq88cAKcBpgQbvFz0VZQldbVA%3D%3D";
 		String serviceKeyDecoded = URLDecoder.decode(serviceKey, "UTF-8");
@@ -54,11 +64,36 @@ public class TravelDestService {
         conn.disconnect();
         
         String parsingUrl = sb.toString();
-		System.out.println(parsingUrl);
 		
 		TravelDestParser tourlistParser = new TravelDestParser();
 		
 		return tourlistParser.selectMainInfo(parsingUrl);
+	}
+	
+	public TravelDestData getTravelDest(int contentId, boolean increaseReadCount) throws IOException {
+		try (Connection conn = ConnectionProvider.getConnection()){
+			//컨텐츠 정보를 통해 여행지 정보를 가져온다.
+			TravelDest travelDest = travelDao.selectById(conn, contentId);
+			if (travelDest == null) {
+				throw new TravelDestNotFoundException();
+			}
+			// 글번호를 통해 글의 내용을 가져온다.
+			TravelDestContent content = contentDao.selectContentById(contentId);
+			if (content == null) {
+				throw new TravelDestContentNotFoundException();
+			}
+			// increaseReadCount가 true일시 조회수를 증가시킨다.
+			if (increaseReadCount) {
+				travelDao.increaseReadCount(conn, contentId);
+			}
+			List<String> imageList = contentDao.selectImageListById(contentId);
+			System.out.println( "사이즈는 "+imageList.size());
+			
+			// 글의 정보와 글의 내용을 아티클데이터로 반환한다.
+			return new TravelDestData(travelDest, content, imageList);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 }

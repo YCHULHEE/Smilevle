@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <section class="ftco-section ftco-destination">
     	<div class="container">
@@ -16,8 +17,7 @@
     					<c:forEach var="travelDest" items="${travelDestList}">
     					<div class="item">
 		    				<div class="destination">
-		    					<input type="hidden" name="contentId" value="${tavelDest.contentId}">
-		    					<a href="travelOne.do" class="img d-flex justify-content-center align-items-center" 
+		    					<a href="travelOne.do?contentId=${travelDest.getContentId()}" class="img d-flex justify-content-center align-items-center" 
 		    					style="background-image: url(${travelDest.firstImage})"> 
 		    						<div class="icon d-flex justify-content-center align-items-center">
 		    							<span class="icon-search2"></span>
@@ -25,7 +25,7 @@
 		    					</a>
 		    					<div class="text p-3">
 		    						<h3><a href="travelOne.do">${travelDest.title}</a></h3>
-		    						<span class="listing">15 Listing</span>
+		    						<span class="listing">${travelDest.address}</span>
 		    					</div>
 		    				</div>
 	    				</div>

@@ -16,8 +16,21 @@ public class TravelDest {
 	public TravelDest() {
 	
 	}
-	
-	
+
+	public TravelDest(String travelDestId, int contentId, String title, String areaCode, String address,
+			String firstImage, int readCount, String tel, String mapX, String mapY, int contentTypeId) {
+		this.travelDestId = travelDestId;
+		this.contentId = contentId;
+		this.title = title;
+		this.areaCode = areaCode;
+		this.address = address;
+		this.firstImage = firstImage;
+		this.readCount = readCount;
+		this.tel = tel;
+		this.mapX = mapX;
+		this.mapY = mapY;
+		this.contentTypeId = contentTypeId;
+	}
 
 	public int getContentTypeId() {
 		return contentTypeId;
@@ -26,8 +39,6 @@ public class TravelDest {
 	public void setContentTypeId(int contentTypeId) {
 		this.contentTypeId = contentTypeId;
 	}
-
-
 
 	public String getTravelDestId() {
 		return travelDestId;
