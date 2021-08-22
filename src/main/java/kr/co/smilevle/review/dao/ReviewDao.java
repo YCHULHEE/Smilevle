@@ -6,10 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import kr.co.smilevle.jdbc.JdbcUtil;
 import kr.co.smilevle.review.model.Review;
+import kr.co.smilevle.review.model.Writer;
 
 public class ReviewDao {
 	public Review insert(Connection conn, Review review) throws SQLException {
@@ -59,6 +62,63 @@ public class ReviewDao {
 
 	private Timestamp toTimestamp(Date date) {
 		return new Timestamp(date.getTime());
+	}
+	
+	public int selectCount(Connection conn) throws SQLException {
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("select count(*) from article");
+			
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(stmt);
+		}
+		
+	}
+	
+	public List<Review> select(Connection conn, int startRow, int size) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "select * from (select rownum as rnum, review_no, writer_id, writer_name, title, areacode, location_name, rate, content, regdate, moddate, read_cnt "
+				+ "from (select * from review order by review_no desc) where rownum <= ?) where rnum >= ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, startRow + size);
+			pstmt.setInt(2, startRow + 1);
+			rs = pstmt.executeQuery();
+			List<Review> result = new ArrayList<>();
+			while(rs.next()) {
+				result.add(convertReview(rs));
+			}
+			return result;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	private Review convertReview(ResultSet rs) throws SQLException {
+		return new Review(rs.getInt("review_no"), 
+						  new Writer(rs.getString("writer_id"), rs.getString("writer_name")),
+						  rs.getString("title"),
+						  rs.getString("areacode"),
+						  rs.getString("location_name"),
+						  rs.getString("rate"),
+						  rs.getString("content"),
+						  toDate(rs.getTimestamp("regdate")),
+						  toDate(rs.getTimestamp("moddate")),
+						  0);
+						  
+	}
+
+	private Date toDate(Timestamp timestamp) {
+		return new Date(timestamp.getTime());
 	}
 	
 }
