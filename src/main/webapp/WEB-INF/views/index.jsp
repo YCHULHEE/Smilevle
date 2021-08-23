@@ -1,8 +1,10 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <title>Smilevle</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -459,7 +461,34 @@
     </footer>
 
 <!-- Modal 종훈씨 작업 로그인 -->
-	<div class="modal fade" id="SignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<script type="text/javascript">
+    $(document).ready(function() {        
+        //로그인 모달창 출력합니다
+        $("#SignIn").click(function() {
+            $("#SignIn").modal("show");
+        });        
+        //로그인 버튼 눌렀을 경우
+        $("#btnLogin").click(function() {
+            $.ajax({
+                type:"POST",
+                url:"${request.contextPath()}/login.do";
+                success:function(result){                    
+                    if (result.result == '1') { // 로그인 성공시 
+                       // $("#loginModal").modal("hide");
+                       // location.href = "${contextPath}/base/index.htm";
+                    } else { //로그인 실패시 
+                        $(".warning").text(result.msg);
+                        //'아이디나 비번이 틀립니다' 문구 출력 후 바로 창이 닫힘
+                    }
+                },
+                error:function(xhr, status, error) {
+                    console.log(xhr.status + " : " + error + " : " + xhr.responseText);
+                }
+            });
+        });
+    });
+    </script>
+	<div class="modal fade" id="SignIn" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -467,21 +496,21 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <form action="<%=request.getContextPath()%>/index.do" method="post" class="signup-form">
+                    <form action="<%=request.getContextPath()%>/login.do" method="post" class="signup-form">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="아이디" required="required">
+                            <input type="text" class="form-control" placeholder="아이디" name="id" required="required">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="패스워드" required="required">
+                            <input type="password" class="form-control" placeholder="패스워드" name="password" required="required">
                         </div>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-blue btn-block">로그인</button>
+                            <button type="submit" id="btnLogin"  class="btn btn-blue btn-block">로그인</button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer text-center">
-                    <a href="#">비밀번호 찾기 /</a>
-                    <a href="#">회원 가입</a>
+                    <a href="/Smilevle/search.do">비밀번호 찾기 /</a>
+                    <a href="/Smilevle/join.do">회원 가입</a>
                 </div>
             </div>
         </div>

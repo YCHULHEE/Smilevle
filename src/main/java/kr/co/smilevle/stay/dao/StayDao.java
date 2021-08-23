@@ -17,7 +17,7 @@ public class StayDao {
 		ResultSet rs = null;
 		Connection conn = ConnectionProvider.getConnection();
 		try {
-			pstmt = conn.prepareStatement("select * from (select title, address, firstimage, readcount, areacode from stay order by readcount desc) where RowNum <= 20");
+			pstmt = conn.prepareStatement("select * from (select title, address, firstimage, readcount, areacode from stay order by readcount desc) where RowNum <= 7");
 			
 
 			rs = pstmt.executeQuery();
@@ -25,7 +25,7 @@ public class StayDao {
 			while (rs.next()) {
 				result.add(convertStay(rs));
 			}
-			for(int i = 0; i < 20; i++) {
+			for(int i = 0; i < 7; i++) {
 				System.out.println(result.get(i).getTitle());
 			}
 			
