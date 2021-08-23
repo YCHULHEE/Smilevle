@@ -95,7 +95,14 @@
 					    </li>
 				  	</c:if>
 					<c:forEach var="pNo" begin="${reviewPage.startPage }" end="${reviewPage.endPage }">
-				    	<li><a href="review.do?pageNo=${pNo }">${pNo }</a></li>					
+						<c:choose>
+							<c:when test="${pNo == reviewPage.currentPage }">
+								<li class="active"><a href="review.do?pageNo=${pNo }">${pNo }</a></li>
+							</c:when>
+							<c:otherwise>
+				    			<li><a href="review.do?pageNo=${pNo }">${pNo }</a></li>								
+							</c:otherwise>
+						</c:choose>
 					</c:forEach>
 					<c:if test="${reviewPage.endPage < reviewPage.totalPages }">
 					    <li>
