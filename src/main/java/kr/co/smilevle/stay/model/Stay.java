@@ -1,22 +1,29 @@
 package kr.co.smilevle.stay.model;
 
 public class Stay {
-	private String contentid;
+	private String stayId;
 	private String title;
-	private String areacode;
+	private String areaCode;
 	private String address;
 	private String firstImage;
-	private String secondImage;
+	private int contentId;
 	private int readCount;
 	private String tel;
 	private String mapX;
 	private String mapY;
 	
-	public String getContentid() {
-		return contentid;
+	
+	public String getStayId() {
+		return stayId;
 	}
-	public void setContentid(String contentid) {
-		this.contentid = contentid;
+	public void setStayId(String stayId) {
+		this.stayId = stayId;
+	}
+	public int getContentId() {
+		return contentId;
+	}
+	public void setContentId(int contentId) {
+		this.contentId = contentId;
 	}
 	public String getTitle() {
 		return title;
@@ -25,11 +32,11 @@ public class Stay {
 		this.title = title;
 	}
 	
-	public String getAreacode() {
-		return areacode;
+	public String getAreaCode() {
+		return areaCode;
 	}
-	public void setAreacode(String areacode) {
-		this.areacode = areacode;
+	public void setAreaCode(String areaCode) {
+		this.areaCode = areaCode;
 	}
 	
 	public String getAddress() {
@@ -43,12 +50,6 @@ public class Stay {
 	}
 	public void setFirstImage(String firstImage) {
 		this.firstImage = firstImage;
-	}
-	public String getSecondImage() {
-		return secondImage;
-	}
-	public void setSecondImage(String secondImage) {
-		this.secondImage = secondImage;
 	}
 	
 	public int getReadCount() {
@@ -80,10 +81,10 @@ public class Stay {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Stay(String title, String areacode, String address, String firstImage, int readCount) {
+	public Stay(String title, String areaCode, String address, String firstImage, int readCount) {
 		super();
 		this.title = title;
-		this.areacode = areacode;
+		this.areaCode = areaCode;
 		this.address = address;
 		this.firstImage = firstImage;
 		this.readCount = readCount;
