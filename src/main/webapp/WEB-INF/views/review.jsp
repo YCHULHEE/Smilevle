@@ -34,12 +34,12 @@
   <jsp:include page="/WEB-INF/views/include/common/menu.jsp"/>
     <!-- END nav -->
     
-    <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_2.jpg');">
+    <div class="hero-wrap js-fullheight" style="background-image: url(images/bg_2.jpg);">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 text-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>About</span></p>
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.do">Home</a></span> <span>About</span></p>
             <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">About Us</h1>
           </div>
         </div>
@@ -97,7 +97,7 @@
     	</div>
     </section>
 
-    <section class="ftco-section bg-light">
+<!--     <section class="ftco-section bg-light">
     	<div class="container">
     		<div class="row justify-content-start mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate">
@@ -183,7 +183,7 @@
     			</div>
     		</div>
     	</div>
-    </section>
+    </section> -->
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">

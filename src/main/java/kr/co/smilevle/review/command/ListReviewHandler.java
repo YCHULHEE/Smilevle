@@ -20,7 +20,7 @@ public class ListReviewHandler implements CommandHandler{
 		}
 		ReviewPage reviewPage = listService.getReviewPage(pageNo);
 		request.setAttribute("reviewPage", reviewPage);
-		return "/WEB-INF/review.jsp";
+		return "/WEB-INF/views/review.jsp";
 	}
 	
 	

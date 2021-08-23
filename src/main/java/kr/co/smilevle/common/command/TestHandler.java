@@ -7,7 +7,7 @@ public class TestHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return"/WEB-INF/views/index.jsp";
+		return"/index.jsp";
 	}
 
 }
