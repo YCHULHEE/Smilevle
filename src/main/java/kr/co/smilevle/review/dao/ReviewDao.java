@@ -69,7 +69,7 @@ public class ReviewDao {
 		ResultSet rs = null;
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select count(*) from article");
+			rs = stmt.executeQuery("select count(*) from review");
 			
 			if(rs.next()) {
 				return rs.getInt(1);
