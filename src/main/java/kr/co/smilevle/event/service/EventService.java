@@ -1,5 +1,4 @@
 package kr.co.smilevle.event.service;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,7 +12,6 @@ import java.util.List;
 
 import kr.co.smilevle.event.model.Event;
 import kr.co.smilevle.util.parser.EventParser;
-
 
 public class EventService {
 	public List<Event> printEventMain(String size, String areaCode) throws IOException {

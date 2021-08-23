@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand" href="index.do">smilevle.</a>
@@ -15,7 +16,12 @@
           <li class="nav-item"><a href="travel.do" class="nav-link">여행지</a></li>
           <li class="nav-item"><a href="event.do" class="nav-link">볼거리</a></li>
           <li class="nav-item"><a href="review.do" class="nav-link">리뷰</a></li>
-          <li class="nav-item cta"><a href="#" class="nav-link" data-toggle="modal" data-target="#SignIn"><span>로그인</span></a></li>
+          <u:notLogin>
+          <li class="nav-item cta"><a href="login.do" class="nav-link"><span>로그인</span></a></li>
+          </u:notLogin>
+          <u:isLogin>
+          <li class="nav-item cta"><a href="logout.do " class="nav-link"><span>로그아웃</span></a></li>
+          </u:isLogin>
         </ul>
       </div>
     </div>

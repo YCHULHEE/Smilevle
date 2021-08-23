@@ -56,7 +56,8 @@ public class CoronaService {
         CoronaPaser coronaPaser = new CoronaPaser();
         Map<String, Integer> coronaMap = coronaPaser.paserCorona(sb.toString());
         String maxName = selectCoronaMax(coronaMap);
-        
+        System.out.println(maxName);
+        System.out.println(coronaMap.get("경북"));
        	return maxName;
 	}
 	
