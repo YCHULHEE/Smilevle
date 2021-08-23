@@ -69,12 +69,12 @@
     			</tr>
     		</c:if>
     		<c:forEach var="review" items="${reviewPage.content }">
-    			<tr>
+    			<tr style="cursor:pointer;color:#blue;" onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'">
     				<td>${review.number}</td>
     				<td>
-    					<a href="review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }">
+
     						<c:out value="${review.title }" />
-    					</a>
+
     				</td>
     				<td>${review.locationName }</td>
     				<td>${review.writer.name }</td>
