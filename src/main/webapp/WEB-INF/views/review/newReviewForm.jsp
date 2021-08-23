@@ -26,7 +26,7 @@
 <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 </head>
 <body>
-	<form action="write.do" method="post">
+	<form action="review_write.do" method="post">
 		<p>
 			제목: <br/> <input type="text" name="title" value="${param.title }">
 			<c:if test="${errors.title }">제목을 입력하세요!</c:if>
@@ -62,7 +62,7 @@
 			 CKEDITOR.replace('content', 
 						{	height: 500,
 							width: 850,
-							filebrowserUploadUrl: '/Smilevle/review/upload.do'
+							filebrowserUploadUrl: '/Smilevle/review_upload.do'
 						}
 					 );
 			</script>		
