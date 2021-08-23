@@ -13,7 +13,7 @@ public class ListReviewHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String pageNoVal = request.getParameter("PageNo");
+		String pageNoVal = request.getParameter("pageNo");
 		int pageNo = 1;
 		if(pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
