@@ -39,6 +39,7 @@ public class WriteReviewHandler implements CommandHandler{
 		
 		// 해야할 일 : 로그인 기능 구현할 때 알맞은 객체로 바꿀 것!
 		User user = new User("test1234", "박실험");
+		request.getSession().setAttribute("authUser", user);
 		WriteReviewRequest writeReq = createWriteReviewRequest(user, request);
 		writeReq.validate(errors);
 		

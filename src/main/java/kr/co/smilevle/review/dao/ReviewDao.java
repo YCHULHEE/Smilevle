@@ -113,7 +113,7 @@ public class ReviewDao {
 						  rs.getString("content"),
 						  toDate(rs.getTimestamp("regdate")),
 						  toDate(rs.getTimestamp("moddate")),
-						  0);
+						  rs.getInt("read_cnt"));
 						  
 	}
 
