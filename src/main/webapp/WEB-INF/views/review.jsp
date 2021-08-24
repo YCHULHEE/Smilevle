@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   </head>
   <body>
     
@@ -52,7 +51,7 @@
 	</div>
     <section class="ftco-section">
     	<div class="container">
-    		<button class="btn btn-primary" onclick="location.href='review_write.do'">게시글 쓰기</button>
+    		<button class="btn btn-outline-info" onclick="location.href='review_write.do'">게시글 쓰기</button>
     		<table class="table table-hover">
     			<thead class="thead thead-dark">
 	    			<tr>
@@ -86,10 +85,10 @@
 	    <div class="text-center">
 	   		<c:if test="${reviewPage.hasReviews() }">
 	   			<nav>
-				  <ul class="pagination">
+				  <ul class="pagination justify-content-center">
 				  	<c:if test="${reviewPage.startPage > 5 }">
-					  	<li>
-					      <a href="review.do?pageNo=${reviewPage.startPage - 1 }" aria-label="이전">
+					  	<li class="page-item">
+					      <a class="page-link" href="review.do?pageNo=${reviewPage.startPage - 1 }" aria-label="이전">
 					        <span aria-hidden="true">이전</span>
 					      </a>
 					    </li>
@@ -97,16 +96,16 @@
 					<c:forEach var="pNo" begin="${reviewPage.startPage }" end="${reviewPage.endPage }">
 						<c:choose>
 							<c:when test="${pNo == reviewPage.currentPage }">
-								<li class="active"><a href="review.do?pageNo=${pNo }">${pNo }</a></li>
+								<li class="page-item active"><a class="page-link" href="review.do?pageNo=${pNo }">${pNo }</a></li>
 							</c:when>
 							<c:otherwise>
-				    			<li><a href="review.do?pageNo=${pNo }">${pNo }</a></li>								
+				    			<li class="page-item"><a class="page-link" href="review.do?pageNo=${pNo }">${pNo }</a></li>								
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					<c:if test="${reviewPage.endPage < reviewPage.totalPages }">
-					    <li>
-					      <a href="review.do?pageNo=${reviewPage.startPage + 5 }" aria-label="다음">
+					    <li class="page-item">
+					      <a class="page-link" href="review.do?pageNo=${reviewPage.startPage + 5 }" aria-label="다음">
 					        <span aria-hidden="true">다음</span>
 					      </a>
 					    </li>					
@@ -203,7 +202,6 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 
     
