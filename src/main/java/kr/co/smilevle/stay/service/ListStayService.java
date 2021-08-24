@@ -15,9 +15,12 @@ public class ListStayService {
 	public StayPage getArticlePage(int pageNum, String areaCode) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			int total = stayDao.selectCount(conn);
-			List<Stay> content = stayDao.selectList(
+			
+			List<Stay> stayList = stayDao.selectList(
 					conn, areaCode, (pageNum - 1) * size, size);
-			return new StayPage(total, pageNum, size, content);
+			
+			
+			return new StayPage(total, pageNum, size, stayList);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

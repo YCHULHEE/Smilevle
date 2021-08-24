@@ -17,7 +17,7 @@ public class StayDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String query = "select * from (select rownum as rnum, stay_id, title, areacode, address, first_image, content_id, read_cnt, tel, map_x, may_y "
+		String query = "select * from (select rownum as rnum, stay_id, title, areacode, address, first_image, content_id, read_cnt, tel, map_x, map_y "
 				+ "from (select * from stay where areacode = ? order by read_cnt desc) where rownum <= ?) where rnum >= ?";
 		try {
 			pstmt = conn.prepareStatement(query);

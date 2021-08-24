@@ -22,9 +22,10 @@ public class StayHandler implements CommandHandler{
 		if (pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
-		StayPage listPage = listStayService.getArticlePage(pageNo, "32");
-		req.setAttribute("listPage", listPage);
-		return "/WEB-INF/view/stay.jsp";
+		StayPage stayPage = listStayService.getArticlePage(pageNo, "32");
+		req.setAttribute("stayPage", stayPage);
+		req.setAttribute("pageNo", pageNo + "");
+		return "/WEB-INF/views/stay.jsp";
 		
 	}
 	
