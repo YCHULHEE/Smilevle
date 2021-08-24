@@ -46,15 +46,15 @@
         </div>
       </div>
     </div>
-    <div class="container">
-		
-	</div>
     <section class="ftco-section">
     	<div class="container">
-    		<button class="btn btn-outline-info" onclick="location.href='review_write.do'">게시글 쓰기</button>
-    		<table class="table table-hover">
-    			<thead class="thead thead-dark">
-	    			<tr>
+    		<button class="btn btn-outline-info rounded" onclick="location.href='review_write.do'">게시글 쓰기</button>
+    		<div class="container">
+    			&nbsp;
+    		</div>
+    		<table class="table table-border table-hover">
+    			<thead class="thead-light">
+	    			<tr class="table-primary">
 	    				<td>번호</td>
 	    				<td>제목</td>
 	    				<td>건물 명</td>
@@ -63,23 +63,25 @@
 	    			</tr>
     			</thead>
     		<c:if test="${reviewPage.hasNoReviews() }">
-    			<tr>
-    				<td colspan="5">리뷰 게시글이 존재하지 않습니다!</td>
-    			</tr>
+    			<tbody>
+	    			<tr>
+	    				<td colspan="5">리뷰 게시글이 존재하지 않습니다!</td>
+	    			</tr>
+    			</tbody>
     		</c:if>
+
     		<c:forEach var="review" items="${reviewPage.content }">
-    			<tr style="cursor:pointer;color:#blue;" onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'">
-    				<td>${review.number}</td>
-    				<td>
-
-    						<c:out value="${review.title }" />
-
-    				</td>
-    				<td>${review.locationName }</td>
-    				<td>${review.writer.name }</td>
-    				<td>${review.readCount }</td>
-    			</tr>
+    			<tbody>
+	    			<tr style="cursor:pointer;color:#blue;" onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'">
+	    				<td>${review.number}</td>
+	    				<td>${review.title }</td>
+	    				<td>${review.locationName }</td>
+	    				<td>${review.writer.name }</td>
+	    				<td>${review.readCount }</td>
+	    			</tr>
+     			</tbody>   			
     		</c:forEach>
+
     		</table>
     	</div>
 	    <div class="text-center">
