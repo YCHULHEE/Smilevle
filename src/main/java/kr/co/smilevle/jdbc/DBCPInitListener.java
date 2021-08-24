@@ -2,6 +2,7 @@ package kr.co.smilevle.jdbc;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.security.Security;
 import java.sql.DriverManager;
 import java.util.Properties;
 
@@ -15,6 +16,7 @@ import org.apache.commons.dbcp2.PoolableConnectionFactory;
 import org.apache.commons.dbcp2.PoolingDriver;
 import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import oracle.security.*;
 
 public class DBCPInitListener implements ServletContextListener {
 	
@@ -44,7 +46,8 @@ public class DBCPInitListener implements ServletContextListener {
 
 	private void initConnetionPool(Properties prop) {
 		try {
-			String jdbcUrl = prop.getProperty("jdbcUrl");
+			
+			String jdbcUrl = "jdbc:oracle:thin:@smiledb_high?TNS_ADMIN=C:/SmileDB";
 			String userName = prop.getProperty("dbUser");
 			String pw = prop.getProperty("dbPass");
 			

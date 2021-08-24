@@ -71,8 +71,8 @@
       </div>
     </div>
 	
-	<jsp:include page="/WEB-INF/views/include/travel/travel_dest_container.jsp"/>
-    <jsp:include page="/WEB-INF/views/include/stay/stay_container.jsp"/> 
+	<%-- <jsp:include page="/WEB-INF/views/include/travel/travel_dest_container.jsp"/>
+    <jsp:include page="/WEB-INF/views/include/stay/stay_container.jsp"/>  --%>
 
     
     <section class="ftco-section">

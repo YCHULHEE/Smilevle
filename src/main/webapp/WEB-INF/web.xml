@@ -9,9 +9,11 @@
       <param-name>poolConfig</param-name>
       <param-value>
          jdbcDriver=oracle.jdbc.OracleDriver
-         jdbcUrl=jdbc:oracle:thin:@localhost:1521:xe
+         jdbcUrl=jdbc:oracle:thin:@smiledb_medium?TNS_ADMIN=C:/SmileDB
+
+         
          dbUser=user01
-         dbPass=1234
+         dbPass=Smile1q2w3e4r
          validationQuery=select 1
          minIdle=3
          maxTotal=30
