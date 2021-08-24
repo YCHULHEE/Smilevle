@@ -72,25 +72,25 @@
 						<th scope="row" class="table-secondary">별점</th>
 						<c:choose>
 							<c:when test="${reviewData.rate == '1.0' }">
-								<td colspan="5">★</td>
+								<td colspan="5">★ㅤㅤㅤㅤ</td>
 							</c:when>
 							<c:when test="${reviewData.rate == '1.5' }">
-								<td colspan="5">★☆</td>
+								<td colspan="5">★☆ㅤㅤㅤ</td>
 							</c:when>
 							<c:when test="${reviewData.rate == '2.0' }">
-								<td colspan="5">★★</td>
+								<td colspan="5">★★ㅤㅤㅤ</td>
 							</c:when>
 							<c:when test="${reviewData.rate == '2.5' }">
-								<td colspan="5">★★☆</td>
+								<td colspan="5">★★☆ㅤㅤ</td>
 							</c:when>
 							<c:when test="${reviewData.rate == '3.0' }">
-								<td colspan="5">★★★</td>
+								<td colspan="5">★★★ㅤㅤ</td>
 							</c:when>
 							<c:when test="${reviewData.rate == '3.5' }">
-								<td colspan="5">★★★☆</td>
+								<td colspan="5">★★★☆ㅤ</td>
 							</c:when>
 							<c:when test="${reviewData.rate == '4.0' }">
-								<td colspan="5">★★★★</td>
+								<td colspan="5">★★★★ㅤ</td>
 							</c:when>
 							<c:when test="${reviewData.rate == '4.5' }">
 								<td colspan="5">★★★★☆</td>
