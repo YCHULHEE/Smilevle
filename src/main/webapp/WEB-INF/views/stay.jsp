@@ -50,10 +50,10 @@
 					data-scrollax=" properties: { translateY: '70%' }">
 					<p class="breadcrumbs"
 						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-						<span class="mr-2"><a href="index.do">Home</a></span> <span>Hotel</span>
+						<span class="mr-2"><a href="index.do">Home</a></span> <span>숙소</span>
 					</p>
 					<h1 class="mb-3 bread"
-						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Hotels</h1>
+						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">나와 오늘 여행 갈래?</h1>
 				</div>
 			</div>
 		</div>
@@ -200,16 +200,14 @@
 												</p>
 											</div>
 											<div class="two">
-												<span class="price per-price">$40<br> <small>/night</small></span>
+												<p class="bottom-area d-flex">
+												<span class="ml-auto"><a href="#">예약</a></span></p>
 											</div>
 										</div>
-										<p>Far far away, behind the word mountains, far from the
-											countries</p>
-										<hr>
-										<p class="bottom-area d-flex">
-											<span><i class="icon-map-o"></i> Miami, Fl</span> <span
-												class="ml-auto"><a href="#">Book Now</a></span>
-										</p>
+										<div class="four">
+										<i class="icon-map-o"></i><a href="https://map.naver.com/v5/?c=${stay.mapX},${stay.mapY},15,0,0,0,dh"
+										 style="color: #4d4d4d">${stay.address}</a>
+										</div>
 									</div>
 								</div>
 							</div>
