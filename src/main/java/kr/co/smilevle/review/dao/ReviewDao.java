@@ -121,7 +121,7 @@ public class ReviewDao {
 		return new Date(timestamp.getTime());
 	}
 	
-	private Review selectById(Connection conn, int no) throws SQLException {
+	public Review selectById(Connection conn, int no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -139,7 +139,7 @@ public class ReviewDao {
 		}
 	}
 	
-	private void increaseReadCount(Connection conn, int no) throws SQLException {
+	public void increaseReadCount(Connection conn, int no) throws SQLException {
 		try(PreparedStatement pstmt = conn.prepareStatement("update review set read_cnt = read_cnt + 1 where review_no = ?")) {
 			pstmt.setInt(1, no);
 			pstmt.executeUpdate();
