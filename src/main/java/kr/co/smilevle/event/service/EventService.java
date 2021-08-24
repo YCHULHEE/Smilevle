@@ -14,10 +14,11 @@ import kr.co.smilevle.event.model.Event;
 import kr.co.smilevle.util.parser.EventParser;
 
 public class EventService {
-	public List<Event> printEventMain(String size, String areaCode) throws IOException {
+	public List<Event> printEventMain(int size, String areaCode) throws IOException {
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMdd");
 		Date time = new Date();
 		String nowTime = format.format(time);
+	
 		
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival");
@@ -28,7 +29,7 @@ public class EventService {
 		urlBuilder.append("&" + URLEncoder.encode("ServiceKey", "UTF-8") + "="
 				+ URLEncoder.encode(serviceKeyDecoded, "UTF-8")); /* 공공데이터포털에서 발급받은 인증키 */
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "="
-				+ URLEncoder.encode(size, "UTF-8")); /* 한 페이지 결과 수 */
+				+ URLEncoder.encode(size + "", "UTF-8")); /* 한 페이지 결과 수 */
 		urlBuilder.append(
 				"&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /* 현재 페이지 번호 */
 		urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "="

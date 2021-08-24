@@ -81,6 +81,21 @@ public class Stay {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Stay(String stayId, String title, String areaCode, String address, String firstImage, int contentId,
+			int readCount, String tel, String mapX, String mapY) {
+		super();
+		this.stayId = stayId;
+		this.title = title;
+		this.areaCode = areaCode;
+		this.address = address;
+		this.firstImage = firstImage;
+		this.contentId = contentId;
+		this.readCount = readCount;
+		this.tel = tel;
+		this.mapX = mapX;
+		this.mapY = mapY;
+	}
+	
 	public Stay(String title, String areaCode, String address, String firstImage, int readCount) {
 		super();
 		this.title = title;
@@ -89,4 +104,5 @@ public class Stay {
 		this.firstImage = firstImage;
 		this.readCount = readCount;
 	}
+	
 }

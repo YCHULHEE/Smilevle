@@ -27,8 +27,8 @@ public class MainPageHandler implements CommandHandler{
 		
 		
 		travelDestList = travelDestService.printTourListMain("20", "32");
-		stayList = stayService.printStayMain();
-		eventList = eventService.printEventMain("8", "32");
+		stayList = stayService.getStayContainer("32", 20);
+		eventList = eventService.printEventMain(8, "32");
 		
 		req.setAttribute("stayList", stayList);
 		req.setAttribute("travelDestList", travelDestList);

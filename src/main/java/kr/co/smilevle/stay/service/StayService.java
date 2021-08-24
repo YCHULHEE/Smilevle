@@ -17,12 +17,28 @@ import kr.co.smilevle.stay.model.Stay;
 public class StayService {
 	private StayDao stayDao = new StayDao();
 
-	public List<Stay> printStayMain() {
+	public List<Stay> getStayInfo(String areaCode, int size) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
-			List<Stay> list = stayDao.select();
+			List<Stay> list = stayDao.selectContainer(conn, areaCode, size);
+			conn.commit();
+			return list;
+		} catch (SQLException e) {
+			JdbcUtil.rollback(conn);
+			throw new RuntimeException(e);
+		} finally {
+			JdbcUtil.close(conn);
+		}
+	}
+	
+	public List<Stay> getStayContainer(String areaCode, int size) {
+		Connection conn = null;
+		try {
+			conn = ConnectionProvider.getConnection();
+			conn.setAutoCommit(false);
+			List<Stay> list = stayDao.selectContainer(conn, areaCode, size);
 			conn.commit();
 			return list;
 		} catch (SQLException e) {
