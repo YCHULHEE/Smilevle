@@ -18,7 +18,7 @@ public class ReadReviewHandler implements CommandHandler{
 		try {
 			Review review = readService.getReview(reviewNum, true);
 			request.setAttribute("reviewData", review);
-			return "/WEB-INF/views/readReview.jsp";
+			return "/WEB-INF/views/review/readReview.jsp";
 		} catch(ReviewNotFoundException e) {
 			request.getServletContext().log("no review", e);
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
