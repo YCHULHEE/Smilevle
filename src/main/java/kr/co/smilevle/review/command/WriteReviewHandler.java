@@ -14,7 +14,7 @@ import kr.co.smilevle.review.service.WriteReviewService;
 
 public class WriteReviewHandler implements CommandHandler{
 	
-	private static final String FORM_VIEW = "/WEB-INF/views/review/newReviewForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/views/review/newReview.jsp";
 	private WriteReviewService writeService = new WriteReviewService();
 	
 	@Override
