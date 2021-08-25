@@ -146,4 +146,17 @@ public class ReviewDao {
 		}
 	}
 	
+	public int update(Connection conn, int no, String title, String areacode, String locationName, String rate, String content) 
+			throws SQLException {
+		try(PreparedStatement pstmt = conn.prepareStatement("update review set "
+				+ "title = ?, areacode = ?, location_name = ?, rate = ?, content = ?, moddate = systimestamp where review_no = ?")) {
+			pstmt.setString(1, title);
+			pstmt.setString(2, areacode);
+			pstmt.setString(3, locationName);
+			pstmt.setString(4, rate);
+			pstmt.setString(5, content);
+			pstmt.setInt(6, no);
+			return pstmt.executeUpdate();
+		}
+	}
 }
