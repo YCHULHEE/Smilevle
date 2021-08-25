@@ -14,7 +14,7 @@ public class ListStayService {
 
 	public StayPage getArticlePage(int pageNum, String areaCode) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
-			int total = stayDao.selectCount(conn);
+			int total = stayDao.selectCount(conn, areaCode);
 			
 			List<Stay> stayList = stayDao.selectList(
 					conn, areaCode, (pageNum - 1) * size, size);

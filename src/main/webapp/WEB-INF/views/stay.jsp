@@ -179,7 +179,7 @@
 						<c:forEach var="stay" items="${stayPage.stayList}">
 							<div class="col-md-4 ftco-animate">
 								<div class="destination">
-									<a href="hotel-single.html"
+									<a href="stayOne.do?contentId=${stay.contentId}"
 										class="img img-2 d-flex justify-content-center align-items-center"
 										style="background-image: url(${stay.firstImage});">
 										<div
@@ -191,7 +191,7 @@
 										<div class="d-flex">
 											<div class="one">
 												<h3>
-													<a href="hotel-single.html">${stay.title}</a>
+													<a href="stayOne.do?contentId=${stay.contentId}">${stay.title}</a>
 												</h3>
 												<p class="rate">
 													<i class="icon-star"></i> <i class="icon-star"></i> <i

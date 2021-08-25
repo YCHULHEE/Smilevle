@@ -11,6 +11,7 @@ import java.util.List;
 import kr.co.smilevle.jdbc.JdbcUtil;
 import kr.co.smilevle.jdbc.connection.ConnectionProvider;
 import kr.co.smilevle.stay.model.Stay;
+import kr.co.smilevle.travel.model.TravelDest;
 
 public class StayDao {
 	public List<Stay> selectList(Connection conn, String areaCode, int startRow, int size) throws SQLException {
@@ -54,19 +55,22 @@ public class StayDao {
 
 
 
-	public int selectCount(Connection conn) throws SQLException {
-		Statement stmt = null;
+	public int selectCount(Connection conn, String areaCode) throws SQLException {
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select count(*) from stay");
+			pstmt = conn.prepareStatement("select count(*) from stay where areacode = ?");
+			
+			pstmt.setString(1, areaCode);
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1);
 			}
+			
 			return 0;
 		} finally {
 			JdbcUtil.close(rs);
-			JdbcUtil.close(stmt);
+			JdbcUtil.close(pstmt);
 		}
 	}
 	
@@ -90,6 +94,36 @@ public class StayDao {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 		}
+	}
+
+	public Stay selectById(Connection conn, int contentId) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(
+					"select * from stay where content_id = ?");
+			pstmt.setInt(1, contentId);
+			rs = pstmt.executeQuery();
+			Stay stay = null;
+			if (rs.next()) {
+				stay = convertStay(rs);
+			}
+			return stay;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	public void increaseReadCount(Connection conn, int content_id) throws SQLException {
+		try (PreparedStatement pstmt = 
+				conn.prepareStatement(
+						"update stay set read_cnt = read_cnt + 1 "+
+						"where content_id = ?")) {
+			pstmt.setInt(1, content_id);
+			pstmt.executeUpdate();
+		}
+		
 	}
 }
 
