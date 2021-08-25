@@ -107,8 +107,8 @@
 			</div>
     		<div class="container">
     			<c:if test="${authUser.id == reviewData.writer.id }">
-    			    <button type="button" class="btn btn btn-danger float-right" onclick="location.href='review_delete.do'">삭제</button>
-    				<button type="button" class="btn btn btn-warning float-right" onclick="location.href='review_modify.do'">수정</button>
+    			    <button type="button" class="btn btn btn-danger float-right" onclick="location.href='review_delete.do?no=${reviewData.number}'">삭제</button>
+    				<button type="button" class="btn btn btn-warning float-right" onclick="location.href='review_modify.do?no=${reviewData.number}'">수정</button>
     			</c:if>
     		</div>
     	</div>

@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>리뷰 작성</title>
+    <title>리뷰 수정</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -70,12 +70,13 @@
     		<div class="container">
     			&nbsp;
     		</div>
-    		<h2 class="mb-4">새 글 작성</h2>
-			<form action="review_write.do" method="post">
+    		<h2 class="mb-4">리뷰 수정</h2>
+			<form action="review_modify.do" method="post">
+			<input type="hidden" name="no" value="${modReq.reviewNumber }">
 				<div class="form-group row">
 					<label for="inputTitle" class="col-sm-2 col-form-label">제목</label>
 					<div class="col-sm-8">
-						<input type="text" name="title" class="form-control" id="inputTitle" value="${param.title }" required>
+						<input type="text" name="title" class="form-control" id="inputTitle" value="${modReq.title }" required>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -92,7 +93,7 @@
 				<div class="form-group row">
 					<label for="inputLocationName" class="col-sm-2 col-form-label">건물 명</label>
 					<div class="col-sm-8">
-						<input type="text" name="locationName" class="form-control" id="inputLocationName" value="${param.locationName }" required>
+						<input type="text" name="locationName" class="form-control" id="inputLocationName" value="${modReq.locationName }" required>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -108,7 +109,7 @@
 				</div>
 				<div class="form-group">
 					<label for="context">내용</label>
-					<textarea name="content" id="content" class="form-control" id="context"></textarea>
+					<textarea name="content" id="content" class="form-control" id="context">${modReq.content }</textarea>
 					<script type="text/javascript">
 					 CKEDITOR.replace('content', 
 								{	height: 500,
@@ -116,7 +117,7 @@
 								});
 					</script>					
 				</div>				
-				<button class="btn btn-outline-info rounded" onclick="submit">게시글 쓰기</button>
+				<button class="btn btn-outline-info rounded" onclick="submit">게시글 수정</button>
 			</form>				
 		</div>
     </section>
