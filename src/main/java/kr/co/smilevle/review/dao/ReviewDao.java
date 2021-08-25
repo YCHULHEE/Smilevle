@@ -159,4 +159,11 @@ public class ReviewDao {
 			return pstmt.executeUpdate();
 		}
 	}
+	
+	public int delete(Connection conn, int no) throws SQLException {
+		try(PreparedStatement pstmt = conn.prepareStatement("delete from review where review_no = ?")) {
+			pstmt.setInt(1, no);
+			return pstmt.executeUpdate();
+		}
+	}
 }
