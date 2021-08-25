@@ -55,10 +55,10 @@
     		<div class="table table-bordered">
 				<table class="table">
 					<tr>
-						<th scope="row" class="table-secondary">작성자</th>
+						<th scope="row" class="table-secondary" width="10%">작성자</th>
 						<td>${reviewData.writer.name }</td>
-						<th scope="row" class="table-secondary">No.</th>
-						<td colspan="3">${reviewData.number }</td>					
+						<th scope="row" class="table-secondary" width="10%">No.</th>
+						<td colspan="3" width="10%">${reviewData.number }</td>					
 					</tr>
 					<tr>
 						<th scope="row" class="table-secondary">제목</th>
