@@ -52,7 +52,7 @@
     		<div class="container">
     			&nbsp;
     		</div>
-    		<div class="table-responsive">
+    		<div class="table table-bordered">
 				<table class="table">
 					<tr>
 						<th scope="row" class="table-secondary">작성자</th>
