@@ -29,10 +29,7 @@ public class MainPageHandler implements CommandHandler{
 		travelDestList = travelDestService.printTourListMain("20", "32");
 		stayList = stayService.getStayContainer("32", 20);
 		eventList = eventService.printEventMain(8, "32");
-		
-		String [] a = (String[]) req.getAttribute("areacodes");
-		System.out.println(a[2]);
-		
+	
 		req.setAttribute("stayList", stayList);
 		req.setAttribute("travelDestList", travelDestList);
 		req.setAttribute("eventList", eventList);
