@@ -66,9 +66,9 @@
    </filter>
    <filter-mapping>
       <filter-name>LoginCheckFilter</filter-name>
-      <url-pattern>/changePwd.do</url-pattern>
-      <url-pattern>/article/write.do</url-pattern>
-      <url-pattern>/article/modify.do</url-pattern>
+      <url-pattern>/review_write.do</url-pattern>
+      <url-pattern>/review_modify.do</url-pattern>
+      <url-pattern>/review_delete.do</url-pattern>
    </filter-mapping>
    
 </web-app>
