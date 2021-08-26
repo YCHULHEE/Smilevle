@@ -12,6 +12,60 @@ create table review(
 	read_cnt number
 );
 
+CREATE TABLE STAY (        
+    "STAY_ID" NUMBER(12,0),
+    "TITLE" VARCHAR2(600 BYTE),
+    "AREACODE" VARCHAR2(10 BYTE),
+    "ADDRESS" VARCHAR2(400 BYTE),
+    "FIRST_IMAGE" VARCHAR2(100 BYTE),
+    "CONTENT_ID" NUMBER(12,0),
+    "MAP_X" VARCHAR2(30 BYTE),
+    "MAP_Y" VARCHAR2(30 BYTE),
+    "TEL" VARCHAR2(300 BYTE),
+    "READ_CNT" NUMBER(*,0)
+   );
+   
+CREATE TABLE TRAVEL_DEST(   
+  TRAVEL_DEST_ID NUMBER(12)
+, TITLE VARCHAR2(600 BYTE)
+, AREACODE VARCHAR2(10 BYTE)
+, ADDRESS VARCHAR2(400 BYTE)
+, FIRST_IMAGE VARCHAR2(100 BYTE)
+, CONTENT_ID NUMBER(12)
+, MAP_X VARCHAR2(30 BYTE)
+, MAP_Y VARCHAR2(30 BYTE)
+, TEL VARCHAR2(300 BYTE)
+, READ_CNT NUMBER(*, 0)
+, CONTENT_TYPE_ID NUMBER(12)
+);
+
+create table member(
+memberid varchar(50) primary key,
+name varchar(50) not null,
+password varchar(10) not null,
+regdate timestamp not null,
+email varchar(50) not null,
+gender varchar(5) not null,
+birthday varchar(12) not null,
+phonenum varchar(15) not null
+);
+
+CREATE  SEQUENCE STAY_SEQ
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 5000
+CYCLE;
+
+CREATE  SEQUENCE travel_dest_seq
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 5000
+CYCLE;
+
 create sequence review_seq;
 
 select * from review;
+
+select * from member;
