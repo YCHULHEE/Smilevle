@@ -18,7 +18,7 @@ public class CrawlingDao {
 		PreparedStatement pstmt = null;
 		Connection conn = null;
 		
-		String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
+		String url = "jdbc:oracle:thin:@smiledb.cu3f8c2b5bc9.ap-northeast-2.rds.amazonaws.com:9090:smiledb";
 		String user = "user01";
 		String pass = "1234";
 		try {
@@ -55,7 +55,7 @@ public class CrawlingDao {
 		PreparedStatement pstmt = null;
 		Connection conn = null;
 		
-		String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
+		String url = "jdbc:oracle:thin:@smiledb.cu3f8c2b5bc9.ap-northeast-2.rds.amazonaws.com:9090:smiledb";
 		String user = "user01";
 		String pass = "1234";
 		try {

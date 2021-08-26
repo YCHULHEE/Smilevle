@@ -37,7 +37,7 @@ public class StayWebCrawler {
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "="
 				+ URLEncoder.encode("500", "UTF-8")); /* 한 페이지 결과 수 */
 		urlBuilder.append(
-				"&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("2", "UTF-8")); /* 현재 페이지 번호 */
+				"&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /* 현재 페이지 번호 */
 		urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "="
 				+ URLEncoder.encode("ETC", "UTF-8")); /* IOS(아이폰),AND(안드로이드),WIN(원도우폰),ETC */
 		urlBuilder.append("&" + URLEncoder.encode("MobileApp", "UTF-8") + "="
@@ -102,17 +102,6 @@ public class StayWebCrawler {
 				Element eElement = (Element) nNode;
 				Stay stay = new Stay();
 
-				System.out.println("=================================");
-				System.out.println(getTagValue("title", eElement));// 사업장명
-				System.out.println(getTagValue("addr1", eElement));// 자료생성년월
-				System.out.println(getTagValue("tel", eElement)); // seq번호
-				System.out.println(getTagValue("mapx", eElement));// 사업장명
-				System.out.println(getTagValue("mapy", eElement));// 사업장명
-				System.out.println(getTagValue("firstimage", eElement));// 사업장명
-				System.out.println(getTagValue("contentId", eElement));// 사업장명
-				System.out.println(getTagValue("readcount", eElement));// 사업장명
-				System.out.println(getTagValue("areacode", eElement));// 사업장명
-				
 
 				stay.setTitle(getTagValue("title", eElement));
 				stay.setAddress(getTagValue("addr1", eElement));
