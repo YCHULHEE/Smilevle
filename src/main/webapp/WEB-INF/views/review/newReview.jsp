@@ -8,8 +8,7 @@
 			"충남", "경북", "경남", "전북", "전남", "제주"};
 	String[] areacodes = {"1", "2", "3", "4", "5", "6", "7", "8",
 			"31", "32", "33", "34", "35", "36", "37", "38", "39"};
-	String[] rates = {"0.0", "0.5", "1.0", "1.5", "2.0", 
-			"2.5", "3.0", "3.5", "4.0", "4.5", "5.0"};
+	String[] rates = {"1.0", "2.0", "3.0", "4.0", "5.0"};
 	Map<String, String> areacodeMap = new HashMap<>();
 	for(int i = 0; i < areas.length; i++) {
 		areacodeMap.put(areas[i], areacodes[i]);
