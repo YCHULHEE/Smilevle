@@ -145,12 +145,32 @@
 			</div>
     		<div class="container">
     			<c:if test="${authUser.id == reviewData.writer.id }">
-    			    <button type="button" class="btn btn btn-danger float-right" onclick="location.href='review_delete.do?no=${reviewData.number}'">삭제</button>
+    			    <button type="button" class="btn btn btn-danger float-right" data-toggle="modal" data-target="#myModal">삭제</button>
     				<button type="button" class="btn btn btn-warning float-right" onclick="location.href='review_modify.do?no=${reviewData.number}'">수정</button>
     			</c:if>
     		</div>
     	</div>
     </section>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+			<h4 class="modal-title" id="myModalLabel">주의!</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          		<span aria-hidden="true">&times;</span>
+       		</button>
+	      </div>
+	      <div class="modal-body">
+			정말로 삭제하시겠습니까? <br/>
+			삭제 후 취소할 수 없습니다!
+	      </div>
+	      <div class="modal-footer">
+		<button type="button" id="toList" class="btn btn-default" data-dismiss="modal">취소</button>
+		<button type="button" id="toContent" class="btn btn-danger" onclick="location.href='review_delete.do?no=${reviewData.number}'">삭제</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">

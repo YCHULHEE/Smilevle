@@ -56,8 +56,8 @@
 			게시글을 등록했습니다!
 	      </div>
 	      <div class="modal-footer">
-		<button type="button" id="toList" class="btn btn-default"  onclick="/Smilevle/review.do">목록으로</button>
-		<button type="button" id="toContent" class="btn btn-info"  onclick="/Smilevle/review_read.do?no=${newReviewNo }">내용보기</button>
+		<button type="button" id="toList" class="btn btn-default">목록으로</button>
+		<button type="button" id="toContent" class="btn btn-info">내용보기</button>
 	      </div>
 	    </div>
 	  </div>
