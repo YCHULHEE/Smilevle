@@ -70,5 +70,26 @@
       <url-pattern>/review_modify.do</url-pattern>
       <url-pattern>/review_delete.do</url-pattern>
    </filter-mapping>
+ 	<!-- 에러페이지 -->  
+   <error-page>
+   		<exception-type>kr.co.smilevle.review.service.ReviewNotFoundException</exception-type>
+   		<location>/WEB-INF/views/errors/ReviewNotFound.jsp</location>
+   </error-page>
+   <error-page>
+   		<exception-type>kr.co.smilevle.review.service.PermissionDeniedException</exception-type>
+   		<location>/WEB-INF/views/errors/Forbidden.jsp</location>
+   </error-page>   
    
+   <error-page>
+   		<error-code>403</error-code>
+   		<location>/WEB-INF/views/errors/Forbidden.jsp</location>
+   </error-page>
+   <error-page>
+   		<error-code>404</error-code>
+   		<location>/WEB-INF/views/errors/NotFound.jsp</location>
+   </error-page>
+   <error-page>
+   		<error-code>405</error-code>
+   		<location>/WEB-INF/views/errors/NotAllowed.jsp</location>
+   </error-page>   
 </web-app>
