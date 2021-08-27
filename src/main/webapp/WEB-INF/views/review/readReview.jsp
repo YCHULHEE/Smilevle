@@ -29,6 +29,11 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <style type="text/css">
+    	.btn-space {
+			margin-right: 10px;
+		}
+    </style>
   </head>
   <body>
     
@@ -145,8 +150,8 @@
 			</div>
     		<div class="container">
     			<c:if test="${authUser.id == reviewData.writer.id }">
-    			    <button type="button" class="btn btn btn-danger float-right" data-toggle="modal" data-target="#myModal">삭제</button>
-    				<button type="button" class="btn btn btn-warning float-right" onclick="location.href='review_modify.do?no=${reviewData.number}'">수정</button>
+    			    <button type="button" class="btn btn btn-danger rounded float-right" data-toggle="modal" data-target="#myModal">삭제</button>
+    				<button type="button" class="btn btn btn-warning rounded float-right btn-space" onclick="location.href='review_modify.do?no=${reviewData.number}'">수정</button>
     			</c:if>
     		</div>
     	</div>
