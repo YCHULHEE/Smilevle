@@ -2,23 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*" %>
-<%
-	String[] areas = {"서울", "인천", "대전", "대구", "광주", 
-			"부산", "울산", "세종", "경기", "강원", "충북",
-			"충남", "경북", "경남", "전북", "전남", "제주"};
-	String[] areacodes = {"1", "2", "3", "4", "5", "6", "7", "8",
-			"31", "32", "33", "34", "35", "36", "37", "38", "39"};
-	String[] rates = {"1.0", "2.0", "3.0", "4.0", "5.0"};
-	Map<String, String> areacodeMap = new HashMap<>();
-	for(int i = 0; i < areas.length; i++) {
-		areacodeMap.put(areas[i], areacodes[i]);
-	}
-	request.setAttribute("areacodess", areacodes);
-	pageContext.setAttribute("areacodes", areacodeMap);
-	pageContext.setAttribute("rates", rates);
-%>
+<%@ page import="kr.co.smilevle.util.AreacodeConverter" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <title>리뷰 작성</title>
     <meta charset="utf-8">
@@ -82,7 +68,7 @@
 					<div class="col-sm-3">
 						<select id="areacode" name="areacode" class="custom-select" id="inputLocation" required>
 							<option value="">-지역-</option>
-							<c:forEach var="map" items="${areacodes }">
+							<c:forEach var="map" items="${AreacodeConverter.getAreaMap() }">
 								<option value='${map.value }'>${map.key }</option>
 							</c:forEach>
 						</select>
@@ -99,7 +85,7 @@
 					<div class="col-sm-2">
 						<select id="rate" name="rate" class="custom-select" id="inputRate" required>
 							<option value="">-별점-</option>
-							<c:forEach var="rate" items="${rates }">
+							<c:forEach var="rate" items="${AreacodeConverter.rates }">
 								<option value='${rate }'> ${rate } </option>
 							</c:forEach>
 						</select>
