@@ -1,6 +1,7 @@
 package kr.co.smilevle.util;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class AreacodeConverter {
@@ -12,7 +13,7 @@ public class AreacodeConverter {
 				"충남", "경북", "경남", "전북", "전남", "제주"};
 		String[] areacodes = {"1", "2", "3", "4", "5", "6", "7", "8",
 				"31", "32", "33", "34", "35", "36", "37", "38", "39"};
-		Map<String, String> areaMap = new HashMap<>();
+		Map<String, String> areaMap = new LinkedHashMap<String, String>();
 		for(int i = 0; i < areas.length; i++) {
 			areaMap.put(areas[i], areacodes[i]);
 		}

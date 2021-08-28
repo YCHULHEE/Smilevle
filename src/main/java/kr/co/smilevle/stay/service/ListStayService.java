@@ -10,14 +10,14 @@ import kr.co.smilevle.stay.model.Stay;
 
 public class ListStayService {
 	private StayDao stayDao = new StayDao();
-	private int size = 9;
+	private int size = 6;
 
-	public StayPage getArticlePage(int pageNum, String areaCode) {
+	public StayPage getArticlePage(int pageNum, String areaCode, String smallCategory, String where) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
-			int total = stayDao.selectCount(conn, areaCode);
-			
+			int total = stayDao.selectCount(conn, areaCode, smallCategory, where);
+			System.out.println(total);
 			List<Stay> stayList = stayDao.selectList(
-					conn, areaCode, (pageNum - 1) * size, size);
+					conn, areaCode, (pageNum - 1) * size, size, smallCategory, where);
 			
 			
 			return new StayPage(total, pageNum, size, stayList);

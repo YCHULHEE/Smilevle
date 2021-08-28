@@ -4,41 +4,37 @@
 <div class="col-lg-3 sidebar">
 	<div class="sidebar-wrap bg-light ftco-animate">
 		<h3 class="heading mb-4">Find City</h3>
-		<form action="#">
+		<form action="stay.do" method="get">
 			<div class="fields">
 				<div class="form-group">
-					<input type="text" class="form-control"
-						placeholder="Destination, City">
+					<input type="text" class="form-control" id="title"
+						placeholder="숙소 이름으로 검색">
 				</div>
 				<div class="form-group">
 					<div class="select-wrap one-third">
 						<div class="icon">
 							<span class="ion-ios-arrow-down"></span>
 						</div>
-						<select name="" id="" class="form-control"
-							placeholder="Keyword search">
-							<c:forEach var="areaMap" items="${areaMap}">
-								<option value="">${areaMap.key}</option>
+						<select name="areaCode" class="form-control"
+							placeholder="Keyword search" >
+							<c:forEach var="map" items="${areaMap}">
+								<option value="${map.value}" ${map.value == areaCode ? 'selected="selected"' : '' }>${map.key}</option>
 							</c:forEach>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<input type="text" id="checkin_date" class="form-control"
-						placeholder="Date from">
-				</div>
-				<div class="form-group">
-					<input type="text" id="checkin_date" class="form-control"
-						placeholder="Date to">
-				</div>
-				<div class="form-group">
-					<div class="range-slider">
-						<span> <input type="number" value="25000" min="0"
-							max="120000" /> - <input type="number" value="50000" min="0"
-							max="120000" />
-						</span> <input value="1000" min="0" max="120000" step="500" type="range" />
-						<input value="50000" min="0" max="120000" step="500" type="range" />
-						</svg>
+					<div class="select-wrap one-third">
+						<div class="icon">
+							<span class="ion-ios-arrow-down"></span>
+						</div>
+						<select name="smallCategory" class="form-control"
+							placeholder="Keyword search">
+							<c:forEach var="map" items="${stayMap}">
+								<option value="${map.value}" ${map.value == smallCategory ? 'selected="selected"' : '' }>${map.key}</option>
+							</c:forEach>
+						</select>
+						<input type="hidden" name="where" value="${where}">
 					</div>
 				</div>
 				<div class="form-group">

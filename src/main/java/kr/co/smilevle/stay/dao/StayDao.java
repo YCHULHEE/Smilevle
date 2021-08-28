@@ -14,18 +14,33 @@ import kr.co.smilevle.stay.model.Stay;
 import kr.co.smilevle.travel.model.TravelDest;
 
 public class StayDao {
-	public List<Stay> selectList(Connection conn, String areaCode, int startRow, int size) throws SQLException {
+	public List<Stay> selectList(Connection conn, String areaCode, int startRow, int size, String smallCategory, String where) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		
 		String query = "select * from (select rownum as rnum, content_id, title, areacode, address, "
 				+ "first_image, read_cnt, tel, map_x, map_y, content_type_id, middle_category, small_category "
-				+ "from (select * from TBL_TOUR where areacode = ? and content_type_id = 32 order by read_cnt desc) where rownum <= ?) where rnum >= ?";
+				+ "from (select * from TBL_TOUR where content_type_id = " + where;
+		if(areaCode == null) {
+			areaCode = "false";
+		}
+		if(!areaCode.equals("false")) {
+			query += " and areaCode = " + areaCode;
+		}
+		System.out.println(smallCategory);
+		if(smallCategory == null) {
+			smallCategory = "false";
+		}
+		if(!smallCategory.equals("false")) {
+			query += " and small_category = '" + smallCategory + "'";
+		}
+			
+		query += " order by read_cnt desc) where rownum <= ?) where rnum >= ?";
+		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, areaCode);
-			pstmt.setInt(2, startRow + size);
-			pstmt.setInt(3, startRow + 1);
+			pstmt.setInt(1, startRow + size);
+			pstmt.setInt(2, startRow + 1);
 			rs = pstmt.executeQuery();
 			List<Stay> result = new ArrayList<>();
 			while (rs.next()) {
@@ -58,13 +73,28 @@ public class StayDao {
 
 
 
-	public int selectCount(Connection conn, String areaCode) throws SQLException {
+	public int selectCount(Connection conn, String areaCode, String smallCategory, String where) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		try {
-			pstmt = conn.prepareStatement("select count(*) from tbl_tour where areacode = ? and content_type_id = 32");
+		String query = "select count(*) from tbl_tour where content_type_id=" + where;
+		if(areaCode == null) {
+			areaCode = "false";
+		}
+		if(!areaCode.equals("false")) {
+			query += " and areaCode = " + areaCode;
+		}
+		;
+		if(smallCategory == null) {
+			smallCategory = "false";
+		}
+		if(!smallCategory.equals("false")) {
+			query += " and small_category = '" + smallCategory + "'";
+		}
 			
-			pstmt.setString(1, areaCode);
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+	
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1);
