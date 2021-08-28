@@ -36,18 +36,7 @@
     </style>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			function loadComment();
-			$('#commentButton').click(function() {
-				/* serialize() : 입력된 모든 값을 문자열 데이터에 나눠서 넣어줌 -> 일일히 각 파라메터에 대해 값을 입력해 줄 필요 없음! */
-				var sendData = $('#commentForm').serialize();
-				$.post('review_comment_write.do', sendData, 
-						function(data) {
-							function loadComment();
-				})
-			});
-			
-		});
+		$(document).ready(loadComment());
 		function loadComment() {
 			$.getJSON('/Smilevle/review_comment_list.do?no=${reviewData.number}', function(data) {
 				/* $('#comment').append('<tr><td>작성자</td><td>내용</td><td>작성일시</td></tr>'); */
@@ -60,7 +49,14 @@
 				})	
 			})
 		}
-		
+		$('#commentButton').click(function() {
+			/* serialize() : 입력된 모든 값을 문자열 데이터에 나눠서 넣어줌 -> 일일히 각 파라메터에 대해 값을 입력해 줄 필요 없음! */
+			var sendData = $('#commentForm').serialize();
+			$.post('review_comment_write.do', sendData, 
+					function(data) {
+						function loadComment();
+			})
+		});
 
 	</script>
   </head>
