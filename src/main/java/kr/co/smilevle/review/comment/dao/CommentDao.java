@@ -85,8 +85,6 @@ public class CommentDao {
 		comment.put("writerId", rs.getString("writer_id"));
 		comment.put("regDate", rs.getString("regdate"));
 		comment.put("content", rs.getString("content"));
-		
-		
 		return comment;
 	}
 	

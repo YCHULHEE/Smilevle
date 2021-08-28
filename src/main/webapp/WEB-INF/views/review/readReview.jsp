@@ -37,19 +37,14 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			/* $.getJSON('json 파일을 얻어올 경로(웹페이지, 서버)', [얻어온 json 파일로 수행할 기능]function(){}) */
-			/* json 경로를 입력할 때 'http://localhost:8800/ajax/json_test.jsp'와 같이 파일의 전체 경로를 입력하는 것도 가능! */
 			$.getJSON('/Smilevle/review_comment_list.do?no=${reviewData.number}', function(data) {
-				/* table의 제목 행 추가 */
 				$('#comment').append('<tr><td>작성자</td><td>내용</td><td>작성일시</td></tr>');
 				console.log(data);
 				
-				/* 가져온 JSON 파일을 이용해 표 채우기 - $.each(data, function() {}) : 가져온 데이터로 반복 작업 수행 */
 				$.each(data, function() {
 					$('#comment').append('<tr><td>' + this.writerId +
 							'</td><td>' + this.content + '</td><td>' + this.regDate +
 							'</td></tr>');
-					/* this. => getJSON에서 가져온 JSON 파일 */
 				})	
 			})
 		});
