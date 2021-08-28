@@ -106,7 +106,7 @@ public class TravelDestParser {
 	}
 	
 	
-	public List<String> selectImageList(String parsingUrl) {
+	public String selectImageList(String parsingUrl) {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = null;
 		try {
@@ -124,16 +124,20 @@ public class TravelDestParser {
 		doc.getDocumentElement().normalize();
 
 		NodeList nList = doc.getElementsByTagName("item");
-		List<String> imageList = new ArrayList<String>();
+		StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < nList.getLength(); i++) {
 			Node nNode = nList.item(i);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element eElement = (Element) nNode;
-				imageList.add(getTagValue("originimgurl", eElement));
+				if(i == nList.getLength()) {
+					sb.append(getTagValue("originimgurl", eElement));
+					continue;
+				}
+				sb.append(getTagValue("originimgurl", eElement) + "/");
 			}
 		}
-		return imageList;
+		return sb.toString();
 	}
 	
 

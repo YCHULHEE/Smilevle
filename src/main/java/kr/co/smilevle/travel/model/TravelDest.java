@@ -1,30 +1,32 @@
 package kr.co.smilevle.travel.model;
 
-public class TravelDest {
-	private String travelDestId;
-	private int contentId;
+import kr.co.smilevle.common.model.BaseInfo;
+
+public class TravelDest implements BaseInfo {
 	private String title;
 	private String areaCode;
 	private String address;
 	private String firstImage;
+	private int contentId;
 	private int readCount;
 	private String tel;
 	private String mapX;
 	private String mapY;
-	private int contentTypeId;
+	private String contentTypeId;
+	private String middleCategory;
+	private String smallCategory;
 	
 	public TravelDest() {
 	
 	}
-
-	public TravelDest(String travelDestId, int contentId, String title, String areaCode, String address,
-			String firstImage, int readCount, String tel, String mapX, String mapY, int contentTypeId) {
-		this.travelDestId = travelDestId;
-		this.contentId = contentId;
+	public TravelDest(String contentTypeId, String title, String areaCode, String address, String firstImage, int contentId, int readCount,
+			String tel, String mapX, String mapY) {
+		super();
 		this.title = title;
 		this.areaCode = areaCode;
 		this.address = address;
 		this.firstImage = firstImage;
+		this.contentId = contentId;
 		this.readCount = readCount;
 		this.tel = tel;
 		this.mapX = mapX;
@@ -32,20 +34,39 @@ public class TravelDest {
 		this.contentTypeId = contentTypeId;
 	}
 
-	public int getContentTypeId() {
-		return contentTypeId;
-	}
+	
 
-	public void setContentTypeId(int contentTypeId) {
+	public TravelDest(String contentTypeId, String title, String areaCode, String address, String firstImage, int contentId, int readCount,
+			String tel, String mapX, String mapY, String middleCategory, String smallCategory) {
+		super();
+		this.title = title;
+		this.areaCode = areaCode;
+		this.address = address;
+		this.firstImage = firstImage;
+		this.contentId = contentId;
+		this.readCount = readCount;
+		this.tel = tel;
+		this.mapX = mapX;
+		this.mapY = mapY;
 		this.contentTypeId = contentTypeId;
+		this.middleCategory = middleCategory;
+		this.smallCategory = smallCategory;
 	}
 
-	public String getTravelDestId() {
-		return travelDestId;
+	public String getMiddleCategory() {
+		return middleCategory;
 	}
 
-	public void setTravelDestId(String travelDestId) {
-		this.travelDestId = travelDestId;
+	public void setMiddleCategory(String middleCategory) {
+		this.middleCategory = middleCategory;
+	}
+
+	public String getSmallCategory() {
+		return smallCategory;
+	}
+
+	public void setSmallCategory(String smallCategory) {
+		this.smallCategory = smallCategory;
 	}
 
 	public int getContentId() {
@@ -105,4 +126,11 @@ public class TravelDest {
 		this.mapY = mapY;
 	}
 
+	public String getContentTypeId() {
+		return contentTypeId;
+	}
+
+	public void setContentTypeId(String contentTypeId) {
+		this.contentTypeId = contentTypeId;
+	}
 }

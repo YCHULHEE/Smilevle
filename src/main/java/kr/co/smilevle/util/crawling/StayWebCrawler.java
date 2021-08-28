@@ -24,6 +24,8 @@ import kr.co.smilevle.stay.model.Stay;
 
 
 public class StayWebCrawler {
+	private CommonCrawler commonCrawler = new CommonCrawler();
+	
 	public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay"); /* URL */
@@ -47,7 +49,7 @@ public class StayWebCrawler {
 		urlBuilder.append("&" + URLEncoder.encode("listYN", "UTF-8") + "="
 				+ URLEncoder.encode("Y", "UTF-8")); /* 목록구분(Y=목록,N=개수) */
 		urlBuilder
-				.append("&" + URLEncoder.encode("areaCode", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /* 지역코드 */
+				.append("&" + URLEncoder.encode("areaCode", "UTF-8") + "=" + URLEncoder.encode("32", "UTF-8")); /* 지역코드 */
 		urlBuilder.append("&" + URLEncoder.encode("sigunguCode", "UTF-8") + "="
 				+ URLEncoder.encode("", "UTF-8")); /* 시군구코드(areaCode 필수) */
 		urlBuilder.append("&" + URLEncoder.encode("hanOk", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /* 한옥 여부 */
@@ -117,8 +119,10 @@ public class StayWebCrawler {
 				}
 				stay.setReadCount(Integer.parseInt(getTagValue("readcount", eElement)));
 				stay.setAreaCode(getTagValue("areacode", eElement));
+				stay.setContentTypeId(getTagValue("contenttypeid", eElement));
 				try {
-					CrawlingDao.insertStay(stay);
+					CrawlingDao.insertTour(stay);
+					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

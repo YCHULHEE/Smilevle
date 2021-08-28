@@ -4,6 +4,14 @@ public class StayContent {
 	private Integer contentId;
 	private String content;
 	private String homePage;
+	private String imageList;
+	
+	public String getImageList() {
+		return imageList;
+	}
+	public void setImageList(String imageList) {
+		this.imageList = imageList;
+	}
 	public Integer getContentId() {
 		return contentId;
 	}
@@ -22,11 +30,12 @@ public class StayContent {
 	public void setHomePage(String homePage) {
 		this.homePage = homePage;
 	}
-	public StayContent(Integer contentId, String content, String homePage) {
+	public StayContent(Integer contentId, String content, String homePage, String imageList) {
 		super();
 		this.contentId = contentId;
 		this.content = content;
 		this.homePage = homePage;
+		this.imageList = imageList; 
 	}
 	public StayContent() {
 		

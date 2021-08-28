@@ -1,23 +1,20 @@
-package kr.co.smilevle.travel.dao;
+package kr.co.smilevle.util.crawling;
 
-import java.sql.Connection;
-import java.util.List;
-
-import kr.co.smilevle.travel.model.TravelDestContent;
-import kr.co.smilevle.util.parser.TravelDestParser;
-
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.sql.SQLException;
 
-public class TravelContentDao {
-	private TravelDestParser travelDestParser = new TravelDestParser();
+import kr.co.smilevle.util.parser.CommonParser;
 
-	public TravelDestContent selectContentById(int contentId) throws IOException {
+public class CommonCrawler {
+	
+	public void selectContentById(int contentId, String firstImage) throws IOException {
+		CommonParser commonParser = new CommonParser();
 		String id = contentId + "";
 		
 		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); /*URL*/
@@ -61,10 +58,21 @@ public class TravelContentDao {
         conn.disconnect();        
         parsingUrl = sb.toString();
         
-		return travelDestParser.selectOne(parsingUrl);
+        try {
+			try {
+				CrawlingDao.insertContent(commonParser.selectOne(parsingUrl, firstImage, contentId));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	public String selectImageListById(int contentId) throws IOException {
+	public String selectImageListById(int contentId, String firstImage) throws IOException {
+		CommonParser commonParser = new CommonParser();
 		String id = contentId + "";
 		
 		 StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailImage"); String serviceKey = "=ygq6ckNSsXQ8IGk3A5TnTfFiz6osFZwGkzBBfT6fJzmabC0H1Wd67USpVx3Oyfq88cAKcBpgQbvFz0VZQldbVA%3D%3D";
@@ -99,11 +107,8 @@ public class TravelContentDao {
         }
         rd.close();
         conn.disconnect();
-       
         parsingUrl = sb.toString();
-       
-		return travelDestParser.selectImageList(parsingUrl);
+        
+        return commonParser.selectImageList(parsingUrl, firstImage);
 	}
-	
-	
 }

@@ -18,8 +18,9 @@ public class StayDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String query = "select * from (select rownum as rnum, stay_id, title, areacode, address, first_image, content_id, read_cnt, tel, map_x, map_y "
-				+ "from (select * from stay where areacode = ? order by read_cnt desc) where rownum <= ?) where rnum >= ?";
+		String query = "select * from (select rownum as rnum, content_id, title, areacode, address, "
+				+ "first_image, read_cnt, tel, map_x, map_y, content_type_id, middle_category, small_category "
+				+ "from (select * from TBL_TOUR where areacode = ? and content_type_id = 32 order by read_cnt desc) where rownum <= ?) where rnum >= ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, areaCode);
@@ -41,7 +42,7 @@ public class StayDao {
 	
 	private Stay convertStay(ResultSet rs) throws SQLException {
 		return new Stay(
-						rs.getString("stay_id"),
+				rs.getString("content_type_id"),
 						rs.getString("title"),
 						rs.getString("areacode"),
 						rs.getString("address"),
@@ -50,7 +51,9 @@ public class StayDao {
 						rs.getInt("read_cnt"),
 						rs.getString("tel"),
 						rs.getString("map_x"),
-						rs.getString("map_y"));
+						rs.getString("map_y"), 
+						rs.getString("middle_category"),
+						rs.getString("small_category"));
 	}
 
 
@@ -59,7 +62,7 @@ public class StayDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select count(*) from stay where areacode = ?");
+			pstmt = conn.prepareStatement("select count(*) from tbl_tour where areacode = ? and content_type_id = 32");
 			
 			pstmt.setString(1, areaCode);
 			rs = pstmt.executeQuery();
@@ -77,7 +80,7 @@ public class StayDao {
 	public List<Stay> selectContainer(Connection conn, String areaCode, int size) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "select * from (select * from stay order by read_cnt desc) where areacode = ? and RowNum <= ?";
+		String query = "select * from (select * from tbl_tour order by read_cnt desc) where areacode = ? and RowNum <= ? and content_type_id = 32";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, areaCode);
@@ -101,7 +104,7 @@ public class StayDao {
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(
-					"select * from stay where content_id = ?");
+					"select * from tbl_tour where content_id = ?");
 			pstmt.setInt(1, contentId);
 			rs = pstmt.executeQuery();
 			Stay stay = null;
@@ -118,7 +121,7 @@ public class StayDao {
 	public void increaseReadCount(Connection conn, int content_id) throws SQLException {
 		try (PreparedStatement pstmt = 
 				conn.prepareStatement(
-						"update stay set read_cnt = read_cnt + 1 "+
+						"update tbl_tour set read_cnt = read_cnt + 1 "+
 						"where content_id = ?")) {
 			pstmt.setInt(1, content_id);
 			pstmt.executeUpdate();

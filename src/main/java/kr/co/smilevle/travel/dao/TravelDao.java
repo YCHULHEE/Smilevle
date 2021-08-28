@@ -31,17 +31,19 @@ public class TravelDao {
 	}
 	
 	private TravelDest convertTravelDest(ResultSet rs) throws SQLException {
-		return new TravelDest(rs.getString("travel_dest_id"), 
-				rs.getInt("content_id"),
+		return new TravelDest(
+				rs.getString("content_type_id"),
 				rs.getString("title"),
 				rs.getString("areacode"),
 				rs.getString("address"),
 				rs.getString("first_image"),
-				rs.getInt("read_cnt"), 
+				rs.getInt("content_id"),
+				rs.getInt("read_cnt"),
 				rs.getString("tel"),
 				rs.getString("map_x"),
 				rs.getString("map_y"), 
-				rs.getInt("content_Type_Id"));
+				rs.getString("middle_category"),
+				rs.getString("small_category"));
 	}
 	
 	public void increaseReadCount(Connection conn, int content_id) throws SQLException {

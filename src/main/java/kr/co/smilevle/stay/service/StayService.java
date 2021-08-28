@@ -3,6 +3,7 @@ package kr.co.smilevle.stay.service;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -76,7 +77,10 @@ public class StayService {
 			if (increaseReadCount) {
 				stayDao.increaseReadCount(conn, contentId);
 			}
-			List<String> imageList = contentDao.selectImageListById(contentId);
+			
+			
+//			List<String> imageList = contentDao.selectImageListById(contentId);
+			List<String> imageList = new ArrayList<String>();
 			
 			// 글의 정보와 글의 내용을 아티클데이터로 반환한다.
 			return new StayData(stay, content, imageList);

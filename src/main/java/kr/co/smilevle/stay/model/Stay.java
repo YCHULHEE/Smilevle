@@ -1,7 +1,8 @@
 package kr.co.smilevle.stay.model;
 
-public class Stay {
-	private String stayId;
+import kr.co.smilevle.common.model.BaseInfo;
+
+public class Stay implements BaseInfo{
 	private String title;
 	private String areaCode;
 	private String address;
@@ -11,13 +12,27 @@ public class Stay {
 	private String tel;
 	private String mapX;
 	private String mapY;
+	private String contentTypeId;
+	private String middleCategory;
+	private String smallCategory;
 	
-	
-	public String getStayId() {
-		return stayId;
+	public String getMiddleCategory() {
+		return middleCategory;
 	}
-	public void setStayId(String stayId) {
-		this.stayId = stayId;
+	public void setMiddleCategory(String middleCategory) {
+		this.middleCategory = middleCategory;
+	}
+	public String getSmallCategory() {
+		return smallCategory;
+	}
+	public void setSmallCategory(String smallCategory) {
+		this.smallCategory = smallCategory;
+	}
+	public String getContentTypeId() {
+		return contentTypeId;
+	}
+	public void setContentTypeId(String contentTypeId) {
+		this.contentTypeId = contentTypeId;
 	}
 	public int getContentId() {
 		return contentId;
@@ -81,10 +96,10 @@ public class Stay {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Stay(String stayId, String title, String areaCode, String address, String firstImage, int contentId,
-			int readCount, String tel, String mapX, String mapY) {
+	
+	public Stay(String contentTypeId, String title, String areaCode, String address, String firstImage, int contentId, int readCount,
+			String tel, String mapX, String mapY) {
 		super();
-		this.stayId = stayId;
 		this.title = title;
 		this.areaCode = areaCode;
 		this.address = address;
@@ -94,8 +109,26 @@ public class Stay {
 		this.tel = tel;
 		this.mapX = mapX;
 		this.mapY = mapY;
+		this.contentTypeId = contentTypeId;
 	}
 	
+	
+	public Stay(String contentTypeId, String title, String areaCode, String address, String firstImage, int contentId, int readCount,
+			String tel, String mapX, String mapY, String middleCategory, String smallCategory) {
+		super();
+		this.title = title;
+		this.areaCode = areaCode;
+		this.address = address;
+		this.firstImage = firstImage;
+		this.contentId = contentId;
+		this.readCount = readCount;
+		this.tel = tel;
+		this.mapX = mapX;
+		this.mapY = mapY;
+		this.contentTypeId = contentTypeId;
+		this.middleCategory = middleCategory;
+		this.smallCategory = smallCategory;
+	}
 	public Stay(String title, String areaCode, String address, String firstImage, int readCount) {
 		super();
 		this.title = title;
