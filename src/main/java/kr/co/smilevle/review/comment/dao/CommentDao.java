@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import kr.co.smilevle.jdbc.JdbcUtil;
 import kr.co.smilevle.review.comment.model.Comment;
 
@@ -55,15 +58,15 @@ public class CommentDao {
 		// TODO Auto-generated method stub
 	}
 
-	public List<Comment> select(Connection conn, int no) throws SQLException {
+	public JSONArray select(Connection conn, int no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "select * from tbl_review_comment where review_no = ?";
+		String query = "select * from tbl_review_comment where review_no = ? order by comment_no";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
-			List<Comment> result = new ArrayList<>();
+			JSONArray result = new JSONArray();
 			while(rs.next()) {
 				result.add(convertComment(rs));
 			}
@@ -75,16 +78,16 @@ public class CommentDao {
 	
 	}
 
-	private Comment convertComment(ResultSet rs) throws SQLException {
-		return new Comment(rs.getInt("comment_no"), 
-						   rs.getInt("review_no"), 
-						   rs.getString("writer_id"), 
-						   toDate(rs.getTimestamp("regdate")), 
-						   rs.getString("content"));
-	}
-
-	private Date toDate(Timestamp timestamp) {
-		return new Date(timestamp.getTime());
+	private JSONObject convertComment(ResultSet rs) throws SQLException {
+		JSONObject comment = new JSONObject();
+		comment.put("commentNo", rs.getInt("comment_no"));
+		comment.put("reviewNo", rs.getInt("review_no"));
+		comment.put("writerId", rs.getString("writer_id"));
+		comment.put("regDate", rs.getString("regdate"));
+		comment.put("content", rs.getString("content"));
+		
+		
+		return comment;
 	}
 	
 }
