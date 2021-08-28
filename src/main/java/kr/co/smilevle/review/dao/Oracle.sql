@@ -1,5 +1,3 @@
-drop sequence review_seq;
-
 create table tbl_review(
 	review_no number constraint review_no_pk primary key,
 	writer_id varchar2(50) not null,
@@ -16,6 +14,22 @@ create table tbl_review(
 
 create sequence review_seq;
 
+select * from tbl_review;
+
+create table tbl_review_comment(
+	comment_no number constraint comment_no_pk primary key,
+	review_no number constraint comment_review_no_fk references tbl_review,
+	writer_id varchar2(50) not null,   
+	regdate timestamp not null,
+	content long not null);  
+
+create sequence review_comment_seq;
+
+insert into tbl_review_comment values(1, 1, 'example123', systimestamp, '댓글 테스트입니다.');
+
+select * from tbl_review_comment;
+
+// 리뷰 이의의 데이터 쿼리문
 CREATE TABLE STAY (        
     "STAY_ID" NUMBER(12,0),
     "TITLE" VARCHAR2(600 BYTE),
