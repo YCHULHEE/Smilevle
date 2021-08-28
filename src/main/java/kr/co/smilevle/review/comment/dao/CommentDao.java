@@ -18,40 +18,42 @@ import kr.co.smilevle.review.comment.model.Comment;
 
 public class CommentDao {
 	
-//	public Comment insert(Connection conn, Comment comment) throws SQLException {
-//		PreparedStatement pstmt = null;
-//		Statement stmt = null;
-//		ResultSet rs = null;
-//		
-//		try {
-//			pstmt = conn.prepareStatement("insert into comment1 "
-//						+ "values (num_seq.nextval,?,?,?)");
-//			pstmt.setString(1, comment.getWriter_id()); //long으로 가지고 오는거 맞음? 이거는 articlecontent 참고
-//			pstmt.setTimestamp(2, toTimestamp(comment.getRegDate()));  //writer빼고 id는 이름 바꾸기
-//			pstmt.setString(3, comment.getContent());
-//			int insertedCount = pstmt.executeUpdate();  // 1-INSERT, DELETE, UPDATE성공, 0-행의 수 아무 리턴이 없음
-//			
-//			if (insertedCount > 0) {
-//				stmt = conn.createStatement();
-//				 rs = stmt.executeQuery("select max(comment_no) from comment1"); 
-//				if (rs.next()) {
-//					Integer newNo = rs.getInt(1);
-//					return new Comment(newNo,         //no해야할까 num해야할까
-//							comment.getWriter_id(), //둘중 하나
-//							comment.getRegDate(),
-//							comment.getContent());
-//				}
-//			}
-//			return null;
-//		} finally {
-//			JdbcUtil.close(rs);
-//			JdbcUtil.close(stmt);
-//			JdbcUtil.close(pstmt);
-//		}
-//	}
+	public Comment insert(Connection conn, Comment comment) throws SQLException {
+		PreparedStatement pstmt = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("insert into tbl_review_comment "
+						+ "values (review_comment_seq, ?, ?, ?, ?)");
+			pstmt.setInt(1, comment.getReviewNo());
+			pstmt.setString(2, comment.getContent());
+			pstmt.setDate(3, toSqlDate(comment.getRegDate()));
+			pstmt.setString(4, comment.getContent());
+			int insertedCount = pstmt.executeUpdate();
+			
+			if (insertedCount > 0) {
+				stmt = conn.createStatement();
+				 rs = stmt.executeQuery("select max(comment_no) from comment1"); 
+				if (rs.next()) {
+					Integer newNo = rs.getInt(1);
+					return new Comment(newNo,
+							comment.getReviewNo(),
+							comment.getWriterId(),
+							comment.getRegDate(),
+							comment.getContent());
+				}
+			}
+			return null;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(stmt);
+			JdbcUtil.close(pstmt);
+		}
+	}
 	
-	private Timestamp toTimestamp(Date date) {
-		return new Timestamp(date.getTime());
+	private java.sql.Date toSqlDate(Date date) {
+		return new java.sql.Date(date.getTime());
 	}
 
 	public static void delete(Connection conn, int commentNumber) {
