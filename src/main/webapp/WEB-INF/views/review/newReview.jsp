@@ -93,7 +93,7 @@
 				</div>
 				<div class="form-group">
 					<label for="context">내용</label>
-					<textarea name="content" id="content" class="form-control" id="context" required></textarea>
+					<textarea name="content" id="content" class="form-control" required></textarea>
 					<script type="text/javascript">
 					 CKEDITOR.replace('content', 
 								{	height: 500,
