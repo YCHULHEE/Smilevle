@@ -41,7 +41,7 @@
 		});
 		function loadComment() {
 			$.getJSON('/Smilevle/review_comment_list.do?no=${reviewData.number}', function(data) {
-				$('#comment').append('<tr><td>작성자</td><td>내용</td><td colspan = >작성일시</td></tr>');
+				$('#comment').append('<tr><td>작성자</td><td>내용</td><td colspan=2>작성일시</td></tr>');
 				console.log(data);
 				if(data == "") {
 					$('#comment').append('<tr><td colspan=3>작성된 댓글이 없습니다.</td></tr>');
@@ -50,7 +50,10 @@
 					$.each(data, function() {
 						$('#comment').append('<tr><td>' + this.writerId +
 								'</td><td>' + this.content + '</td><td>' + this.regDate +
-								'</td></tr>');
+								'</td><td><form method=POST action=review_comment_delete.do>' + 
+								'<input type=hidden name=commNo id=commNo value=' + this.commentNo + '>' + 
+								'<input type=hidden name=rvwNum id=rvwNum value=' + this.reviewNo + '>' + 
+								'<input type=submit value=삭제></form></td></tr>');
 					})	
 				}
 				

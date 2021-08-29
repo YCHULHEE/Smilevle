@@ -56,10 +56,6 @@ public class CommentDao {
 		return new Timestamp(date.getTime());
 	}
 
-	public static void delete(Connection conn, int commentNumber) {
-		// TODO Auto-generated method stub
-	}
-
 	public JSONArray select(Connection conn, int no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -90,4 +86,36 @@ public class CommentDao {
 		return comment;
 	}
 	
+	public Comment selectById(Connection conn, int commentNumber) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("select * from tbl_review_comment where comment_no = ?");
+			pstmt.setInt(1, commentNumber);
+			rs = pstmt.executeQuery();
+			Comment comment = null;
+			if(rs.next()) {
+				comment = new Comment(rs.getInt("comment_no"), 
+									  rs.getInt("review_no"), 
+									  rs.getString("writer_id"), 
+									  toDate(rs.getTimestamp("regdate")), 
+									  rs.getString("content"));
+			}
+			return comment;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	private Date toDate(Timestamp timestamp) {
+		return new Date(timestamp.getTime());
+	}
+
+	public int delete(Connection conn, int commentNumber) throws SQLException {
+		try(PreparedStatement pstmt = conn.prepareStatement("delete from tbl_review_comment where comment_no = ?")) {
+			pstmt.setInt(1, commentNumber);
+			return pstmt.executeUpdate();
+		}
+	}
 }
