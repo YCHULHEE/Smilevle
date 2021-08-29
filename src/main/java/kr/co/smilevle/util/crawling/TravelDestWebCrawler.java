@@ -31,11 +31,11 @@ public class TravelDestWebCrawler {
 
 	private static void startCraw() throws IOException, SAXException, ParserConfigurationException {
 		CommonCrawler commonCrawler = new CommonCrawler();
-		for (int j = 1; j < 2; j++) {
+		for (int j = 6; j < 12; j++) {
 			String count = String.valueOf(j);
 			StringBuilder urlBuilder = new StringBuilder(
 					"http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList");
-			/* URL */ String serviceKey = "=ygq6ckNSsXQ8IGk3A5TnTfFiz6osFZwGkzBBfT6fJzmabC0H1Wd67USpVx3Oyfq88cAKcBpgQbvFz0VZQldbVA%3D%3D";
+			/* URL */ String serviceKey = "xviXKlZp2ce8L%2Fai3UQnvIf7D6aHb6iQ%2Fv4OJHBSa2nMr%2BO%2F59xdH8yai46SXl%2Fk9ioVS3PsJGXak7PYfT2NHw%3D%3D";
 			String serviceKeyDecoded = URLDecoder.decode(serviceKey, "UTF-8");
 
 			urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + serviceKeyDecoded); /* Service Key */
@@ -44,7 +44,7 @@ public class TravelDestWebCrawler {
 			urlBuilder.append(
 					"&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode(count, "UTF-8")); /* 현재 페이지 번호 */
 			urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "="
-					+ URLEncoder.encode("500", "UTF-8")); /* 한 페이지 결과 수 */
+					+ URLEncoder.encode("200", "UTF-8")); /* 한 페이지 결과 수 */
 			urlBuilder.append("&" + URLEncoder.encode("MobileApp", "UTF-8") + "="
 					+ URLEncoder.encode("AppTest", "UTF-8")); /* 서비스명=어플명 */
 			urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "="
@@ -135,6 +135,11 @@ public class TravelDestWebCrawler {
 					stay.setAddress(getTagValue("addr1", eElement));
 					stay.setTel(getTagValue("tel", eElement));
 					// 더블로 넣을시 parsedouble 때문에 속도가 느려짐.
+					
+					if(getTagValue("mapx", eElement) == "") {
+						continue;
+					}
+					
 					stay.setMapX(getTagValue("mapx", eElement));
 					stay.setMapY(getTagValue("mapy", eElement));
 					stay.setFirstImage(getTagValue("firstimage", eElement));
@@ -155,11 +160,19 @@ public class TravelDestWebCrawler {
 					
 					try {
 						CrawlingDao.insertTour(stay);
-//						commonCrawler.selectContentById(stay.getContentId(), stay.getFirstImage());
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+//					try {
+//						commonCrawler.selectContentById(stay.getContentId(), stay.getFirstImage());
+//					} catch (IOException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					} catch (SQLException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
 				}
 			}
 		}

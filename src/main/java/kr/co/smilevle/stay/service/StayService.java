@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.smilevle.jdbc.JdbcUtil;
 import kr.co.smilevle.jdbc.connection.ConnectionProvider;
+import kr.co.smilevle.stay.dao.StayContentDao;
 import kr.co.smilevle.stay.dao.StayDao;
 import kr.co.smilevle.stay.model.Stay;
 import kr.co.smilevle.stay.model.StayContent;
@@ -25,7 +26,7 @@ import kr.co.smilevle.travel.service.TravelDestNotFoundException;
 
 public class StayService {
 	private StayDao stayDao = new StayDao();
-	private TravelContentDao contentDao = new TravelContentDao();
+	private StayContentDao contentDao = new StayContentDao();
 
 	public List<Stay> getStayInfo(String areaCode, int size) {
 		Connection conn = null;
@@ -67,20 +68,17 @@ public class StayService {
 				throw new TravelDestNotFoundException();
 			}
 			// 글번호를 통해 글의 내용을 가져온다.
-			TravelDestContent content = contentDao.selectContentById(contentId);
+			StayContent content = contentDao.selectById(conn, contentId);
 			if (content == null) {
 				throw new TravelDestContentNotFoundException();
 			}
-			System.out.println(content.getContent());
 			
 			// increaseReadCount가 true일시 조회수를 증가시킨다.
 			if (increaseReadCount) {
 				stayDao.increaseReadCount(conn, contentId);
 			}
 			
-			
-//			List<String> imageList = contentDao.selectImageListById(contentId);
-			List<String> imageList = new ArrayList<String>();
+			String[] imageList = content.getImageList().split(",");
 			
 			// 글의 정보와 글의 내용을 아티클데이터로 반환한다.
 			return new StayData(stay, content, imageList);

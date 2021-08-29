@@ -55,6 +55,7 @@ public class CommonParser {
 				}
 				
 				String imageList = commonCrawler.selectImageListById(stayContent.getContentId(), firstImage);
+				
 				stayContent.setImageList(imageList);
 			}
 		}
@@ -86,11 +87,11 @@ public class CommonParser {
 			Node nNode = nList.item(i);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element eElement = (Element) nNode;
-				if(i == nList.getLength()) {
+				if(i == (nList.getLength() - 1)) {
 					sb.append(getTagValue("originimgurl", eElement));
 					continue;
 				}
-				sb.append(getTagValue("originimgurl", eElement) + "/");
+				sb.append(getTagValue("originimgurl", eElement) + ",");
 			}
 		}
 		String imageList = sb.toString();

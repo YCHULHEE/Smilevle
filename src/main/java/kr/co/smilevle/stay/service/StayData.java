@@ -1,30 +1,25 @@
 package kr.co.smilevle.stay.service;
 
-import java.util.List;
-
 import kr.co.smilevle.stay.model.Stay;
 import kr.co.smilevle.stay.model.StayContent;
-import kr.co.smilevle.travel.model.TravelDestContent;
-
-
 
 public class StayData {
 	private Stay stay;
-	private TravelDestContent stayContent;
-	private List<String> imageList;
+	private StayContent content;
+	private String[] imageList;
 	
-	public List<String> getImageList() {
+	public String[] getImageList() {
 		return imageList;
 	}
 	public Stay getStay() {
 		return stay;
 	}
-	public TravelDestContent getStayContent() {
-		return stayContent;
+	public StayContent getStayContent() {
+		return content;
 	}
-	public StayData(Stay stay, TravelDestContent content, List<String> imageList) {
+	public StayData(Stay stay, StayContent content, String[] imageList) {
 		this.stay = stay;
-		this.stayContent = content;
+		this.content = content;
 		this.imageList = imageList;
 	}
 }

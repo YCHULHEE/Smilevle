@@ -12,12 +12,12 @@ public class ListStayService {
 	private StayDao stayDao = new StayDao();
 	private int size = 6;
 
-	public StayPage getArticlePage(int pageNum, String areaCode, String smallCategory, String where) {
+	public StayPage getArticlePage(int pageNum, String areaCode, String smallCategory, String where, String searchWord) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
-			int total = stayDao.selectCount(conn, areaCode, smallCategory, where);
+			int total = stayDao.selectCount(conn, areaCode, smallCategory, where, searchWord);
 			System.out.println(total);
 			List<Stay> stayList = stayDao.selectList(
-					conn, areaCode, (pageNum - 1) * size, size, smallCategory, where);
+					conn, areaCode, (pageNum - 1) * size, size, smallCategory, where, searchWord);
 			
 			
 			return new StayPage(total, pageNum, size, stayList);

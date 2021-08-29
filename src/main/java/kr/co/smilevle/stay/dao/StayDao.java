@@ -14,7 +14,8 @@ import kr.co.smilevle.stay.model.Stay;
 import kr.co.smilevle.travel.model.TravelDest;
 
 public class StayDao {
-	public List<Stay> selectList(Connection conn, String areaCode, int startRow, int size, String smallCategory, String where) throws SQLException {
+	public List<Stay> selectList(Connection conn, String areaCode, int startRow, 
+			int size, String smallCategory, String where, String searchWord) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -27,7 +28,14 @@ public class StayDao {
 		if(!areaCode.equals("false")) {
 			query += " and areaCode = " + areaCode;
 		}
-		System.out.println(smallCategory);
+		
+		if(searchWord == null) {
+			searchWord = "false";
+		}
+		if(!(searchWord.equals("false") || searchWord.equals(""))) {
+			query += " and title LIKE '%" + searchWord + "%'";
+		}
+		
 		if(smallCategory == null) {
 			smallCategory = "false";
 		}
@@ -73,7 +81,7 @@ public class StayDao {
 
 
 
-	public int selectCount(Connection conn, String areaCode, String smallCategory, String where) throws SQLException {
+	public int selectCount(Connection conn, String areaCode, String smallCategory, String where, String searchWord) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String query = "select count(*) from tbl_tour where content_type_id=" + where;
@@ -83,7 +91,14 @@ public class StayDao {
 		if(!areaCode.equals("false")) {
 			query += " and areaCode = " + areaCode;
 		}
-		;
+		if(searchWord == null) {
+			searchWord = "false";
+		}
+		
+		if(!(searchWord.equals("false") || searchWord.equals(""))) {
+			query += " and title LIKE '%" + searchWord + "%'";
+		}
+		
 		if(smallCategory == null) {
 			smallCategory = "false";
 		}
@@ -91,7 +106,7 @@ public class StayDao {
 			query += " and small_category = '" + smallCategory + "'";
 		}
 			
-		
+		System.out.println(query);
 		try {
 			pstmt = conn.prepareStatement(query);
 	

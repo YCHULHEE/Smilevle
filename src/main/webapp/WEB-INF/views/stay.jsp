@@ -68,7 +68,7 @@
 	
     window.onload = function(){
         const pageBtns =  document.getElementsByClassName("pageBtn");
-		const prevBtn = document.getElementById("pervBtn");
+		const prevBtn = document.getElementById("prevBtn");
 		const nextBtn = document.getElementById("nextBtn");
 		let maxPage = -1;
 		let minPage = 99999;
@@ -81,11 +81,11 @@
 			paramStr = getParamStr(params);
         	btn.href =  btnURL + "?" + paramStr;
 			
-			pageNo = parseInt(pageNo)
-			if(pageNo > maxPage){
+			pageNo = parseInt(pageNo);
+			if(pageNo >= maxPage){
 				maxPage = pageNo;
 			}
-			if(pageNo < minPage){
+			if(pageNo <= minPage){
 				minPage = pageNo;
 			}
         }
@@ -98,7 +98,7 @@
 
 		if(nextBtn){
 			params["pageNo"] = maxPage + 1;
-			paramStr = getParamStr(params)
+			paramStr = getParamStr(params);
         	nextBtn.href =  baseURL + "?" + paramStr;
 		}
     }
@@ -141,7 +141,7 @@
 						<c:forEach var="stay" items="${stayPage.stayList}">
 							<div class="col-md-4 ftco-animate">
 								<div class="destination">
-									<a href="stayOne.do?contentId=${stay.contentId}"
+									<a href="stayOne.do?where=32&contentId=${stay.contentId}"
 										class="img img-2 d-flex justify-content-center align-items-center"
 										style="background-image: url(${stay.firstImage});">
 										<div
@@ -153,7 +153,7 @@
 										<div class="d-flex">
 											<div class="one">
 												<h3>
-													<a href="stayOne.do?contentId=${stay.contentId}">${stay.title}</a>
+													<a href="stayOne.do?where=32&contentId=${stay.contentId}">${stay.title}</a>
 												</h3>
 												<p class="rate">
 													<i class="icon-star"></i> <i class="icon-star"></i> <i
@@ -195,7 +195,6 @@
 												</c:when>
 												<c:otherwise>
 													<li><a class="pageBtn">${pNo}</a></li>
-													<!-- <li><a class="pageBtn" href="stay.do?pageNo=${pNo}&areaCode=${areaCode}">${pNo}</a></li> -->
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>

@@ -134,7 +134,7 @@ public class TravelDestParser {
 					sb.append(getTagValue("originimgurl", eElement));
 					continue;
 				}
-				sb.append(getTagValue("originimgurl", eElement) + "/");
+				sb.append(getTagValue("originimgurl", eElement) + ",");
 			}
 		}
 		return sb.toString();

@@ -25,6 +25,7 @@ public class StayHandler implements CommandHandler{
 		String areaCode = req.getParameter("areaCode");
 		String smallCategory = req.getParameter("smallCategory");
 		String where = req.getParameter("where");
+		String searchWord = req.getParameter("searchWord");
 
 		int pageNo = 1;
 		if (pageNoVal != null) {
@@ -32,10 +33,11 @@ public class StayHandler implements CommandHandler{
 		}
 		
 		
+		
 		MapInfomation mapInfomation = new MapInfomation();
 		Map<String, String> areaMap = mapInfomation.getAreaMap();
 		Map<String, String> stayMap = mapInfomation.getStayMap();
-		StayPage stayPage = listStayService.getArticlePage(pageNo, areaCode, smallCategory, where);
+		StayPage stayPage = listStayService.getArticlePage(pageNo, areaCode, smallCategory, where, searchWord);
 		req.setAttribute("stayPage", stayPage);
 		req.setAttribute("pageNo", pageNo + "");
 		req.setAttribute("areaCode", areaCode);
@@ -43,6 +45,7 @@ public class StayHandler implements CommandHandler{
 		req.setAttribute("stayMap", stayMap);
 		req.setAttribute("smallCategory",  smallCategory);
 		req.setAttribute("where", where);
+		req.setAttribute("searchWord", searchWord);
 		return "/WEB-INF/views/stay.jsp";
 		
 	}
