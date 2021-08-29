@@ -207,9 +207,16 @@
 	
 	<div class="container">
 		<form id="commentForm" method="post" action="review_comment_write.do">
-			<input type="hidden" name="rwNum" id="rwNum" value="${reviewData.number }">
-			<textarea rows="2" cols="50" name="content" id="content"></textarea>
-			<input type="submit" value="댓글 작성">
+			<c:choose>
+				<c:when test="${authUser == null }">
+					로그인 후 작성 가능합니다!
+				</c:when>
+				<c:otherwise>
+					<input type="hidden" name="rwNum" id="rwNum" value="${reviewData.number }">
+					<textarea rows="2" cols="50" name="content" id="content"></textarea>
+					<input type="submit" value="댓글 작성">
+				</c:otherwise>
+			</c:choose>
 		</form>
 	</div>
 	
