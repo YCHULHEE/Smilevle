@@ -13,6 +13,7 @@ import kr.co.smilevle.util.parser.CommonParser;
 
 public class CommonCrawler {
 	
+	
 	public void selectContentById(int contentId, String firstImage) throws IOException, SQLException {
 		CommonParser commonParser = new CommonParser();
 		String id = contentId + "";

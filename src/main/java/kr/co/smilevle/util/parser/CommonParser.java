@@ -47,6 +47,12 @@ public class CommonParser {
 				
 				
 				stayContent.setContentId(contentId);
+				if(getTagValue("overview", eElement).equals("")) {
+					stayContent.setContent("내용없음");
+				} else {
+					getTagValue("overview", eElement);
+				}
+				
 				stayContent.setContent(getTagValue("overview", eElement));
 				if(getTagValue("homepage", eElement).equals("")) {
 					stayContent.setHomePage("홈페이지 없음");

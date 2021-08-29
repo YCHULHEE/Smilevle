@@ -31,7 +31,7 @@ public class TravelDestWebCrawler {
 
 	private static void startCraw() throws IOException, SAXException, ParserConfigurationException {
 		CommonCrawler commonCrawler = new CommonCrawler();
-		for (int j = 6; j < 12; j++) {
+		for (int j = 1; j < 2; j++) {
 			String count = String.valueOf(j);
 			StringBuilder urlBuilder = new StringBuilder(
 					"http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList");
@@ -42,9 +42,9 @@ public class TravelDestWebCrawler {
 			urlBuilder.append("&" + URLEncoder.encode("ServiceKey", "UTF-8") + "="
 					+ URLEncoder.encode(serviceKeyDecoded, "UTF-8")); /* 공공데이터포털에서 발급받은 인증키 */
 			urlBuilder.append(
-					"&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode(count, "UTF-8")); /* 현재 페이지 번호 */
+					"&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /* 현재 페이지 번호 */
 			urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "="
-					+ URLEncoder.encode("200", "UTF-8")); /* 한 페이지 결과 수 */
+					+ URLEncoder.encode("150", "UTF-8")); /* 한 페이지 결과 수 */
 			urlBuilder.append("&" + URLEncoder.encode("MobileApp", "UTF-8") + "="
 					+ URLEncoder.encode("AppTest", "UTF-8")); /* 서비스명=어플명 */
 			urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "="
@@ -57,7 +57,7 @@ public class TravelDestWebCrawler {
 			urlBuilder.append(
 					"&" + URLEncoder.encode("cat1", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /* 대분류 코드 */
 			urlBuilder.append("&" + URLEncoder.encode("contentTypeId", "UTF-8") + "="
-					+ URLEncoder.encode("32", "UTF-8")); /* 관광타입(관광지, 숙박 등) ID */
+					+ URLEncoder.encode("28", "UTF-8")); /* 관광타입(관광지, 숙박 등) ID */
 			urlBuilder.append(
 					"&" + URLEncoder.encode("areaCode", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /* 지역코드 */
 			urlBuilder.append("&" + URLEncoder.encode("sigunguCode", "UTF-8") + "="
@@ -130,18 +130,25 @@ public class TravelDestWebCrawler {
 					if (title.indexOf("(", 2) != -1) {
 						title = title.substring(0, title.indexOf("(", 2));
 					} 
-					
 					stay.setTitle(title);
 					stay.setAddress(getTagValue("addr1", eElement));
+					if (!getTagValue("tel", eElement).equals("")) {
+						stay.setTel(getTagValue("tel", eElement));
+					} else {
+						stay.setTel("번호 없음");
+					}
+					
 					stay.setTel(getTagValue("tel", eElement));
 					// 더블로 넣을시 parsedouble 때문에 속도가 느려짐.
 					
-					if(getTagValue("mapx", eElement) == "") {
+					if(getTagValue("mapx", eElement).equals("")) {
 						continue;
 					}
-					
 					stay.setMapX(getTagValue("mapx", eElement));
 					stay.setMapY(getTagValue("mapy", eElement));
+					if(getTagValue("firstimage", eElement).equals("")) {
+						continue;
+					}
 					stay.setFirstImage(getTagValue("firstimage", eElement));
 					if (!getTagValue("contentid", eElement).equals("")) {
 						stay.setContentId(Integer.parseInt(getTagValue("contentid", eElement)));
@@ -160,19 +167,11 @@ public class TravelDestWebCrawler {
 					
 					try {
 						CrawlingDao.insertTour(stay);
+						commonCrawler.selectContentById(stay.getContentId(), stay.getFirstImage());
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-//					try {
-//						commonCrawler.selectContentById(stay.getContentId(), stay.getFirstImage());
-//					} catch (IOException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					} catch (SQLException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
 				}
 			}
 		}

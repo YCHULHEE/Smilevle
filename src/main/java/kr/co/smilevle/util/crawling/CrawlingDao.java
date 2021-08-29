@@ -34,7 +34,7 @@ public class CrawlingDao {
 		conn = DriverManager.getConnection(url, user, pass);
 
 		try {
-			pstmt = conn.prepareStatement("insert into TBL_TOUR_CLONE " + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			pstmt = conn.prepareStatement("insert into TBL_TOUR " + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			pstmt.setInt(1, stay.getContentId());
 			pstmt.setString(2, stay.getTitle());
 			pstmt.setString(3, stay.getAreaCode());

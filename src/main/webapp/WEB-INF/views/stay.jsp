@@ -82,10 +82,10 @@
         	btn.href =  btnURL + "?" + paramStr;
 			
 			pageNo = parseInt(pageNo);
-			if(pageNo >= maxPage){
+			if(pageNo > maxPage){
 				maxPage = pageNo;
 			}
-			if(pageNo <= minPage){
+			if(pageNo < minPage){
 				minPage = pageNo;
 			}
         }
@@ -191,7 +191,7 @@
 												end="${stayPage.endPage}">
 											<c:choose>
 												<c:when test="${pNo eq pageNo}">
-													<li class="active"><span>${pNo}</span></li>
+													<li class="active"><a class="pageBtn">${pNo}</a></li>
 												</c:when>
 												<c:otherwise>
 													<li><a class="pageBtn">${pNo}</a></li>
