@@ -44,7 +44,7 @@
 				$('#comment').append('<tr><td>작성자</td><td>내용</td><td colspan=2>작성일시</td></tr>');
 				console.log(data);
 				if(data == "") {
-					$('#comment').append('<tr><td colspan=3>작성된 댓글이 없습니다.</td></tr>');
+					$('#comment').append('<tr><td colspan=3>작성된 댓글이 없습니다!</td></tr>');
 				}
 				else {
 					$.each(data, function() {
