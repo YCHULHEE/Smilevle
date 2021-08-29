@@ -20,11 +20,12 @@ public class WriteCommentHandler implements CommandHandler{
 		WriteCommentRequest writeReq = createWriteCommentRequest(user, req);
 		
 		writeService.writeComment(writeReq);
-		return null;
+		return "review_read.do?no=" + reviewVal;
 	}
 
 	private WriteCommentRequest createWriteCommentRequest(User user, HttpServletRequest req) {
-		return new WriteCommentRequest(Integer.parseInt(
-				req.getParameter("rwNum")), user.getId(), req.getParameter("content"));
+		return new WriteCommentRequest(Integer.parseInt(req.getParameter("rwNum")), 
+														user.getId(), 
+														req.getParameter("content"));
 	}
 }

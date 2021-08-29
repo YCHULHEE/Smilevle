@@ -27,14 +27,14 @@ public class CommentDao {
 			pstmt = conn.prepareStatement("insert into tbl_review_comment "
 						+ "values (review_comment_seq.nextval, ?, ?, ?, ?)");
 			pstmt.setInt(1, comment.getReviewNo());
-			pstmt.setString(2, comment.getContent());
+			pstmt.setString(2, comment.getWriterId());
 			pstmt.setTimestamp(3, toTimestamp(comment.getRegDate()));
 			pstmt.setString(4, comment.getContent());
 			int insertedCount = pstmt.executeUpdate();
 			
 			if (insertedCount > 0) {
 				stmt = conn.createStatement();
-				 rs = stmt.executeQuery("select max(comment_no) from comment1"); 
+				 rs = stmt.executeQuery("select max(comment_no) from tbl_review_comment"); 
 				if (rs.next()) {
 					Integer newNo = rs.getInt(1);
 					return new Comment(newNo,

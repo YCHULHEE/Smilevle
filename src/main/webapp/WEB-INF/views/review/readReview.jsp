@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <title>${reviewData.title }</title>
     <meta charset="utf-8">
@@ -36,7 +36,9 @@
     </style>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
-		$(document).ready(loadComment());
+		$(document).ready(function() {
+			loadComment()
+		});
 		function loadComment() {
 			$.getJSON('/Smilevle/review_comment_list.do?no=${reviewData.number}', function(data) {
 				/* $('#comment').append('<tr><td>작성자</td><td>내용</td><td>작성일시</td></tr>'); */
@@ -49,15 +51,6 @@
 				})	
 			})
 		}
-		$('#commentButton').click(function() {
-			/* serialize() : 입력된 모든 값을 문자열 데이터에 나눠서 넣어줌 -> 일일히 각 파라메터에 대해 값을 입력해 줄 필요 없음! */
-			var sendData = $('#commentForm').serialize();
-			$.post('review_comment_write.do', sendData, 
-					function(data) {
-						function loadComment();
-			})
-		});
-
 	</script>
   </head>
   <body>
@@ -213,10 +206,10 @@
 	</div>
 	
 	<div class="container">
-		<form id="commentForm" method="post">
+		<form id="commentForm" method="post" action="review_comment_write.do">
 			<input type="hidden" name="rwNum" id="rwNum" value="${reviewData.number }">
 			<textarea rows="2" cols="50" name="content" id="content"></textarea>
-			<input type="button" id="commentButton" value="댓글 작성">
+			<input type="submit" value="댓글 작성">
 		</form>
 	</div>
 	
@@ -301,7 +294,6 @@
   <script src="js/aos.js"></script>
   <script src="js/jquery.animateNumber.min.js"></script>
   <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.timepicker.min.js"></script>
   <script src="js/scrollax.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
