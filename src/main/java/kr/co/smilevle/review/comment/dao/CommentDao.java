@@ -25,10 +25,10 @@ public class CommentDao {
 		
 		try {
 			pstmt = conn.prepareStatement("insert into tbl_review_comment "
-						+ "values (review_comment_seq, ?, ?, ?, ?)");
+						+ "values (review_comment_seq.nextval, ?, ?, ?, ?)");
 			pstmt.setInt(1, comment.getReviewNo());
 			pstmt.setString(2, comment.getContent());
-			pstmt.setDate(3, toSqlDate(comment.getRegDate()));
+			pstmt.setTimestamp(3, toTimestamp(comment.getRegDate()));
 			pstmt.setString(4, comment.getContent());
 			int insertedCount = pstmt.executeUpdate();
 			
@@ -52,8 +52,8 @@ public class CommentDao {
 		}
 	}
 	
-	private java.sql.Date toSqlDate(Date date) {
-		return new java.sql.Date(date.getTime());
+	private Timestamp toTimestamp(Date date) {
+		return new Timestamp(date.getTime());
 	}
 
 	public static void delete(Connection conn, int commentNumber) {
