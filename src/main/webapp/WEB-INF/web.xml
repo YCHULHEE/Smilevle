@@ -8,7 +8,6 @@
    <context-param>
       <param-name>poolConfig</param-name>
       <param-value>
-		
          jdbcDriver=oracle.jdbc.OracleDriver
          jdbcUrl=jdbc:oracle:thin:@smiledb.cu3f8c2b5bc9.ap-northeast-2.rds.amazonaws.com:9090:smiledb
          dbUser=user01

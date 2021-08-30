@@ -77,7 +77,7 @@ public class StayDao {
 						rs.getString("map_y"), 
 						rs.getString("middle_category"),
 						rs.getString("small_category"));
-	}
+	} 
 
 
 
@@ -171,7 +171,6 @@ public class StayDao {
 			pstmt.setInt(1, content_id);
 			pstmt.executeUpdate();
 		}
-		
 	}
 }
 

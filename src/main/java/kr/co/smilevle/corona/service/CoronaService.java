@@ -7,11 +7,11 @@ import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import kr.co.smilevle.corona.dao.CoronaDao;
 import kr.co.smilevle.corona.model.Corona;
@@ -23,7 +23,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class CoronaService {
-	public static String selectCorona() throws IOException, SQLException {
+	public String updateCorona() throws IOException, SQLException {
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMdd");
 		Date time = new Date();
 		String nowTime = format.format(time);
@@ -94,7 +94,22 @@ public class CoronaService {
        	return maxName;
 	}
 	
-	private static String selectCoronaMax(Map<String, Integer> coronaMap) {
+	public Corona selectCoronaLowOrderRandom() throws SQLException {
+		CoronaDao coronaDao = new CoronaDao();
+		Connection conn = ConnectionProvider.getConnection();
+		List<Corona> coronaList = coronaDao.select(conn);
+		Random random = new Random();
+		random.setSeed(System.currentTimeMillis());
+		
+		System.out.println(random.nextInt(4));
+		Corona corona = coronaList.get(random.nextInt(4));
+		return corona;
+	}
+	
+	
+	
+	
+	private String selectCoronaMax(Map<String, Integer> coronaMap) {
 		Integer maxValue = Collections.max(coronaMap.values());
 		for (String key : coronaMap.keySet()) {
 			
