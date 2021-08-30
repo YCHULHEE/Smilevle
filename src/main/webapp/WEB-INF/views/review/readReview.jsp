@@ -48,12 +48,19 @@
 				}
 				else {
 					$.each(data, function() {
-						$('#comment').append('<tr><td>' + this.writerId +
-								'</td><td>' + this.content + '</td><td>' + this.regDate +
-								'</td><td><form method=POST action=review_comment_delete.do>' + 
-								'<input type=hidden name=commNo id=commNo value=' + this.commentNo + '>' + 
-								'<input type=hidden name=rvwNum id=rvwNum value=' + this.reviewNo + '>' + 
-								'<input type=submit value=삭제></form></td></tr>');
+						if(this.writerId == '${authUser.id}') {
+							$('#comment').append('<tr><td>' + this.writerId +
+									'</td><td>' + this.content + '</td><td>' + this.regDate +
+									'</td><td><form method=POST action=review_comment_delete.do>' + 
+									'<input type=hidden name=commNo id=commNo value=' + this.commentNo + '>' + 
+									'<input type=hidden name=rvwNum id=rvwNum value=' + this.reviewNo + '>' + 
+									'<input type=submit value=삭제></form></td></tr>');
+						} else {
+							$('#comment').append('<tr><td>' + this.writerId +
+									'</td><td>' + this.content + '</td><td>' + this.regDate +
+									'</td></tr>');
+						}
+						
 					})	
 				}
 				
