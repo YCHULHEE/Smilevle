@@ -51,12 +51,12 @@ public class CoronaPaser {
 			Node nNode = nList.item(i);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element eElement = (Element) nNode;
-				if((getTagValue("gubun", eElement).equals("합계"))) {
-					continue;
-				}
+//				if((getTagValue("gubun", eElement).equals("합계"))) {
+//					continue;
+//				}
 				
 				coronaMap.put(getTagValue("gubun", eElement), 
-						Integer.parseInt(getTagValue("localOccCnt", eElement)));
+				Integer.parseInt(getTagValue("localOccCnt", eElement)));
 			}
 		}
 		return coronaMap;

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.smilevle.corona.service.CoronaService;
 import kr.co.smilevle.event.model.Event;
 import kr.co.smilevle.event.service.EventService;
 import kr.co.smilevle.stay.model.Stay;
@@ -30,6 +31,9 @@ public class MainPageHandler implements CommandHandler{
 		stayList = stayService.getStayContainer("32", 20);
 		eventList = eventService.printEventMain(8, "32");
 		
+		CoronaService coronaService = new CoronaService();
+		
+		String a = coronaService.selectCorona();
 		
 		req.setAttribute("stayList", stayList);
 		req.setAttribute("travelDestList", travelDestList);

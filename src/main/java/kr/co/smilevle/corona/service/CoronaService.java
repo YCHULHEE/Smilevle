@@ -4,6 +4,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Collections;
@@ -11,14 +13,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import kr.co.smilevle.corona.dao.CoronaDao;
 import kr.co.smilevle.corona.model.Corona;
+import kr.co.smilevle.jdbc.connection.ConnectionProvider;
+import kr.co.smilevle.util.MapInfomation;
 import kr.co.smilevle.util.parser.CoronaPaser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
 public class CoronaService {
-	public static String selectCorona() throws IOException {
+	public static String selectCorona() throws IOException, SQLException {
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMdd");
 		Date time = new Date();
 		String nowTime = format.format(time);
@@ -53,10 +58,39 @@ public class CoronaService {
         rd.close();
         conn.disconnect();
         
+        Connection conn2 = ConnectionProvider.getConnection();
         CoronaPaser coronaPaser = new CoronaPaser();
+        MapInfomation mapInfomation = new MapInfomation();
         Map<String, Integer> coronaMap = coronaPaser.paserCorona(sb.toString());
+        Map<String, String> areaMap = mapInfomation.getAreaMap();
+        CoronaDao coronaDao = new CoronaDao();
+        Corona corona = new Corona();
+        
+        for(String key : coronaMap.keySet()) {
+        	corona.setLocalName(key);
+        	corona.setCount(coronaMap.get(key));
+        	
+        	if(key.equals("검역")) {
+        		continue;
+        	}
+        	
+        	if(key.equals("합계")) {
+        		corona.setAreaCode("0");
+        	} else {
+        		corona.setAreaCode(areaMap.get(key));
+        	}
+    
+        	try {
+        		System.out.println(corona.getCount());
+				coronaDao.update(conn2, corona);
+			} catch (SQLException e) {
+				System.out.println("오류");
+				e.printStackTrace();
+			}
+        }
+        
         String maxName = selectCoronaMax(coronaMap);
-
+        
        	return maxName;
 	}
 	
@@ -69,9 +103,5 @@ public class CoronaService {
             }
         }
 		return null;
-	}
-	
-	public static void main(String[] args) throws IOException {
-		String hi = selectCorona();
 	}
 }
