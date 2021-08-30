@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.smilevle.common.command.CommandHandler;
 import kr.co.smilevle.login.service.User;
+import kr.co.smilevle.review.comment.service.CommentNotFoundException;
 import kr.co.smilevle.review.comment.service.DeleteCommentRequest;
 import kr.co.smilevle.review.comment.service.DeleteCommentService;
 import kr.co.smilevle.review.service.PermissionDeniedException;
@@ -30,12 +31,16 @@ public class DeleteCommentHandler implements CommandHandler{
 		
 		try {
 			deleteService.deleteComment(delReq);
-			return "review_read.do?no=" + reviewNo;
-		} catch(PermissionDeniedException e) {
+			return null;
+		} catch(CommentNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
+		} catch(PermissionDeniedException e) {
+			res.sendError(HttpServletResponse.SC_FORBIDDEN);
 			return null;
 		}
+		return null;
 	}
+	
 
 	private boolean canDelete(User authUser, DeleteCommentRequest delReq) {
 		return authUser.getId().equals(delReq.getUserId());

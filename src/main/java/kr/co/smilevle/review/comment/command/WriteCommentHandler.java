@@ -20,7 +20,7 @@ public class WriteCommentHandler implements CommandHandler{
 		WriteCommentRequest writeReq = createWriteCommentRequest(user, req);
 		
 		writeService.writeComment(writeReq);
-		return "review_read.do?no=" + reviewVal;
+		return null;
 	}
 
 	private WriteCommentRequest createWriteCommentRequest(User user, HttpServletRequest req) {

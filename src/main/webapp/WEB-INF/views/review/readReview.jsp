@@ -51,10 +51,10 @@
 						if(this.writerId == '${authUser.id}') {
 							$('#comment').append('<tr><td>' + this.writerId +
 									'</td><td>' + this.content + '</td><td>' + this.regDate +
-									'</td><td><form method=POST action=review_comment_delete.do>' + 
+									'</td><td><form method=POST action=review_comment_delete.do target=iframe1>' + 
 									'<input type=hidden name=commNo id=commNo value=' + this.commentNo + '>' + 
 									'<input type=hidden name=rvwNum id=rvwNum value=' + this.reviewNo + '>' + 
-									'<input type=submit value=삭제></form></td></tr>');
+									'<input type=submit value=삭제 onclick=document.location.reload();></form></td></tr>');
 						} else {
 							$('#comment').append('<tr><td>' + this.writerId +
 									'</td><td>' + this.content + '</td><td>' + this.regDate +
@@ -217,7 +217,7 @@
 	</div>
 	
 	<div class="container">
-		<form id="commentForm" method="post" action="review_comment_write.do">
+		<form id="commentForm" method="post" action="review_comment_write.do" target="iframe1">
 			<c:choose>
 				<c:when test="${authUser == null }">
 					로그인 후 작성 가능합니다!
@@ -225,7 +225,7 @@
 				<c:otherwise>
 					<input type="hidden" name="rwNum" id="rwNum" value="${reviewData.number }">
 					<textarea rows="2" cols="50" name="content" id="content"></textarea>
-					<input type="submit" value="댓글 작성">
+					<input type="submit" value="댓글 작성" onclick="document.location.reload();">
 				</c:otherwise>
 			</c:choose>
 		</form>
@@ -320,4 +320,5 @@
 
     
   </body>
+  <iframe name="iframe1" style="display:none;"></iframe>
 </html>
