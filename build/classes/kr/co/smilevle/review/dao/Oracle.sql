@@ -16,6 +16,19 @@ create sequence review_seq;
 
 select * from tbl_review;
 
+create table tbl_review_attach(
+photo_no number constraint review_photo_no_pk primary key,
+review_no number,
+photo_url long
+);
+
+create sequence photo_seq;
+
+alter table tbl_review_attach
+	add foreign key (review_no)
+	references tbl_review(review_no)
+	on delete cascade;
+
 // 리뷰 이의의 데이터 쿼리문
 CREATE TABLE STAY (        
     "STAY_ID" NUMBER(12,0),
