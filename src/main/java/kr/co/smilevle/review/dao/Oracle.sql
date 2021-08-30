@@ -29,6 +29,8 @@ alter table tbl_review_attach
 	references tbl_review(review_no)
 	on delete cascade;
 
+select * from tbl_review_attach;
+
 // 리뷰 이의의 데이터 쿼리문
 CREATE TABLE STAY (        
     "STAY_ID" NUMBER(12,0),
