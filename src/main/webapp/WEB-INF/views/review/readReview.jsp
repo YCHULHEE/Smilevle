@@ -7,7 +7,7 @@
     <title>${reviewData.title }</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+   
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Alex+Brush" rel="stylesheet">
 
@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/jquery.timepicker.css">
 
+
     
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
@@ -34,6 +35,7 @@
 			margin-right: 10px;
 		}
     </style>
+   
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -41,20 +43,20 @@
 		});
 		function loadComment() {
 			$.getJSON('/Smilevle/review_comment_list.do?no=${reviewData.number}', function(data) {
-				$('#comment').append('<tr><td>작성자</td><td>내용</td><td colspan=2>작성일시</td></tr>');
+				/* $('#comment').append('<thead><tr class=thead-black><th width=20%>작성자</th><th width=40%>내용</th><th colspan=2 width=20%>작성일시</th></tr></thead>'); */
 				console.log(data);
 				if(data == "") {
-					$('#comment').append('<tr><td colspan=3>작성된 댓글이 없습니다!</td></tr>');
+					$('#comment').append('<tr><td colspan=3 style=text-align:center>작성된 댓글이 없습니다!</td></tr>');
 				}
 				else {
 					$.each(data, function() {
 						$('#comment').append('<tr><td>' + this.writerId +
-								'</td><td>' + this.content + '</td><td>' + this.regDate +
+ /* 삭제 버튼 */					'</td><td>' + this.content + '</td><td>' + this.regDate +
 								'</td><td><form method=POST action=review_comment_delete.do>' + 
 								'<input type=hidden name=commNo id=commNo value=' + this.commentNo + '>' + 
 								'<input type=hidden name=rvwNum id=rvwNum value=' + this.reviewNo + '>' + 
-								'<input type=submit value=삭제></form></td></tr>');
-					})	
+								'<input type=submit value=삭제  class="btn btn-secondary btn-sm" style="float: right;"></form></td></tr>');
+					})	   
 				}
 				
 			})
@@ -78,29 +80,33 @@
       </div>
     </div>
     <section class="ftco-section">
-    	<div class="container">
+    	<div class="container" >
     	    <button class="btn btn-outline-info" onclick="location.href='review.do'">목록으로</button>
-    		<div class="container">
+    		<div class="container" >
     			&nbsp;
     		</div>
-    		<div class="table table-bordered">
-				<table class="table">
+    		<div class="container" >
+    		
+    		<div class="m-5">
+    		
+				<table class="table table-bordered table-sm thead-light">
+				
 					<tr>
-						<th scope="row" class="table-secondary" width="10%">작성자</th>
+						<th scope="row" class="table-primary  text-center " width="10%">작성자</th>
 						<td>${reviewData.writer.name }</td>
-						<th scope="row" class="table-secondary" width="10%">No.</th>
+						<th scope="row" class="table-primary text-center" width="10%">No.</th>
 						<td colspan="3" width="10%">${reviewData.number }</td>					
 					</tr>
 					<tr>
-						<th scope="row" class="table-secondary">제목</th>
+						<th scope="row" class="table-primary text-center ">제목</th>
 						<td colspan="5">${reviewData.title }</td>
 					</tr>
 					<tr>
-						<th scope="row" class="table-secondary">건물 명</th>
+						<th scope="row" class="table-primary text-center">건물 명</th>
 						<td colspan="5">${reviewData.locationName }</td>
 					</tr>
 					<tr>	
-						<th scope="row" class="table-secondary">별점</th>
+						<th scope="row" class="table-primary text-center">별점</th>
 						<c:choose>
 							<c:when test="${reviewData.rate == '1.0' }">
 									<td colspan="5">
@@ -170,14 +176,16 @@
 						</c:choose>
 					</tr>				
 					<tr>
-						<th scope="row">내용</th>
+						<th scope="row" class="table-primary  text-center">내용</th>
 						<td colspan="5">${reviewData.content }</td>											
 				</table>
 			</div>
+			</div>
+			</div>
     		<div class="container">
     			<c:if test="${authUser.id == reviewData.writer.id }">
-    			    <button type="button" class="btn btn btn-danger rounded float-right" data-toggle="modal" data-target="#myModal">삭제</button>
-    				<button type="button" class="btn btn btn-warning rounded float-right btn-space" onclick="location.href='review_modify.do?no=${reviewData.number}'">수정</button>
+    			    <button type="button" class="btn btn btn-primary rounded float-right" data-toggle="modal" data-target="#myModal">삭제</button>
+    				<button type="button" class="btn btn btn-info rounded float-right btn-space" onclick="location.href='review_modify.do?no=${reviewData.number}'">수정</button>
     			</c:if>
     		</div>
     	</div>
@@ -196,32 +204,51 @@
 			삭제 후 취소할 수 없습니다!
 	      </div>
 	      <div class="modal-footer">
-		<button type="button" id="toList" class="btn btn-default" data-dismiss="modal">취소</button>
-		<button type="button" id="toContent" class="btn btn-danger" onclick="location.href='review_delete.do?no=${reviewData.number}'">삭제</button>
+		<button type="button" id="toList" class="btn btn-default" data-dismiss="modal" >취소</button>
+		<button type="button" id="toContent" class="btn btn-primary" onclick="location.href='review_delete.do?no=${reviewData.number}'">삭제</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
 	
-	<div class="container">
-		<table id="comment">
-
-		</table>
-	</div>
+	<!-- 여기 -----------------------------------------------------------------------------주물주물 -->
 	
-	<div class="container">
-		<form id="commentForm" method="post" action="review_comment_write.do">
+	<div class="container" >
+    	<div class="m-5">
+			<div class="container my-3" >
+				<table id="comment" class="table table-sm table-hover">
+			        <thead>
+				        <tr class="table-primary">
+				            <th width=20%>작성자</th>
+				            <th width=40%>내용</th>
+				            <th colspan="2" width=20%>작성일시</th>
+				        </tr>
+			        </thead>
+	 			</table>
+	 		</div>
+	 	</div>
+	 	<form class="m-5" id="commentForm" method="post" action="review_comment_write.do">
 			<c:choose>
 				<c:when test="${authUser == null }">
-					로그인 후 작성 가능합니다!
+					<textarea class="form-control" name="content" id="content" disabled="disabled">로그인 후 작성 가능합니다...</textarea>
 				</c:when>
 				<c:otherwise>
 					<input type="hidden" name="rwNum" id="rwNum" value="${reviewData.number }">
-					<textarea rows="2" cols="50" name="content" id="content"></textarea>
-					<input type="submit" value="댓글 작성">
+					<label for="content"><h4>댓글작성</h4></label>
+					<textarea class="form-control" name="content" id="content"></textarea>   <!-- 댓글 박스 크기 -->
+					<input type="submit" class="btn btn-outline-info" value="댓글 작성" style="float: right;">
 				</c:otherwise>
 			</c:choose>
 		</form>
+	 </div>
+	
+
+
+
+	<!-- 여기 --------------------------------------------------------------------------------까지 -->
+	
+	<div class="form-row align-items-center">
+
 	</div>
 	
     <footer class="ftco-footer ftco-bg-dark ftco-section">
