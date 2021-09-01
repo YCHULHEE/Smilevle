@@ -56,7 +56,7 @@
 									'</td><td><form method=POST action=review_comment_delete.do target=iframe1>' + 
 									'<input type=hidden name=commNo id=commNo value=' + this.commentNo + '>' + 
 									'<input type=hidden name=rvwNum id=rvwNum value=' + this.reviewNo + '>' + 
-									'<input type=submit value=삭제 class="btn btn-secondary btn-sm" style="float: right;" onclick=document.location.reload();></form></td></tr>');
+									'<input type=submit id=commentDelete value=삭제 class="btn btn-secondary btn-sm" style="float: right;" onclick=deleteCommentConfirm();></form></td></tr>');
 						} else {
 							$('#comment').append('<tr><td>' + this.writerId +
 									'</td><td>' + this.content + '</td><td colspan=2>' + this.regDate +
@@ -67,6 +67,12 @@
 				}
 				
 			})
+		}
+		function deleteCommentConfirm(){
+			 if(confirm("삭제하시겠습니까?")) {
+			  location.href="review_comment_delete.do";
+			  document.location.reload();
+			 }
 		}
 	</script>
   </head>
