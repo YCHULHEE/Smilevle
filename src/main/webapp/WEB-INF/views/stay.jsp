@@ -53,7 +53,8 @@
 						<span class="mr-2"><a href="index.do">Home</a></span> <span>숙소</span>
 					</p>
 					<h1 class="mb-3 bread"
-						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">나와 오늘 여행 갈래?</h1>
+						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">나와
+						오늘 여행 갈래?</h1>
 				</div>
 			</div>
 		</div>
@@ -63,9 +64,53 @@
 	<section class="ftco-section ftco-degree-bg">
 		<div class="container">
 			<div class="row">
-				
-				<jsp:include page="/WEB-INF/views/include/common/search_box.jsp" />
-				
+
+				<div class="col-lg-3 sidebar">
+					<div class="sidebar-wrap bg-light ftco-animate">
+						<h3 class="heading mb-4">Find City</h3>
+						<form action="stay.do" method="get">
+							<div class="fields">
+								<div class="form-group">
+									<input type="text" class="form-control" name="searchWord"
+										placeholder="숙소 이름으로 검색">
+								</div>
+								<div class="form-group">
+									<div class="select-wrap one-third">
+										<div class="icon">
+											<span class="ion-ios-arrow-down"></span>
+										</div>
+										<select name="areaCode" class="form-control"
+											placeholder="Keyword search">
+											<c:forEach var="map" items="${areaMap}">
+												<option value="${map.key}"
+													${map.key == areaCode ? 'selected="selected"' : '' }>${map.value}</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="select-wrap one-third">
+										<div class="icon">
+											<span class="ion-ios-arrow-down"></span>
+										</div>
+										<select name="smallCategory" class="form-control"
+											placeholder="Keyword search">
+											<c:forEach var="map" items="${itemMap}">
+												<option value="${map.key}"
+													${map.key == smallCategory ? 'selected="selected"' : '' }>${map.value}</option>
+											</c:forEach>
+										</select> <input type="hidden" name="where" value="${where}">
+									</div>
+								</div>
+								<div class="form-group">
+									<input type="submit" value="Search"
+										class="btn btn-primary py-3 px-5">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
 				<div class="col-lg-9">
 					<div class="row">
 						<c:forEach var="item" items="${page.tourList}">
@@ -93,15 +138,15 @@
 											</div>
 											<div class="two">
 												<p class="bottom-area d-flex">
-												<span class="ml-auto"><a href="#">예약</a></span></p>
+													<span class="ml-auto"><a href="#">예약</a></span>
+												</p>
 											</div>
 										</div>
 										<div class="four">
-										<p class="rate">
-											${item.tel}
-										</p>
-										<i class="icon-map-o"></i><a href="https://map.naver.com/v5/?c=${item.mapX},${item.mapY},15,0,0,0,dh"
-										 style="color: #4d4d4d">${item.address}</a>
+											<p class="rate">${item.tel}</p>
+											<i class="icon-map-o"></i><a
+												href="https://map.naver.com/v5/?c=${item.mapX},${item.mapY},15,0,0,0,dh"
+												style="color: #4d4d4d">${item.address}</a>
 										</div>
 									</div>
 								</div>
@@ -111,14 +156,14 @@
 					<div class="row mt-5">
 						<div class="col text-center">
 							<div class="block-27">
-			
+
 								<ul>
 									<c:if test="${page.hasStays()}">
 										<c:if test="${page.startPage > 5}">
 											<li><a id="prevBtn">&lt;</a></li>
 										</c:if>
 										<c:forEach var="pNo" begin="${page.startPage}"
-												end="${page.endPage}">
+											end="${page.endPage}">
 											<c:choose>
 												<c:when test="${pNo eq pageNo}">
 													<li class="active"><a class="pageBtn">${pNo}</a></li>
@@ -134,7 +179,7 @@
 									</c:if>
 								</ul>
 
-								
+
 							</div>
 						</div>
 					</div>
@@ -158,7 +203,7 @@
 			<circle class="path" cx="24" cy="24" r="22" fill="none"
 				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
 	</div>
-	
+
 	<script src="js/page.js"></script>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>

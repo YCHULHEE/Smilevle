@@ -2,8 +2,6 @@ package kr.co.smilevle.util.crawling;
 
 import java.util.List;
 
-import kr.co.smilevle.travel.model.TravelDestContent;
-import kr.co.smilevle.util.parser.TravelDestParser;
 
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -14,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class ContentDao {
-	private TravelDestParser travelDestParser = new TravelDestParser();
 	private CrawlingDao crawlingDao = new CrawlingDao(); 
 
 	public void selectContentById(int contentId) throws IOException {

@@ -14,13 +14,13 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import kr.co.smilevle.stay.model.StayContent;
+import kr.co.smilevle.tour.model.TourContent;
 import kr.co.smilevle.util.crawling.CommonCrawler;
 
 public class CommonParser {
 
 	
-	public StayContent selectOne(String parsingUrl, String firstImage, int contentId) throws IOException {
+	public TourContent selectOne(String parsingUrl, String firstImage, int contentId) throws IOException {
 		CommonCrawler commonCrawler =new CommonCrawler();
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = null;
@@ -38,7 +38,7 @@ public class CommonParser {
 		doc.getDocumentElement().normalize();
 
 		NodeList nList = doc.getElementsByTagName("item");
-		StayContent stayContent = new StayContent();
+		TourContent tourContent = new TourContent();
 		
 		for (int i = 0; i < nList.getLength(); i++) {
 			Node nNode = nList.item(i);
@@ -46,26 +46,26 @@ public class CommonParser {
 				Element eElement = (Element) nNode;
 				
 				
-				stayContent.setContentId(contentId);
+				tourContent.setContentId(contentId);
 				if(getTagValue("overview", eElement).equals("")) {
-					stayContent.setContent("내용없음");
+					tourContent.setContent("내용없음");
 				} else {
 					getTagValue("overview", eElement);
 				}
 				
-				stayContent.setContent(getTagValue("overview", eElement));
+				tourContent.setContent(getTagValue("overview", eElement));
 				if(getTagValue("homepage", eElement).equals("")) {
-					stayContent.setHomePage("홈페이지 없음");
+					tourContent.setHomePage("홈페이지 없음");
 				} else {
-					stayContent.setHomePage(getTagValue("homepage", eElement));
+					tourContent.setHomePage(getTagValue("homepage", eElement));
 				}
 				
-				String imageList = commonCrawler.selectImageListById(stayContent.getContentId(), firstImage);
+				String imageList = commonCrawler.selectImageListById(tourContent.getContentId(), firstImage);
 				
-				stayContent.setImageList(imageList);
+				tourContent.setImageList(imageList);
 			}
 		}
-		return stayContent;
+		return tourContent;
 	}
 	
 	

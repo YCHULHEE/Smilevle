@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.smilevle.corona.model.Corona;
 import kr.co.smilevle.corona.service.CoronaService;
-import kr.co.smilevle.stay.model.Stay;
-import kr.co.smilevle.stay.service.StayService;
+import kr.co.smilevle.tour.model.Tour;
+import kr.co.smilevle.tour.service.TourService;
 import kr.co.smilevle.util.MapInfomation;
 
 
@@ -19,14 +19,14 @@ public class MainPageHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		StayService tourService = new StayService();
+		TourService tourService = new TourService();
 		MapInfomation mapInfomation = new MapInfomation();
-		List<Stay> stayList = new ArrayList<Stay>();
-		List<Stay> travelDestList = new ArrayList<Stay>();
-		List<Stay> eventList = new ArrayList<Stay>();
+		List<Tour> stayList = new ArrayList<Tour>();
+		List<Tour> travelDestList = new ArrayList<Tour>();
+		List<Tour> eventList = new ArrayList<Tour>();
 		
 		CoronaService coronaService = new CoronaService();
-		coronaService.updateCorona();
+//		coronaService.updateCorona();
 		Corona corona = coronaService.selectCoronaLowOrderRandom(3);
 		List<Corona> coronaList = coronaService.selectCoronaList(10);
 		Random random = new Random();

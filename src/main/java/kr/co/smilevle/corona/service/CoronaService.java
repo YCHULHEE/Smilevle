@@ -58,6 +58,8 @@ public class CoronaService {
         rd.close();
         conn.disconnect();
         
+        System.out.println(sb.toString());
+        
         Connection conn2 = ConnectionProvider.getConnection();
         CoronaPaser coronaPaser = new CoronaPaser();
         MapInfomation mapInfomation = new MapInfomation();

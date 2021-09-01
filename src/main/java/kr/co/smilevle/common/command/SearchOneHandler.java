@@ -7,16 +7,16 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.smilevle.stay.service.ListStayService;
-import kr.co.smilevle.stay.service.StayData;
-import kr.co.smilevle.stay.service.StayPage;
-import kr.co.smilevle.stay.service.StayService;
+import kr.co.smilevle.tour.service.ListTourService;
+import kr.co.smilevle.tour.service.TourData;
+import kr.co.smilevle.tour.service.TourPage;
+import kr.co.smilevle.tour.service.TourService;
 import kr.co.smilevle.util.MapInfomation;
 
 public class SearchOneHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/views/stay_one.jsp";
-	private StayService stayService = new StayService();
-	private ListStayService listService = new ListStayService();
+	private TourService tourService = new TourService();
+	private ListTourService listService = new ListTourService();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -34,8 +34,8 @@ public class SearchOneHandler implements CommandHandler {
 		String contentIdVal = req.getParameter("contentId");
 		System.out.println(contentIdVal);
 		int contentId = Integer.parseInt(contentIdVal);
-		StayData stayData= stayService.getStay(contentId, true);
-		req.setAttribute("stayData", stayData);
+		TourData tourData= tourService.getStay(contentId, true);
+		req.setAttribute("stayData", tourData);
 		
 		return FORM_VIEW;
 	}
@@ -71,7 +71,7 @@ public class SearchOneHandler implements CommandHandler {
 		} else {
 			viewPage = FORM_VIEW;
 		}
-		StayPage page = listService.getArticlePage(pageNo, areaCode, smallCategory, where, searchWord);
+		TourPage page = listService.getArticlePage(pageNo, areaCode, smallCategory, where, searchWord);
 		req.setAttribute("page", page);
 		req.setAttribute("pageNo", pageNo + "");
 		req.setAttribute("areaCode", areaCode);

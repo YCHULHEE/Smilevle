@@ -6,9 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import kr.co.smilevle.common.model.BaseInfo;
-import kr.co.smilevle.stay.model.Stay;
-import kr.co.smilevle.stay.model.StayContent;
-import kr.co.smilevle.travel.model.TravelDest;
+import kr.co.smilevle.tour.model.Tour;
+import kr.co.smilevle.tour.model.TourContent;
+
 
 public class CrawlingDao {
 	private static CrawlingDao crawlingDao = new CrawlingDao();
@@ -55,7 +55,7 @@ public class CrawlingDao {
 		}
 	}
 
-	public static int insertContent(StayContent stayContent) throws SQLException {
+	public static int insertContent(TourContent tourContent) throws SQLException {
 		PreparedStatement pstmt = null;
 		Connection conn = null;
 
@@ -74,10 +74,10 @@ public class CrawlingDao {
 		try {
 			pstmt = conn.prepareStatement(
 					"insert into TBL_TOUR_CONTENT " + "values (?, ?, ?, ?)");
-			pstmt.setInt(1, stayContent.getContentId());
-			pstmt.setString(2, stayContent.getContent());
-			pstmt.setString(3, stayContent.getHomePage());
-			pstmt.setString(4, stayContent.getImageList());
+			pstmt.setInt(1, tourContent.getContentId());
+			pstmt.setString(2, tourContent.getContent());
+			pstmt.setString(3, tourContent.getHomePage());
+			pstmt.setString(4, tourContent.getImageList());
 			
 
 			return pstmt.executeUpdate();

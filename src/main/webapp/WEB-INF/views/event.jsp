@@ -192,10 +192,10 @@
 												<div>
 												</div>
 											<div>
-												<a href="tourOne.do?where=32&contentId=${item.contentId}" class="meta-chat"><span> 조회수 </span><span
-													class="icon-chat"></span> ${item.readCount}</a>
 											</div>
 										</div>
+										<div class="width-large"><a href="tourOne.do?where=32&contentId=${item.contentId}" class="meta-chat"><span> 조회수 </span><span
+													class="icon-chat"></span> ${item.readCount}</a></div>
 									</div>
 								</div>
 							</div>
