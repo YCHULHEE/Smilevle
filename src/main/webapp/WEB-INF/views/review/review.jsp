@@ -29,6 +29,15 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+	$(document).ready(function () {
+		$('html, body').stop().animate({
+		scrollTop: $('#reviewWriteButton').offset().top
+		}, 10);
+		});
+    </script>
+
   </head>
   <body>
     
@@ -48,7 +57,7 @@
     </div>
     <section class="ftco-section">
     	<div class="container">
-    		<button class="btn btn-outline-info rounded" onclick="location.href='review_write.do'">게시글 쓰기</button>
+    		<button id="reviewWriteButton" class="btn btn-outline-info rounded" onclick="location.href='review_write.do'">게시글 쓰기</button>
     		<div class="container">
     			&nbsp;
     		</div>
