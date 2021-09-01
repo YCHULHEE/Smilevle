@@ -173,7 +173,7 @@
 
 
 				<div class="col-lg-9">
-					<div class="col-lg-9">
+					<div class="col-lg-10">
 					<div class="row d-flex">
 						<c:forEach var="item" items="${page.tourList}">
 							<div class="col-md-4 d-flex ftco-animate">

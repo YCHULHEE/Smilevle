@@ -90,16 +90,53 @@
 									class="icon-star"></i> <i class="icon-star"></i> <i
 									class="icon-star"></i> <i class="icon-star-o"></i> 8 Rating
 								</span></br> <span>${stayData.stayContent.homePage}</span>
-								<p>${stayData.stayContent.content}</p>
+							<p>${stayData.stayContent.content}</p>
 						</div>
-					</section>
-					<jsp:include page="/WEB-INF/views/include/common/tour_one_container.jsp" />
-				<section>
-						<!-- 댓글 출력 -->
-					</div>
-					<div class="pt-5 mt-5">
-						<h3 class="mb-5">6 Comments</h3>
-						<ul class="comment-list">
+	</section>
+	<jsp:include
+		page="/WEB-INF/views/include/common/tour_one_container.jsp" />
+	<!-- 댓글 출력 -->
+
+	<section class="ftco-section ftco-degree-bg">
+	<div class="container">
+	<div class="pt-5 mt-5">
+		<h3 class="mb-5">6 Comments</h3>
+		<ul class="comment-list">
+			<li class="comment">
+				<div class="vcard bio">
+					<img src="images/person_1.jpg" alt="Image placeholder">
+				</div>
+				<div class="comment-body">
+					<h3>John Doe</h3>
+					<div class="meta">June 27, 2018 at 2:21pm</div>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem,
+						eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas
+						earum impedit necessitatibus, nihil?</p>
+					<p>
+						<a href="#" class="reply">Reply</a>
+					</p>
+				</div>
+
+				<ul class="children">
+					<li class="comment">
+						<div class="vcard bio">
+							<img src="images/person_1.jpg" alt="Image placeholder">
+						</div>
+						<div class="comment-body">
+							<h3>John Doe</h3>
+							<div class="meta">June 27, 2018 at 2:21pm</div>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+								Pariatur quidem laborum necessitatibus, ipsam impedit vitae
+								autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
+								voluptas earum impedit necessitatibus, nihil?</p>
+							<p>
+								<a href="#" class="reply">Reply</a>
+							</p>
+						</div>
+
+
+						<ul class="children">
 							<li class="comment">
 								<div class="vcard bio">
 									<img src="images/person_1.jpg" alt="Image placeholder">
@@ -132,129 +169,86 @@
 												<a href="#" class="reply">Reply</a>
 											</p>
 										</div>
-
-
-										<ul class="children">
-											<li class="comment">
-												<div class="vcard bio">
-													<img src="images/person_1.jpg" alt="Image placeholder">
-												</div>
-												<div class="comment-body">
-													<h3>John Doe</h3>
-													<div class="meta">June 27, 2018 at 2:21pm</div>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-														elit. Pariatur quidem laborum necessitatibus, ipsam
-														impedit vitae autem, eum officia, fugiat saepe enim
-														sapiente iste iure! Quam voluptas earum impedit
-														necessitatibus, nihil?</p>
-													<p>
-														<a href="#" class="reply">Reply</a>
-													</p>
-												</div>
-
-												<ul class="children">
-													<li class="comment">
-														<div class="vcard bio">
-															<img src="images/person_1.jpg" alt="Image placeholder">
-														</div>
-														<div class="comment-body">
-															<h3>John Doe</h3>
-															<div class="meta">June 27, 2018 at 2:21pm</div>
-															<p>Lorem ipsum dolor sit amet, consectetur
-																adipisicing elit. Pariatur quidem laborum
-																necessitatibus, ipsam impedit vitae autem, eum officia,
-																fugiat saepe enim sapiente iste iure! Quam voluptas
-																earum impedit necessitatibus, nihil?</p>
-															<p>
-																<a href="#" class="reply">Reply</a>
-															</p>
-														</div>
-													</li>
-												</ul>
-													<ul class="children">
-													<li class="comment">
-														<div class="vcard bio">
-															<img src="images/person_1.jpg" alt="Image placeholder">
-														</div>
-														<div class="comment-body">
-															<h3>John Doe</h3>
-															<div class="meta">June 27, 2018 at 2:21pm</div>
-															<p>Lorem ipsum dolor sit amet, consectetur
-																adipisicing elit. Pariatur quidem laborum
-																necessitatibus, ipsam impedit vitae autem, eum officia,
-																fugiat saepe enim sapiente iste iure! Quam voluptas
-																earum impedit necessitatibus, nihil?</p>
-															<p>
-																<a href="#" class="reply">Reply</a>
-															</p>
-														</div>
-													</li>
-												</ul>
-											</li>
-										</ul>
+									</li>
+								</ul>
+								<ul class="children">
+									<li class="comment">
+										<div class="vcard bio">
+											<img src="images/person_1.jpg" alt="Image placeholder">
+										</div>
+										<div class="comment-body">
+											<h3>John Doe</h3>
+											<div class="meta">June 27, 2018 at 2:21pm</div>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+												elit. Pariatur quidem laborum necessitatibus, ipsam impedit
+												vitae autem, eum officia, fugiat saepe enim sapiente iste
+												iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+											<p>
+												<a href="#" class="reply">Reply</a>
+											</p>
+										</div>
 									</li>
 								</ul>
 							</li>
-
-							<li class="comment">
-								<div class="vcard bio">
-									<img src="images/person_1.jpg" alt="Image placeholder">
-								</div>
-								<div class="comment-body">
-									<h3>John Doe</h3>
-									<div class="meta">June 27, 2018 at 2:21pm</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit. Pariatur quidem laborum necessitatibus, ipsam impedit
-										vitae autem, eum officia, fugiat saepe enim sapiente iste
-										iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-									<p>
-										<a href="#" class="reply">Reply</a>
-									</p>
-								</div>
-							</li>
 						</ul>
-						<!-- END comment-list -->
+					</li>
+				</ul>
+			</li>
 
-						<!-- 댓글 달기 -->
-
-						<div class="comment-form-wrap pt-5">
-							<h3 class="mb-5">댓글(10)</h3>
-							<form action="#" class="p-5 bg-light">
-								<div class="form-group">
-									<input type="hidden" class="form-control" id="name">
-								</div>
-								<div class="form-group">
-									<input type="hidden" class="form-control" id="email">
-								</div>
-
-								<div class="form-group">
-									<label for="message">댓글</label>
-									<textarea name="" id="message" cols="10" rows="2"
-										class="form-control"></textarea>
-								</div>
-								<div class="form-group">
-									<input type="submit" value="댓글 작성"
-										class="btn py-3 px-4 btn-primary">
-								</div>
-							</form>
-						</div>
-					</div>
-
+			<li class="comment">
+				<div class="vcard bio">
+					<img src="images/person_1.jpg" alt="Image placeholder">
 				</div>
-				<!-- .col-md-8 -->
-			</div>
+				<div class="comment-body">
+					<h3>John Doe</h3>
+					<div class="meta">June 27, 2018 at 2:21pm</div>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem,
+						eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas
+						earum impedit necessitatibus, nihil?</p>
+					<p>
+						<a href="#" class="reply">Reply</a>
+					</p>
+				</div>
+			</li>
+		</ul>
+		<!-- END comment-list -->
+
+		<!-- 댓글 달기 -->
+
+		<div class="comment-form-wrap pt-5">
+			<h3 class="mb-5">댓글(10)</h3>
+			<form action="#" class="p-5 bg-light">
+				<div class="form-group">
+					<input type="hidden" class="form-control" id="name">
+				</div>
+				<div class="form-group">
+					<input type="hidden" class="form-control" id="email">
+				</div>
+
+				<div class="form-group">
+					<label for="message">댓글</label>
+					<textarea name="" id="message" cols="10" rows="2"
+						class="form-control"></textarea>
+				</div>
+				<div class="form-group">
+					<input type="submit" value="댓글 작성"
+						class="btn py-3 px-4 btn-primary">
+				</div>
+			</form>
 		</div>
+	</div>
+
+	</div>
+	<!-- .col-md-8 -->
 	</section>
 	<!-- .section -->
 
-    <jsp:include page="/WEB-INF/views/include/common/footer.jsp"
-									flush="false" />
+	<jsp:include page="/WEB-INF/views/include/common/footer.jsp"
+		flush="false" />
+	<!-- loader -->
 
-
-
-								<!-- loader -->
-  
-							<div id="ftco-loader" class="show fullscreen">
+	<div id="ftco-loader" class="show fullscreen">
 		<svg class="circular" width="48px" height="48px">
 			<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
 				stroke-width="4" stroke="#eeeeee" />
@@ -263,24 +257,24 @@
 	</div>
 
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.timepicker.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  <script
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/aos.js"></script>
+	<script src="js/jquery.animateNumber.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/jquery.timepicker.min.js"></script>
+	<script src="js/scrollax.min.js"></script>
+	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
-    
-  </body>
+	<script src="js/google-map.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
 </html>

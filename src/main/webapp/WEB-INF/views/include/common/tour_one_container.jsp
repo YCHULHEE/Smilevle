@@ -3,6 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section class="ftco-section bg-light">
 <div class="container">
+		<div class="row justify-content-start mb-5 pb-3">
+			<div class="col-md-7 heading-section ftco-animate">
+				<span class="subheading">Special Offers</span>
+				<h2 class="mb-4">
+					<strong>주위에 있는 핫 플레이스</strong> view
+				</h2>
+			</div>
+		</div>
 		<div class="col-lg-12">
           	<div class="row">
 				<c:forEach var="item" items="${itemList}">
