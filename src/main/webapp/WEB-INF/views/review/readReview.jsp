@@ -33,6 +33,9 @@
     	.btn-space {
 			margin-right: 10px;
 		}
+		#commentLabel {
+			font-size: x-large;
+		}
     </style>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
@@ -41,10 +44,9 @@
 		});
 		function loadComment() {
 			$.getJSON('/Smilevle/review_comment_list.do?no=${reviewData.number}', function(data) {
-				$('#comment').append('<tr><td>작성자</td><td>내용</td><td colspan=2>작성일시</td></tr>');
 				console.log(data);
 				if(data == "") {
-					$('#comment').append('<tr><td colspan=3>작성된 댓글이 없습니다.</td></tr>');
+					$('#comment').append('<tr><td colspan=3 style=text-align:center>작성된 댓글이 없습니다.</td></tr>');
 				}
 				else {
 					$.each(data, function() {
@@ -54,10 +56,10 @@
 									'</td><td><form method=POST action=review_comment_delete.do target=iframe1>' + 
 									'<input type=hidden name=commNo id=commNo value=' + this.commentNo + '>' + 
 									'<input type=hidden name=rvwNum id=rvwNum value=' + this.reviewNo + '>' + 
-									'<input type=submit value=삭제 onclick=document.location.reload();></form></td></tr>');
+									'<input type=submit value=삭제 class="btn btn-secondary btn-sm" style="float: right;" onclick=document.location.reload();></form></td></tr>');
 						} else {
 							$('#comment').append('<tr><td>' + this.writerId +
-									'</td><td>' + this.content + '</td><td>' + this.regDate +
+									'</td><td>' + this.content + '</td><td colspan=2>' + this.regDate +
 									'</td></tr>');
 						}
 						
@@ -90,101 +92,103 @@
     		<div class="container">
     			&nbsp;
     		</div>
-    		<div class="table table-bordered">
-				<table class="table">
-					<tr>
-						<th scope="row" class="table-secondary" width="10%">작성자</th>
-						<td>${reviewData.writer.name }</td>
-						<th scope="row" class="table-secondary" width="10%">No.</th>
-						<td colspan="3" width="10%">${reviewData.number }</td>					
-					</tr>
-					<tr>
-						<th scope="row" class="table-secondary">제목</th>
-						<td colspan="5">${reviewData.title }</td>
-					</tr>
-					<tr>
-						<th scope="row" class="table-secondary">건물 명</th>
-						<td colspan="5">${reviewData.locationName }</td>
-					</tr>
-					<tr>	
-						<th scope="row" class="table-secondary">별점</th>
-						<c:choose>
-							<c:when test="${reviewData.rate == '1.0' }">
-									<td colspan="5">
-										<p class="rate">
-											<span>
-												<i class="icon-star-o"></i>
-												<i class="icon-star-o"></i>
-												<i class="icon-star-o"></i>
-												<i class="icon-star-o"></i>
-												<i class="icon-star-o"></i>
-											</span>
-										</p>
-									</td>
-							</c:when>
-							<c:when test="${reviewData.rate == '2.0' }">
-									<td colspan="5">
-										<p class="rate">
-											<span>
-												<i class="icon-star"></i>
-												<i class="icon-star"></i>
-												<i class="icon-star-o"></i>
-												<i class="icon-star-o"></i>
-												<i class="icon-star-o"></i>
-											</span>
-										</p>
-									</td>
-							</c:when>
-							<c:when test="${reviewData.rate == '3.0' }">
-									<td colspan="5">
-										<p class="rate">
-											<span>
-												<i class="icon-star"></i>
-												<i class="icon-star"></i>
-												<i class="icon-star"></i>
-												<i class="icon-star-o"></i>
-												<i class="icon-star-o"></i>
-											</span>
-										</p>
-									</td>
-							</c:when>
-							<c:when test="${reviewData.rate == '4.0' }">
-									<td colspan="5">
-										<p class="rate">
-											<span>
-												<i class="icon-star"></i>
-												<i class="icon-star"></i>
-												<i class="icon-star"></i>
-												<i class="icon-star"></i>
-												<i class="icon-star-o"></i>
-											</span>
-										</p>
-									</td>
-							</c:when>
-							<c:when test="${reviewData.rate == '5.0' }">
-									<td colspan="5">
-										<p class="rate">
-											<span>
-												<i class="icon-star"></i>
-												<i class="icon-star"></i>
-												<i class="icon-star"></i>
-												<i class="icon-star"></i>
-												<i class="icon-star"></i>
-											</span>
-										</p>
-									</td>
-							</c:when>																																																						
-						</c:choose>
-					</tr>				
-					<tr>
-						<th scope="row">내용</th>
-						<td colspan="5">${reviewData.content }</td>											
-				</table>
+    		<div class="container" >
+    			<div class="m-5">
+					<table class="table table-bordered table-sm thead-light">
+						<tr>
+							<th scope="row" class="table-primary text-center" width="10%">작성자</th>
+							<td>${reviewData.writer.name }</td>
+							<th scope="row" class="table-primary text-center" width="10%">No.</th>
+							<td colspan="3" width="10%">${reviewData.number }</td>					
+						</tr>
+						<tr>
+							<th scope="row" class="table-primary text-center">제목</th>
+							<td colspan="5">${reviewData.title }</td>
+						</tr>
+						<tr>
+							<th scope="row" class="table-primary text-center">건물 명</th>
+							<td colspan="5">${reviewData.locationName }</td>
+						</tr>
+						<tr>	
+							<th scope="row" class="table-primary text-center">별점</th>
+							<c:choose>
+								<c:when test="${reviewData.rate == '1.0' }">
+										<td colspan="5">
+											<p class="rate">
+												<span>
+													<i class="icon-star-o"></i>
+													<i class="icon-star-o"></i>
+													<i class="icon-star-o"></i>
+													<i class="icon-star-o"></i>
+													<i class="icon-star-o"></i>
+												</span>
+											</p>
+										</td>
+								</c:when>
+								<c:when test="${reviewData.rate == '2.0' }">
+										<td colspan="5">
+											<p class="rate">
+												<span>
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star-o"></i>
+													<i class="icon-star-o"></i>
+													<i class="icon-star-o"></i>
+												</span>
+											</p>
+										</td>
+								</c:when>
+								<c:when test="${reviewData.rate == '3.0' }">
+										<td colspan="5">
+											<p class="rate">
+												<span>
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star-o"></i>
+													<i class="icon-star-o"></i>
+												</span>
+											</p>
+										</td>
+								</c:when>
+								<c:when test="${reviewData.rate == '4.0' }">
+										<td colspan="5">
+											<p class="rate">
+												<span>
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star-o"></i>
+												</span>
+											</p>
+										</td>
+								</c:when>
+								<c:when test="${reviewData.rate == '5.0' }">
+										<td colspan="5">
+											<p class="rate">
+												<span>
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+												</span>
+											</p>
+										</td>
+								</c:when>																																																						
+							</c:choose>
+						</tr>				
+						<tr>
+							<th scope="row" class="table-primary text-center">내용</th>
+							<td colspan="5">${reviewData.content }</td>											
+					</table>
+				</div>
 			</div>
     		<div class="container">
     			<c:if test="${authUser.id == reviewData.writer.id }">
-    			    <button type="button" class="btn btn btn-danger rounded float-right" data-toggle="modal" data-target="#myModal">삭제</button>
-    				<button type="button" class="btn btn btn-warning rounded float-right btn-space" onclick="location.href='review_modify.do?no=${reviewData.number}'">수정</button>
+    			    <button type="button" class="btn btn btn-primary rounded float-right" data-toggle="modal" data-target="#myModal">삭제</button>
+    				<button type="button" class="btn btn btn-info rounded float-right btn-space" onclick="location.href='review_modify.do?no=${reviewData.number}'">수정</button>
     			</c:if>
     		</div>
     	</div>
@@ -211,24 +215,36 @@
 	</div>
 	
 	<div class="container">
-		<table id="comment">
-
-		</table>
-	</div>
-	
-	<div class="container">
-		<form id="commentForm" method="post" action="review_comment_write.do" target="iframe1">
+		<div class="m-5">
+			<div class="container my-3" >
+				<table id="comment" class="table table-sm table-hover">
+					<thead>
+				        <tr class="table-primary">
+				            <th width=20%>작성자</th>
+				            <th width=40%>내용</th>
+				            <th colspan="2" width=20%>작성일시</th>
+				        </tr>
+			        </thead>
+				</table>
+			</div>
+		</div>
+		<form id="commentForm" class="m-5" method="post" action="review_comment_write.do" target="iframe1">
 			<c:choose>
 				<c:when test="${authUser == null }">
-					로그인 후 작성 가능합니다!
+					<textarea class="form-control" name="content" id="content" disabled="disabled">로그인 후 작성 가능합니다!</textarea>
 				</c:when>
 				<c:otherwise>
 					<input type="hidden" name="rwNum" id="rwNum" value="${reviewData.number }">
-					<textarea rows="2" cols="50" name="content" id="content"></textarea>
-					<input type="submit" value="댓글 작성" onclick="document.location.reload();">
+					<label id="commentLabel" for="content">댓글작성</label>
+					<textarea class="form-control" name="content" id="content"></textarea>
+					<input type="submit" class="btn btn-outline-info" value="댓글 작성" style="float: right;" onclick="document.location.reload();">
 				</c:otherwise>
 			</c:choose>
 		</form>
+	</div>
+	
+	<div class="container">
+
 	</div>
 	
     <footer class="ftco-footer ftco-bg-dark ftco-section">
