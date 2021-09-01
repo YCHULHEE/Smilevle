@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,19 +43,17 @@
             <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong>With 스마이블 <br></strong> 안전한 국내 여행 즐기기</h1>
             <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Find great places to stay, eat, shop, or visit from local experts</p>
             <div class="block-17 my-4">
-              <form action="" method="post" class="d-block d-flex">
+              <form action="tour_search.do" method="get" class="d-block d-flex">
                 <div class="fields d-block d-flex">
                   <div class="textfield-search one-third">
-                  	<input type="text" class="form-control" placeholder="Ex) 맛집, 호텔, 서비스 ">
+                  	<input name="searchWord" type="text" class="form-control" placeholder="Ex) 맛집, 호텔, 서비스 ">
                   </div>
                   <div class="select-wrap one-third">
                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                    <select name="" id="" class="form-control" placeholder="Keyword search">
-                      <option value="">여행지</option>
-                      <option value="">San Francisco USA</option>
-                      <option value="">Berlin Germany</option>
-                      <option value="">Lodon United Kingdom</option>
-                      <option value="">Paris Italy</option>
+                    <select name="where" class="form-control" placeholder="Keyword search">
+                      <c:forEach var="map" items="${itemMap}">
+								<option value="${map.key}" ${map.key == areaCode ? 'selected="selected"' : '' }>${map.value}</option>
+					 </c:forEach>
                     </select>
                   </div>
                 </div>
@@ -284,35 +283,6 @@
 
    <!-- 푸터  -->
    <jsp:include page="/WEB-INF/views/include/common/footer.jsp" flush="false"/>
-
-<!-- Modal 종훈씨 작업 로그인 -->
-	<div class="modal fade" id="SignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title text-center" id="myModalLabel">Smilevle</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <form action="<%=request.getContextPath()%>/index.do" method="post" class="signup-form">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="아이디" required="required">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="패스워드" required="required">
-                        </div>
-                        <div class="form-group text-center">
-                            <button type="submit" class="btn btn-blue btn-block">로그인</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer text-center">
-                    <a href="#">비밀번호 찾기 /</a>
-                    <a href="#">회원 가입</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

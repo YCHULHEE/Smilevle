@@ -122,15 +122,18 @@ public class StayDao {
 		}
 	}
 	
-	public List<Stay> selectContainer(Connection conn, String areaCode, int size) throws SQLException {
+	public List<Stay> selectContainer(Connection conn, String areaCode, int size, String contentTypeId) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "select * from (select * from tbl_tour order by read_cnt desc) where areacode = ? and RowNum <= ? and content_type_id = 32";
+		String query = "select * from (select * from tbl_tour order by read_cnt desc) where RowNum <= ? and content_type_id = ?";
+		if(!areaCode.equals("false")) {
+			query += " and areacode = " + areaCode;
+		}
+		System.out.println(query);
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, areaCode);
-			pstmt.setInt(2, size);
-
+			pstmt.setInt(1, size);
+			pstmt.setString(2, contentTypeId);
 			rs = pstmt.executeQuery();
 			List<Stay> result = new ArrayList<>();
 			while (rs.next()) {

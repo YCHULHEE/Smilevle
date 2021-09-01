@@ -16,7 +16,7 @@
 				<c:forEach var="event" items="${eventList}">
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="destination">
-							<a href="#"
+							<a href="tourOne.do?where=32&contentId=${event.contentId}"
 								class="img img-2 d-flex justify-content-center align-items-center"
 								style="background-image: url(${event.firstImage});">
 								<div
@@ -26,20 +26,9 @@
 							</a>
 							<div class="text p-3">
 								<h3>
-									<a href="#">${event.title}</a>
+									<a href="tourOne.do?where=32&contentId=${event.contentId}">${event.title}</a>
 								</h3>
-								<p class="rate">
-									<i class="icon-star"></i> <i class="icon-star"></i> <i
-										class="icon-star"></i> <i class="icon-star"></i> <i
-										class="icon-star-o"></i> <span>8 Rating</span>
-								</p>
-								<p>Far far away, behind the word mountains, far from the
-									countries</p>
-								<hr>
-								<p class="bottom-area d-flex">
-									<span><i class="icon-map-o"></i> San Franciso, CA</span> <span
-										class="ml-auto"><a href="#">Discover</a></span>
-								</p>
+								<p>${event.address}</p>
 							</div>
 						</div>
 					</div>

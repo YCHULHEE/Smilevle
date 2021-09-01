@@ -81,7 +81,6 @@ public class CoronaService {
         	}
     
         	try {
-        		System.out.println(corona.getCount());
 				coronaDao.update(conn2, corona);
 			} catch (SQLException e) {
 				System.out.println("오류");
@@ -94,16 +93,25 @@ public class CoronaService {
        	return maxName;
 	}
 	
-	public Corona selectCoronaLowOrderRandom() throws SQLException {
+	public Corona selectCoronaLowOrderRandom(int size) throws SQLException {
 		CoronaDao coronaDao = new CoronaDao();
 		Connection conn = ConnectionProvider.getConnection();
-		List<Corona> coronaList = coronaDao.select(conn);
+		List<Corona> coronaList = coronaDao.select(conn, size);
 		Random random = new Random();
 		random.setSeed(System.currentTimeMillis());
 		
-		System.out.println(random.nextInt(4));
 		Corona corona = coronaList.get(random.nextInt(4));
 		return corona;
+	}
+	
+	public List<Corona> selectCoronaList(int size) throws SQLException {
+		CoronaDao coronaDao = new CoronaDao();
+		Connection conn = ConnectionProvider.getConnection();
+		List<Corona> coronaList = coronaDao.select(conn, size);
+		Random random = new Random();
+		random.setSeed(System.currentTimeMillis());
+		
+		return coronaList;
 	}
 	
 	

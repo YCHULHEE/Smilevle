@@ -9249,6 +9249,13 @@ textarea.form-control {
     color: #000000;
     font-style: italic; }
 
+  .width-large {
+    width: 300px;
+  }
+  .width-middle {
+  	width: 350px;
+  }
+
 #ftco-loader {
   position: fixed;
   width: 96px;

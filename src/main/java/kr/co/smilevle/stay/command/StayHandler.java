@@ -1,21 +1,18 @@
 package kr.co.smilevle.stay.command;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.PageContext;
+
 
 import kr.co.smilevle.common.command.CommandHandler;
 import kr.co.smilevle.corona.model.Corona;
 import kr.co.smilevle.corona.service.CoronaService;
-import kr.co.smilevle.stay.model.Stay;
+
 import kr.co.smilevle.stay.service.ListStayService;
 import kr.co.smilevle.stay.service.StayPage;
-import kr.co.smilevle.stay.service.StayService;
-import kr.co.smilevle.util.AreacodeConverter;
 import kr.co.smilevle.util.MapInfomation;
 
 public class StayHandler implements CommandHandler{
@@ -33,24 +30,17 @@ public class StayHandler implements CommandHandler{
 		if (pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
-		
-		CoronaService coronaService = new CoronaService();
-		
-		Corona corona = coronaService.selectCoronaLowOrderRandom();
-	
-		
-		System.out.println(corona.getLocalName() + "과" +corona.getCount());
-		
+
 		
 		MapInfomation mapInfomation = new MapInfomation();
 		Map<String, String> areaMap = mapInfomation.getAreaMap();
-		Map<String, String> stayMap = mapInfomation.getStayMap();
-		StayPage stayPage = listStayService.getArticlePage(pageNo, areaCode, smallCategory, where, searchWord);
-		req.setAttribute("stayPage", stayPage);
+		Map<String, String> itemMap = mapInfomation.getStayMap();
+		StayPage page = listStayService.getArticlePage(pageNo, areaCode, smallCategory, where, searchWord);
+		req.setAttribute("page", page);
 		req.setAttribute("pageNo", pageNo + "");
 		req.setAttribute("areaCode", areaCode);
 		req.setAttribute("areaMap", areaMap);
-		req.setAttribute("stayMap", stayMap);
+		req.setAttribute("itemMap", itemMap);
 		req.setAttribute("smallCategory",  smallCategory);
 		req.setAttribute("where", where);
 		req.setAttribute("searchWord", searchWord);

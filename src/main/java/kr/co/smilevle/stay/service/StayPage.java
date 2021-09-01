@@ -7,15 +7,15 @@ import kr.co.smilevle.stay.model.Stay;
 public class StayPage {
 	private int total;
 	private int currentPage;
-	private List<Stay> stayList;
+	private List<Stay> tourList;
 	private int totalPages;
 	private int startPage;
 	private int endPage;
 	
-	public StayPage(int total, int currentPage, int size, List<Stay> stayList) {
+	public StayPage(int total, int currentPage, int size, List<Stay> tourList) {
 		this.total = total;
 		this.currentPage = currentPage;
-		this.stayList = stayList;
+		this.tourList = tourList;
 		if(total == 0) {
 			totalPages = 0;
 			startPage = 0;
@@ -53,8 +53,8 @@ public class StayPage {
 		return currentPage;
 	}
 
-	public List<Stay> getStayList() {
-		return stayList;
+	public List<Stay> getTourList() {
+		return tourList;
 	}
 
 	public int getTotalPages() {

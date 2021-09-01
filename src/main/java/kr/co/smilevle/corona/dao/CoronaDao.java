@@ -30,14 +30,16 @@ public class CoronaDao {
 		}
 	}
 
-	public List<Corona> select(Connection conn) throws SQLException {
+	public List<Corona> select(Connection conn, int size) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			pstmt = conn.prepareStatement("select * from (select rownum as rnum,"
 					+ " areacode, local_name, count from (select * from tbl_corona order by count) "
-					+ "where rownum <= 6) where rnum >= 2");
+					+ "where rownum <= ?) where rnum >= 2");
+			
+			pstmt.setInt(1, size + 2);
 			rs = pstmt.executeQuery();
 			List<Corona> coronaList = new ArrayList<Corona>();
 			

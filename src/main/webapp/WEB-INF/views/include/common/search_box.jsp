@@ -4,12 +4,13 @@
 <div class="col-lg-3 sidebar">
 	<div class="sidebar-wrap bg-light ftco-animate">
 		<h3 class="heading mb-4">Find City</h3>
-		<form action="stay.do" method="get">
+		<form action="tour_search.do" method="get">
 			<div class="fields">
 				<div class="form-group">
 					<input type="text" class="form-control" name="searchWord"
 						placeholder="숙소 이름으로 검색">
 				</div>
+				<input type="hidden" name="where" value="${stayData.stay.contentTypeId}">
 				<div class="form-group">
 					<div class="select-wrap one-third">
 						<div class="icon">
@@ -18,7 +19,7 @@
 						<select name="areaCode" class="form-control"
 							placeholder="Keyword search" >
 							<c:forEach var="map" items="${areaMap}">
-								<option value="${map.value}" ${map.value == areaCode ? 'selected="selected"' : '' }>${map.key}</option>
+								<option value="${map.key}" ${map.key == areaCode ? 'selected="selected"' : '' }>${map.value}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -30,8 +31,8 @@
 						</div>
 						<select name="smallCategory" class="form-control"
 							placeholder="Keyword search">
-							<c:forEach var="map" items="${stayMap}">
-								<option value="${map.value}" ${map.value == smallCategory ? 'selected="selected"' : '' }>${map.key}</option>
+							<c:forEach var="map" items="${itemMap}">
+								<option value="${map.key}" ${map.key == smallCategory ? 'selected="selected"' : '' }>${map.value}</option>
 							</c:forEach>
 						</select>
 						<input type="hidden" name="where" value="${where}">

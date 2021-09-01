@@ -11,10 +11,9 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active"><a href="index.do" class="nav-link">메인</a></li>
-          <li class="nav-item"><a href="introduction.jsp" class="nav-link">스마이블 소개</a></li>
           <li class="nav-item"><a href="stay.do?where=32&areaCode=false" class="nav-link">숙소</a></li>
-          <li class="nav-item"><a href="travel.do" class="nav-link">여행지</a></li>
-          <li class="nav-item"><a href="event.do" class="nav-link">볼거리</a></li>
+          <li class="nav-item"><a href="travel.do?where=12&areaCode=false"class="nav-link">여행지</a></li>
+          <li class="nav-item"><a href="event.do?where=15&areaCode=false"class="nav-link">볼거리</a></li>
           <li class="nav-item"><a href="review.do" class="nav-link">리뷰</a></li>
           <u:notLogin>
           <li class="nav-item cta"><a href="login.do" class="nav-link"><span>로그인</span></a></li>

@@ -33,76 +33,6 @@
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/icomoon.css">
 <link rel="stylesheet" href="css/style.css">
-<script>
-	getURLParams = function(path){
-		const result = {};
-		let params = path.split("?")[1];
-		params = params.split("&");
-		for(const param of params){
-			const keyValSplited = param.split("=");
-			let key, val;
-
-			if(keyValSplited.length != 2){
-				continue
-			}
-			key = keyValSplited[0];
-			val = keyValSplited[1];
-
-			result[key] = val;
-		}
-
-		return result;
-	}
-
-	function getParamStr(params){
-		let paramStr =""
-		for(const paramKey in params){
-				paramStr += "&" + paramKey + "=" + params[paramKey];
-			}
-		return paramStr.substr(1, paramStr.length)
-	}
-
-	let path = window.location.href;
-	const params = getURLParams(path);
-	const baseURL = window.location.pathname;
-	
-    window.onload = function(){
-        const pageBtns =  document.getElementsByClassName("pageBtn");
-		const prevBtn = document.getElementById("prevBtn");
-		const nextBtn = document.getElementById("nextBtn");
-		let maxPage = -1;
-		let minPage = 99999;
-
-        for(const btn of pageBtns){
-        	let pageNo = btn.innerText;
-        	let btnURL = baseURL;
-	
-			params["pageNo"] = pageNo;
-			paramStr = getParamStr(params);
-        	btn.href =  btnURL + "?" + paramStr;
-			
-			pageNo = parseInt(pageNo);
-			if(pageNo > maxPage){
-				maxPage = pageNo;
-			}
-			if(pageNo < minPage){
-				minPage = pageNo;
-			}
-        }
-
-		if(prevBtn){
-			params["pageNo"] = minPage - 1;
-			paramStr = getParamStr(params);
-        	prevBtn.href =  baseURL + "?" + paramStr;
-		 }
-
-		if(nextBtn){
-			params["pageNo"] = maxPage + 1;
-			paramStr = getParamStr(params);
-        	nextBtn.href =  baseURL + "?" + paramStr;
-		}
-    }
-</script>
 </head>
 <body>
 
@@ -138,12 +68,12 @@
 				
 				<div class="col-lg-9">
 					<div class="row">
-						<c:forEach var="stay" items="${stayPage.stayList}">
+						<c:forEach var="item" items="${page.tourList}">
 							<div class="col-md-4 ftco-animate">
 								<div class="destination">
-									<a href="stayOne.do?where=32&contentId=${stay.contentId}"
+									<a href="tourOne.do?where=32&contentId=${item.contentId}"
 										class="img img-2 d-flex justify-content-center align-items-center"
-										style="background-image: url(${stay.firstImage});">
+										style="background-image: url(${item.firstImage});">
 										<div
 											class="icon d-flex justify-content-center align-items-center">
 											<span class="icon-search2"></span>
@@ -153,7 +83,7 @@
 										<div class="d-flex">
 											<div class="one">
 												<h3>
-													<a href="stayOne.do?where=32&contentId=${stay.contentId}">${stay.title}</a>
+													<a href="tourOne.do?where=32&contentId=${item.contentId}">${item.title}</a>
 												</h3>
 												<p class="rate">
 													<i class="icon-star"></i> <i class="icon-star"></i> <i
@@ -168,10 +98,10 @@
 										</div>
 										<div class="four">
 										<p class="rate">
-											${stay.tel}
+											${item.tel}
 										</p>
-										<i class="icon-map-o"></i><a href="https://map.naver.com/v5/?c=${stay.mapX},${stay.mapY},15,0,0,0,dh"
-										 style="color: #4d4d4d">${stay.address}</a>
+										<i class="icon-map-o"></i><a href="https://map.naver.com/v5/?c=${item.mapX},${item.mapY},15,0,0,0,dh"
+										 style="color: #4d4d4d">${item.address}</a>
 										</div>
 									</div>
 								</div>
@@ -183,12 +113,12 @@
 							<div class="block-27">
 			
 								<ul>
-									<c:if test="${stayPage.hasStays()}">
-										<c:if test="${stayPage.startPage > 5}">
+									<c:if test="${page.hasStays()}">
+										<c:if test="${page.startPage > 5}">
 											<li><a id="prevBtn">&lt;</a></li>
 										</c:if>
-										<c:forEach var="pNo" begin="${stayPage.startPage}"
-												end="${stayPage.endPage}">
+										<c:forEach var="pNo" begin="${page.startPage}"
+												end="${page.endPage}">
 											<c:choose>
 												<c:when test="${pNo eq pageNo}">
 													<li class="active"><a class="pageBtn">${pNo}</a></li>
@@ -198,7 +128,7 @@
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
-										<c:if test="${stayPage.endPage < stayPage.totalPages}">
+										<c:if test="${page.endPage < page.totalPages}">
 											<li><a id="nextBtn">&gt;</a></li>
 										</c:if>
 									</c:if>
@@ -229,7 +159,7 @@
 				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
 	</div>
 	
-
+	<script src="js/page.js"></script>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="js/popper.min.js"></script>

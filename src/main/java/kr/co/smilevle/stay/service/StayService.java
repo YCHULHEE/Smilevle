@@ -28,12 +28,12 @@ public class StayService {
 	private StayDao stayDao = new StayDao();
 	private StayContentDao contentDao = new StayContentDao();
 
-	public List<Stay> getStayInfo(String areaCode, int size) {
+	public List<Stay> getStayInfo(String areaCode, int size, String contentTypeId) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
-			List<Stay> list = stayDao.selectContainer(conn, areaCode, size);
+			List<Stay> list = stayDao.selectContainer(conn, areaCode, size, contentTypeId);
 			conn.commit();
 			return list;
 		} catch (SQLException e) {
@@ -44,12 +44,12 @@ public class StayService {
 		}
 	}
 	
-	public List<Stay> getStayContainer(String areaCode, int size) {
+	public List<Stay> getContainer(String areaCode, int size, String contentTypeId) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
-			List<Stay> list = stayDao.selectContainer(conn, areaCode, size);
+			List<Stay> list = stayDao.selectContainer(conn, areaCode, size, contentTypeId);
 			conn.commit();
 			return list;
 		} catch (SQLException e) {

@@ -7,8 +7,8 @@
     	<div class="container">
     		<div class="row justify-content-start mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate">
-          	<span class="subheading">Featured</span>
-            <h2 class="mb-4"><strong>이번 달 여행지는?</strong> Gangwon </h2>
+          	<span class="subheading">${corona.count}명</span>
+            <h2 class="mb-4"><strong>코로나가 적은 여행지는?</strong>   <strong>${corona.localName}</strong></h2>
           </div>
         </div>
     		<div class="row">
@@ -17,14 +17,14 @@
     					<c:forEach var="travelDest" items="${travelDestList}">
     					<div class="item">
 		    				<div class="destination">
-		    					<a href="travelOne.do?contentId=${travelDest.getContentId()}" class="img d-flex justify-content-center align-items-center" 
+		    					<a href="tourOne.do?where=32&contentId=${travelDest.contentId}" class="img d-flex justify-content-center align-items-center" 
 		    					style="background-image: url(${travelDest.firstImage})"> 
 		    						<div class="icon d-flex justify-content-center align-items-center">
 		    							<span class="icon-search2"></span>
 		    						</div>
 		    					</a>
 		    					<div class="text p-3">
-		    						<h3><a href="travelOne.do">${travelDest.title}</a></h3>
+		    						<h3><a href="tourOne.do?where=32&contentId=${travelDest.contentId}">${travelDest.title}</a></h3>
 		    						<span class="listing">${travelDest.address}</span>
 		    					</div>
 		    				</div>
