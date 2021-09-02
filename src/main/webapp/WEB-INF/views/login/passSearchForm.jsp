@@ -57,12 +57,20 @@
 				</c:if>
 				<form action="search.do" method="post">
 				<p>
-					아이디:<input type="text" name="id" placeholder="ID">
-					<c:if test="${errors.id }">ID를 입력하세요.</c:if>
+					아이디:<input type="text" name="id" placeholder="ID" value="${param.id}">
+					<c:if test="${errors.id }">
+					<script>
+						alert('아이디를 확인하세요.')
+					</script>
+					ID를 입력하세요.</c:if>
 				</p>
 				<p>
 					이메일:<input type="text" name="email" placeholder="Email">
-					<c:if test="${errors.email }">이메일을 입력하세요.</c:if>
+					<c:if test="${errors.email }">
+					<script>
+						alert('이메일을 확인하세요.')
+					</script>
+					이메일을 입력하세요.</c:if>
 				</p>
 				<input type="hidden" value="${searchUser.password}">
 				<input type="submit" class="login login-submit" value="비밀번호 찾기">

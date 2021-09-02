@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css" type="text/css"/>
     
-    <script>
+    <!-- <script>
     function setCookie(cookieName, value, exdays){
     	var exdate = new Date();
     	exdate.setDate(exdate.getDate() + exdays);
@@ -103,6 +103,32 @@
 
 			});
 	</script>
+	
+<script type="text/javascript">
+	function check() {		
+		var email = document.getElementById("email").value;
+		var password = document.getElementById("password").value;
+		
+		var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/; /* 이메일 유효성 검사 */
+		3
+		 var passcheck = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;   /* 비밀번호 유효성 검사 */
+		
+			if(exptext.test(email)==false){
+				alert("메일형식이 올바르지 않습니다.");
+				document.addjoin.email.focus();
+				return false;					
+			}
+			
+			if (passcheck.test(password)==false) {			        
+			    alert("비밀번호 형식을 지켜주세요.\n비밀번호는 숫자, 소문자, 대문자를 1개이상, 6~20자리 이내로 입력해주세요.");
+			    document.addjoin.password.focus();
+			    return false;
+			}
+	}	
+</script>
+ -->
+
+
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/common/menu.jsp"/>
@@ -123,7 +149,7 @@
     	<div class="container">
 			<div class="login-card" id="loginCard">
 			
-			<form action="join.do" method="post" id="loginCard">
+			<form action="join.do" method="post" id="loginCard" onsubmit="check();">
 			<p>
 				아이디:<input type="text" name="id" placeholder="ID" value="${param.id}">
 				<c:if test="${errors.id}">ID를 입력하세요.</c:if>
@@ -134,16 +160,20 @@
 				<c:if test="${errors.name}">이름을 입력하세요.</c:if>
 			</p>
 			<p>
-				암호:<input type="password" name="password" placeholder="Password">
+				암호:<input type="password" name="password" id="password" placeholder="숫자,소문자,대문자 1개이상 6~20자리">
 				<c:if test="${errors.password}">암호를 입력하세요.</c:if>
 			</p>
 			<p>
 				확인:<input type="password" name="confirmPassword" >
 				<c:if test="${errors.confirmPassword}">확인을 입력하세요.</c:if>
-				<c:if test="${errors.notMatch}">암호와 확인이 일치하지 않습니다.</c:if>
+				<c:if test="${errors.notMatch}">
+				<script >
+					alert('암호와 확인이 일치하지 않습니다.')
+				</script>
+				암호와 확인이 일치하지 않습니다.</c:if>
 			</p>
 			<p>
-				이메일:<input type="text" name="email" placeholder="E-mail" value="${param.email}">
+				이메일:<input type="text" name="email" id="email" placeholder="abc@a.a" value="${param.email}">
 				<c:if test="${errors.email}">이메일을 입력하세요.</c:if>
 			</p>
 			<p>
@@ -238,6 +268,7 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="js/jquery.min.js"></script>
+  <script src="js/join.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

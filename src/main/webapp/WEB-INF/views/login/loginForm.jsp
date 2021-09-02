@@ -29,7 +29,17 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/login.css" type="text/css"/>
+    <link rel="stylesheet" href="css/login.css" type="text/css"/>        
+  <!--   <script>
+		$(document).ready(function(){ 
+		$("#submit").click(function(){
+		if($("#id").val().length==0){ alert("아이디를 입력하세요."); $("#id").focus(); return false; }
+		if($("#password").val().length==0){ alert("비밀번호를 입력하세요."); $("#password").focus(); return false; }
+		});
+		});
+	</script> -->
+    
+    
   </head>
   <body>
 <jsp:include page="/WEB-INF/views/include/common/menu.jsp"/>
@@ -51,7 +61,7 @@
     	<div class="container">
     		 <div class="login-card">
 				
-				<form action="login.do" method="post">
+				<form action="login.do" method="post" onsubmit="check();" >
 				
 				<c:if test="${errors.idOrPwNotMatch}">
 					<script>
@@ -59,14 +69,14 @@
 					</script>
 				</c:if>
 				<p>
-					아이디:<input type="text" name="id" placeholder="ID">
-					<c:if test="${errors.id }">ID를 입력하세요.</c:if>
+					아이디:<input type="text" name="id" id="id" placeholder="ID" value="${param.id}">
+					<c:if test="${errors.id }">	ID를 입력하세요.</c:if>
 				</p>
 				<p>
-					패스워드:<input type="password" name="password" placeholder="Password">
+					패스워드:<input type="password" name="password" id="password" placeholder="Password">
 					<c:if test="${errors.password }">패스워드를 입력하세요.</c:if>
 				</p>
-				<input type="submit" class="login login-submit" value="Login">
+				<input type="submit" class="login login-submit" value="Login" id="submit">
 				<a href="/Smilevle/search.do">비밀번호 찾기 </a> &nbsp;/
 				<a href="/Smilevle/join.do">회원 가입</a>
 				</form>
@@ -144,6 +154,8 @@
 
 
   <script src="js/jquery.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="js/login.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

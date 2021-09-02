@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -50,7 +50,7 @@
 					data-scrollax=" properties: { translateY: '70%' }">
 					<p class="breadcrumbs"
 						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-						<span class="mr-2"><a href="index.html">Home</a></span> <span>Tour</span>
+						<span class="mr-2"><a href="/index.do">Home</a></span> <span>여행지</span>
 					</p>
 					<h1 class="mb-3 bread"
 						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">이번
@@ -63,11 +63,10 @@
 	<section class="ftco-section ftco-degree-bg">
 		<div class="container-fluid">
 			<div class="row">
-
 				<div class="col-lg-3 sidebar">
 					<div class="sidebar-wrap bg-light ftco-animate">
 						<h3 class="heading mb-4">Find City</h3>
-						<form action="event.do" method="get">
+						<form action="travel.do" method="get">
 							<div class="fields">
 								<div class="form-group">
 									<input type="text" class="form-control" name="searchWord"

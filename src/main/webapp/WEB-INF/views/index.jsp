@@ -40,8 +40,8 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong>With 스마이블 <br></strong> 안전한 국내 여행 즐기기</h1>
-            <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Find great places to stay, eat, shop, or visit from local experts</p>
+            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong>With 스마이블 <br></strong> 안전한 국내 여행 떠나요</h1>
+            <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">가고 싶은 곳 궁금한 곳 찾아보세요!</p>
             <div class="block-17 my-4">
               <form action="tour_search.do" method="get" class="d-block d-flex">
                 <div class="fields d-block d-flex">
@@ -60,11 +60,12 @@
                 <input type="submit" class="search-submit btn btn-primary" value="검색">  
               </form>
             </div>
-            <p>Or browse the highlights</p>
+            <p</p>
             <p class="browse d-md-flex">
-            	<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-fork"></i><strong>코로나 ckeck!</strong></a></span>
-
-            </p>
+			<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-hotel"></i><strong>숙소</strong></a></span> 
+			<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-meeting-point"></i><strong>여행지</strong></a></span> 
+			<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-support"></i><strong>볼거리</strong></a></span>
+                </p>
           </div>
         </div>
       </div>
@@ -258,29 +259,7 @@
    <!--  이벤트 표시 -->
   	<jsp:include page="/WEB-INF/views/include/event/event_container.jsp"/>
 		
-	<section class="ftco-section-parallax">
-      <div class="parallax-img d-flex align-items-center">
-        <div class="container">
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-              <h2>Subcribe to our Newsletter</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
-              <div class="row d-flex justify-content-center mt-5">
-                <div class="col-md-8">
-                  <form action="#" class="subscribe-form">
-                    <div class="form-group d-flex">
-                      <input type="text" class="form-control" placeholder="Enter email address">
-                      <input type="submit" value="Subscribe" class="submit px-3">
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+	
    <!-- 푸터  -->
    <jsp:include page="/WEB-INF/views/include/common/footer.jsp" flush="false"/>
 

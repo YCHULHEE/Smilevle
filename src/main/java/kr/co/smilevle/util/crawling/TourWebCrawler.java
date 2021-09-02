@@ -57,7 +57,7 @@ public class TourWebCrawler {
 			urlBuilder.append(
 					"&" + URLEncoder.encode("cat1", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /* 대분류 코드 */
 			urlBuilder.append("&" + URLEncoder.encode("contentTypeId", "UTF-8") + "="
-					+ URLEncoder.encode("12", "UTF-8")); /* 관광타입(관광지, 숙박 등) ID */
+					+ URLEncoder.encode("15", "UTF-8")); /* 관광타입(관광지, 숙박 등) ID */
 			urlBuilder.append(
 					"&" + URLEncoder.encode("areaCode", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /* 지역코드 */
 			urlBuilder.append("&" + URLEncoder.encode("sigunguCode", "UTF-8") + "="

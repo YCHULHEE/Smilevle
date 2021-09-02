@@ -7,8 +7,8 @@
     	<div class="container">
     		<div class="row justify-content-start mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate">
-          	<span class="subheading">${corona.count}명</span>
-            <h2 class="mb-4"><strong>코로나가 적은 여행지는?</strong>   <strong>${corona.localName}</strong></h2>
+          	<span class="subheading"></span>
+            <h2 class="mb-4"><strong>코로나 안전지대는?</strong>&nbsp;&nbsp;${corona.localName}</h2>
           </div>
         </div>
     		<div class="row">
@@ -23,7 +23,7 @@
 		    							<span class="icon-search2"></span>
 		    						</div>
 		    					</a>
-		    					<div class="text p-3">
+		    					<div class="text p-3" style="height: 130px">
 		    						<h3><a href="tourOne.do?where=32&contentId=${travelDest.contentId}">${travelDest.title}</a></h3>
 		    						<span class="listing">${travelDest.address}</span>
 		    					</div>

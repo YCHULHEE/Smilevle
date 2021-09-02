@@ -6,9 +6,8 @@
 	<div class="container">
 		<div class="row justify-content-start mb-5 pb-3">
 			<div class="col-md-7 heading-section ftco-animate">
-				<span class="subheading">Special Offers</span>
 				<h2 class="mb-4">
-					<strong>인기있는 숙박업소는?</strong> 
+					<strong>지금 HOT한 숙박업소는?  </strong> Stay
 				</h2>
 			</div>
 		</div>

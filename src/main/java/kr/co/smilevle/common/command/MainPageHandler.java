@@ -27,7 +27,7 @@ public class MainPageHandler implements CommandHandler{
 		
 		CoronaService coronaService = new CoronaService();
 //		coronaService.updateCorona();
-		Corona corona = coronaService.selectCoronaLowOrderRandom(3);
+		Corona corona = coronaService.selectCoronaLowOrderRandom(5);
 		List<Corona> coronaList = coronaService.selectCoronaList(10);
 		Random random = new Random();
 		random.setSeed(System.currentTimeMillis());
@@ -37,7 +37,7 @@ public class MainPageHandler implements CommandHandler{
 		
 		travelDestList = tourService.getContainer(corona.getAreaCode(), 20, "12");
 		stayList = tourService.getContainer("false", 20, "32");
-		eventList = tourService.getContainer(coronaList.get(random.nextInt(3)).getAreaCode(), 8, "15");
+		eventList = tourService.getContainer(corona.getAreaCode(), 8, "15");
 		
 		
 		req.setAttribute("corona", corona);
