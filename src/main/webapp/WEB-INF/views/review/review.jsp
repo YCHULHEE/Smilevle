@@ -66,19 +66,38 @@
 	    			</div>
     			</c:if>
     				<c:forEach var="review" items="${reviewPage.content }">
-		    			<div class="col-md-3 d-flex ftco-animate">
-				            <div class="blog-entry align-self-stretch">
-				              <a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" class="block-20" style="background-image: url('${review.photoUrl}');"></a>
-				              <div class="text p-4 d-block">
-				              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
-				                <h3 class="heading mt-3"><a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'">${review.title }</a></h3>
-				                <div class="meta mb-3">
-				                  <div>${DateFormatConverter.convertDate(review.regDate) }</div>
-				                  <div>${review.writer.name }</div>
-				                </div>
-				              </div>
-				            </div>
-			          	</div>
+	    				<c:choose>
+							<c:when test="${review.photoUrl eq null }">
+							<div class="col-md-3 d-flex ftco-animate">
+					            <div class="blog-entry align-self-stretch">
+					              <a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" class="block-20" style="background-image: url(images/no_image.jpg);"></a>
+					              <div class="text p-4 d-block">
+					              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
+					                <h3 class="heading mt-3"><a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'">${review.title }</a></h3>
+					                <div class="meta mb-3">
+					                  <div>${DateFormatConverter.convertDate(review.regDate) }</div>
+					                  <div>${review.writer.name }</div>
+					                </div>
+					              </div>
+					            </div>
+				          	</div>
+							</c:when>
+							<c:otherwise>
+			    			<div class="col-md-3 d-flex ftco-animate">
+					            <div class="blog-entry align-self-stretch">
+					              <a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" class="block-20" style="background-image: url('${review.photoUrl}');"></a>
+					              <div class="text p-4 d-block">
+					              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
+					                <h3 class="heading mt-3"><a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'">${review.title }</a></h3>
+					                <div class="meta mb-3">
+					                  <div>${DateFormatConverter.convertDate(review.regDate) }</div>
+					                  <div>${review.writer.name }</div>
+					                </div>
+					              </div>
+					            </div>
+				          	</div>						
+							</c:otherwise>
+						</c:choose>
 		          	</c:forEach>
     			</div>
     		</div>

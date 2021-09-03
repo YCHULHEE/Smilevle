@@ -1,5 +1,5 @@
 
-delete from TBL_REVIEW;
+delete from TBL_REVIEW where review_no = 14;
 drop sequence review_seq;
 drop sequence review_comment_seq;
 drop sequence photo_seq;
