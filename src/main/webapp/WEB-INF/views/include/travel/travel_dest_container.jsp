@@ -18,7 +18,7 @@
     					<div class="item">
 		    				<div class="destination">
 		    					<a href="tourOne.do?where=32&contentId=${travelDest.contentId}" class="img d-flex justify-content-center align-items-center" 
-		    					style="background-image: url(${travelDest.firstImage})"> 
+		    					style="border: 1px solid #dee2e6; background-image: url(${travelDest.firstImage})"> 
 		    						<div class="icon d-flex justify-content-center align-items-center">
 		    							<span class="icon-search2"></span>
 		    						</div>

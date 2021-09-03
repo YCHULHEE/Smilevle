@@ -58,6 +58,7 @@ public class FileUploadHandler implements CommandHandler{
 		String jsonString = "{\"filename\" : \"" + fileSystemName + "\", \"uploaded\" : 1, \"url\":\"" + fileUrl + "\"}";
 		
 		try {
+			request.getSession(false).setAttribute("fileUrl", fileUrl);
 			response.setContentType("application/json; charset=UTF-8");
 			response.getWriter().write(jsonString);
 		} catch(IOException e) {

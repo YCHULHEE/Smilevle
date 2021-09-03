@@ -9255,6 +9255,9 @@ textarea.form-control {
   .width-middle {
   	width: 350px;
   }
+  .image-border {
+    border: 1px solid #dee2e6;
+  }
 
 #ftco-loader {
   position: fixed;

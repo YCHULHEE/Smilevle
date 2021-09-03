@@ -20,7 +20,7 @@ public class ReviewDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("insert into review "
+			pstmt = conn.prepareStatement("insert into tbl_review "
 					+ "values(review_seq.nextVal, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)");
 			pstmt.setString(1, review.getWriter().getId());
 			pstmt.setString(2, review.getWriter().getName());
@@ -35,7 +35,7 @@ public class ReviewDao {
 			
 			if(insertedCount > 0) {
 				stmt = conn.createStatement();
-				rs = stmt.executeQuery("select max(review_no) from review");
+				rs = stmt.executeQuery("select max(review_no) from tbl_review");
 				
 				if(rs.next()) {
 					Integer newNum = rs.getInt(1);
@@ -69,7 +69,7 @@ public class ReviewDao {
 		ResultSet rs = null;
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select count(*) from review");
+			rs = stmt.executeQuery("select count(*) from tbl_review");
 			
 			if(rs.next()) {
 				return rs.getInt(1);
@@ -86,7 +86,7 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String query = "select * from (select rownum as rnum, review_no, writer_id, writer_name, title, areacode, location_name, rate, content, regdate, moddate, read_cnt "
-				+ "from (select * from review order by review_no desc) where rownum <= ?) where rnum >= ?";
+				+ "from (select * from tbl_review order by review_no desc) where rownum <= ?) where rnum >= ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, startRow + size);
@@ -125,7 +125,7 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from review where review_no = ?");
+			pstmt = conn.prepareStatement("select * from tbl_review where review_no = ?");
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			Review review = null;
@@ -140,7 +140,7 @@ public class ReviewDao {
 	}
 	
 	public void increaseReadCount(Connection conn, int no) throws SQLException {
-		try(PreparedStatement pstmt = conn.prepareStatement("update review set read_cnt = read_cnt + 1 where review_no = ?")) {
+		try(PreparedStatement pstmt = conn.prepareStatement("update tbl_review set read_cnt = read_cnt + 1 where review_no = ?")) {
 			pstmt.setInt(1, no);
 			pstmt.executeUpdate();
 		}
@@ -148,7 +148,7 @@ public class ReviewDao {
 	
 	public int update(Connection conn, int no, String title, String areacode, String locationName, String rate, String content) 
 			throws SQLException {
-		try(PreparedStatement pstmt = conn.prepareStatement("update review set "
+		try(PreparedStatement pstmt = conn.prepareStatement("update tbl_review set "
 				+ "title = ?, areacode = ?, location_name = ?, rate = ?, content = ?, moddate = systimestamp where review_no = ?")) {
 			pstmt.setString(1, title);
 			pstmt.setString(2, areacode);
@@ -161,7 +161,7 @@ public class ReviewDao {
 	}
 	
 	public int delete(Connection conn, int no) throws SQLException {
-		try(PreparedStatement pstmt = conn.prepareStatement("delete from review where review_no = ?")) {
+		try(PreparedStatement pstmt = conn.prepareStatement("delete from tbl_review where review_no = ?")) {
 			pstmt.setInt(1, no);
 			return pstmt.executeUpdate();
 		}

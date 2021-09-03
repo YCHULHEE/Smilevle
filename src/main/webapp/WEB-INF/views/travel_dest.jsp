@@ -50,7 +50,7 @@
 					data-scrollax=" properties: { translateY: '70%' }">
 					<p class="breadcrumbs"
 						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-						<span class="mr-2"><a href="/index.do">Home</a></span> <span>여행지</span>
+						<span class="mr-2"><a href="index.do">Home</a></span> <span>여행지</span>
 					</p>
 					<h1 class="mb-3 bread"
 						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">이번
@@ -177,7 +177,7 @@
 								<div class="blog-entry align-self-stretch">
 									<a href="tourOne.do?where=32&contentId=${item.contentId}"
 										class="block-20"
-										style="background-image: url(${item.firstImage})"> </a>
+										style="border: 1px solid #dee2e6; background-image: url(${item.firstImage})"> </a>
 									<div class="text p-4 d-block">
 										<span>여행지</span>
 										<h3 class="heading mt-3">

@@ -2,24 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*" %>
-<%
-	String[] areas = {"서울", "인천", "대전", "대구", "광주", 
-			"부산", "울산", "세종", "경기", "강원", "충북",
-			"충남", "경북", "경남", "전북", "전남", "제주"};
-	String[] areacodes = {"1", "2", "3", "4", "5", "6", "7", "8",
-			"31", "32", "33", "34", "35", "36", "37", "38", "39"};
-	String[] rates = {"0.0", "0.5", "1.0", "1.5", "2.0", 
-			"2.5", "3.0", "3.5", "4.0", "4.5", "5.0"};
-	Map<String, String> areacodeMap = new HashMap<>();
-	for(int i = 0; i < areas.length; i++) {
-		areacodeMap.put(areas[i], areacodes[i]);
-	}
-	request.setAttribute("areacodess", areacodes);
-	pageContext.setAttribute("areacodes", areacodeMap);
-	pageContext.setAttribute("rates", rates);
-%>
+<%@ page import="kr.co.smilevle.util.AreacodeConverter" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <title>리뷰 작성</title>
     <meta charset="utf-8">
@@ -83,7 +68,7 @@
 					<div class="col-sm-3">
 						<select id="areacode" name="areacode" class="custom-select" id="inputLocation" required>
 							<option value="">-지역-</option>
-							<c:forEach var="map" items="${areacodes }">
+							<c:forEach var="map" items="${AreacodeConverter.getAreaMap() }">
 								<option value='${map.value }'>${map.key }</option>
 							</c:forEach>
 						</select>
@@ -100,7 +85,7 @@
 					<div class="col-sm-2">
 						<select id="rate" name="rate" class="custom-select" id="inputRate" required>
 							<option value="">-별점-</option>
-							<c:forEach var="rate" items="${rates }">
+							<c:forEach var="rate" items="${AreacodeConverter.rates }">
 								<option value='${rate }'> ${rate } </option>
 							</c:forEach>
 						</select>
@@ -108,7 +93,7 @@
 				</div>
 				<div class="form-group">
 					<label for="context">내용</label>
-					<textarea name="content" id="content" class="form-control" id="context"></textarea>
+					<textarea name="content" id="content" class="form-control" required></textarea>
 					<script type="text/javascript">
 					 CKEDITOR.replace('content', 
 								{	height: 500,
@@ -121,68 +106,8 @@
 		</div>
     </section>
 
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">dirEngine</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Information</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">About</a></li>
-                <li><a href="#" class="py-2 d-block">Service</a></li>
-                <li><a href="#" class="py-2 d-block">Terms and Conditions</a></li>
-                <li><a href="#" class="py-2 d-block">Become a partner</a></li>
-                <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
-                <li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Customer Support</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">FAQ</a></li>
-                <li><a href="#" class="py-2 d-block">Payment Option</a></li>
-                <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
-                <li><a href="#" class="py-2 d-block">How it works</a></li>
-                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <jsp:include page="/WEB-INF/views/include/common/footer.jsp"
+		flush="false" />
     
   
 

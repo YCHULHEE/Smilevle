@@ -17,7 +17,7 @@
 						<div class="destination">
 							<a href="tourOne.do?where=32&contentId=${event.contentId}"
 								class="img img-2 d-flex justify-content-center align-items-center"
-								style="background-image: url(${event.firstImage});">
+								style="border: 1px solid #dee2e6; background-image: url(${event.firstImage});">
 								<div
 									class="icon d-flex justify-content-center align-items-center">
 									<span class="icon-search2"></span>

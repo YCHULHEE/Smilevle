@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.smilevle.common.command.CommandHandler;
 import kr.co.smilevle.login.service.User;
 import kr.co.smilevle.review.model.Writer;
+import kr.co.smilevle.review.service.SaveAttachRequest;
+import kr.co.smilevle.review.service.SaveAttachService;
 import kr.co.smilevle.review.service.WriteReviewRequest;
 import kr.co.smilevle.review.service.WriteReviewService;
 
@@ -16,6 +18,7 @@ public class WriteReviewHandler implements CommandHandler{
 	
 	private static final String FORM_VIEW = "/WEB-INF/views/review/newReview.jsp";
 	private WriteReviewService writeService = new WriteReviewService();
+	private SaveAttachService saveAttachService = new SaveAttachService();
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -38,8 +41,7 @@ public class WriteReviewHandler implements CommandHandler{
 		request.setAttribute("errors", errors);
 		
 		// 해야할 일 : 로그인 기능 구현할 때 알맞은 객체로 바꿀 것!
-		User user = new User("test1234", "박실험");
-		request.getSession().setAttribute("authUser", user);
+		User user = (User) request.getSession().getAttribute("authUser");
 		WriteReviewRequest writeReq = createWriteReviewRequest(user, request);
 		writeReq.validate(errors);
 		
@@ -48,6 +50,8 @@ public class WriteReviewHandler implements CommandHandler{
 		}
 		
 		int newReviewNo = writeService.write(writeReq);
+		SaveAttachRequest saveReq = createSaveAttachRequest(newReviewNo, request);
+		saveAttachService.write(saveReq);
 		request.setAttribute("newReviewNo", newReviewNo);
 		
 		return "/WEB-INF/views/review/newReviewSuccess.jsp";
@@ -65,5 +69,13 @@ public class WriteReviewHandler implements CommandHandler{
 				);
 	}
 	
+	private SaveAttachRequest createSaveAttachRequest(int no, HttpServletRequest request) {
+		if(request.getSession(false).getAttribute("fileUrl") == null) {
+			return new SaveAttachRequest(no);
+		} else {
+			return new SaveAttachRequest(no, request.getSession(false).getAttribute("fileUrl").toString());
+		}
+		
+	}
 	
 }

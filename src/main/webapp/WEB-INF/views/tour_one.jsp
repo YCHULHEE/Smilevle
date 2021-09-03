@@ -50,7 +50,7 @@
 					data-scrollax=" properties: { translateY: '70%' }">
 					<p class="breadcrumbs"
 						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-						<span class="mr-2"><a href="index.html">Home</a></span> <span
+						<span class="mr-2"><a href="index.do">Home</a></span> <span
 							class="mr-2"><a href="hotel.html">Smilevle</a></span> <span>Hotel
 							Single</span>
 					</p>
@@ -74,7 +74,7 @@
 								<c:forEach var="image" items="${stayData.imageList}">
 									<div class="item">
 										<div class="hotel-img"
-											style="background-image: url(${image});"></div>
+											style="border: 1px solid #dee2e6; background-image: url(${image});"></div>
 									</div>
 								</c:forEach>
 							</div>

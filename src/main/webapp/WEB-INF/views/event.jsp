@@ -179,7 +179,7 @@
 							<div class="col-md-4 d-flex ftco-animate">
 								<div class="blog-entry align-self-stretch">
 									<a href="tourOne.do?where=32&contentId=${item.contentId}" class="block-20"
-										style="background-image: url(${item.firstImage})"> </a>
+										style="border: 1px solid #dee2e6; background-image: url(${item.firstImage})"> </a>
 									<div class="text p-4 d-block">
 										<span>여행지</span>
 										<h3 class="heading mt-3">

@@ -50,7 +50,7 @@
 					data-scrollax=" properties: { translateY: '70%' }">
 					<p class="breadcrumbs"
 						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-						<span class="mr-2"><a href="/index.do">Home</a></span> <span>숙소</span>
+						<span class="mr-2"><a href="index.do">Home</a></span> <span>숙소</span>
 					</p>
 					<h1 class="mb-3 bread"
 						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">나와
@@ -118,7 +118,7 @@
 								<div class="destination">
 									<a href="tourOne.do?where=32&contentId=${item.contentId}"
 										class="img img-2 d-flex justify-content-center align-items-center"
-										style="background-image: url(${item.firstImage});">
+										style="border: 1px solid #dee2e6; background-image: url(${item.firstImage});">
 										<div
 											class="icon d-flex justify-content-center align-items-center">
 											<span class="icon-search2"></span>

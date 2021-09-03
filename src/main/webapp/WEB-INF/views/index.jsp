@@ -60,7 +60,6 @@
                 <input type="submit" class="search-submit btn btn-primary" value="검색">  
               </form>
             </div>
-            <p</p>
             <p class="browse d-md-flex">
 			<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-hotel"></i><strong>숙소</strong></a></span> 
 			<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-meeting-point"></i><strong>여행지</strong></a></span> 
@@ -73,6 +72,8 @@
 	
 	<jsp:include page="/WEB-INF/views/include/travel/travel_dest_container.jsp"/>
     <jsp:include page="/WEB-INF/views/include/stay/stay_container.jsp"/> 
+	<!--  이벤트 표시 -->
+  	<jsp:include page="/WEB-INF/views/include/event/event_container.jsp"/>
 
     
     <section class="ftco-section">
@@ -254,11 +255,6 @@
     		</div>
     	</div>
     </section>
-
-
-   <!--  이벤트 표시 -->
-  	<jsp:include page="/WEB-INF/views/include/event/event_container.jsp"/>
-		
 	
    <!-- 푸터  -->
    <jsp:include page="/WEB-INF/views/include/common/footer.jsp" flush="false"/>
