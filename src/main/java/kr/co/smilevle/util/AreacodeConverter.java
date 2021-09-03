@@ -17,5 +17,15 @@ public class AreacodeConverter {
 			areaMap.put(areas[i], areacodes[i]);
 		}
 		return areaMap;
-	}	
+	}
+	
+	public static String getKey(String value) {
+	   
+        for (String key : AreacodeConverter.getAreaMap().keySet()) {
+            if (value.equals(AreacodeConverter.getAreaMap().get(key))) {
+                return key;
+            }
+        }
+        return null;
+    }
 }

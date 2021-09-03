@@ -2,18 +2,18 @@ package kr.co.smilevle.review.service;
 
 import java.util.List;
 
-import kr.co.smilevle.review.model.Review;
+import kr.co.smilevle.review.model.PReview;
 
 public class ReviewPage {
 	
 	private int total;
 	private int currentPage;
-	private List<Review> content;
+	private List<PReview> content;
 	private int totalPages;
 	private int startPage;
 	private int endPage;
 	
-	public ReviewPage(int total, int currentPage, int size, List<Review> content) {
+	public ReviewPage(int total, int currentPage, int size, List<PReview> content) {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.content = content;
@@ -56,7 +56,7 @@ public class ReviewPage {
 		return currentPage;
 	}
 
-	public List<Review> getContent() {
+	public List<PReview> getContent() {
 		return content;
 	}
 

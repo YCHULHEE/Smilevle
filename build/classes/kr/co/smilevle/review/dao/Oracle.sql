@@ -1,3 +1,9 @@
+
+delete from TBL_REVIEW;
+drop sequence review_seq;
+drop sequence review_comment_seq;
+drop sequence photo_seq;
+
 create table tbl_review(
 	review_no number constraint review_no_pk primary key,
 	writer_id varchar2(50) not null,
@@ -13,6 +19,8 @@ create table tbl_review(
 );
 
 create sequence review_seq;
+create sequence review_comment_seq;
+create sequence photo_seq;
 
 select * from tbl_review;
 
@@ -22,7 +30,7 @@ review_no number,
 photo_url long
 );
 
-create sequence photo_seq;
+
 
 alter table tbl_review_attach
 	add foreign key (review_no)
@@ -30,6 +38,8 @@ alter table tbl_review_attach
 	on delete cascade;
 
 select * from tbl_review_attach;
+
+select * from tbl_review, tbl_review_attach where tbl_review.review_no = tbl_review_attach.review_no;
 
 // 리뷰 이의의 데이터 쿼리문
 CREATE TABLE STAY (        
