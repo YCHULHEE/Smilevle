@@ -74,7 +74,9 @@ public class WriteReviewHandler implements CommandHandler{
 		if(request.getSession(false).getAttribute("fileUrl") == null) {
 			return new SaveAttachRequest(no);
 		} else {
-			return new SaveAttachRequest(no, request.getSession(false).getAttribute("fileUrl").toString());
+			SaveAttachRequest attachRequest = new SaveAttachRequest(no, request.getSession(false).getAttribute("fileUrl").toString());
+			request.getSession(false).removeAttribute("fileUrl");
+			return attachRequest;
 		}
 		
 	}
