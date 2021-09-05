@@ -43,6 +43,7 @@ public class WriteReviewHandler implements CommandHandler{
 		// 해야할 일 : 로그인 기능 구현할 때 알맞은 객체로 바꿀 것!
 		User user = (User) request.getSession().getAttribute("authUser");
 		WriteReviewRequest writeReq = createWriteReviewRequest(user, request);
+		
 		writeReq.validate(errors);
 		
 		if(!errors.isEmpty()) {
@@ -73,7 +74,9 @@ public class WriteReviewHandler implements CommandHandler{
 		if(request.getSession(false).getAttribute("fileUrl") == null) {
 			return new SaveAttachRequest(no);
 		} else {
-			return new SaveAttachRequest(no, request.getSession(false).getAttribute("fileUrl").toString());
+			SaveAttachRequest attachRequest = new SaveAttachRequest(no, request.getSession(false).getAttribute("fileUrl").toString());
+			request.getSession(false).removeAttribute("fileUrl");
+			return attachRequest;
 		}
 		
 	}

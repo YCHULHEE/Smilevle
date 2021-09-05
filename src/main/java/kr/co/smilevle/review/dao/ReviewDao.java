@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import kr.co.smilevle.jdbc.JdbcUtil;
+import kr.co.smilevle.review.model.PReview;
 import kr.co.smilevle.review.model.Review;
 import kr.co.smilevle.review.model.Writer;
 
@@ -82,19 +83,22 @@ public class ReviewDao {
 		
 	}
 	
-	public List<Review> select(Connection conn, int startRow, int size) throws SQLException {
+	public List<PReview> select(Connection conn, int startRow, int size) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "select * from (select rownum as rnum, review_no, writer_id, writer_name, title, areacode, location_name, rate, content, regdate, moddate, read_cnt "
-				+ "from (select * from tbl_review order by review_no desc) where rownum <= ?) where rnum >= ?";
+
+		String query = "select * from (select rownum as rnum, review_no, writer_id, writer_name, title, areacode, location_name, rate, content, regdate, moddate, read_cnt, photo_url "
+				+ "from (select * from tbl_review rv natural join tbl_review_attach ac order by review_no desc) "
+				+ "where rownum <= ?) where rnum >= ?";
+		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, startRow + size);
 			pstmt.setInt(2, startRow + 1);
 			rs = pstmt.executeQuery();
-			List<Review> result = new ArrayList<>();
+			List<PReview> result = new ArrayList<>();
 			while(rs.next()) {
-				result.add(convertReview(rs));
+				result.add(convertPReview(rs));
 			}
 			return result;
 		} finally {
@@ -103,8 +107,8 @@ public class ReviewDao {
 		}
 	}
 
-	private Review convertReview(ResultSet rs) throws SQLException {
-		return new Review(rs.getInt("review_no"), 
+	private PReview convertPReview(ResultSet rs) throws SQLException {
+		return new PReview(rs.getInt("review_no"), 
 						  new Writer(rs.getString("writer_id"), rs.getString("writer_name")),
 						  rs.getString("title"),
 						  rs.getString("areacode"),
@@ -113,7 +117,9 @@ public class ReviewDao {
 						  rs.getString("content"),
 						  toDate(rs.getTimestamp("regdate")),
 						  toDate(rs.getTimestamp("moddate")),
-						  rs.getInt("read_cnt"));
+						  rs.getInt("read_cnt"),
+						  rs.getString("photo_url"));
+				
 						  
 	}
 
@@ -137,6 +143,20 @@ public class ReviewDao {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 		}
+	}
+	
+	private Review convertReview(ResultSet rs) throws SQLException {
+		return new Review(rs.getInt("review_no"), 
+						  new Writer(rs.getString("writer_id"), rs.getString("writer_name")),
+						  rs.getString("title"),
+						  rs.getString("areacode"),
+						  rs.getString("location_name"),
+						  rs.getString("rate"),
+						  rs.getString("content"),
+						  toDate(rs.getTimestamp("regdate")),
+						  toDate(rs.getTimestamp("moddate")),
+						  rs.getInt("read_cnt"));
+						  
 	}
 	
 	public void increaseReadCount(Connection conn, int no) throws SQLException {

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="kr.co.smilevle.util.AreacodeConverter" %>
+<%@ page import="kr.co.smilevle.util.DateFormatConverter" %>
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -30,97 +33,114 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
   </head>
   <body>
     
   <jsp:include page="/WEB-INF/views/include/common/menu.jsp"/>
     <!-- END nav -->
     
-    <div class="hero-wrap js-fullheight" style="background-image: url(images/bg_2.jpg);">
+    <div class="hero-wrap js-fullheight" style="background-image: url(images/bg_9.jpg);">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 text-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.do">Home</a></span> <span>리뷰</span></p>
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">무슨 리뷰를 적어놨을까?</h1>
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.do">Home</a></span> <span>Review</span></p>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Review</h1>
           </div>
         </div>
       </div>
     </div>
+
     <section class="ftco-section">
     	<div class="container">
-    		<button id="reviewWriteButton" class="btn btn-outline-info rounded" onclick="location.href='review_write.do'">게시글 쓰기</button>
     		<div class="container">
-    			&nbsp;
+				<button id="reviewWriteButton" class="btn btn-primary rounded" onclick="location.href='review_write.do'">리뷰 작성</button>
+			</div>
+			<p></p>
+    		<div class="container">
+    			<div class="row d-flex">
+    			<c:if test="${reviewPage.hasNoReviews() }">
+	    			<div class="text-center">
+		    			<h2>리뷰 게시글이 존재하지 않습니다!</h2>
+	    			</div>
+    			</c:if>
+    				<c:forEach var="review" items="${reviewPage.content }">
+	    				<c:choose>
+							<c:when test="${review.photoUrl eq null }">
+							<div class="col-md-3 d-flex ftco-animate">
+					            <div class="blog-entry align-self-stretch">
+					              <a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" class="block-20" style="background-image: url(images/no_image.jpg); cursor: pointer;"></a>
+					              <div class="text p-4 d-block">
+					              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
+					                <h3 class="heading mt-3"><a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" style="cursor: pointer;">${review.title }</a></h3>
+					                <div class="meta mb-3">
+					                  <div>${DateFormatConverter.convertDate(review.regDate) }</div>
+					                  <div>${review.writer.name }</div>
+					                </div>
+					              </div>
+					            </div>
+				          	</div>
+							</c:when>
+							<c:otherwise>
+			    			<div class="col-md-3 d-flex ftco-animate">
+					            <div class="blog-entry align-self-stretch">
+					              <a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" class="block-20" style="background-image: url('${review.photoUrl}'); cursor: pointer;"></a>
+					              <div class="text p-4 d-block">
+					              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
+					                <h3 class="heading mt-3"><a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" style="cursor: pointer;">${review.title }</a></h3>
+					                <div class="meta mb-3">
+					                  <div>${DateFormatConverter.convertDate(review.regDate) }</div>
+					                  <div>${review.writer.name }</div>
+					                </div>
+					              </div>
+					            </div>
+				          	</div>						
+							</c:otherwise>
+						</c:choose>
+		          	</c:forEach>
+    			</div>
     		</div>
-    		<table class="table table-border table-hover">
-    			<thead class="thead-light">
-	    			<tr class="table-primary">
-	    				<td>번호</td>
-	    				<td>제목</td>
-	    				<td>건물 명</td>
-	    				<td>작성자</td>
-	    				<td>조회수</td>
-	    			</tr>
-    			</thead>
-    		<c:if test="${reviewPage.hasNoReviews() }">
-    			<tbody>
-	    			<tr>
-	    				<td colspan="5">리뷰 게시글이 존재하지 않습니다!</td>
-	    			</tr>
-    			</tbody>
-    		</c:if>
-
-    		<c:forEach var="review" items="${reviewPage.content }">
-    			<tbody>
-	    			<tr style="cursor:pointer;color:#blue;" onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'">
-	    				<td>${review.number}</td>
-	    				<td>${review.title }</td>
-	    				<td>${review.locationName }</td>
-	    				<td>${review.writer.name }</td>
-	    				<td>${review.readCount }</td>
-	    			</tr>
-     			</tbody>   			
-    		</c:forEach>
-
-    		</table>
     	</div>
 	    <div class="text-center">
 	   		<c:if test="${reviewPage.hasReviews() }">
 	   			<nav>
-				  <ul class="pagination justify-content-center">
-				  	<c:if test="${reviewPage.startPage > 5 }">
-					  	<li class="page-item">
-					      <a class="page-link" href="review.do?pageNo=${reviewPage.startPage - 1 }" aria-label="이전">
-					        <span aria-hidden="true">이전</span>
-					      </a>
-					    </li>
-				  	</c:if>
-					<c:forEach var="pNo" begin="${reviewPage.startPage }" end="${reviewPage.endPage }">
-						<c:choose>
-							<c:when test="${pNo == reviewPage.currentPage }">
-								<li class="page-item active"><a class="page-link" href="review.do?pageNo=${pNo }">${pNo }</a></li>
-							</c:when>
-							<c:otherwise>
-				    			<li class="page-item"><a class="page-link" href="review.do?pageNo=${pNo }">${pNo }</a></li>								
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:if test="${reviewPage.endPage < reviewPage.totalPages }">
-					    <li class="page-item">
-					      <a class="page-link" href="review.do?pageNo=${reviewPage.startPage + 5 }" aria-label="다음">
-					        <span aria-hidden="true">다음</span>
-					      </a>
-					    </li>					
-					</c:if>
-				  </ul>
+	   			  <div class="block-27">
+					  <ul>
+					  	<c:if test="${reviewPage.startPage > 5 }">
+						  	<li>
+						      <a class="page-link" href="review.do?pageNo=${reviewPage.startPage - 1 }" aria-label="이전">
+						        <span aria-hidden="true">&lt;</span>
+						      </a>
+						    </li>
+					  	</c:if>
+						<c:forEach var="pNo" begin="${reviewPage.startPage }" end="${reviewPage.endPage }">
+							<c:choose>
+								<c:when test="${pNo == reviewPage.currentPage }">
+									<li class="active"><a href="review.do?pageNo=${pNo }">${pNo }</a></li>
+								</c:when>
+								<c:otherwise>
+					    			<li><a href="review.do?pageNo=${pNo }">${pNo }</a></li>								
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${reviewPage.endPage < reviewPage.totalPages }">
+						    <li>
+						      <a href="review.do?pageNo=${reviewPage.startPage + 5 }" aria-label="다음">
+						        <span aria-hidden="true">&gt;</span>
+						      </a>
+						    </li>					
+						</c:if>
+					  </ul>
+				  </div>
 				</nav>
 	   		</c:if>
 	    </div>
     </section>
 
-    <jsp:include page="/WEB-INF/views/include/common/footer.jsp"
-		flush="false" />
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+    	<jsp:include page="/WEB-INF/views/include/common/footer.jsp" flush="false" />
+    </footer>
     
   
 
