@@ -75,7 +75,7 @@
 					              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
 					                <h3 class="heading mt-3"><a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" style="cursor: pointer;">${review.title }</a></h3>
 					                <div class="meta mb-3">
-					                  <div>${DateFormatConverter.convertDate(review.regDate) }</div>
+					                  <div><h6>${DateFormatConverter.convertDate(review.regDate) }</h6></div>
 					                  <div>${review.writer.name }</div>
 					                </div>
 					              </div>
@@ -90,7 +90,7 @@
 					              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
 					                <h3 class="heading mt-3"><a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" style="cursor: pointer;">${review.title }</a></h3>
 					                <div class="meta mb-3">
-					                  <div>${DateFormatConverter.convertDate(review.regDate) }</div>
+					                  <div><h6>${DateFormatConverter.convertDate(review.regDate) }</h6></div>
 					                  <div>${review.writer.name }</div>
 					                </div>
 					              </div>
