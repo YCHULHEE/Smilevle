@@ -49,11 +49,10 @@
 				else {
 					$.each(data, function() {
 						if(this.writerId == '${authUser.id}') {
-							$('#comment').append('<li class=comment><div class=comment-body><h3>' + this.writerId +
-									'</h3><div class=meta>' + this.regDate + '</div><p>' + this.content + '</p><p>' + 
+							$('#comment').append('<li class=comment><div class=comment-body><h4>' + this.writerId +
+									'</h4><div class=meta>' + this.regDate + '</div><p>' + this.content + '</p><p>' + 
 									'<form method=POST action=review_comment_delete.do target=iframe1>' + 
 									'<input type=hidden name=commNo id=commNo value=' + this.commentNo + '>' + 
-									'<input type=hidden name=rvwNum id=rvwNum value=' + this.reviewNo + '>' + 
 									'<input type=submit id=commentDelete value=삭제 class=btn btn-secondary btn-sm onclick=deleteCommentConfirm();></form></p></div></li>');
 						} else {
 							$('#comment').append('<li class=comment><div class=comment-body><h3>' + this.writerId +
