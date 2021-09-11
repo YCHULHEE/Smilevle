@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class Test {
 	@RequestMapping("/")
     public ModelAndView mav() throws Exception{
-        ModelAndView mav = new ModelAndView("hi");
+        ModelAndView mav = new ModelAndView("index");
         
         mav.addObject("key", "fruits");
         
