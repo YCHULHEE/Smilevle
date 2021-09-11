@@ -124,7 +124,7 @@
 											<span class="icon-search2"></span>
 										</div>
 									</a>
-									<div class="text p-3">
+									<div class="text p-3" style="height: 250px">
 										<div class="d-flex">
 											<div class="one">
 												<h3>

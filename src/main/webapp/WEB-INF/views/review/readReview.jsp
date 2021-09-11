@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="kr.co.smilevle.util.AreacodeConverter" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -33,9 +34,6 @@
     	.btn-space {
 			margin-right: 10px;
 		}
-		#commentLabel {
-			font-size: x-large;
-		}
     </style>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
@@ -46,21 +44,20 @@
 			$.getJSON('/Smilevle/review_comment_list.do?no=${reviewData.number}', function(data) {
 				console.log(data);
 				if(data == "") {
-					$('#comment').append('<tr><td colspan=3 style=text-align:center>작성된 댓글이 없습니다.</td></tr>');
+					$('#comment').append('<li class=comment><h5 class=text-center>작성된 댓글이 없습니다!</h5></li>');
 				}
 				else {
 					$.each(data, function() {
 						if(this.writerId == '${authUser.id}') {
-							$('#comment').append('<tr><td>' + this.writerId +
-									'</td><td>' + this.content + '</td><td>' + this.regDate +
-									'</td><td><form method=POST action=review_comment_delete.do target=iframe1>' + 
+							$('#comment').append('<li class=comment><div class=comment-body><h4>' + this.writerId +
+									'</h4><div class=meta>' + this.regDate + '</div><p>' + this.content + '</p><p>' + 
+									'<form method=POST action=review_comment_delete.do target=iframe1>' + 
 									'<input type=hidden name=commNo id=commNo value=' + this.commentNo + '>' + 
-									'<input type=hidden name=rvwNum id=rvwNum value=' + this.reviewNo + '>' + 
-									'<input type=submit id=commentDelete value=삭제 class="btn btn-secondary btn-sm" style="float: right;" onclick=deleteCommentConfirm();></form></td></tr>');
+									'<input type=submit id=commentDelete value=삭제 class=btn btn-secondary btn-sm onclick=deleteCommentConfirm();></form></p></div></li>');
 						} else {
-							$('#comment').append('<tr><td>' + this.writerId +
-									'</td><td>' + this.content + '</td><td colspan=2>' + this.regDate +
-									'</td></tr>');
+							$('#comment').append('<li class=comment><div class=comment-body><h3>' + this.writerId +
+									'</h3><div class=meta>' + this.regDate + '</div><p>' + this.content + '</p></div></li>');
+
 						}
 						
 					})	
@@ -92,113 +89,165 @@
         </div>
       </div>
     </div>
-    <section class="ftco-section">
-    	<div class="container">
-    	    <button class="btn btn-outline-info" onclick="location.href='review.do'">목록으로</button>
+    
+    
+    
+   <section class="ftco-section ftco-degree-bg">
+      <div class="container">
+    	<button class="btn btn-outline-info" onclick="location.href='review.do'">목록으로</button>
     		<div class="container">
     			&nbsp;
-    		</div>
-    		<div class="container" >
-    			<div class="m-5">
-					<table class="table table-bordered table-sm thead-light">
-						<tr>
-							<th scope="row" class="table-primary text-center" width="10%">작성자</th>
-							<td>${reviewData.writer.name }</td>
-							<th scope="row" class="table-primary text-center" width="10%">No.</th>
-							<td colspan="3" width="10%">${reviewData.number }</td>					
-						</tr>
-						<tr>
-							<th scope="row" class="table-primary text-center">제목</th>
-							<td colspan="5">${reviewData.title }</td>
-						</tr>
-						<tr>
-							<th scope="row" class="table-primary text-center">건물 명</th>
-							<td colspan="5">${reviewData.locationName }</td>
-						</tr>
-						<tr>	
-							<th scope="row" class="table-primary text-center">별점</th>
-							<c:choose>
-								<c:when test="${reviewData.rate == '1.0' }">
-										<td colspan="5">
-											<p class="rate">
-												<span>
-													<i class="icon-star-o"></i>
-													<i class="icon-star-o"></i>
-													<i class="icon-star-o"></i>
-													<i class="icon-star-o"></i>
-													<i class="icon-star-o"></i>
-												</span>
-											</p>
-										</td>
-								</c:when>
-								<c:when test="${reviewData.rate == '2.0' }">
-										<td colspan="5">
-											<p class="rate">
-												<span>
-													<i class="icon-star"></i>
-													<i class="icon-star"></i>
-													<i class="icon-star-o"></i>
-													<i class="icon-star-o"></i>
-													<i class="icon-star-o"></i>
-												</span>
-											</p>
-										</td>
-								</c:when>
-								<c:when test="${reviewData.rate == '3.0' }">
-										<td colspan="5">
-											<p class="rate">
-												<span>
-													<i class="icon-star"></i>
-													<i class="icon-star"></i>
-													<i class="icon-star"></i>
-													<i class="icon-star-o"></i>
-													<i class="icon-star-o"></i>
-												</span>
-											</p>
-										</td>
-								</c:when>
-								<c:when test="${reviewData.rate == '4.0' }">
-										<td colspan="5">
-											<p class="rate">
-												<span>
-													<i class="icon-star"></i>
-													<i class="icon-star"></i>
-													<i class="icon-star"></i>
-													<i class="icon-star"></i>
-													<i class="icon-star-o"></i>
-												</span>
-											</p>
-										</td>
-								</c:when>
-								<c:when test="${reviewData.rate == '5.0' }">
-										<td colspan="5">
-											<p class="rate">
-												<span>
-													<i class="icon-star"></i>
-													<i class="icon-star"></i>
-													<i class="icon-star"></i>
-													<i class="icon-star"></i>
-													<i class="icon-star"></i>
-												</span>
-											</p>
-										</td>
-								</c:when>																																																						
-							</c:choose>
-						</tr>				
-						<tr>
-							<th scope="row" class="table-primary text-center">내용</th>
-							<td colspan="5">${reviewData.content }</td>											
-					</table>
-				</div>
-			</div>
-    		<div class="container">
+    		</div>      	
+        <div class="row">
+          <div class="col-md-8 ftco-animate">
+            <h2 class="mb-3">${reviewData.title }</h2>
+            <p>
+              ${reviewData.content }
+            </p>
+            <div class="container">
     			<c:if test="${authUser.id == reviewData.writer.id }">
     			    <button type="button" class="btn btn btn-primary rounded float-right" data-toggle="modal" data-target="#myModal">삭제</button>
     				<button type="button" class="btn btn btn-info rounded float-right btn-space" onclick="location.href='review_modify.do?no=${reviewData.number}'">수정</button>
     			</c:if>
     		</div>
-    	</div>
-    </section>
+
+            <div class="pt-5 mt-5">
+              <h3 class="mb-5">댓글 목록</h3>      
+              <ul id ="comment" class="comment-list">
+
+              </ul>
+              <!-- END comment-list -->
+              <div class="comment-form-wrap pt-5">
+                <h3 class="mb-5">댓글작성</h3>
+                <form id="commentForm" class="p-5 bg-light" method="post" action="review_comment_write.do" target="iframe1">
+                <c:choose>
+					<c:when test="${authUser == null }">
+					  <div class="form-group">
+	                    <label for="content">내용</label>
+	                    <textarea class="form-control" name="content" id="content" cols="30" rows="5" disabled="disabled">로그인 후 작성 가능합니다!</textarea>
+	                  </div>
+					</c:when>
+					<c:otherwise>
+						<h6>${authUser.id }</h6>
+						<div class="form-group">
+							<input type="hidden" name="rwNum" id="rwNum" value="${reviewData.number }">
+						</div>
+						<div class="form-group">
+		                    <label for="content">내용</label>
+		                    <textarea name="content" id="content" cols="30" rows="5" class="form-control"></textarea>
+                  		</div>
+		                <div class="form-group">
+		                	<input type="submit" value="댓글 작성" class="btn py-3 px-4 btn-primary" onclick="document.location.reload();">
+		                </div>
+					</c:otherwise>
+                </c:choose>
+                </form>
+              </div>
+            </div>
+
+          </div> <!-- .col-md-8 -->
+          <div class="col-md-4 sidebar ftco-animate">
+            <div class="sidebar-box ftco-animate">
+              <div class="categories">
+                <h3>리뷰 게시글 정보</h3>
+				<table class="table thead-light">
+					<tr>
+						<th scope="row" class="text-left">No.</th>
+						<td class="text-right">${reviewData.number }</td>	
+					</tr>
+					<tr>
+						<th scope="row" class="text-left">작성자</th>
+						<td class="text-right">${reviewData.writer.name }</td>				
+					</tr>
+					<tr>
+						<th scope="row" class="text-left">지역</th>
+						<td class="text-right">${AreacodeConverter.getKey(reviewData.areacode) }</td>
+					</tr>
+					<tr>
+						<th scope="row" class="text-left">건물 명</th>
+						<td class="text-right">${reviewData.locationName }</td>
+					</tr>
+					<tr>	
+						<th class="text-left">별점</th>
+						<c:choose>							
+							<c:when test="${reviewData.rate == '1.0' }">
+							<td class="text-right">
+								<p class="rate">
+									<span>
+										<i class="icon-star"></i>
+										<i class="icon-star-o"></i>
+										<i class="icon-star-o"></i>
+										<i class="icon-star-o"></i>
+										<i class="icon-star-o"></i>
+									</span>
+								</p>
+							</td>
+							</c:when>
+							<c:when test="${reviewData.rate == '2.0' }">
+							<td class="text-right">
+								<p class="rate">
+									<span>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star-o"></i>
+										<i class="icon-star-o"></i>
+										<i class="icon-star-o"></i>
+									</span>
+								</p>
+							</td>
+							</c:when>
+							<c:when test="${reviewData.rate == '3.0' }">
+							<td class="text-right">
+								<p class="rate">
+									<span>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star-o"></i>
+										<i class="icon-star-o"></i>
+									</span>
+								</p>
+							</td>
+							</c:when>
+							<c:when test="${reviewData.rate == '4.0' }">
+							<td class="text-right">
+								<p class="rate">
+									<span>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star-o"></i>
+									</span>
+								</p>
+							</td>
+							</c:when>
+							<c:when test="${reviewData.rate == '5.0' }">
+							<td class="text-right">
+								<p class="rate">
+									<span>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+									</span>
+								</p>
+							</td>
+							</c:when>																																																						
+						</c:choose>
+					</tr>
+			  	</table>			
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> <!-- .section -->
+	
+    <jsp:include page="/WEB-INF/views/include/common/footer.jsp"
+		flush="false" />
+		
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -219,42 +268,6 @@
 	    </div>
 	  </div>
 	</div>
-	
-	<div class="container">
-		<div class="m-5">
-			<div class="container my-3" >
-				<table id="comment" class="table table-sm table-hover">
-					<thead>
-				        <tr class="table-primary">
-				            <th width=20%>작성자</th>
-				            <th width=40%>내용</th>
-				            <th colspan="2" width=20%>작성일시</th>
-				        </tr>
-			        </thead>
-				</table>
-			</div>
-		</div>
-		<form id="commentForm" class="m-5" method="post" action="review_comment_write.do" target="iframe1">
-			<c:choose>
-				<c:when test="${authUser == null }">
-					<textarea class="form-control" name="content" id="content" disabled="disabled">로그인 후 작성 가능합니다!</textarea>
-				</c:when>
-				<c:otherwise>
-					<input type="hidden" name="rwNum" id="rwNum" value="${reviewData.number }">
-					<label id="commentLabel" for="content">댓글작성</label>
-					<textarea class="form-control" name="content" id="content"></textarea>
-					<input type="submit" class="btn btn-outline-info" value="댓글 작성" style="float: right;" onclick="document.location.reload();">
-				</c:otherwise>
-			</c:choose>
-		</form>
-	</div>
-	
-	<div class="container">
-
-	</div>
-	
-    <jsp:include page="/WEB-INF/views/include/common/footer.jsp"
-		flush="false" />
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

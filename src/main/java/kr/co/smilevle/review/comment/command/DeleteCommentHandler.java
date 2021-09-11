@@ -18,8 +18,6 @@ public class DeleteCommentHandler implements CommandHandler{
 		User authUser = (User) req.getSession().getAttribute("authUser");
 		String comNoVal = req.getParameter("commNo");
 		int commentNum = Integer.parseInt(comNoVal);
-		String noVal = req.getParameter("rvwNum");
-		int reviewNo = Integer.parseInt(noVal);
 		
 		DeleteCommentRequest delReq = new DeleteCommentRequest(authUser.getId(), commentNum);
 		req.setAttribute("delReq", delReq);
