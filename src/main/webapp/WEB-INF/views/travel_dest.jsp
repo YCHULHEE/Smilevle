@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>DirEngine - Free Bootstrap 4 Template by Colorlib</title>
+<title>Smilevle</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -70,7 +70,7 @@
 							<div class="fields">
 								<div class="form-group">
 									<input type="text" class="form-control" name="searchWord"
-										placeholder="숙소 이름으로 검색">
+										placeholder="이름으로 검색">
 								</div>
 								<div class="form-group">
 									<div class="select-wrap one-third">

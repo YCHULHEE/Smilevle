@@ -26,7 +26,7 @@ public class MainPageHandler implements CommandHandler{
 		List<Tour> eventList = new ArrayList<Tour>();
 		
 		CoronaService coronaService = new CoronaService();
-//		coronaService.updateCorona();
+		coronaService.updateCorona();
 		Corona corona = coronaService.selectCoronaLowOrderRandom(5);
 		List<Corona> coronaList = coronaService.selectCoronaList(10);
 		Random random = new Random();

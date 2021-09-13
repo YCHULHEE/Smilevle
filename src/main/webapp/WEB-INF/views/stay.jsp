@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>숙박</title>
+<title>Smilevle</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -124,7 +124,7 @@
 											<span class="icon-search2"></span>
 										</div>
 									</a>
-									<div class="text p-3">
+									<div class="text p-3" style="height: 300px">
 										<div class="d-flex">
 											<div class="one">
 												<h3>

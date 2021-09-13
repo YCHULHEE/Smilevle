@@ -58,7 +58,7 @@ public class CoronaService {
         rd.close();
         conn.disconnect();
         
-        System.out.println(sb.toString());
+        System.out.println("하이");
         
         Connection conn2 = ConnectionProvider.getConnection();
         CoronaPaser coronaPaser = new CoronaPaser();
