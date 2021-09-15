@@ -8,7 +8,7 @@
 			<div class="fields">
 				<div class="form-group">
 					<input type="text" class="form-control" name="searchWord"
-						placeholder="숙소 이름으로 검색">
+						placeholder="이름으로 검색">
 				</div>
 				<input type="hidden" name="where" value="${stayData.stay.contentTypeId}">
 				<div class="form-group">

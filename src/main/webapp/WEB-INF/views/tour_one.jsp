@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>DirEngine - Free Bootstrap 4 Template by Colorlib</title>
+<title>Smilevle</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,24 +15,24 @@
 <link href="https://fonts.googleapis.com/css?family=Alex+Brush"
 	rel="stylesheet">
 
-<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="/static/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/animate.css">
 
-<link rel="stylesheet" href="css/owl.carousel.min.css">
-<link rel="stylesheet" href="css/owl.theme.default.min.css">
-<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/static/css/magnific-popup.css">
 
-<link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="/static/css/aos.css">
 
-<link rel="stylesheet" href="css/ionicons.min.css">
+<link rel="stylesheet" href="/static/css/ionicons.min.css">
 
-<link rel="stylesheet" href="css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="css/jquery.timepicker.css">
+<link rel="stylesheet" href="/static/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/static/css/jquery.timepicker.css">
 
 
-<link rel="stylesheet" href="css/flaticon.css">
-<link rel="stylesheet" href="css/icomoon.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/static/css/flaticon.css">
+<link rel="stylesheet" href="/static/css/icomoon.css">
+<link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 
@@ -40,7 +40,7 @@
 	<!-- END nav -->
 
 	<div class="hero-wrap js-fullheight"
-		style="background-image: url('images/bg_5.jpg');">
+		style="background-image: url('/static/images/bg_5.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div
@@ -100,118 +100,7 @@
 	<section class="ftco-section ftco-degree-bg">
 	<div class="container">
 	<div class="pt-5 mt-5">
-		<h3 class="mb-5">6 Comments</h3>
-		<ul class="comment-list">
-			<li class="comment">
-				<div class="vcard bio">
-					<img src="images/person_1.jpg" alt="Image placeholder">
-				</div>
-				<div class="comment-body">
-					<h3>John Doe</h3>
-					<div class="meta">June 27, 2018 at 2:21pm</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem,
-						eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas
-						earum impedit necessitatibus, nihil?</p>
-					<p>
-						<a href="#" class="reply">Reply</a>
-					</p>
-				</div>
-
-				<ul class="children">
-					<li class="comment">
-						<div class="vcard bio">
-							<img src="images/person_1.jpg" alt="Image placeholder">
-						</div>
-						<div class="comment-body">
-							<h3>John Doe</h3>
-							<div class="meta">June 27, 2018 at 2:21pm</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-								autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-								voluptas earum impedit necessitatibus, nihil?</p>
-							<p>
-								<a href="#" class="reply">Reply</a>
-							</p>
-						</div>
-
-
-						<ul class="children">
-							<li class="comment">
-								<div class="vcard bio">
-									<img src="images/person_1.jpg" alt="Image placeholder">
-								</div>
-								<div class="comment-body">
-									<h3>John Doe</h3>
-									<div class="meta">June 27, 2018 at 2:21pm</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit. Pariatur quidem laborum necessitatibus, ipsam impedit
-										vitae autem, eum officia, fugiat saepe enim sapiente iste
-										iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-									<p>
-										<a href="#" class="reply">Reply</a>
-									</p>
-								</div>
-
-								<ul class="children">
-									<li class="comment">
-										<div class="vcard bio">
-											<img src="images/person_1.jpg" alt="Image placeholder">
-										</div>
-										<div class="comment-body">
-											<h3>John Doe</h3>
-											<div class="meta">June 27, 2018 at 2:21pm</div>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Pariatur quidem laborum necessitatibus, ipsam impedit
-												vitae autem, eum officia, fugiat saepe enim sapiente iste
-												iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-											<p>
-												<a href="#" class="reply">Reply</a>
-											</p>
-										</div>
-									</li>
-								</ul>
-								<ul class="children">
-									<li class="comment">
-										<div class="vcard bio">
-											<img src="images/person_1.jpg" alt="Image placeholder">
-										</div>
-										<div class="comment-body">
-											<h3>John Doe</h3>
-											<div class="meta">June 27, 2018 at 2:21pm</div>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Pariatur quidem laborum necessitatibus, ipsam impedit
-												vitae autem, eum officia, fugiat saepe enim sapiente iste
-												iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-											<p>
-												<a href="#" class="reply">Reply</a>
-											</p>
-										</div>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-
-			<li class="comment">
-				<div class="vcard bio">
-					<img src="images/person_1.jpg" alt="Image placeholder">
-				</div>
-				<div class="comment-body">
-					<h3>John Doe</h3>
-					<div class="meta">June 27, 2018 at 2:21pm</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem,
-						eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas
-						earum impedit necessitatibus, nihil?</p>
-					<p>
-						<a href="#" class="reply">Reply</a>
-					</p>
-				</div>
-			</li>
-		</ul>
+		
 		<!-- END comment-list -->
 
 		<!-- 댓글 달기 -->
@@ -257,24 +146,24 @@
 	</div>
 
 
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script src="js/jquery.waypoints.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/aos.js"></script>
-	<script src="js/jquery.animateNumber.min.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script src="js/jquery.timepicker.min.js"></script>
-	<script src="js/scrollax.min.js"></script>
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="/static/js/popper.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/js/jquery.easing.1.3.js"></script>
+	<script src="/static/js/jquery.waypoints.min.js"></script>
+	<script src="/static/js/jquery.stellar.min.js"></script>
+	<script src="/static/js/owl.carousel.min.js"></script>
+	<script src="/static/js/jquery.magnific-popup.min.js"></script>
+	<script src="/static/js/aos.js"></script>
+	<script src="/static/js/jquery.animateNumber.min.js"></script>
+	<script src="/static/js/bootstrap-datepicker.js"></script>
+	<script src="/static/js/jquery.timepicker.min.js"></script>
+	<script src="/static/js/scrollax.min.js"></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script src="js/google-map.js"></script>
-	<script src="js/main.js"></script>
+	<script src="/static/js/google-map.js"></script>
+	<script src="/static/js/main.js"></script>
 
 </body>
 </html>

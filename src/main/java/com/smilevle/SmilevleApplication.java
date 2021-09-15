@@ -3,7 +3,7 @@ package com.smilevle;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.smilevle.tour.model.Tour;
+import com.smilevle.tour.model.TourVO;
 
 @SpringBootApplication
 public class SmilevleApplication {
