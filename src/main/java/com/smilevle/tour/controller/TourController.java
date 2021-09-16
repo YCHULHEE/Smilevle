@@ -14,7 +14,7 @@ public class TourController {
 	
 	@RequestMapping("/hi")
 	public String mainPage(Model model) {
-		model.addAttribute("travelDestList", tourService.getStayInfo("", 20, "12"));
+		model.addAttribute("travelDestList", tourService.getTourInfoContainer("", 20, "12"));
 		
 		return "index";
 	}

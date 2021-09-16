@@ -9,17 +9,21 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class TourVO {
 	private String title;
 	private String areaCode;
 	private String address;
 	private String firstImage;
 	private int contentId;
-	private int readCount;
+	private int readCnt;
 	private String tel;
 	private String mapX;
 	private String mapY;
 	private String contentTypeId;
 	private String middleCategory;
 	private String smallCategory;
+	private String content;
+	private String homePage;
+	private String imageList;
 }

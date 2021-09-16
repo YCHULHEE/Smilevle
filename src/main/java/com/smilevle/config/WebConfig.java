@@ -19,14 +19,12 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
-	
 	@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")
           .addResourceLocations("classpath:/static/")
           .setCachePeriod(604800);
     }
-	
 	
 //	@Bean
 //	ExcuteTimeInterceptor excuteTimeInterceptor() {

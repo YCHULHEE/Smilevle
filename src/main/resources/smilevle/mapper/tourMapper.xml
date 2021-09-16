@@ -1,20 +1,32 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="smilevle.mapper.tourMapper">
-	<select id="selectTourContainer" parameterType="java.util.HashMap" resultType="com.smilevle.tour.model.TourVO">
-		 <![CDATA[
+	<select id="getTourList" parameterType="java.util.HashMap" resultType="com.smilevle.tour.model.TourVO">
+		<![CDATA[
 		select *
 		from (select * from tbl_tour order by read_cnt desc)
 		where RowNum <= #{size} and content_type_id = #{contentTypeId}
-		]]><if test='areaCode != ""'>
-		 <![CDATA[AND areaCode = #{areaCode}]]>
-  		</if>
+		]]>
+		<if test='areaCode != ""'>
+			<![CDATA[AND areaCode = #{areaCode}]]>
+		</if>
 	</select>
 
-    <!--<select id="selectUserInfoAll" resultType="hashMap">
+	<select id="selectById" parameterType="java.util.HashMap" resultType="com.smilevle.tour.model.TourVO">
+		<![CDATA[
+		select *
+		select * from tbl_tour where content_id = #{contentId}
+		]]>
+	</select>
+	
+	<update id="increaseReadCount" parameterType="java.util.HashMap">
+		<![CDATA[
+		update tbl_tour set read_cnt = read_cnt + 1 where content_id = #{contentId}
+		]]>
+	</update>
+
+	<!--<select id="selectUserInfoAll" resultType="hashMap">
     <![CDATA[
 		SELECT id, username, password
 		FROM TBL_USER
@@ -24,10 +36,10 @@
     <insert id="addUserInfo" >
     <![CDATA[
         insert into TBL_USER(id ,username, password)
-        values(#{id},#{userName}, #{passWord})
+        values(#{id}, #{userName}, #{passWord})
      ]]>
     </insert>-->
-	
+
 	<!-- map에 있는 키 값을 가지고 조회하여 파라미터값을 전달해준다.  -->
 	<!--<select id="findByUserNameLike" parameterType="map" resultType="hashMap">
 		SELECT
@@ -37,7 +49,7 @@
 		FROM TBL_USER
 		WHERE USERNAME LIKE '%${userName}%'
 	</select>-->
-	
+
 	<!--<select id="findByUserName" parameterType="map" resultMap="userResultMap">
 		SELECT
 			ID,
@@ -52,8 +64,8 @@
 		<result property="userName" column="username"/>
 		<result property="passWord" column="password"/>
 	</resultMap>-->
-    
-    <!--<select id="foreachUserList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+
+	<!--<select id="foreachUserList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
     	SELECT
      ID,
      USERNAME,
@@ -64,5 +76,5 @@
     		#{userId}
     	</foreach>
     </select>-->
-    
+
 </mapper>

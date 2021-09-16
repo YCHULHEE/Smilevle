@@ -23,6 +23,18 @@ public class TourRepository {
 		params.put("contentTypeId", contentTypeId);
 		params.put("areaCode", areaCode);
 		
-		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE +"selectTourContainer", params);
+		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE +"getTourList", params);
+	}
+	
+	public TourVO selectById(int contentId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("contentId", contentId);
+		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE +"selectTourContainer", params);
+	}
+	
+	public void increaseReadCount(int contentId) {
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("contentId", contentId);
+			sqlSessionTemplate.update(MAPPER_NAME_SPACE +"increaseReadCount", params);
 	}
 }
