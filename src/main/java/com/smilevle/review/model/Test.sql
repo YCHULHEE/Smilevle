@@ -1,0 +1,1 @@
+select * from (select * from tbl_review rv natural join tbl_review_attach ac order by review_no desc);

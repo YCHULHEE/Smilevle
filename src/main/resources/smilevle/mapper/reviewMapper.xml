@@ -4,5 +4,9 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		
 <mapper namespace="smilevle.mapper.reviewMapper">
-	<select id="selectReviewList" resultType=""></select>
+	<select id="selectReviewList" parameterType="java.util.HashMap" resultType="com.smilevle.review.model.PReviewVO">
+		<![CDATA[
+		select * from (select * from tbl_review rv natural join tbl_review_attach ac order by review_no desc)
+		]]>
+	</select>
 </mapper>

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="kr.co.smilevle.util.AreacodeConverter" %>
+<%-- <%@ page import="kr.co.smilevle.util.AreacodeConverter" %>
 <%@ page import="kr.co.smilevle.util.DateFormatConverter" %>
-
+ --%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -72,10 +72,10 @@
 					            <div class="blog-entry align-self-stretch">
 					              <a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" class="block-20" style="background-image: url(images/no_image.jpg); cursor: pointer;"></a>
 					              <div class="text p-4 d-block">
-					              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
+					              	<span class="tag">${review.areacode}</span>
 					                <h3 class="heading mt-3"><a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" style="cursor: pointer;">${review.title }</a></h3>
 					                <div class="meta mb-3">
-					                  <div><h6>${DateFormatConverter.convertDate(review.regDate) }</h6></div>
+					                  <div><h6>${review.regDate}</h6></div>
 					                  <div>${review.writer.name }</div>
 					                </div>
 					              </div>
@@ -102,7 +102,7 @@
     			</div>
     		</div>
     	</div>
-	    <div class="text-center">
+	    <%-- <div class="text-center">
 	   		<c:if test="${reviewPage.hasReviews() }">
 	   			<nav>
 	   			  <div class="block-27">
@@ -135,7 +135,7 @@
 				  </div>
 				</nav>
 	   		</c:if>
-	    </div>
+	    </div> --%>
     </section>
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
