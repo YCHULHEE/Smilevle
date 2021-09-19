@@ -40,7 +40,7 @@
   <jsp:include page="/WEB-INF/views/include/common/menu.jsp"/>
     <!-- END nav -->
     
-    <div class="hero-wrap js-fullheight" style="background-image: url(images/bg_9.jpg);">
+    <div class="hero-wrap js-fullheight" style="background-image: url(/static/images/bg_9.jpg);">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
@@ -60,17 +60,17 @@
 			<p></p>
     		<div class="container">
     			<div class="row d-flex">
-    			<c:if test="${reviewPage.hasNoReviews() }">
+<%--     			<c:if test="${reviewPage.hasNoReviews() }">
 	    			<div class="text-center">
 		    			<h2>리뷰 게시글이 존재하지 않습니다!</h2>
 	    			</div>
-    			</c:if>
+    			</c:if> --%>
     				<c:forEach var="review" items="${reviewPage.content }">
 	    				<c:choose>
 							<c:when test="${review.photoUrl eq null }">
 							<div class="col-md-3 d-flex ftco-animate">
 					            <div class="blog-entry align-self-stretch">
-					              <a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" class="block-20" style="background-image: url(images/no_image.jpg); cursor: pointer;"></a>
+					              <a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" class="block-20" style="background-image: url(/static/images/no_image.jpg); cursor: pointer;"></a>
 					              <div class="text p-4 d-block">
 					              	<span class="tag">${review.areacode}</span>
 					                <h3 class="heading mt-3"><a onClick="location.href='review_read.do?no=${review.number }&pageNo=${reviewPage.currentPage }'" style="cursor: pointer;">${review.title }</a></h3>
