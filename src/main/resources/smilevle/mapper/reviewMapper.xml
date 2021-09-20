@@ -17,5 +17,9 @@
 	<select id="reviewCount" resultType="int">
 		select count(*) from tbl_review
 	</select>
+	
+	<select id="selectById" parameterType="java.util.HashMap" resultType="com.smilevle.review.model.ReviewVO">
+		select * from tbl_review where review_no = #{reviewNo}
+	</select>
 </mapper>
 

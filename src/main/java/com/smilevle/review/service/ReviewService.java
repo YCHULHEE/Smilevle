@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.Page;
 import com.smilevle.review.model.PReviewVO;
 import com.smilevle.review.model.ReviewPageVO;
+import com.smilevle.review.model.ReviewVO;
 import com.smilevle.review.repository.ReviewRepository;
 
 @Service
@@ -21,5 +22,10 @@ public class ReviewService {
 	
 	public int reviewCount() {
 		return reviewRepository.reviewCount();
+	}
+	
+	public ReviewVO selectById(Integer reviewNo) {
+		System.out.println("Service reviewNO: " + reviewNo);
+		return reviewRepository.selectById(reviewNo);
 	}
 }

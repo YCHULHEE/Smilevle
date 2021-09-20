@@ -25,4 +25,10 @@ public class ReviewController {
 		model.addAttribute("reviewPage", reviewService.getReviewPage(reviewPageVO));
 		return "/review/review";
 	}
+	@RequestMapping("/read")
+	public String readReview(Model model, @RequestParam(value = "no", required = true) Integer reviewNo) {
+		System.out.println("Controller reviewNO: " + reviewNo);
+		model.addAttribute("reviewData", reviewService.selectById(reviewNo));
+		return "/review/readReview";
+	}
 }

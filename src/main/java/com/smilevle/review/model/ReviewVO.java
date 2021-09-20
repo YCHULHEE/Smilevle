@@ -10,30 +10,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReviewVO {
-	private Integer reviewNo;
-	private WriterVO writer;
+	private Integer review_no;
+	private String writer_id;
+	private String writer_name;
 	private String title;
 	private String areacode;
-	private String locationName;
+	private String location_name;
 	private String rate;
 	private String content;
 	private Date regDate;
 	private Date modDate;
 	private int readCnt;
-	
-	public ReviewVO(WriterVO writer, String title, String areacode, String locationName, String rate, String content,
-			Date regDate, Date modDate, int readCnt) {
-		super();
-		this.writer = writer;
-		this.title = title;
-		this.areacode = areacode;
-		this.locationName = locationName;
-		this.rate = rate;
-		this.content = content;
-		this.regDate = regDate;
-		this.modDate = modDate;
-		this.readCnt = readCnt;
-	}
-	
-	
+		
 }

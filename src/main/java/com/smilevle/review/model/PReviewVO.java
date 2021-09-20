@@ -12,33 +12,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class PReviewVO {
-	private Integer reviewNo;
-	private String writerId;
-	private String writerName;
+	private Integer review_no;
+	private String writer_id;
+	private String writer_name;
 	private String title;
 	private String areacode;
-	private String locationName;
+	private String location_name;
 	private String rate;
 	private String content;
 	private Date regDate;
 	private Date modDate;
 	private int readCnt;
-	private String photoUrl;
-	
-	public PReviewVO(String writerId, String writerName, String title, String areacode, String locationName,
-			String rate, String content, Date regDate, Date modDate, int readCnt, String photoUrl) {
-		super();
-		this.writerId = writerId;
-		this.writerName = writerName;
-		this.title = title;
-		this.areacode = areacode;
-		this.locationName = locationName;
-		this.rate = rate;
-		this.content = content;
-		this.regDate = regDate;
-		this.modDate = modDate;
-		this.readCnt = readCnt;
-		this.photoUrl = photoUrl;
-	}
-	
+	private String photo_url;
+		
 }

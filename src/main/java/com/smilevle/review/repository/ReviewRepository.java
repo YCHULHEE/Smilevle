@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.smilevle.review.model.PReviewVO;
 import com.smilevle.review.model.ReviewPageVO;
+import com.smilevle.review.model.ReviewVO;
 
 @Repository
 public class ReviewRepository {
@@ -28,6 +29,13 @@ public class ReviewRepository {
 	
 	public int reviewCount() {
 		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE + "reviewCount");
+	}
+	
+	public ReviewVO selectById(Integer reviewNo) {
+		System.out.println("Repository reviewNO: " + reviewNo);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("reviewNo", reviewNo);
+		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE + "selectById", params);
 	}
 
 }
