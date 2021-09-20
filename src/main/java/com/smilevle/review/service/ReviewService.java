@@ -25,7 +25,11 @@ public class ReviewService {
 	}
 	
 	public ReviewVO selectById(Integer reviewNo) {
-		System.out.println("Service reviewNO: " + reviewNo);
 		return reviewRepository.selectById(reviewNo);
+	}
+	
+	public void insertReview(ReviewVO reviewVO) {
+		System.out.println("Service: " + reviewVO);
+		reviewRepository.insertReview(reviewVO);
 	}
 }

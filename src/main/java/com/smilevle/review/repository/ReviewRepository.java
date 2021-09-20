@@ -23,7 +23,7 @@ public class ReviewRepository {
 		
 		params.put("start", reviewPageVO.getStart());
 		params.put("end", reviewPageVO.getEnd());
-		
+		System.out.println(reviewPageVO);
 		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE + "selectReviewList", params);
 	}
 	
@@ -32,10 +32,14 @@ public class ReviewRepository {
 	}
 	
 	public ReviewVO selectById(Integer reviewNo) {
-		System.out.println("Repository reviewNO: " + reviewNo);
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("reviewNo", reviewNo);
 		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE + "selectById", params);
+	}
+	
+	public void insertReview(ReviewVO reviewVO) {
+		System.out.println("Repository: " +  reviewVO);
+		sqlSessionTemplate.insert(MAPPER_NAME_SPACE + "insertReview", reviewVO);
 	}
 
 }

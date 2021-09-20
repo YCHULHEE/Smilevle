@@ -94,10 +94,9 @@
     
    <section class="ftco-section ftco-degree-bg">
       <div class="container">
-    	<button class="btn btn-outline-info" onclick="location.href='/review'">목록으로</button>
-    		<div class="container">
-    			&nbsp;
-    		</div>      	
+   		<div class="container">
+   			&nbsp;
+   		</div>      	
         <div class="row">
           <div class="col-md-8 ftco-animate">
             <h2 class="mb-3">${reviewData.title }</h2>
@@ -147,6 +146,9 @@
 
           </div> <!-- .col-md-8 -->
           <div class="col-md-4 sidebar ftco-animate">
+           	<div class="container">
+   				<button class="btn btn-outline-info float-right" onclick="location.href='/review'">목록으로</button>
+   		 	</div>          	
             <div class="sidebar-box ftco-animate">
               <div class="categories">
                 <h3>리뷰 게시글 정보</h3>

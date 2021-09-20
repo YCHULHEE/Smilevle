@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%-- <%@ page import="kr.co.smilevle.util.AreacodeConverter" %>
-<%@ page import="kr.co.smilevle.util.DateFormatConverter" %>
- --%>
+<%@ page import="com.smilevle.config.util.AreacodeConverter" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -56,7 +54,7 @@
     <section class="ftco-section">
     	<div class="container">
     		<div class="container">
-				<button id="reviewWriteButton" class="btn btn-primary rounded float-right" onclick="location.href='review_write.do'">리뷰 작성</button>
+				<button id="reviewWriteButton" class="btn btn-primary rounded float-right" onclick="location.href='review_write'">리뷰 작성</button>
 			</div>
 			<p></p>
     		<div class="container">
@@ -66,10 +64,10 @@
 							<c:when test="${review.photo_url eq null }">
 							<div class="col-md-3 d-flex ftco-animate">
 					            <div class="blog-entry align-self-stretch">
-					              <a onClick="location.href='review/read?no=${review.review_no }&nowPage=${reviewPageVO.nowPage }'" class="block-20" style="background-image: url(/static/images/no_image.jpg); cursor: pointer;"></a>
+					              <a onClick="location.href='review_read?no=${review.review_no }&nowPage=${reviewPageVO.nowPage }'" class="block-20" style="background-image: url(/static/images/no_image.jpg); cursor: pointer;"></a>
 					              <div class="text p-4 d-block">
-					              	<span class="tag">${review.areacode}</span>
-					                <h3 class="heading mt-3"><a onClick="location.href='review/read?no=${review.review_no }&pageNo=${reviewPageVO.nowPage }'" style="cursor: pointer;">${review.title }</a></h3>
+					              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
+					                <h3 class="heading mt-3"><a onClick="location.href='review_read?no=${review.review_no }&pageNo=${reviewPageVO.nowPage }'" style="cursor: pointer;">${review.title }</a></h3>
 					                <div class="meta mb-3">
 					                  <div><h6><fmt:formatDate value="${review.regDate}" pattern="yyyy.MM.dd HH:mm:ss"/></h6></div>
 					                  <div>${review.writer_name }</div>
@@ -81,10 +79,10 @@
 							<c:otherwise>
 			    			<div class="col-md-3 d-flex ftco-animate">
 					            <div class="blog-entry align-self-stretch">
-					              <a onClick="location.href='review/read?no=${review.review_no }&nowPage=${reviewPageVO.nowPage }'" class="block-20" style="background-image: url('${review.photo_url}'); cursor: pointer;"></a>
+					              <a onClick="location.href='review_read?no=${review.review_no }&nowPage=${reviewPageVO.nowPage }'" class="block-20" style="background-image: url('${review.photo_url}'); cursor: pointer;"></a>
 					              <div class="text p-4 d-block">
-					              	<span class="tag">${review.areacode }</span>
-					                <h3 class="heading mt-3"><a onClick="location.href='review/read?no=${review.review_no }&pageNo=${reviewPageVO.nowPage }'" style="cursor: pointer;">${review.title }</a></h3>
+					              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
+					                <h3 class="heading mt-3"><a onClick="location.href='review_read?no=${review.review_no }&pageNo=${reviewPageVO.nowPage }'" style="cursor: pointer;">${review.title }</a></h3>
 					                <div class="meta mb-3">
 					                  <div><h6><fmt:formatDate value="${review.regDate}" pattern="yyyy.MM.dd HH:mm:ss"/></h6></div>
 					                  <div>${review.writer_name }</div>
