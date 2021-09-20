@@ -1,7 +1,10 @@
 package com.smilevle.review.model;
 
+import lombok.Data;
 import lombok.ToString;
 
+
+@Data
 @ToString
 public class ReviewPageVO {
 	

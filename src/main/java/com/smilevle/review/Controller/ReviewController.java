@@ -17,11 +17,9 @@ public class ReviewController {
 	
 	@RequestMapping({"", "/"})
 	public String reviewPage(ReviewPageVO reviewPageVO, Model model, 
-							@RequestParam(value="nowPage", required=false, defaultValue = "1") String nowPage, 
-							@RequestParam(value="cntPerPage", required=false, defaultValue = "8") String cntPerPage) {
-		System.out.println(reviewPageVO);
+							@RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage, 
+							@RequestParam(value = "cntPerPage", required = false, defaultValue = "8") String cntPerPage) {
 		int reviewCnt = reviewService.reviewCount();
-		System.out.println(reviewCnt);
 		reviewPageVO = new ReviewPageVO(reviewCnt, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("reviewPageVO", reviewPageVO);
 		model.addAttribute("reviewPage", reviewService.getReviewPage(reviewPageVO));

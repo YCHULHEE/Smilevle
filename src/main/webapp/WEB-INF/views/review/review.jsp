@@ -56,7 +56,7 @@
     <section class="ftco-section">
     	<div class="container">
     		<div class="container">
-				<button id="reviewWriteButton" class="btn btn-primary rounded" onclick="location.href='review_write.do'">리뷰 작성</button>
+				<button id="reviewWriteButton" class="btn btn-primary rounded float-right" onclick="location.href='review_write.do'">리뷰 작성</button>
 			</div>
 			<p></p>
     		<div class="container">
@@ -98,30 +98,30 @@
     			</div>
     		</div>
     	</div>
-<%-- 	    <div class="text-center">
+	   <div class="text-center">
    			<nav>
    			  <div class="block-27">
 				  <ul>
 				  	<c:if test="${reviewPageVO.startPage > 5 }">
 					  	<li>
-					      <a class="page-link" href="review.do?pageNo=${reviewPage.startPage - 1 }" aria-label="이전">
+					      <a class="page-link" href="review?nowPage=${reviewPageVO.startPage - 1 }" aria-label="이전">
 					        <span aria-hidden="true">&lt;</span>
 					      </a>
 					    </li>
 				  	</c:if>
-					<c:forEach var="pNo" begin="${reviewPageVO.startPage }" end="${reviewPage.endPage }">
+					<c:forEach var="pNo" begin="${reviewPageVO.startPage }" end="${reviewPageVO.endPage }">
 						<c:choose>
 							<c:when test="${pNo == reviewPageVO.nowPage }">
-								<li class="active"><a href="review.do?pageNo=${pNo }">${pNo }</a></li>
+								<li class="active"><a href="review?nowPage=${pNo }">${pNo }</a></li>
 							</c:when>
 							<c:otherwise>
-				    			<li><a href="review.do?pageNo=${pNo }">${pNo }</a></li>								
+				    			<li><a href="review?nowPage=${pNo }">${pNo }</a></li>								
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
-					<c:if test="${reviewPageVO.endPage < reviewPage.totalPages }">
+					<c:if test="${reviewPageVO.endPage < reviewPageVO.total / 8 }">
 					    <li>
-					      <a href="review.do?pageNo=${reviewPage.startPage + 5 }" aria-label="다음">
+					      <a href="review?nowPage=${reviewPage.startPage + 5 }" aria-label="다음">
 					        <span aria-hidden="true">&gt;</span>
 					      </a>
 					    </li>					
@@ -129,7 +129,7 @@
 				  </ul>
 			  </div>
 			</nav>
-	    </div> --%>
+	    </div>
     </section>
     <footer class="ftco-footer ftco-bg-dark ftco-section">
     	<jsp:include page="/WEB-INF/views/include/common/footer.jsp" flush="false" />
