@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WriterVO {
-	private String id;
-	private String name;
+	private String writerId;
+	private String writerName;
 }

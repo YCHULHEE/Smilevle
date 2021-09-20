@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReviewVO {
-	private Integer number;
+	private Integer reviewNo;
 	private WriterVO writer;
 	private String title;
 	private String areacode;
@@ -19,10 +19,10 @@ public class ReviewVO {
 	private String content;
 	private Date regDate;
 	private Date modDate;
-	private int readCount;
+	private int readCnt;
 	
 	public ReviewVO(WriterVO writer, String title, String areacode, String locationName, String rate, String content,
-			Date regDate, Date modDate, int readCount) {
+			Date regDate, Date modDate, int readCnt) {
 		super();
 		this.writer = writer;
 		this.title = title;
@@ -32,7 +32,7 @@ public class ReviewVO {
 		this.content = content;
 		this.regDate = regDate;
 		this.modDate = modDate;
-		this.readCount = readCount;
+		this.readCnt = readCnt;
 	}
 	
 	

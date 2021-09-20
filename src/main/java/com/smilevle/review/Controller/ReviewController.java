@@ -1,14 +1,12 @@
 package com.smilevle.review.Controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.github.pagehelper.PageInfo;
-import com.smilevle.review.model.PReviewVO;
+import com.smilevle.review.model.ReviewPageVO;
 import com.smilevle.review.service.ReviewService;
 
 @Controller
@@ -16,9 +14,17 @@ import com.smilevle.review.service.ReviewService;
 public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
+	
 	@RequestMapping({"", "/"})
-	public String reviewPage(Model model) {
-		model.addAttribute("reviewPage", reviewService.getReviewList());
+	public String reviewPage(ReviewPageVO reviewPageVO, Model model, 
+							@RequestParam(value="nowPage", required=false, defaultValue = "1") String nowPage, 
+							@RequestParam(value="cntPerPage", required=false, defaultValue = "8") String cntPerPage) {
+		System.out.println(reviewPageVO);
+		int reviewCnt = reviewService.reviewCount();
+		System.out.println(reviewCnt);
+		reviewPageVO = new ReviewPageVO(reviewCnt, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("reviewPageVO", reviewPageVO);
+		model.addAttribute("reviewPage", reviewService.getReviewPage(reviewPageVO));
 		return "/review/review";
 	}
 }

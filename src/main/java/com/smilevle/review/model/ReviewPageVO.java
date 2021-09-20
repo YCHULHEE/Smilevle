@@ -1,45 +1,98 @@
 package com.smilevle.review.model;
 
-import java.util.List;
+import lombok.ToString;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@ToString
 public class ReviewPageVO {
-	// 현재 페이지
-	private int pageNum;
-	// 페이지당 수량
-	private int pageSize;
-	// 현재 페이지 수
-	private int size;
-	// 현재 페이지의 첫 번째 요소가 데이터베이스에 있는 줄 번호
-	private long startRow;
-	// 현재 페이지의 마지막 요소가 데이터베이스에 있는 줄 번호
-	private long endRow;
-	// 전체 페이지 수
-	private int pages;
-	// 이전 페이지
-	private int prePage;
-	// 다음 페이지
-	private int nextPage;
-	// 첫 페이지인지 여부
-	private boolean isFirstPage = false;
-	// 마지막 페이지인지 여부
-	private boolean isLastPage = false;
-	// 이전 페이지가 있는지 여부
-	private boolean hasPreviousPage = false;
-	// 다음 페이지가 있는지 여부
-	private boolean hasNextPage = false;
-	// 내비게이션 페이지 번호
-	private int navigatePages;
-	// 모든 내비게이션 페이지 번호
-	private int [ ] navigatepageNums;
-	// 내비게이션 바의 첫 페이지
-	private int navigateFirstPage;
-	// 내비게이션 바의 마지막 페이지
-	private int navigateLastPage;
+	
+	// 현재페이지, 시작페이지, 끝페이지, 게시글 총 갯수, 페이지당 글 갯수, 마지막페이지, SQL쿼리에 쓸 start, end
+	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
+	private int cntPage = 5;
+	
+	public ReviewPageVO() {
+	}
+	public ReviewPageVO(int total, int nowPage, int cntPerPage) {
+		setNowPage(nowPage);
+		setCntPerPage(cntPerPage);
+		setTotal(total);
+		calcLastPage(getTotal(), getCntPerPage());
+		calcStartEndPage(getNowPage(), cntPage);
+		calcStartEnd(getNowPage(), getCntPerPage());
+	}
+	// 제일 마지막 페이지 계산
+	public void calcLastPage(int total, int cntPerPage) {
+		setLastPage((int) Math.ceil((double)total / (double)cntPerPage));
+	}
+	// 시작, 끝 페이지 계산
+	public void calcStartEndPage(int nowPage, int cntPage) {
+		setEndPage(((int)Math.ceil((double)nowPage / (double)cntPage)) * cntPage);
+		if (getLastPage() < getEndPage()) {
+			setEndPage(getLastPage());
+		}
+		setStartPage(getEndPage() - cntPage + 1);
+		if (getStartPage() < 1) {
+			setStartPage(1);
+		}
+	}
+	// DB 쿼리에서 사용할 start, end값 계산
+	public void calcStartEnd(int nowPage, int cntPerPage) {
+		setEnd(nowPage * cntPerPage);
+		setStart(getEnd() - cntPerPage + 1);
+	}
+	
+	public int getNowPage() {
+		return nowPage;
+	}
+	public void setNowPage(int nowPage) {
+		this.nowPage = nowPage;
+	}
+	public int getStartPage() {
+		return startPage;
+	}
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+	public int getEndPage() {
+		return endPage;
+	}
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public int getCntPerPage() {
+		return cntPerPage;
+	}
+	public void setCntPerPage(int cntPerPage) {
+		this.cntPerPage = cntPerPage;
+	}
+	public int getLastPage() {
+		return lastPage;
+	}
+	public void setLastPage(int lastPage) {
+		this.lastPage = lastPage;
+	}
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getEnd() {
+		return end;
+	}
+	public void setEnd(int end) {
+		this.end = end;
+	}	
+	public int setCntPage() {
+		return cntPage;
+	}
+	public void getCntPage(int cntPage) {
+		this.cntPage = cntPage;
+	}
+	
 }
