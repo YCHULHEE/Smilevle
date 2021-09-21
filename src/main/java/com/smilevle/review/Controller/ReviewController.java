@@ -45,6 +45,7 @@ public class ReviewController {
 		reviewVO.setWriter_name("박예시");
 		reviewVO.setRegDate(new Date());
 		reviewVO.setModDate(new Date());
+		reviewVO.setReview_no(reviewService.getReviewNo());
 		reviewService.insertReview(reviewVO);
 		model.addAttribute("newReviewNo", reviewVO.getReview_no());
 		return "/review/newReviewSuccess";

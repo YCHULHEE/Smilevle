@@ -14,6 +14,10 @@
 		]]>
 	</select>
 	
+	<select id="getReviewNo" resultType="int">
+		select max(review_no) from tbl_review
+	</select>
+	
 	<select id="reviewCount" resultType="int">
 		select count(*) from tbl_review
 	</select>
@@ -25,6 +29,12 @@
 	<insert id="insertReview" parameterType="com.smilevle.review.model.ReviewVO">
 		<![CDATA[
 		insert into tbl_review values(review_seq.nextVal, #{writer_id}, #{writer_name}, #{title}, #{areacode}, #{location_name}, #{rate}, #{content}, #{regDate}, #{modDate}, 0)
+		]]>
+	</insert>
+	
+	<insert id="insertAttach" parameterType="com.smilevle.review.model.AttachVO">
+		<![CDATA[
+		insert into tbl_review_attach values(photo_seq.nextVal, #{review_no}, #{photo_url})
 		]]>
 	</insert>
 </mapper>

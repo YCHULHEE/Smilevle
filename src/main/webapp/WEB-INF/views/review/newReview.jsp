@@ -99,8 +99,9 @@
 					<script type="text/javascript">
 					 CKEDITOR.replace('content', 
 								{	height: 500,
-									filebrowserUploadUrl: '/Smilevle/review_upload.do'
+									filebrowserUploadUrl: '/upload'
 								});
+					 window.parent.CKEDITOR.tools.callFunction(1, "${url}", "전송완료!");
 					</script>					
 				</div>
 				<div class="container">

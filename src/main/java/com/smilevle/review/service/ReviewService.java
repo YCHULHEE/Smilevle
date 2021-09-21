@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.Page;
+import com.smilevle.review.model.AttachVO;
 import com.smilevle.review.model.PReviewVO;
 import com.smilevle.review.model.ReviewPageVO;
 import com.smilevle.review.model.ReviewVO;
@@ -31,5 +31,13 @@ public class ReviewService {
 	public void insertReview(ReviewVO reviewVO) {
 		System.out.println("Service: " + reviewVO);
 		reviewRepository.insertReview(reviewVO);
+	}
+	
+	public int getReviewNo( ) {
+		return reviewRepository.getReviewNo();
+	}
+	
+	public void insertAttach(AttachVO attachVO) {
+		reviewRepository.insertAttach(attachVO);
 	}
 }

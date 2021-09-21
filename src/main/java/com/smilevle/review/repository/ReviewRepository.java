@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.smilevle.review.model.AttachVO;
 import com.smilevle.review.model.PReviewVO;
 import com.smilevle.review.model.ReviewPageVO;
 import com.smilevle.review.model.ReviewVO;
@@ -40,6 +41,14 @@ public class ReviewRepository {
 	public void insertReview(ReviewVO reviewVO) {
 		System.out.println("Repository: " +  reviewVO);
 		sqlSessionTemplate.insert(MAPPER_NAME_SPACE + "insertReview", reviewVO);
+	}
+	
+	public int getReviewNo() {
+		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE + "getReviewNo");
+	}
+	
+	public void insertAttach(AttachVO attachVO) {
+		sqlSessionTemplate.insert(MAPPER_NAME_SPACE + "insertAttach", attachVO);
 	}
 
 }
