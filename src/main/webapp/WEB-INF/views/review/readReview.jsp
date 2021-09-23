@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%@ page import="kr.co.smilevle.util.AreacodeConverter" %> --%>
+<%@ page import="com.smilevle.config.util.AreacodeConverter" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -163,10 +163,10 @@
 					</tr>
 					<tr>
 						<th scope="row" class="text-left">지역</th>
-						<td class="text-right">${reviewData.areacode }</td>
+						<td class="text-right">${AreacodeConverter.getKey(reviewData.areacode) }</td>
 					</tr>
 					<tr>
-						<th scope="row" class="text-left">건물 명</th>
+						<th scope="row" class="text-left">플레이스</th>
 						<td class="text-right">${reviewData.location_name }</td>
 					</tr>
 					<tr>	
