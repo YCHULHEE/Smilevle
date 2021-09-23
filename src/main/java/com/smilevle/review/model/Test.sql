@@ -8,3 +8,5 @@ select *
 
 select * from member;
 select * from tbl_review;
+
+delete from tbl_review;

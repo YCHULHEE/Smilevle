@@ -25,6 +25,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/static/**")
           .addResourceLocations("classpath:/static/")
           .setCachePeriod(604800);
+        
+        registry.addResourceHandler("/ckUpload/**")
+				.addResourceLocations("/resource/ckUpload/");
     }
 	
 	
@@ -51,5 +54,4 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addViewController("/").setViewName("home");
 	}
 	
-
 }

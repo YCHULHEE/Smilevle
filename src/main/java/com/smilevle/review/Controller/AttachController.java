@@ -28,9 +28,8 @@ public class AttachController {
 	@RequestMapping(value = {"", "/"}, method = RequestMethod.POST)
 	@ResponseBody
 	public void uploadAttach(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) throws Exception {
-		final String SAVE_URL = "files";
-		
-		String saveDirectory = "C:\\Users\\qo010\\git\\Smilevle\\src\\main\\resources\\static\\files";
+		String uploadPath = request.getSession().getServletContext().getRealPath("/").concat("resource\\ckUpload");
+		System.out.println("uploadPath  : " + uploadPath);
 		
 		UUID uid = UUID.randomUUID();
 		
@@ -38,13 +37,13 @@ public class AttachController {
 		PrintWriter printWriter = null;
 		
 		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/thml;charset=UTF-8");
+		response.setContentType("application/json");
 		
 		try {
 			String fileName = upload.getOriginalFilename();
 			byte[] bytes = upload.getBytes();
 			
-			String ckUploadPath = saveDirectory + File.separator + uid + fileName;
+			String ckUploadPath = uploadPath + File.separator + uid + "_" + fileName;
 			System.out.println("ckUploadPath: " + ckUploadPath);
 			
 			out = new FileOutputStream(new File(ckUploadPath));
@@ -52,7 +51,7 @@ public class AttachController {
 			out.flush();
 			
 			printWriter = response.getWriter();
-			String fileUrl = saveDirectory + File.separator + uid + fileName;
+			String fileUrl = "/ckUpload/" + uid + "_" + fileName;
 			JsonObject json = new JsonObject();
 			json.addProperty("uploaded", 1);
 			json.addProperty("fileName", fileName);

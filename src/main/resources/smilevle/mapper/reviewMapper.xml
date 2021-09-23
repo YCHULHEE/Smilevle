@@ -15,7 +15,7 @@
 	</select>
 	
 	<select id="getReviewNo" resultType="int">
-		select max(review_no) from tbl_review
+		select review_seq.nextVal from dual
 	</select>
 	
 	<select id="reviewCount" resultType="int">
@@ -28,7 +28,7 @@
 	
 	<insert id="insertReview" parameterType="com.smilevle.review.model.ReviewVO">
 		<![CDATA[
-		insert into tbl_review values(review_seq.nextVal, #{writer_id}, #{writer_name}, #{title}, #{areacode}, #{location_name}, #{rate}, #{content}, #{regDate}, #{modDate}, 0)
+		insert into tbl_review values(#{review_no}, #{writer_id}, #{writer_name}, #{title}, #{areacode}, #{location_name}, #{rate}, #{content}, #{regDate}, #{modDate}, 0)
 		]]>
 	</insert>
 	

@@ -43,7 +43,7 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 text-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.do">Home</a></span> <span>Review</span></p>
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="/hi">Home</a></span> <span>Review</span></p>
             <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Review</h1>
           </div>
         </div>
@@ -57,7 +57,7 @@
     		<div class="container">
     			&nbsp;
     		</div>
-    		<h2 class="mb-4">새 글 작성 </h2>
+    		<h2 class="mb-4">새 글 작성</h2>
 			<form action="review_writeAction" method="post">
 				<div class="form-group row">
 					<label for="inputTitle" class="col-sm-2 col-form-label">제목</label>
@@ -101,7 +101,6 @@
 								{	height: 500,
 									filebrowserUploadUrl: '/upload'
 								});
-					 window.parent.CKEDITOR.tools.callFunction(1, "${url}", "전송완료!");
 					</script>					
 				</div>
 				<div class="container">
