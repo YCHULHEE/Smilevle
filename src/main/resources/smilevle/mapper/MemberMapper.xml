@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="smilevle.mapper.MemberMapper">
+	<select id="SelectById" parameterType="java.util.HashMap" resultType="com.smilevle.login.model.MemberVO">
+		 <![CDATA[
+		select * from member where memberid =#{memberId}
+		]]>
+	</select>
+	
+	
+	<insert id="insertMember" parameterType="com.smilevle.login.model.MemberVO">	 
+         <![CDATA[
+        insert into member(memberid ,name, password,regdate,email,gender,birthday,phonenum)
+        values(#{memberId},#{name}, #{password},sysdate,#{email},#{gender},#{birthday},#{phonenum}) 
+        ]]> 
+    </insert>
+
+    <!--<select id="selectUserInfoAll" resultType="hashMap">
+    <![CDATA[
+		SELECT id, username, password
+		FROM TBL_USER
+	]]>
+    </select>
+
+    <insert id="addUserInfo" >
+    <![CDATA[
+        insert into TBL_USER(id ,username, password)
+        values(#{id},#{userName}, #{passWord})
+     ]]>
+    </insert>-->
+	
+	<!-- map에 있는 키 값을 가지고 조회하여 파라미터값을 전달해준다.  -->
+	<!--<select id="findByUserNameLike" parameterType="map" resultType="hashMap">
+		SELECT
+			ID,
+			USERNAME,
+			PASSWORD
+		FROM TBL_USER
+		WHERE USERNAME LIKE '%${userName}%'
+	</select>-->
+	
+	<!--<select id="findByUserName" parameterType="map" resultMap="userResultMap">
+		SELECT
+			ID,
+			USERNAME,
+			PASSWORD
+		FROM TBL_USER
+		WHERE USERNAME = #{userName}
+	</select>-->
+	<!-- resultMap 태그를 이용해서 클래스 필드와 데이터베이스 필드를 매핑하는 역할을 한다. -->
+	<!--<resultMap type="info.thecodinglive.model.UserVO" id="userResultMap">
+		<result property="id" column="id"/>
+		<result property="userName" column="username"/>
+		<result property="passWord" column="password"/>
+	</resultMap>-->
+    
+    <!--<select id="foreachUserList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    	SELECT
+     ID,
+     USERNAME,
+     PASSWORD
+    FROM TBL_USER
+    WHERE ID IN
+    	<foreach collection="user_list" item="userId" index="index" open="(" close=")" separator=",">
+    		#{userId}
+    	</foreach>
+    </select>-->
+    
+</mapper>

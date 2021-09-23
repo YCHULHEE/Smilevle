@@ -16,10 +16,10 @@
           <li class="nav-item"><a href="event.do?where=15&areaCode=false"class="nav-link">볼거리</a></li>
           <li class="nav-item"><a href="review.do" class="nav-link">리뷰</a></li>
           <u:notLogin>
-          <li class="nav-item cta"><a href="login.do" class="nav-link"><span>로그인</span></a></li>
+          <li class="nav-item cta"><a href="/login" class="nav-link"><span>로그인</span></a></li>
           </u:notLogin>
           <u:isLogin>
-          <li class="nav-item cta"><a href="logout.do " class="nav-link"><span>로그아웃</span></a></li>
+          <li class="nav-item cta"><a href="/logout " class="nav-link"><span>로그아웃</span></a></li>
           </u:isLogin>
         </ul>
       </div>
