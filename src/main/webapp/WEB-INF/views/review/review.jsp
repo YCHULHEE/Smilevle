@@ -59,6 +59,11 @@
 				</div>
 				<p></p>
     			<div class="row d-flex">
+    				<c:if test="${reviewPageVO.hasNoReviews() }">
+    					<div class="text-center">
+    						<h2>리뷰 게시글이 존재하지 않습니다!</h2>
+    					</div>
+    				</c:if>
     				<c:forEach var="review" items="${reviewPage}">
 	    				<c:choose>
 							<c:when test="${review.photo_url eq null }">
@@ -97,44 +102,42 @@
     		</div>
     	</div>
 	   <div class="text-center">
-   			<nav>
-   			  <div class="block-27">
-				  <ul>
-				  	<c:if test="${reviewPageVO.nowPage != 1 }">
-				  		<li> <a href="review?nowPage=1">&lt;&lt;</a> </li>
-				  	</c:if>
-				 
-				  	<c:if test="${reviewPageVO.startPage > 5 }">
-					  	<li>
-					      <a href="review?nowPage=${reviewPageVO.startPage - 1 }" aria-label="이전">
-					        <span>&lt;</span>
-					      </a>
-					    </li>
-				  	</c:if>
-					<c:forEach var="pNo" begin="${reviewPageVO.startPage }" end="${reviewPageVO.endPage }">
-						<c:choose>
-							<c:when test="${pNo == reviewPageVO.nowPage }">
-								<li class="active"><a href="review?nowPage=${pNo }">${pNo }</a></li>
-							</c:when>
-							<c:otherwise>
-				    			<li><a href="review?nowPage=${pNo }">${pNo }</a></li>								
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:if test="${reviewPageVO.endPage < reviewPageVO.lastPage }">
-					    <li>
-					      <a href="review?nowPage=${reviewPageVO.startPage + 5 }" aria-label="다음">
-					        <span>&gt;</span>
-					      </a>
-					    </li>					
-					</c:if>
-					
-					<c:if test="${reviewPageVO.nowPage != reviewPageVO.lastPage }">
-						<li> <a href="review?nowPage=${reviewPageVO.lastPage }">&gt;&gt;</a> </li>
-					</c:if>
-				  </ul>
-			  </div>
-			</nav>
+   	 	<nav>
+  			  <div class="block-27">
+			  <ul>
+			  	<c:if test="${reviewPageVO.nowPage != 1 }">
+			  		<li> <a href="review?nowPage=1">&lt;&lt;</a> </li>
+			  	</c:if>
+			  	<c:if test="${reviewPageVO.startPage > 5 }">
+				  	<li>
+				      <a href="review?nowPage=${reviewPageVO.startPage - 1 }" aria-label="이전">
+				        <span>&lt;</span>
+				      </a>
+				    </li>
+			  	</c:if>
+				<c:forEach var="pNo" begin="${reviewPageVO.startPage }" end="${reviewPageVO.endPage }">
+					<c:choose>
+						<c:when test="${pNo == reviewPageVO.nowPage }">
+							<li class="active"><a href="review?nowPage=${pNo }">${pNo }</a></li>
+						</c:when>
+						<c:otherwise>
+			    			<li><a href="review?nowPage=${pNo }">${pNo }</a></li>								
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:if test="${reviewPageVO.endPage < reviewPageVO.lastPage }">
+				    <li>
+				      <a href="review?nowPage=${reviewPageVO.startPage + 5 }" aria-label="다음">
+				        <span>&gt;</span>
+				      </a>
+				    </li>					
+				</c:if>
+				<c:if test="${reviewPageVO.nowPage != reviewPageVO.lastPage }">
+					<li> <a href="review?nowPage=${reviewPageVO.lastPage }">&gt;&gt;</a> </li>
+				</c:if>
+			  </ul>
+		  </div>
+		</nav>
 	    </div>
     </section>
     <footer class="ftco-footer ftco-bg-dark ftco-section">

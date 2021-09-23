@@ -41,5 +41,16 @@
 	<delete id="deleteReview" parameterType="java.lang.Integer">
 		delete from tbl_review where review_no = #{review_no}
 	</delete>
+	
+	<update id="modifyReview" parameterType="com.smilevle.review.model.ReviewVO">
+		update tbl_review 
+			set title = #{title}, areacode = #{areacode}, location_name = #{location_name}, rate = #{rate}, content = #{content}, moddate = #{modDate}
+			where review_no = #{review_no}
+	</update>
+	<update id="modifyAttach" parameterType="com.smilevle.review.model.AttachVO">
+		update tbl_review_attach
+			set photo_url = #{photo_url} 
+			where review_no = #{review_no}
+	</update>
 </mapper>
 

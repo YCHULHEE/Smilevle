@@ -100,4 +100,12 @@ public class ReviewPageVO {
 		this.cntPage = cntPage;
 	}
 	
+	public boolean hasNoReviews() {
+		return total == 0;
+	}
+	
+	public boolean hasReviews() {
+		return total > 0;
+	}	 
+	
 }

@@ -44,4 +44,12 @@ public class ReviewService {
 	public void deleteReview(Integer reviewNo) {
 		reviewRepository.deleteReview(reviewNo);
 	}
+	
+	public void modifyReview(ReviewVO reviewVO) {
+		reviewRepository.modifyReview(reviewVO);
+	}
+	
+	public void modifyAttach(AttachVO attachVO) {
+		reviewRepository.modifyAttach(attachVO);
+	}
 }

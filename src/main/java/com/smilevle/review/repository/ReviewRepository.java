@@ -52,5 +52,12 @@ public class ReviewRepository {
 	public void deleteReview(Integer reviewNo) {
 		sqlSessionTemplate.delete(MAPPER_NAME_SPACE + "deleteReview", reviewNo);
 	}
+	
+	public void modifyReview(ReviewVO reviewVO) {
+		sqlSessionTemplate.update(MAPPER_NAME_SPACE + "modifyReview", reviewVO);
+	}
+	public void modifyAttach(AttachVO attachVO) {
+		sqlSessionTemplate.update(MAPPER_NAME_SPACE + "modifyAttach", attachVO);
+	}
 
 }

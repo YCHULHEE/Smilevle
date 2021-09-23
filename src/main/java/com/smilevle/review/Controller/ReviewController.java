@@ -74,4 +74,30 @@ public class ReviewController {
 		reviewService.deleteReview(reviewNo);
 		return "/review/deleteSuccess";
 	}
+	
+	@RequestMapping("/review_modify")
+	public String viewModifyPage(Model model, @RequestParam(value = "no") Integer reviewNo) {
+		ReviewVO reviewVO = reviewService.selectById(reviewNo);
+		model.addAttribute("modReq", reviewVO);
+		return "/review/modifyReview";
+	}
+	
+	@RequestMapping("/review_modifyAction")
+	public String modifyReview(Model model, HttpServletRequest request, HttpServletResponse response, ReviewVO reviewVO, AttachVO attachVO) {
+		reviewVO.setModDate(new Date());
+		System.out.println("modify Controller ~~~~~> " + reviewVO);
+		String fileUrl = (String) (request.getSession(false).getAttribute("fileUrl"));
+		if(fileUrl == null) {
+			attachVO = new AttachVO(null, reviewVO.getReview_no(), "");
+		} else {
+			attachVO = new AttachVO(null, reviewVO.getReview_no(), fileUrl);
+		}
+		reviewService.modifyReview(reviewVO);
+		reviewService.modifyAttach(attachVO);
+		model.addAttribute("modifiedReviewNo", reviewVO.getReview_no());
+		request.getSession(false).removeAttribute("fileUrl");
+		return "/review/modifySuccess";
+		
+		
+	}
 }

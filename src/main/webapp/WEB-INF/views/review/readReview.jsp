@@ -106,7 +106,7 @@
             <div class="container">
     			<c:if test="${authUser.id == reviewData.writer_id }">
     			    <button type="button" class="btn btn btn-primary rounded float-right" data-toggle="modal" data-target="#myModal">삭제</button>
-    				<button type="button" class="btn btn btn-info rounded float-right btn-space" onclick="location.href='review_modify.do?no=${reviewData.review_no}'">수정</button>
+    				<button type="button" class="btn btn btn-info rounded float-right btn-space" onclick="location.href='/review_modify?no=${reviewData.review_no}'">수정</button>
     			</c:if>
     		</div>
 
