@@ -40,4 +40,8 @@ public class ReviewService {
 	public void insertAttach(AttachVO attachVO) {
 		reviewRepository.insertAttach(attachVO);
 	}
+	
+	public void deleteReview(Integer reviewNo) {
+		reviewRepository.deleteReview(reviewNo);
+	}
 }

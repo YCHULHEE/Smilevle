@@ -37,5 +37,9 @@
 		insert into tbl_review_attach values(photo_seq.nextVal, #{review_no}, #{photo_url})
 		]]>
 	</insert>
+	
+	<delete id="deleteReview" parameterType="java.lang.Integer">
+		delete from tbl_review where review_no = #{review_no}
+	</delete>
 </mapper>
 

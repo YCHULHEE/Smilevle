@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.smilevle.review.model.AttachVO;
 import com.smilevle.review.model.ReviewPageVO;
 import com.smilevle.review.model.ReviewVO;
+import com.smilevle.review.model.UserVO;
 import com.smilevle.review.service.ReviewService;
 
 @Controller
@@ -22,13 +23,16 @@ public class ReviewController {
 	private ReviewService reviewService;
 	
 	@RequestMapping("/review")
-	public String reviewPage(ReviewPageVO reviewPageVO, Model model, 
+	public String reviewPage(HttpServletRequest request, HttpServletResponse response, ReviewPageVO reviewPageVO, Model model, 
 							@RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage, 
 							@RequestParam(value = "cntPerPage", required = false, defaultValue = "8") String cntPerPage) {
 		int reviewCnt = reviewService.reviewCount();
 		reviewPageVO = new ReviewPageVO(reviewCnt, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("reviewPageVO", reviewPageVO);
 		model.addAttribute("reviewPage", reviewService.getReviewPage(reviewPageVO));
+		
+		UserVO authUser = new UserVO("example123", "박예시");
+		request.getSession().setAttribute("authUser", authUser);
 		return "/review/review";
 	}
 	@RequestMapping("/review_read")
@@ -63,5 +67,11 @@ public class ReviewController {
 		model.addAttribute("newReviewNo", reviewVO.getReview_no());
 		request.getSession(false).removeAttribute("fileUrl");
 		return "/review/newReviewSuccess";
+	}
+	
+	@RequestMapping("/review_deleteAction")
+	public String deleteReview(@RequestParam(value = "no") Integer reviewNo) {
+		reviewService.deleteReview(reviewNo);
+		return "/review/deleteSuccess";
 	}
 }

@@ -136,7 +136,7 @@
 		                    <textarea name="content" id="content" cols="30" rows="5" class="form-control"></textarea>
                   		</div>
 		                <div class="form-group">
-		                	<input type="submit" value="댓글 작성" class="btn py-3 px-4 btn-primary" onclick="document.location.reload();">
+		                	<input type="submit" value="댓글 작성" class="btn py-2 px-4 btn-primary float-right" onclick="document.location.reload();">
 		                </div>
 					</c:otherwise>
                 </c:choose>
@@ -265,7 +265,7 @@
 	      </div>
 	      <div class="modal-footer">
 		<button type="button" id="toList" class="btn btn-default" data-dismiss="modal">취소</button>
-		<button type="button" id="toContent" class="btn btn-danger" onclick="location.href='review_delete.do?no=${reviewData.review_no}'">삭제</button>
+		<button type="button" id="toContent" class="btn btn-danger" onclick="location.href='/review_deleteAction?no=${reviewData.review_no}'">삭제</button>
 	      </div>
 	    </div>
 	  </div>

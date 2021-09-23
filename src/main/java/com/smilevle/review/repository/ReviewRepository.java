@@ -42,13 +42,15 @@ public class ReviewRepository {
 		System.out.println("Repository: " +  reviewVO);
 		sqlSessionTemplate.insert(MAPPER_NAME_SPACE + "insertReview", reviewVO);
 	}
-	
 	public int getReviewNo() {
 		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE + "getReviewNo");
 	}
-	
 	public void insertAttach(AttachVO attachVO) {
 		sqlSessionTemplate.insert(MAPPER_NAME_SPACE + "insertAttach", attachVO);
+	}
+	
+	public void deleteReview(Integer reviewNo) {
+		sqlSessionTemplate.delete(MAPPER_NAME_SPACE + "deleteReview", reviewNo);
 	}
 
 }
