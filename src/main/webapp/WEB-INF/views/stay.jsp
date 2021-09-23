@@ -68,7 +68,7 @@
 				<div class="col-lg-3 sidebar">
 					<div class="sidebar-wrap bg-light ftco-animate">
 						<h3 class="heading mb-4">Find City</h3>
-						<form action="stay.do" method="get">
+						<form action="stay" method="get">
 							<div class="fields">
 								<div class="form-group">
 									<input type="text" class="form-control" name="searchWord"
@@ -116,7 +116,7 @@
 						<c:forEach var="item" items="${page.tourList}">
 							<div class="col-md-4 ftco-animate">
 								<div class="destination">
-									<a href="tourOne.do?where=32&contentId=${item.contentId}"
+									<a href="tourOne?where=32&contentId=${item.contentId}"
 										class="img img-2 d-flex justify-content-center align-items-center"
 										style="border: 1px solid #dee2e6; background-image: url(${item.firstImage});">
 										<div
@@ -128,7 +128,7 @@
 										<div class="d-flex">
 											<div class="one">
 												<h3>
-													<a href="tourOne.do?where=32&contentId=${item.contentId}">${item.title}</a>
+													<a href="tourOne?where=32&contentId=${item.contentId}">${item.title}</a>
 												</h3>
 												<p class="rate">
 													<i class="icon-star"></i> <i class="icon-star"></i> <i
@@ -223,6 +223,5 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="/static/js/google-map.js"></script>
 	<script src="/static/js/main.js"></script>
-
 </body>
 </html>

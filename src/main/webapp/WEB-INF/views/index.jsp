@@ -43,7 +43,7 @@
             <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong>With 스마이블 <br></strong> 안전한 국내 여행 떠나요</h1>
             <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">가고 싶은 곳 궁금한 곳 찾아보세요!</p>
             <div class="block-17 my-4">
-              <form action="tour_search.do" method="get" class="d-block d-flex">
+              <form action="/tour_search" method="get" class="d-block d-flex">
                 <div class="fields d-block d-flex">
                   <div class="textfield-search one-third">
                   	<input name="searchWord" type="text" class="form-control" placeholder="Ex) 숙소, 여행지, 볼거리 ">

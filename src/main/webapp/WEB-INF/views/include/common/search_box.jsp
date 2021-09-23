@@ -10,7 +10,7 @@
 					<input type="text" class="form-control" name="searchWord"
 						placeholder="이름으로 검색">
 				</div>
-				<input type="hidden" name="where" value="${stayData.stay.contentTypeId}">
+				<input type="hidden" name="where" value="${tourData.tourVO.contentTypeId}">
 				<div class="form-group">
 					<div class="select-wrap one-third">
 						<div class="icon">

@@ -71,7 +71,7 @@
 					<div class="row">
 						<div class="col-md-12 ftco-animate">
 							<div class="single-slider owl-carousel">
-								<c:forEach var="image" items="${stayData.imageList}">
+								<c:forEach var="image" items="${tourData.imageList}">
 									<div class="item">
 										<div class="hotel-img"
 											style="border: 1px solid #dee2e6; background-image: url(${image});"></div>
@@ -81,16 +81,16 @@
 						</div>
 						<div class="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
 							<span>관광지</span>
-							<h2>${stayData.stay.title}</h2>
+							<h2>${tourData.tourVO.title}</h2>
 							<p class="rate mb-5">
 								<span class="loc"><a
-									href="https://map.naver.com/v5/?c=${stayData.stay.mapX},${stayData.stay.mapY},15,0,0,0,dh"><i
-										class="icon-map"></i>${stayData.stay.address}</a></span> <span
+									href="https://map.naver.com/v5/?c=${tourData.tourVO.mapX},${tourData.tourVO.mapY},15,0,0,0,dh"><i
+										class="icon-map"></i>${tourData.tourVO.address}</a></span> <span
 									class="star"> <i class="icon-star"></i> <i
 									class="icon-star"></i> <i class="icon-star"></i> <i
 									class="icon-star"></i> <i class="icon-star-o"></i> 8 Rating
-								</span></br> <span>${stayData.stayContent.homePage}</span>
-							<p>${stayData.stayContent.content}</p>
+								</span></br> <span>${stourData.tourVO.homePage}</span>
+							<p>${tourData.tourVO.content}</p>
 						</div>
 	</section>
 	<jsp:include

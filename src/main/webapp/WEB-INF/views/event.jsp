@@ -68,7 +68,7 @@
 				<div class="col-lg-3 sidebar">
 					<div class="sidebar-wrap bg-light ftco-animate">
 						<h3 class="heading mb-4">Find City</h3>
-						<form action="event.do" method="get">
+						<form action="event" method="get">
 							<div class="fields">
 								<div class="form-group">
 									<input type="text" class="form-control" name="searchWord"
@@ -178,12 +178,12 @@
 						<c:forEach var="item" items="${page.tourList}">
 							<div class="col-md-4 d-flex ftco-animate">
 								<div class="blog-entry align-self-stretch">
-									<a href="tourOne.do?where=32&contentId=${item.contentId}" class="block-20"
+									<a href="tourOne?where=32&contentId=${item.contentId}" class="block-20"
 										style="border: 1px solid #dee2e6; background-image: url(${item.firstImage})"> </a>
 									<div class="text p-4 d-block">
 										<span>여행지</span>
 										<h3 class="heading mt-3">
-											<a href="tourOne.do?where=32&contentId=${item.contentId}">${item.title}</a>
+											<a href="tourOne?where=32&contentId=${item.contentId}">${item.title}</a>
 										</h3>
 										<div class="meta mb-3">
 											<div>
@@ -195,7 +195,7 @@
 											</div>
 										</div>
 										<div class="width-large"><a href="tourOne.do?where=32&contentId=${item.contentId}" class="meta-chat"><span> 조회수 </span><span
-													class="icon-chat"></span> ${item.readCount}</a></div>
+													class="icon-chat"></span> ${item.readCnt}</a></div>
 									</div>
 								</div>
 							</div>

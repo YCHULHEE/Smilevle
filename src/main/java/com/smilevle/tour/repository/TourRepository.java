@@ -29,7 +29,7 @@ public class TourRepository {
 	public TourVO selectById(int contentId) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("contentId", contentId);
-		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE +"selectTourContainer", params);
+		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE +"selectById", params);
 	}
 	
 	public void increaseReadCount(int contentId) {
@@ -37,4 +37,27 @@ public class TourRepository {
 			params.put("contentId", contentId);
 			sqlSessionTemplate.update(MAPPER_NAME_SPACE +"increaseReadCount", params);
 	}
+
+	public int selectCount(String areaCode, String smallCategory, String where, String searchWord) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("areaCode", areaCode);
+		params.put("smallCategory", smallCategory);
+		params.put("where", where);
+		System.out.println(searchWord + "서치워드");
+		params.put("searchWord", searchWord);
+		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE +"selectCount", params);
+	}
+	
+	public List<TourVO> selectList(String areaCode, int pageNum, int size, String smallCategory, String where, String searchWord) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("startRow", pageNum + 1);
+		params.put("endRow", pageNum + size);
+		params.put("areaCode", areaCode);
+		params.put("smallCategory", smallCategory);
+		params.put("where", where);
+		params.put("searchWord", searchWord);
+		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE +"selectList", params);
+	}
+	
+	
 }

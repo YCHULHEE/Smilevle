@@ -15,7 +15,6 @@
 
 	<select id="selectById" parameterType="java.util.HashMap" resultType="com.smilevle.tour.model.TourVO">
 		<![CDATA[
-		select *
 		select * from tbl_tour where content_id = #{contentId}
 		]]>
 	</select>
@@ -25,6 +24,41 @@
 		update tbl_tour set read_cnt = read_cnt + 1 where content_id = #{contentId}
 		]]>
 	</update>
+	
+	<select id="selectList" parameterType="java.util.HashMap" resultType="com.smilevle.tour.model.TourVO">
+		<![CDATA[
+		select * 
+		from (select rownum as rnum, content_id, title, areacode, address, first_image, read_cnt, tel, map_x, map_y, content_type_id, middle_category, 
+		small_category 
+		from (select * from TBL_TOUR where content_type_id = #{where}
+		]]>
+		<if test='areaCode != ""'>
+			<![CDATA[AND areaCode = #{areaCode}]]>
+		</if>
+		
+		<if test='searchWord != ""'>
+			<![CDATA[ AND title LIKE '%'||#{searchWord}||'%']]>
+		</if>
+		<if test='smallCategory != ""'>
+			<![CDATA[AND small_category = #{smallCategory}]]>
+		</if>
+		<![CDATA[order by read_cnt desc) where rownum <= #{endRow}) where rnum >= #{startRow}]]>
+	</select>
+
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		<![CDATA[
+		select count(*) from tbl_tour where content_type_id= #{where}]]>
+		<if test='areaCode != ""'>
+			<![CDATA[ AND areaCode = #{areaCode}]]>
+		</if>
+		<if test='searchWord != ""'>
+			<![CDATA[ AND title LIKE '%'||#{searchWord}||'%']]>
+		</if>
+		<if test='smallCategory != ""'>
+			<![CDATA[ AND small_category = #{smallCategory}]]>
+		</if>
+	</select>
+
 
 	<!--<select id="selectUserInfoAll" resultType="hashMap">
     <![CDATA[
