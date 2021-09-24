@@ -16,7 +16,7 @@
 				<c:forEach var="item" items="${itemList}">
 					<div class="col-md-4 ftco-animate">
 		    				<div class="destination width-middle">
-		    					<a href="tourOne.do?where=${item.areaCode}&contentId=${item.contentId}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${item.firstImage});">
+		    					<a href="tourOne?where=${item.areaCode}&contentId=${item.contentId}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${item.firstImage});">
 		    						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
@@ -24,7 +24,7 @@
 		    					<div class="text p-3">
 		    						<div class="d-flex">
 		    							<div class="one">
-				    						<h3><a href="tourOne.do?where=${item.areaCode}&contentId=${item.contentId}">${item.title}</a></h3>
+				    						<h3><a href="tourOne?where=${item.areaCode}&contentId=${item.contentId}">${item.title}</a></h3>
 			    						</div>
 			    						<div class="two">
 			   

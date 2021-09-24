@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <!-- top버튼 -->
-<button type="button" href="#" id="TopBtn"><img src="/resources/images/top.png" id="TopImg"></button>
+<button type="button" href="#" id="TopBtn"><img src="/static/images/top.png" id="TopImg"></button>
 <script>
 	$(function() {
 		$(window).scroll(function(){

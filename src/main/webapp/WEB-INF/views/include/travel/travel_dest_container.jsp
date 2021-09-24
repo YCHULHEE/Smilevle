@@ -17,14 +17,14 @@
     					<c:forEach var="travelDest" items="${travelDestList}">
     					<div class="item">
 		    				<div class="destination">
-		    					<a href="tourOne.do?where=32&contentId=${travelDest.contentId}" class="img d-flex justify-content-center align-items-center" 
+		    					<a href="tourOne?where=32&contentId=${travelDest.contentId}" class="img d-flex justify-content-center align-items-center" 
 		    					style="border: 1px solid #dee2e6; background-image: url(${travelDest.firstImage})"> 
 		    						<div class="icon d-flex justify-content-center align-items-center">
 		    							<span class="icon-search2"></span>
 		    						</div>
 		    					</a>
 		    					<div class="text p-3" style="height: 130px">
-		    						<h3><a href="tourOne.do?where=32&contentId=${travelDest.contentId}">${travelDest.title}</a></h3>
+		    						<h3><a href="tourOne?where=32&contentId=${travelDest.contentId}">${travelDest.title}</a></h3>
 		    						<span class="listing">${travelDest.address}</span>
 		    					</div>
 		    				</div>

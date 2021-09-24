@@ -50,7 +50,7 @@
 					data-scrollax=" properties: { translateY: '70%' }">
 					<p class="breadcrumbs"
 						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-						<span class="mr-2"><a href="index.do">Home</a></span> <span>숙소</span>
+						<span class="mr-2"><a href="/">Home</a></span> <span>숙소</span>
 					</p>
 					<h1 class="mb-3 bread"
 						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">나와
@@ -72,7 +72,7 @@
 							<div class="fields">
 								<div class="form-group">
 									<input type="text" class="form-control" name="searchWord"
-										placeholder="숙소 이름으로 검색">
+										placeholder="이름으로 검색">
 								</div>
 								<div class="form-group">
 									<div class="select-wrap one-third">

@@ -8,16 +8,16 @@
 
 	<title>관리자모드</title>
 	
-	<script src="/resources/jquery/jquery-3.5.1.min.js"></script>
+	<script src="/static/css/jquery-3.2.1.min.js"></script>
 	
-	<link rel="stylesheet" href="/resources/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="/resources/bootstrap/bootstrap-theme.min.css">
-	<script src="/resources/bootstrap/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/static/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/bootstrap/bootstrap-theme.min.css">
+	<script src="/static/bootstrap/bootstrap.min.js"></script>
 	
-	<link rel="stylesheet" href="/resources/css/admin/index.css">
-	<link rel="stylesheet" href="/resources/css/admin/goods/list.css">
+	<link rel="stylesheet" href="/static/css/admin/index.css">
+	<link rel="stylesheet" href="/static/css/admin/goods/list.css">
 	
-	<link rel="icon" href="/resources/images/gun.png" />
+	<link rel="icon" href="/static/images/gun.png" />
 </head>
 
 <body>
@@ -53,13 +53,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${list }" var="list">
+						<c:forEach items="${stayList}" var="stay">
 						<tr>
 							<td>${list.gdsNum }</td>
-							<td><img src="${list.gdsThumbImg }"></td>
-							<td><a href="/admin/goods/view?n=${list.gdsNum }">${list.gdsName }</a></td>
+							<td><img src="${stay.firstImage}"></td>
+							<td><a href="${stay.firstImage}">${stay.title}</a></td>
 							<%-- <td>${list.cateCode }</td> --%>
-							<td>${list.cateName }</td>
+							<td>${stay.title}</td>
 							<td><fmt:formatNumber value="${list.gdsPrice }" pattern="###,###,###" /></td>
 							<c:choose>
 								<c:when test="${list.gdsStock <= 100}"><td style="color:red; width:200px;">${list.gdsStock }(수량 부족 임박!)</td></c:when>
@@ -83,60 +83,5 @@
 			<%@ include file="../include/footer.jsp"%>
 		</div>
 	</footer>
-
-	<script>
-		var jsonData = JSON.parse('${category}');
-		console.log(jsonData);
-
-		var cate1Arr = new Array();
-		var cate1Obj = new Object();
-
-		for (var i = 0; i < jsonData.length; i++) {
-			if (jsonData[i].level == "1") {
-				cate1Obj = new Object(); 
-				cate1Obj.cateCode = jsonData[i].cateCode;
-				cate1Obj.cateName = jsonData[i].cateName;
-				cate1Arr.push(cate1Obj);
-			}
-		}
-
-		var cate1Select = $("select.category1")
-
-		for (var i = 0; i < cate1Arr.length; i++) {
-			cate1Select.append("<option value='" + cate1Arr[i].cateCode + "'>" + cate1Arr[i].cateName + "</option>");
-		}
-		
-		$(document).on("change", "select.category1", function(){
-
-			var cate2Arr = new Array();
-			var cate2Obj = new Object();
-			
-			for(var i = 0; i < jsonData.length; i++) {
-				if(jsonData[i].level == "2") {
-					cate2Obj = new Object(); 
-					cate2Obj.cateCode = jsonData[i].cateCode;
-					cate2Obj.cateName = jsonData[i].cateName;
-					cate2Obj.cateCodeRef = jsonData[i].cateCodeRef;
-				 	cate2Arr.push(cate2Obj);
-				}
-			}
-			 
-			var cate2Select = $("select.category2");
-			
-			cate2Select.children().remove();
-
-			$("option:selected", this).each(function(){
-				var selectVal = $(this).val();
-				cate2Select.append("<option value='" + selectVal + "'>전체</option>");
-
-				for(var i = 0; i < cate2Arr.length; i++){
-					if(selectVal == cate2Arr[i].cateCodeRef){
-						cate2Select.append("<option value='" + cate2Arr[i].cateCode + "'>" + cate2Arr[i].cateName + "</option>");
-					}
-				}
-			})
-		});
-		
-	</script>
 </body>
 </html>

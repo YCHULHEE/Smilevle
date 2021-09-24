@@ -8,14 +8,14 @@
 
 	<title>관리자모드</title>
 	
-	<script src="/resources/jquery/jquery-3.5.1.min.js"></script>
+	<script src="/static/css/jquery-3.2.1.min.js"></script>
 	
-	<link rel="stylesheet" href="/resources/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="/resources/bootstrap/bootstrap-theme.min.css">
-	<script src="/resources/bootstrap/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/static/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/bootstrap/bootstrap-theme.min.css">
+	<script src="/static/bootstrap/bootstrap.min.js"></script>
 	
-	<link rel="stylesheet" href="/resources/css/admin/index.css">
-	<link rel="stylesheet" href="/resources/css/admin/goods/list.css">
+	<link rel="stylesheet" href="/static/css/admin/index.css">
+	<link rel="stylesheet" href="/static/css/admin/goods/list.css">
 	
 	<link rel="icon" href="/resources/images/gun.png" />
 </head>

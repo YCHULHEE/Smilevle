@@ -61,9 +61,9 @@
               </form>
             </div>
             <p class="browse d-md-flex">
-			<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-hotel"></i><strong>숙소</strong></a></span> 
-			<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-meeting-point"></i><strong>여행지</strong></a></span> 
-			<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-support"></i><strong>볼거리</strong></a></span>
+			<span class="d-flex justify-content-md-center align-items-md-center"><a href="stay"><i class="flaticon-hotel"></i><strong>숙소</strong></a></span> 
+			<span class="d-flex justify-content-md-center align-items-md-center"><a href="travel"><i class="flaticon-meeting-point"></i><strong>여행지</strong></a></span> 
+			<span class="d-flex justify-content-md-center align-items-md-center"><a href="event"><i class="flaticon-support"></i><strong>볼거리</strong></a></span>
                 </p>
           </div>
         </div>

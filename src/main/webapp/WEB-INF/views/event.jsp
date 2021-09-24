@@ -72,7 +72,7 @@
 							<div class="fields">
 								<div class="form-group">
 									<input type="text" class="form-control" name="searchWord"
-										placeholder="숙소 이름으로 검색">
+										placeholder="이름으로 검색">
 								</div>
 								<div class="form-group">
 									<div class="select-wrap one-third">

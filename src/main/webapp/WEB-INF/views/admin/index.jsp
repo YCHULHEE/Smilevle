@@ -4,18 +4,17 @@
 	pageEncoding="UTF-8"%>
 <html>
 <head>
-
 	<title>관리자모드</title>
 	
-	<script src="/resources/jquery/jquery-3.5.1.min.js"></script>
+	<script src="/static/resources/js/jquery-3.2.1.min.js"></script>
 	
-	<link rel="stylesheet" href="/resources/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="/resources/bootstrap/bootstrap-theme.min.css">
-	<script src="/resources/bootstrap/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/static/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/bootstrap/bootstrap-theme.min.css">
+	<script src="/static/bootstrap/bootstrap.min.js"></script>
 	
-	<link rel="stylesheet" href="/resources/css/admin/index.css">
+	<link rel="stylesheet" href="/static/css/admin/index.css">
 	
-	<link rel="icon" href="/resources/images/gun.png" />
+	<link rel="icon" href="/static/images/gun.png" />
 	
 </head>
 
@@ -43,7 +42,7 @@
 	
 	<footer id="footer">
 		<div id="footer_box">
-			<%@ include file="../include/footer.jsp"%>
+			<%@ include file="include/footer.jsp"%>
 		</div>
 	</footer>
 	

@@ -66,7 +66,7 @@
 				<div class="col-lg-3 sidebar">
 					<div class="sidebar-wrap bg-light ftco-animate">
 						<h3 class="heading mb-4">Find City</h3>
-						<form action="travel.do" method="get">
+						<form action="travel" method="get">
 							<div class="fields">
 								<div class="form-group">
 									<input type="text" class="form-control" name="searchWord"

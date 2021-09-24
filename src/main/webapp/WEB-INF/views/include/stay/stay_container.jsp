@@ -18,7 +18,7 @@
 				<c:forEach var="stay" items="${stayList}">
 					<div class="col-sm col-md-6 col-lg ftco-animate">
 						<div class="destination">
-							<a href="tourOne.do?where=32&contentId=${stay.contentId}"
+							<a href="tourOne?where=32&contentId=${stay.contentId}"
 								class="img img-2 d-flex justify-content-center align-items-center"
 								style="border: 1px solid #dee2e6; background-image: url(${stay.firstImage})">
 								<div
@@ -30,7 +30,7 @@
 								<div class="d-flex">
 									<div class="one">
 										<h3>
-											<a href="tourOne.do?where=32&contentId=${stay.contentId}">${stay.title}</a>
+											<a href="tourOne?where=32&contentId=${stay.contentId}">${stay.title}</a>
 										</h3>
 									</div>
 									<div class="two">

@@ -35,7 +35,7 @@ public class TourController {
 	
 	@RequestMapping({"/", ""})
 	public String viewMainPage(Model model) throws IOException {
-		coronaService.updateCorona();
+//		coronaService.updateCorona();
 //		
 		CoronaVO corona = coronaService.selectCoronaLowOrderRandom(5);
 //		List<CoronaVO> coronaList = coronaService.selectCoronaList(10);
@@ -75,8 +75,53 @@ public class TourController {
 		
 		return "stay";
 	}
+	@RequestMapping(value = "travel")
+	public String viewTravel(@RequestParam(name = "pageNo", required = false) String pageNoVal, @RequestParam(name = "areaCode", required = false)String areaCode, @RequestParam(name = "smallCategory", required = false)String smallCategory, 
+			@RequestParam(name = "searchWord", required = false)String searchWord, Model model) {
+		int pageNo = 1;
+		String where = "12";
+		if (pageNoVal != null) {
+			pageNo = Integer.parseInt(pageNoVal);
+		}
+		
+		TourPage page =tourService.getTourPage(pageNo, areaCode, smallCategory, where, searchWord);
+		
+		model.addAttribute("page", page);
+		model.addAttribute("pageNo", pageNo +"");
+		model.addAttribute("areaCode", areaCode);
+		model.addAttribute("areaMap", mapInfomation.getAreaMap());
+		model.addAttribute("itemMap", mapInfomation.getTravelDestMap());
+		model.addAttribute("smallCategory", smallCategory);
+		model.addAttribute("where", where);
+		model.addAttribute("searchWord", searchWord);
+		
+		return "travel_dest";
+	}
 	
-	@RequestMapping("tourOne")
+	@RequestMapping(value = "event")
+	public String viewEvent(@RequestParam(name = "pageNo", required = false) String pageNoVal, @RequestParam(name = "areaCode", required = false)String areaCode, @RequestParam(name = "smallCategory", required = false)String smallCategory, 
+			@RequestParam(name = "searchWord", required = false)String searchWord, Model model) {
+		int pageNo = 1;
+		String where = "15";
+		if (pageNoVal != null) {
+			pageNo = Integer.parseInt(pageNoVal);
+		}
+		
+		TourPage page =tourService.getTourPage(pageNo, areaCode, smallCategory, where, searchWord);
+		
+		model.addAttribute("page", page);
+		model.addAttribute("pageNo", pageNo +"");
+		model.addAttribute("areaCode", areaCode);
+		model.addAttribute("areaMap", mapInfomation.getAreaMap());
+		model.addAttribute("itemMap", mapInfomation.getEventMap());
+		model.addAttribute("smallCategory", smallCategory);
+		model.addAttribute("where", where);
+		model.addAttribute("searchWord", searchWord);
+		
+		return "event";
+	}
+	
+	@RequestMapping(value = "tourOne")
 	public String viewTourOne(@RequestParam(name ="contentId") String contentId, Model model) {
 		int contentIdVal = Integer.parseInt(contentId);
 		TourData tourData  = tourService.getTour(contentIdVal, true);
@@ -106,7 +151,7 @@ public class TourController {
 		return "tour_one";
 	}
 	
-	@GetMapping("tour_search")
+	@GetMapping(value = "tour_search")
 	public String searchTour(@RequestParam(name = "pageNo", required = false) String pageNoVal, @RequestParam(name = "areaCode", required = false)String areaCode, @RequestParam(name = "smallCategory", required = false)String smallCategory, 
 			@RequestParam(name = "searchWord", required = false)String searchWord, @RequestParam(name = "where", required = false)String contentTypeId, Model model) {
 		
@@ -146,6 +191,4 @@ public class TourController {
 		
 		return viewPage;
 	}
-	
-
 }
