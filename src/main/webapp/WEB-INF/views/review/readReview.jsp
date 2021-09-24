@@ -38,7 +38,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			alert('test');
 			loadComment();
 		});
 		function loadComment() {
@@ -119,7 +118,7 @@
               <!-- END comment-list -->
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">댓글작성</h3>
-                <form id="commentForm" class="p-5 bg-light" method="post" action="review_comment_write.do" target="iframe1">
+                <form id="commentForm" class="p-5 bg-light" method="post" action="/comment_write?no=${reviewData.review_no}" target="iframe1">
                 <c:choose>
 					<c:when test="${authUser == null }">
 					  <div class="form-group">
@@ -130,14 +129,11 @@
 					<c:otherwise>
 						<h6>${authUser.id }</h6>
 						<div class="form-group">
-							<input type="hidden" name="rwNum" id="rwNum" value="${reviewData.review_no }">
-						</div>
-						<div class="form-group">
 		                    <label for="content">내용</label>
 		                    <textarea name="content" id="content" cols="30" rows="5" class="form-control"></textarea>
                   		</div>
 		                <div class="form-group">
-		                	<input type="submit" value="댓글 작성" class="btn py-2 px-4 btn-primary float-right" onclick="document.location.reload();">
+		                	<input type="submit" value="댓글 작성" class="btn py-2 px-4 btn-primary float-right" onclick="window.location.reload();">
 		                </div>
 					</c:otherwise>
                 </c:choose>

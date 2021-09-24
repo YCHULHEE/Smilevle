@@ -16,4 +16,12 @@ public class CommentService {
 	public List<CommentVO> getCommentList(Integer reviewNo) {
 		return commentRepository.getCommentList(reviewNo);
 	}
+	
+	public void writeComment(CommentVO commentVO) {
+		commentRepository.writeComment(commentVO);
+	}
+	
+	public int getCommentNo() {
+		return commentRepository.getCommentNo();
+	}
 }

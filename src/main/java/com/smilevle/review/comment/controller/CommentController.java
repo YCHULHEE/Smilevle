@@ -1,6 +1,6 @@
 package com.smilevle.review.comment.controller;
 
-import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smilevle.review.comment.model.CommentVO;
 import com.smilevle.review.comment.service.CommentService;
+import com.smilevle.review.model.UserVO;
 
 @Controller
 public class CommentController {
@@ -40,4 +41,14 @@ public class CommentController {
 		response.getWriter().print(result);
 	}
 	
+	@RequestMapping("/comment_write")
+	public void writeComment(HttpServletRequest request, HttpServletResponse response, 
+							 @RequestParam(value = "no", required = true) Integer reviewNo, CommentVO commentVO) {
+		commentVO.setComment_no(commentService.getCommentNo());
+		commentVO.setReview_no(reviewNo);
+		UserVO authUser = (UserVO) request.getSession(false).getAttribute("authUser");
+		commentVO.setWriter_id(authUser.getId());
+		commentVO.setRegdate(new Date());
+		commentService.writeComment(commentVO);
+	}
 }

@@ -18,4 +18,12 @@ public class CommentRepository {
 	public List<CommentVO> getCommentList(Integer reviewNo) {
 		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE + "commentList", reviewNo);
 	}
+	
+	public void writeComment(CommentVO commentVO) {
+		sqlSessionTemplate.insert(MAPPER_NAME_SPACE + "writeComment", commentVO);
+	}
+	
+	public int getCommentNo() {
+		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE + "getCommentNo");
+	}
 }
