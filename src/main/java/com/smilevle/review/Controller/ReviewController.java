@@ -87,17 +87,16 @@ public class ReviewController {
 		reviewVO.setModDate(new Date());
 		System.out.println("modify Controller ~~~~~> " + reviewVO);
 		String fileUrl = (String) (request.getSession(false).getAttribute("fileUrl"));
-		if(fileUrl == null) {
-			attachVO = new AttachVO(null, reviewVO.getReview_no(), "");
-		} else {
+		if(fileUrl != null) {
 			attachVO = new AttachVO(null, reviewVO.getReview_no(), fileUrl);
+		} else {
+			attachVO = reviewService.selectAttachById(reviewVO.getReview_no());
 		}
+		System.out.println("modify Controller ~~~~~> " + attachVO);
 		reviewService.modifyReview(reviewVO);
 		reviewService.modifyAttach(attachVO);
 		model.addAttribute("modifiedReviewNo", reviewVO.getReview_no());
 		request.getSession(false).removeAttribute("fileUrl");
 		return "/review/modifySuccess";
-		
-		
 	}
 }

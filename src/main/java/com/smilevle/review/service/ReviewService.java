@@ -28,6 +28,10 @@ public class ReviewService {
 		return reviewRepository.selectById(reviewNo);
 	}
 	
+	public AttachVO selectAttachById(Integer reviewNo) {
+		return reviewRepository.selectAttachById(reviewNo);
+	}
+	
 	public void insertReview(ReviewVO reviewVO) {
 		System.out.println("Service: " + reviewVO);
 		reviewRepository.insertReview(reviewVO);

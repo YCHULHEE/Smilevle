@@ -38,6 +38,10 @@ public class ReviewRepository {
 		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE + "selectById", params);
 	}
 	
+	public AttachVO selectAttachById(Integer reviewNo) {
+		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE + "selectAttachById", reviewNo);
+	}
+	
 	public void insertReview(ReviewVO reviewVO) {
 		System.out.println("Repository: " +  reviewVO);
 		sqlSessionTemplate.insert(MAPPER_NAME_SPACE + "insertReview", reviewVO);
