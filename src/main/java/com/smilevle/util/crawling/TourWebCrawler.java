@@ -9,6 +9,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.sql.SQLException;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -195,8 +196,13 @@ public class TourWebCrawler {
 					} else {
 						continue;
 					}
+					Random random = new Random();
+					
+					random.setSeed(System.currentTimeMillis());
+					
+					
 					if (!getTagValue("readcount", eElement).equals("")) {
-						tour.setReadCnt(Integer.parseInt(getTagValue("readcount", eElement)));
+						tour.setReadCnt(Integer.parseInt);
 					} else {
 						tour.setReadCnt(0);
 					}

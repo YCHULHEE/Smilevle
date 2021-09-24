@@ -7,7 +7,7 @@
 		<div class="row justify-content-start mb-5 pb-3">
 			<div class="col-md-7 heading-section ftco-animate">
 				<h2 class="mb-4">
-					<strong>지금 HOT한 숙박업소는?  </strong> Stay
+					<strong>지금 HOT한 숙박업소는? </strong> Stay
 				</h2>
 			</div>
 		</div>
@@ -34,14 +34,14 @@
 										</h3>
 									</div>
 									<div class="two">
-										<p class="bottom-area d-flex">
-											<span></span> <span class="ml-auto"><a
-												href="#">예약</a></span>
-										</p>
+										
 									</div>
 								</div>
 								<p class="days">
 									<span>${stay.address}</span>
+								</p>
+								<p class="bottom-area d-flex">
+									<span></span> <span class="ml-auto"><a href="#">예약하기</a><span>  </span><a href="#" id="write">리뷰작성</a></span>
 								</p>
 							</div>
 						</div>

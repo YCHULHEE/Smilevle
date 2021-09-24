@@ -1,4 +1,4 @@
-package com.smilevle.tour.model;
+ package com.smilevle.tour.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
