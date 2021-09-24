@@ -38,25 +38,26 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			loadComment()
+			alert('test');
+			loadComment();
 		});
 		function loadComment() {
-			$.getJSON('/Smilevle/review_comment_list.do?no=${reviewData.review_no}', function(data) {
+			$.getJSON('/comment_list?no=${reviewData.review_no}', function(data) {
 				console.log(data);
 				if(data == "") {
 					$('#comment').append('<li class=comment><h5 class=text-center>작성된 댓글이 없습니다!</h5></li>');
 				}
 				else {
 					$.each(data, function() {
-						if(this.writerId == '${authUser.id}') {
-							$('#comment').append('<li class=comment><div class=comment-body><h4>' + this.writerId +
-									'</h4><div class=meta>' + this.regDate + '</div><p>' + this.content + '</p><p>' + 
+						if(this.writer_id == '${authUser.id}') {
+							$('#comment').append('<li class=comment><div class=comment-body><h4>' + this.writer_id +
+									'</h4><div class=meta>' + this.regdate + '</div><p>' + this.content + '</p><p>' + 
 									'<form method=POST action=review_comment_delete.do target=iframe1>' + 
-									'<input type=hidden name=commNo id=commNo value=' + this.commentNo + '>' + 
+									'<input type=hidden name=commNo id=commNo value=' + this.comment_no + '>' + 
 									'<input type=submit id=commentDelete value=삭제 class=btn btn-secondary btn-sm onclick=deleteCommentConfirm();></form></p></div></li>');
 						} else {
-							$('#comment').append('<li class=comment><div class=comment-body><h3>' + this.writerId +
-									'</h3><div class=meta>' + this.regDate + '</div><p>' + this.content + '</p></div></li>');
+							$('#comment').append('<li class=comment><div class=comment-body><h3>' + this.writer_id +
+									'</h3><div class=meta>' + this.regdate + '</div><p>' + this.content + '</p></div></li>');
 
 						}
 						

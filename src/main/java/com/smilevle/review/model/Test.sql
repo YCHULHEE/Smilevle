@@ -8,6 +8,12 @@ select *
 drop sequence review_seq;
 create sequence review_seq;
 select * from member;
-select * from tbl_review;
+select * from tbl_review order by review_no desc;
 select review_seq.nextVal from dual;
 delete from tbl_review;
+
+select * from tbl_review_comment;
+insert into tbl_review_comment values (review_comment_seq.nextval, 77, 'example123', sysdate, '댓글테스트입니다2.');
+select * from tbl_review_comment 
+	where review_no = 78
+	order by comment_no;
