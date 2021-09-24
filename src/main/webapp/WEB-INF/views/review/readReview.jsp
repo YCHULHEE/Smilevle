@@ -51,9 +51,9 @@
 						if(this.writer_id == '${authUser.id}') {
 							$('#comment').append('<li class=comment><div class=comment-body><h4>' + this.writer_id +
 									'</h4><div class=meta>' + this.regdate + '</div><p>' + this.content + '</p><p>' + 
-									'<form method=POST action=review_comment_delete.do target=iframe1>' + 
-									'<input type=hidden name=commNo id=commNo value=' + this.comment_no + '>' + 
-									'<input type=submit id=commentDelete value=삭제 class=btn btn-secondary btn-sm onclick=deleteCommentConfirm();></form></p></div></li>');
+									'<form method=POST action=/comment_delete target=iframe1>' + 
+									'<input type=hidden name=commentNo id=commentNo value=' + this.comment_no + '>' + 
+									'<input type=submit id=commentDelete value=삭제 class="btn btn-secondary btn-sm" onclick=deleteCommentAlert();></form></p></div></li>');
 						} else {
 							$('#comment').append('<li class=comment><div class=comment-body><h3>' + this.writer_id +
 									'</h3><div class=meta>' + this.regdate + '</div><p>' + this.content + '</p></div></li>');
@@ -65,11 +65,10 @@
 				
 			})
 		}
-		function deleteCommentConfirm(){
-			 if(confirm("삭제하시겠습니까?")) {
-			  location.href="review_comment_delete.do";
-			  document.location.reload();
-			 }
+		function deleteCommentAlert(){
+			alert("댓글이 삭제되었습니다!");
+			location.href="/comment_delete";
+			window.location.reload();
 		}
 	</script>
   </head>

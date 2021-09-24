@@ -16,4 +16,8 @@
 	<select id="getCommentNo" resultType="int">
 		select review_comment_seq.nextval from dual
 	</select>
+	
+	<delete id="deleteComment" parameterType="java.lang.Integer">
+		delete from tbl_review_comment where comment_no = #{commentNo}
+	</delete>
 </mapper>

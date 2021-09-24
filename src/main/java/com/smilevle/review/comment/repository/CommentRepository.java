@@ -26,4 +26,8 @@ public class CommentRepository {
 	public int getCommentNo() {
 		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE + "getCommentNo");
 	}
+	
+	public void deleteComment(Integer commentNo) {
+		sqlSessionTemplate.delete(MAPPER_NAME_SPACE + "deleteComment", commentNo);
+	}
 }

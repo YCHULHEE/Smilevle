@@ -84,14 +84,12 @@ public class ReviewController {
 	@RequestMapping("/review_modifyAction")
 	public String modifyReview(Model model, HttpServletRequest request, HttpServletResponse response, ReviewVO reviewVO, AttachVO attachVO) {
 		reviewVO.setModDate(new Date());
-		System.out.println("modify Controller ~~~~~> " + reviewVO);
 		String fileUrl = (String) (request.getSession(false).getAttribute("fileUrl"));
 		if(fileUrl != null) {
 			attachVO = new AttachVO(null, reviewVO.getReview_no(), fileUrl);
 		} else {
 			attachVO = reviewService.selectAttachById(reviewVO.getReview_no());
 		}
-		System.out.println("modify Controller ~~~~~> " + attachVO);
 		reviewService.modifyReview(reviewVO);
 		reviewService.modifyAttach(attachVO);
 		model.addAttribute("modifiedReviewNo", reviewVO.getReview_no());

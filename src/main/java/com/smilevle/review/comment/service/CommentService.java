@@ -24,4 +24,8 @@ public class CommentService {
 	public int getCommentNo() {
 		return commentRepository.getCommentNo();
 	}
+	
+	public void deleteComment(Integer commentNo) {
+		commentRepository.deleteComment(commentNo);
+	}
 }

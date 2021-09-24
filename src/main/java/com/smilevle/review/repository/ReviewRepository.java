@@ -24,7 +24,6 @@ public class ReviewRepository {
 		
 		params.put("start", reviewPageVO.getStart());
 		params.put("end", reviewPageVO.getEnd());
-		System.out.println(reviewPageVO);
 		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE + "selectReviewList", params);
 	}
 	
@@ -43,7 +42,6 @@ public class ReviewRepository {
 	}
 	
 	public void insertReview(ReviewVO reviewVO) {
-		System.out.println("Repository: " +  reviewVO);
 		sqlSessionTemplate.insert(MAPPER_NAME_SPACE + "insertReview", reviewVO);
 	}
 	public int getReviewNo() {

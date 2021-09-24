@@ -1,5 +1,6 @@
 package com.smilevle.review.comment.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -31,7 +32,8 @@ public class CommentController {
 		for(CommentVO comment : commentList) {
 			JSONObject commentJSON = new JSONObject();
 			commentJSON.put("comment_no", comment.getComment_no().toString());
-			commentJSON.put("regdate", comment.getRegdate().toString());
+			SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+			commentJSON.put("regdate", format1.format(comment.getRegdate()));
 			commentJSON.put("review_no", comment.getReview_no().toString());
 			commentJSON.put("writer_id", comment.getWriter_id());
 			commentJSON.put("content", comment.getContent());
@@ -50,5 +52,10 @@ public class CommentController {
 		commentVO.setWriter_id(authUser.getId());
 		commentVO.setRegdate(new Date());
 		commentService.writeComment(commentVO);
+	}
+	
+	@RequestMapping("/comment_delete")
+	public void deleteComment(Integer commentNo) {
+		commentService.deleteComment(commentNo);
 	}
 }
