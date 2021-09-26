@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.smilevle.config.util.AreacodeConverter" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -53,7 +54,7 @@
 									'</h4><div class=meta>' + this.regdate + '</div><p>' + this.content + '</p><p>' + 
 									'<form method=POST action=/comment_delete target=iframe1>' + 
 									'<input type=hidden name=commentNo id=commentNo value=' + this.comment_no + '>' + 
-									'<input type=submit id=commentDelete value=삭제 class="btn btn-secondary btn-sm" onclick=deleteCommentAlert();></form></p></div></li>');
+									'<input type=submit id=commentDelete value=삭제 class="btn btn-secondary btn-sm float-right" onclick=deleteCommentAlert();></form></p></div></li>');
 						} else {
 							$('#comment').append('<li class=comment><div class=comment-body><h3>' + this.writer_id +
 									'</h3><div class=meta>' + this.regdate + '</div><p>' + this.content + '</p></div></li>');
@@ -153,6 +154,10 @@
 						<th scope="row" class="text-left">No.</th>
 						<td class="text-right">${reviewData.review_no }</td>	
 					</tr>
+					<tr>
+						<th scope="row" class="text-left">작성일시</th>
+						<td class="text-right"><fmt:formatDate value="${reviewData.regDate}" pattern="yyyy.MM.dd HH:mm:ss"/></td>				
+					</tr>					
 					<tr>
 						<th scope="row" class="text-left">작성자</th>
 						<td class="text-right">${reviewData.writer_name }</td>				

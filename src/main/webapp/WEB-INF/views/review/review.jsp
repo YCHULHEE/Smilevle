@@ -107,7 +107,7 @@
 						              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
 						                <h3 class="heading mt-3"><a onClick="location.href='review_read?no=${review.review_no }&pageNo=${reviewPageVO.nowPage }'" style="cursor: pointer;">${review.title }</a></h3>
 						                <div class="meta mb-3">
-						                  <div><h6><fmt:formatDate value="${review.regDate}" pattern="yyyy.MM.dd HH:mm:ss"/></h6></div>
+						                  <div><h6><fmt:formatDate value="${review.regDate}" pattern="yyyy.MM.dd"/></h6></div>
 						                  <div>${review.writer_name }</div>
 						                </div>
 						              </div>
@@ -122,7 +122,7 @@
 						              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
 						                <h3 class="heading mt-3"><a onClick="location.href='review_read?no=${review.review_no }&pageNo=${reviewPageVO.nowPage }'" style="cursor: pointer;">${review.title }</a></h3>
 						                <div class="meta mb-3">
-						                  <div><h6><fmt:formatDate value="${review.regDate}" pattern="yyyy.MM.dd HH:mm:ss"/></h6></div>
+						                  <div><h6><fmt:formatDate value="${review.regDate}" pattern="yyyy.MM.dd"/></h6></div>
 						                  <div>${review.writer_name }</div>
 						                </div>
 						              </div>
