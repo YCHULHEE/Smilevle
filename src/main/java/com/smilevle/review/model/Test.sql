@@ -17,3 +17,5 @@ insert into tbl_review_comment values (review_comment_seq.nextval, 77, 'example1
 select * from tbl_review_comment 
 	where review_no = 78
 	order by comment_no;
+	
+select count(*) from tbl_review where 1=1 and areacode=1;

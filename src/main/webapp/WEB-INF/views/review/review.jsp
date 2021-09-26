@@ -51,95 +51,132 @@
       </div>
     </div>
 
-    <section class="ftco-section">
-    	<div class="container">
-    		<div class="container">
-	    		<div class="container">
-					<button id="reviewWriteButton" class="btn btn-primary rounded float-right" onclick="location.href='review_write'">리뷰 작성</button>
+	<section class="ftco-section ftco-degree-bg">	
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 sidebar">
+					<div class="sidebar-wrap bg-light ftco-animate">
+						<h3 class="heading mb-4">Find Review</h3>
+						<form action="/review" method="get">
+							<div class="fields">
+								<div class="form-group">
+									<input type="text" class="form-control" id="searchWord" name="searchWord" placeholder="숙소 이름으로 검색">
+								</div>
+								<div class="form-group">
+									<div class="select-wrap one-third">
+										<div class="icon">
+											<span class="ion-ios-arrow-down"></span>
+										</div>
+										<select id="searchAreacode" name="searchAreacode" class="custom-select">
+											<option value="">지역</option>
+											<c:forEach var="map" items="${AreacodeConverter.getAreaMap() }">
+												<option value='${map.value }'>${map.key }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+								<div class="form-check">
+								  <input class="form-check-input" type="checkbox" value="${authUser.id }" id="myId" name="myId">
+								  <label class="form-check-label" for="myId">
+								    내가 쓴 글
+								  </label>
+								</div>								
+								<div class="form-group">
+									<input type="submit" value="Search"
+										class="btn btn-primary py-3 px-5">
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
-				<p></p>
-    			<div class="row d-flex">
-    				<c:if test="${reviewPageVO.hasNoReviews() }">
-    					<div class="text-center">
-    						<h2>리뷰 게시글이 존재하지 않습니다!</h2>
-    					</div>
-    				</c:if>
-    				<c:forEach var="review" items="${reviewPage}">
-	    				<c:choose>
-							<c:when test="${review.photo_url eq null }">
-							<div class="col-md-3 d-flex ftco-animate">
-					            <div class="blog-entry align-self-stretch">
-					              <a onClick="location.href='review_read?no=${review.review_no }&nowPage=${reviewPageVO.nowPage }'" class="block-20" style="background-image: url(/static/images/no_image.jpg); cursor: pointer;"></a>
-					              <div class="text p-4 d-block">
-					              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
-					                <h3 class="heading mt-3"><a onClick="location.href='review_read?no=${review.review_no }&pageNo=${reviewPageVO.nowPage }'" style="cursor: pointer;">${review.title }</a></h3>
-					                <div class="meta mb-3">
-					                  <div><h6><fmt:formatDate value="${review.regDate}" pattern="yyyy.MM.dd HH:mm:ss"/></h6></div>
-					                  <div>${review.writer_name }</div>
-					                </div>
-					              </div>
-					            </div>
-				          	</div>
-							</c:when>
-							<c:otherwise>
-			    			<div class="col-md-3 d-flex ftco-animate">
-					            <div class="blog-entry align-self-stretch">
-					              <a onClick="location.href='review_read?no=${review.review_no }&nowPage=${reviewPageVO.nowPage }'" class="block-20" style="background-image: url('${review.photo_url}'); cursor: pointer;"></a>
-					              <div class="text p-4 d-block">
-					              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
-					                <h3 class="heading mt-3"><a onClick="location.href='review_read?no=${review.review_no }&pageNo=${reviewPageVO.nowPage }'" style="cursor: pointer;">${review.title }</a></h3>
-					                <div class="meta mb-3">
-					                  <div><h6><fmt:formatDate value="${review.regDate}" pattern="yyyy.MM.dd HH:mm:ss"/></h6></div>
-					                  <div>${review.writer_name }</div>
-					                </div>
-					              </div>
-					            </div>
-				          	</div>						
-							</c:otherwise>
-						</c:choose>
-		          	</c:forEach>
-    			</div>
-    		</div>
-    	</div>
-	   <div class="text-center">
-   	 	<nav>
-  			  <div class="block-27">
-			  <ul>
-			  	<c:if test="${reviewPageVO.nowPage != 1 }">
-			  		<li> <a href="review?nowPage=1">&lt;&lt;</a> </li>
-			  	</c:if>
-			  	<c:if test="${reviewPageVO.startPage > 5 }">
-				  	<li>
-				      <a href="review?nowPage=${reviewPageVO.startPage - 1 }" aria-label="이전">
-				        <span>&lt;</span>
-				      </a>
-				    </li>
-			  	</c:if>
-				<c:forEach var="pNo" begin="${reviewPageVO.startPage }" end="${reviewPageVO.endPage }">
-					<c:choose>
-						<c:when test="${pNo == reviewPageVO.nowPage }">
-							<li class="active"><a href="review?nowPage=${pNo }">${pNo }</a></li>
-						</c:when>
-						<c:otherwise>
-			    			<li><a href="review?nowPage=${pNo }">${pNo }</a></li>								
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				<c:if test="${reviewPageVO.endPage < reviewPageVO.lastPage }">
-				    <li>
-				      <a href="review?nowPage=${reviewPageVO.startPage + 5 }" aria-label="다음">
-				        <span>&gt;</span>
-				      </a>
-				    </li>					
-				</c:if>
-				<c:if test="${reviewPageVO.nowPage != reviewPageVO.lastPage }">
-					<li> <a href="review?nowPage=${reviewPageVO.lastPage }">&gt;&gt;</a> </li>
-				</c:if>
-			  </ul>
-		  </div>
-		</nav>
-	    </div>
-    </section>
+
+				<div class="col-lg-9">
+					<div class="row">
+						<c:if test="${reviewPageVO.hasNoReviews() }">
+	    					<div class="text-center">
+	    						<h2>리뷰 게시글이 존재하지 않습니다!</h2>
+	    					</div>
+	    				</c:if>
+	    				<c:forEach var="review" items="${reviewPage}">
+		    				<c:choose>
+								<c:when test="${review.photo_url eq null }">
+								<div class="col-md-3 d-flex ftco-animate">
+						            <div class="blog-entry align-self-stretch">
+						              <a onClick="location.href='review_read?no=${review.review_no }&nowPage=${reviewPageVO.nowPage }'" class="block-20" style="background-image: url(/static/images/no_image.jpg); cursor: pointer;"></a>
+						              <div class="text p-4 d-block">
+						              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
+						                <h3 class="heading mt-3"><a onClick="location.href='review_read?no=${review.review_no }&pageNo=${reviewPageVO.nowPage }'" style="cursor: pointer;">${review.title }</a></h3>
+						                <div class="meta mb-3">
+						                  <div><h6><fmt:formatDate value="${review.regDate}" pattern="yyyy.MM.dd HH:mm:ss"/></h6></div>
+						                  <div>${review.writer_name }</div>
+						                </div>
+						              </div>
+						            </div>
+					          	</div>
+								</c:when>
+								<c:otherwise>
+				    			<div class="col-md-3 d-flex ftco-animate">
+						            <div class="blog-entry align-self-stretch">
+						              <a onClick="location.href='review_read?no=${review.review_no }&nowPage=${reviewPageVO.nowPage }'" class="block-20" style="background-image: url('${review.photo_url}'); cursor: pointer;"></a>
+						              <div class="text p-4 d-block">
+						              	<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
+						                <h3 class="heading mt-3"><a onClick="location.href='review_read?no=${review.review_no }&pageNo=${reviewPageVO.nowPage }'" style="cursor: pointer;">${review.title }</a></h3>
+						                <div class="meta mb-3">
+						                  <div><h6><fmt:formatDate value="${review.regDate}" pattern="yyyy.MM.dd HH:mm:ss"/></h6></div>
+						                  <div>${review.writer_name }</div>
+						                </div>
+						              </div>
+						            </div>
+					          	</div>						
+								</c:otherwise>
+							</c:choose>
+			          	</c:forEach>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="col text-center">
+				<nav>
+		  			<div class="block-27">
+					  <ul>
+					  	<c:if test="${reviewPageVO.nowPage != 1 }">
+					  		<li> <a href="review?nowPage=1">&lt;&lt;</a> </li>
+					  	</c:if>
+					  	<c:if test="${reviewPageVO.startPage > 5 }">
+						  	<li>
+						      <a href="review?nowPage=${reviewPageVO.startPage - 1 }" aria-label="이전">
+						        <span>&lt;</span>
+						      </a>
+						    </li>
+					  	</c:if>
+						<c:forEach var="pNo" begin="${reviewPageVO.startPage }" end="${reviewPageVO.endPage }">
+							<c:choose>
+								<c:when test="${pNo == reviewPageVO.nowPage }">
+									<li class="active"><a href="review?nowPage=${pNo }">${pNo }</a></li>
+								</c:when>
+								<c:otherwise>
+					    			<li><a href="review?nowPage=${pNo }">${pNo }</a></li>								
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${reviewPageVO.endPage < reviewPageVO.lastPage }">
+						    <li>
+						      <a href="review?nowPage=${reviewPageVO.startPage + 5 }" aria-label="다음">
+						        <span>&gt;</span>
+						      </a>
+						    </li>					
+						</c:if>
+						<c:if test="${reviewPageVO.nowPage != reviewPageVO.lastPage }">
+							<li> <a href="review?nowPage=${reviewPageVO.lastPage }">&gt;&gt;</a> </li>
+						</c:if>
+					  </ul>
+				  </div>
+				</nav>
+			</div>
+		</div>		
+	</section>
+    
     <footer class="ftco-footer ftco-bg-dark ftco-section">
     	<jsp:include page="/WEB-INF/views/include/common/footer.jsp" flush="false" />
     </footer>

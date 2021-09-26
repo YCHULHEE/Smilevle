@@ -19,16 +19,26 @@ public class ReviewRepository {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	public List<PReviewVO> getReviewList(ReviewPageVO reviewPageVO) {
+	public List<PReviewVO> getReviewList(ReviewPageVO reviewPageVO, String searchWord, String searchAreacode, String myId) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		
 		params.put("start", reviewPageVO.getStart());
 		params.put("end", reviewPageVO.getEnd());
+		params.put("searchWord", searchWord);
+		params.put("searchAreacode", searchAreacode);
+		params.put("myId", myId);
+		
 		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE + "selectReviewList", params);
 	}
 	
-	public int reviewCount() {
-		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE + "reviewCount");
+	public int reviewCount(String searchWord, String searchAreacode, String myId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		params.put("searchWord", searchWord);
+		params.put("searchAreacode", searchAreacode);
+		params.put("myId", myId);
+		
+		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE + "reviewCount", params);
 	}
 	
 	public ReviewVO selectById(Integer reviewNo) {
