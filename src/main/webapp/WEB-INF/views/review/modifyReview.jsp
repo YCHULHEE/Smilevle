@@ -71,6 +71,7 @@
 					<div class="col-sm-3">
 						<select id="areacode" name="areacode" class="custom-select" id="inputLocation" required>
 							<option value="">-지역-</option>
+							<option value="${modReq.areacode }" selected="selected">${stayArea }</option>
 							<c:forEach var="map" items="${AreacodeConverter.getAreaMap() }">
 								<option value='${map.value }'>${map.key }</option>
 							</c:forEach>
@@ -88,6 +89,7 @@
 					<div class="col-sm-2">
 						<select id="rate" name="rate" class="custom-select" id="inputRate" required>
 							<option value="">-별점-</option>
+							<option value="${modReq.rate }" selected="selected">${modReq.rate }</option>
 							<c:forEach var="rate" items="${AreacodeConverter.rates }">
 								<option value='${rate }'> ${rate } </option>
 							</c:forEach>

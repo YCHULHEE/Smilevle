@@ -41,7 +41,7 @@
 									<span>${stay.address}</span>
 								</p>
 								<p class="bottom-area d-flex">
-									<span></span> <span class="ml-auto"><a href="#">예약하기</a><span>  </span><a href="#" id="write">리뷰작성</a></span>
+									<span></span> <span class="ml-auto"><a href="#">예약하기</a><span>  </span><a href="/review_write?stayId=${stay.contentId }" id="write">리뷰작성</a></span>
 								</p>
 							</div>
 						</div>

@@ -70,6 +70,7 @@
 					<div class="col-sm-3">
 						<select id="areacode" name="areacode" class="custom-select" id="inputLocation" required>
 							<option value="">-지역-</option>
+														<option value="${stayAreacode }" selected="selected">${stayArea }</option>
 							<c:forEach var="map" items="${AreacodeConverter.getAreaMap() }">
 								<option value='${map.value }'>${map.key }</option>
 							</c:forEach>
@@ -79,7 +80,7 @@
 				<div class="form-group row">
 					<label for="inputLocationName" class="col-sm-2 col-form-label">플레이스</label>
 					<div class="col-sm-8">
-						<input type="text" name="locationName" class="form-control" id="inputLocationName" value="${param.locationName }" required>
+						<input type="text" name="locationName" class="form-control" id="inputLocationName" value="${title }" required>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -103,6 +104,7 @@
 								});
 					</script>					
 				</div>
+				<input type="hidden" id="contentId" name="contentId" value="${stayId }">
 				<div class="container">
 					<button class="btn btn-outline-info rounded float-right" onclick="submit">게시글 쓰기</button>
 				</div>				
