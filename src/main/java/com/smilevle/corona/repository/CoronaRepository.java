@@ -1,5 +1,6 @@
 package com.smilevle.corona.repository;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,9 +20,11 @@ public class CoronaRepository {
 	public void insert(CoronaVO coronaVO) {
 		//areaCode},#{localName},#{count
 		Map<String, Object> params = new HashMap<String, Object>();
+		System.out.println(coronaVO.getAreaCode() + "hi");
 		params.put("areaCode", coronaVO.getAreaCode());
 		params.put("localName", coronaVO.getLocalName());
 		params.put("count", coronaVO.getCount());
+		params.put("regDate", new Date());
 		sqlSessionTemplate.insert(MAPPER_NAME_SPACE +"insert", params);
 	}
 	

@@ -36,13 +36,12 @@ public class TourController {
 	@RequestMapping({"/", ""})
 	public String viewMainPage(Model model) throws IOException {
 //		
-		CoronaVO corona = coronaService.selectCoronaLowOrderRandom(5);
 //		List<CoronaVO> coronaList = coronaService.selectCoronaList(10);
 //		
 //		Random random = new Random();
 //		random.setSeed(System.currentTimeMillis());
 //		coronaList.remove(corona);
-		
+		CoronaVO corona = coronaService.selectCoronaLowOrderRandom(5);
 		model.addAttribute("corona", corona);
 		model.addAttribute("travelDestList", tourService.getTourInfoContainer(corona.getAreaCode(), 20, "12"));
 		model.addAttribute("stayList", tourService.getTourInfoContainer("", 20, "32"));

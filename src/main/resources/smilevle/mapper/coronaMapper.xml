@@ -4,7 +4,7 @@
 <mapper namespace="smilevle.mapper.coronaMapper">
 	<insert id="insert" parameterType="java.util.HashMap">
 		<![CDATA[
-		insert into tbl_corona values(#{areaCode},#{localName},#{count})
+		insert into tbl_corona values(#{areaCode}, #{localName}, #{count} ,#{regDate}, CORONA_SEQ.nextval)
 		]]>
 	</insert>
 	
@@ -17,13 +17,13 @@
 	<select id="selectList" parameterType="java.util.HashMap" resultType="com.smilevle.corona.model.CoronaVO">
 		<![CDATA[
 			select * from (select rownum as rnum,
-					areacode, local_name, count from (select * from tbl_corona order by count) 
-					where rownum <= #{size}) where rnum >= 2	
+					areacode, count from (SELECT avg(count) as count, areaCode FROM (SELECT * FROM TBL_corona WHERE TO_CHAR(regdate, 'YYYYMMDD') > sysdate - 7) group by areacode order by count) 
+					where rownum <= #{size})	
 					]]>
 	</select>
 
 
-
+	
 
 
 

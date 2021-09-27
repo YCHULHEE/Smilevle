@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CoronaVO {
+	private String coronaNo;
 	private String areaCode;
 	private int count;
 	private String localName;

@@ -15,9 +15,8 @@ public class Scheculer {
 	
 	@Scheduled(cron = "0 20 17 * * *")
 	public void updateCorona() throws IOException {
-		coronaService.updateCorona();
+		coronaService.insertCorona();
 		System.out.println("코로나 업데이트");
 	 }
 }
 
-//SELECT avg() , areaCode FROM (SELECT * FROM TBL_Review WHERE TO_CHAR(regdate, 'YYYYMMDD') > '20200511') group by areacode;
