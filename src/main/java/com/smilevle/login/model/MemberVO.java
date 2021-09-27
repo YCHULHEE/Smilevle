@@ -18,6 +18,7 @@ public class MemberVO {
 	private String phonenum;
 	private String userType;
 	private String ban;
+	private Date banDate;
 	
 	public boolean matchPassword(String pwd) {
 		return password.equals(pwd);

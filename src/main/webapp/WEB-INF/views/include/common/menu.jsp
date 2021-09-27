@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand" href="index.do">smilevle.</a>
@@ -15,6 +16,11 @@
           <li class="nav-item"><a href="travel.do?where=12&areaCode=false"class="nav-link">여행지</a></li>
           <li class="nav-item"><a href="event.do?where=15&areaCode=false"class="nav-link">볼거리</a></li>
           <li class="nav-item"><a href="review.do" class="nav-link">리뷰</a></li>
+          <li class="nav-item"><a href="/myResSelect" class="nav-link">예약확인</a></li>
+         
+          <c:if test="${authUser.userType eq 'admin'}"> <li class="nav-item"><a href="/admin" class="nav-link">관리자페이지</a></li></c:if>
+         
+          
           <u:notLogin>
           <li class="nav-item cta"><a href="/login" class="nav-link"><span>로그인</span></a></li>
           </u:notLogin>

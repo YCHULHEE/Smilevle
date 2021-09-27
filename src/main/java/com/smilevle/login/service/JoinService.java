@@ -33,7 +33,8 @@ public JoinService(MemberRepository memberRepository) {
 					joinReq.getBirthday(),
 					joinReq.getPhonenum(),
 					"normal",
-					"0"
+					"0",
+					null
 					)
 					);
 			
