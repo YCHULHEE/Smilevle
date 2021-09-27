@@ -31,11 +31,11 @@ public class CommentController {
 		JSONArray result = new JSONArray();
 		for(CommentVO comment : commentList) {
 			JSONObject commentJSON = new JSONObject();
-			commentJSON.put("comment_no", comment.getComment_no().toString());
+			commentJSON.put("commentNo", comment.getCommentNo().toString());
 			SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 			commentJSON.put("regdate", format1.format(comment.getRegdate()));
-			commentJSON.put("review_no", comment.getReview_no().toString());
-			commentJSON.put("writer_id", comment.getWriter_id());
+			commentJSON.put("reviewNo", comment.getReviewNo().toString());
+			commentJSON.put("writerId", comment.getWriterId());
 			commentJSON.put("content", comment.getContent());
 			result.add(commentJSON);	
 		}
@@ -46,10 +46,10 @@ public class CommentController {
 	@RequestMapping("/comment_write")
 	public void writeComment(HttpServletRequest request, HttpServletResponse response, 
 							 @RequestParam(value = "no", required = true) Integer reviewNo, CommentVO commentVO) {
-		commentVO.setComment_no(commentService.getCommentNo());
-		commentVO.setReview_no(reviewNo);
+		commentVO.setCommentNo(commentService.getCommentNo());
+		commentVO.setReviewNo(reviewNo);
 		UserVO authUser = (UserVO) request.getSession(false).getAttribute("authUser");
-		commentVO.setWriter_id(authUser.getId());
+		commentVO.setWriterId(authUser.getId());
 		commentVO.setRegdate(new Date());
 		commentService.writeComment(commentVO);
 	}

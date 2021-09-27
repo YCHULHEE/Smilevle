@@ -9,14 +9,14 @@ import lombok.ToString;
 public class ReviewPageVO {
 	
 	// 현재페이지, 시작페이지, 끝페이지, 게시글 총 갯수, 페이지당 글 갯수, 마지막페이지, SQL쿼리에 쓸 start, end
-	private int pageNo, startPage, endPage, total, cntPerPage, lastPage, start, end;
+	private int pageNo, startPage, endPage, total, lastPage, start, end;
 	private int cntPage = 5;
+	private int cntPerPage = 8;
 	
 	public ReviewPageVO() {
 	}
-	public ReviewPageVO(int total, int pageNo, int cntPerPage) {
+	public ReviewPageVO(int total, int pageNo) {
 		setPageNo(pageNo);
-		setCntPerPage(cntPerPage);
 		setTotal(total);
 		calcLastPage(getTotal(), getCntPerPage());
 		calcStartEndPage(getPageNo(), cntPage);

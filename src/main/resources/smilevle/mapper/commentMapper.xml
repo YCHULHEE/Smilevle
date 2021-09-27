@@ -5,12 +5,12 @@
 <mapper namespace="smilevle.mapper.commentMapper">
 	<select id="commentList" parameterType="java.lang.Integer" resultType="com.smilevle.review.comment.model.CommentVO">
 		select * from tbl_review_comment 
-			where review_no = #{review_no} 
+			where review_no = #{reviewNo} 
 			order by comment_no
 	</select>
 	
 	<insert id="writeComment" parameterType="com.smilevle.review.comment.model.CommentVO">
-		insert into tbl_review_comment values (#{comment_no}, #{review_no}, #{writer_id}, #{regdate}, #{content})
+		insert into tbl_review_comment values (#{commentNo}, #{reviewNo}, #{writerId}, #{regdate}, #{content})
 	</insert>
 	
 	<select id="getCommentNo" resultType="int">

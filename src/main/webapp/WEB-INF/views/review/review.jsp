@@ -163,62 +163,41 @@
 							</div>
 						</c:if>
 						<c:forEach var="review" items="${reviewPage}">
-							<c:choose>
-								<c:when test="${review.photo_url eq null }">
-									<div class="col-md-3 d-flex ftco-animate">
-										<div class="blog-entry align-self-stretch">
+							<div class="col-md-3 d-flex ftco-animate">
+								<div class="blog-entry align-self-stretch">
+								<c:choose>
+									<c:when test="${review.photoUrl eq null }">
+									<a
+										onClick="location.href='review_read?no=${review.reviewNo }&pageNo=${reviewPageVO.pageNo }'"
+										class="block-20"
+										style="background-image: url(/static/images/no_image.jpg); cursor: pointer;"></a>
+									</c:when>
+									<c:otherwise>
+									<a
+										onClick="location.href='review_read?no=${review.reviewNo}&pageNo=${reviewPageVO.pageNo }'"
+										class="block-20"
+										style="background-image: url('${review.photoUrl}'); cursor: pointer;"></a>
+									</c:otherwise>
+								</c:choose>	
+									<div class="text p-4 d-block">
+										<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
+										<h3 class="heading mt-3">
 											<a
-												onClick="location.href='review_read?no=${review.review_no }&pageNo=${reviewPageVO.pageNo }'"
-												class="block-20"
-												style="background-image: url(/static/images/no_image.jpg); cursor: pointer;"></a>
-											<div class="text p-4 d-block">
-												<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
-												<h3 class="heading mt-3">
-													<a
-														onClick="location.href='review_read?no=${review.review_no }&pageNo=${reviewPageVO.pageNo }'"
-														style="cursor: pointer;">${review.title }</a>
-												</h3>
-												<div class="meta mb-3">
-													<div>
-														<h6>
-															<fmt:formatDate value="${review.regDate}"
-																pattern="yyyy.MM.dd" />
-														</h6>
-													</div>
-													<div>${review.writerName }</div>
-												</div>
+												onClick="location.href='review_read?no=${review.reviewNo }&pageNo=${reviewPageVO.pageNo }'"
+												style="cursor: pointer;">${review.title }</a>
+										</h3>
+										<div class="meta mb-3">
+											<div>
+												<h6>
+													<fmt:formatDate value="${review.regDate}"
+														pattern="yyyy.MM.dd" />
+												</h6>
 											</div>
+											<div>${review.writerName }</div>
 										</div>
 									</div>
-								</c:when>
-								<c:otherwise>
-									<div class="col-md-3 d-flex ftco-animate">
-										<div class="blog-entry align-self-stretch">
-											<a
-												onClick="location.href='review_read?no=${review.review_no}&pageNo=${reviewPageVO.pageNo }'"
-												class="block-20"
-												style="background-image: url('${review.photo_url}'); cursor: pointer;"></a>
-											<div class="text p-4 d-block">
-												<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
-												<h3 class="heading mt-3">
-													<a
-														onClick="location.href='review_read?no=${review.review_no}&pageNo=${reviewPageVO.pageNo }'"
-														style="cursor: pointer;">${review.title }</a>
-												</h3>
-												<div class="meta mb-3">
-													<div>
-														<h6>
-															<fmt:formatDate value="${review.regDate}"
-																pattern="yyyy.MM.dd" />
-														</h6>
-													</div>
-													<div>${review.writer_name}</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</c:otherwise>
-							</c:choose>
+								</div>
+							</div>
 						</c:forEach>
 					</div>
 				</div>
