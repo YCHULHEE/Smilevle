@@ -137,8 +137,10 @@
 												</p>
 											</div>
 											<div class="two">
-												<p class="bottom-area d-flex">
+												<p class="bottom-area d-flex" style="margin-bottom: 5px">
 													<span class="ml-auto"><a href="#">예약</a></span>
+												</p><p class="bottom-area d-flex">
+													<span class="ml-auto"><a href="#">리뷰</a></span>
 												</p>
 											</div>
 										</div>

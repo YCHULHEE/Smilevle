@@ -5,20 +5,50 @@
 <html>
 <head>
 
-	<title>관리자모드</title>
-	
-	<script src="/resources/jquery/jquery-3.5.1.min.js"></script>
-	
-	<link rel="stylesheet" href="/resources/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="/resources/bootstrap/bootstrap-theme.min.css">
-	<script src="/resources/bootstrap/bootstrap.min.js"></script>
-	
-	<script src="/resources/ckeditor/ckeditor.js" ></script>
-	
-	<link rel="stylesheet" href="/resources/css/admin/index.css">
-	<link rel="stylesheet" href="/resources/css/admin/goods/register.css">
-	
-	<link rel="icon" href="/resources/images/gun.png" />
+<title>관리자모드</title>
+
+<script src="/static/js/jquery-3.2.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.2/proj4.js"
+	type="text/javascript"></script>
+<link rel="stylesheet" href="/static/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/static/bootstrap/bootstrap-theme.min.css">
+<script src="/static/bootstrap/bootstrap.min.js"></script>
+
+<script src="/static//ckeditor/ckeditor.js"></script>
+
+<link rel="stylesheet" href="/static/css/admin/index.css">
+<link rel="stylesheet" href="/static/css/admin/goods/register.css">
+
+<link rel="icon" href="/static/images/gun.png" />
+
+<script>
+	function goPopup() {
+		// 주소검색을 수행할 팝업 페이지를 호출합니다.
+		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrCoordUrl.do)를 호출하게 됩니다.
+		var pop = window.open("jusoPopup", "pop",
+				"width=570,height=420, scrollbars=yes, resizable=yes");
+	}
+
+	function jusoCallBack(roadFullAddr, entX, entY) {
+		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+		let coord_X = Math.round(entX * 1000000) / 1000000;
+		let coord_Y = Math.round(entY * 1000000) / 1000000;
+		let point = [ coord_X, coord_Y ];
+
+		proj4.defs["EPSG:5179"] = "+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs";//제공되는 좌표
+
+		let grs80 = proj4.Proj(proj4.defs["EPSG:5179"])
+		let wgs84 = proj4.Proj(proj4.defs["EPSG:4326"]); //경위도
+
+		let p = proj4.toPoint(point);
+		p = proj4.transform(grs80, wgs84, p);
+
+		document.form.address.value = roadFullAddr;
+		document.form.mapX.value = p.x;
+		document.form.mapY.value = p.y;
+	}
+</script>
 
 </head>
 
@@ -29,187 +59,157 @@
 				<%@ include file="../include/header.jsp"%>
 			</div>
 		</header>
-	
+
 		<nav id="nav">
 			<div id="nav_box">
 				<%@ include file="../include/nav.jsp"%>
 			</div>
 		</nav>
-	
+
+
 		<section id="container">
 			<aside>
 				<%@ include file="../include/aside.jsp"%>
 			</aside>
 			<div id="container_box">
-				<h2>상품 등록</h2>
-	
-				<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
-				<input type="hidden" name="gdsNum" value="${goods.gdsNum }" />
-				
-				<div class="inputArea"> 
-					<label>1차 분류</label>
-					<select class="category1">
-						<option value="">전체</option>
-					</select>
-				
-					<label>2차 분류</label>
-					<select class="category2" name="cateCode">
-						<option value="">전체</option>
-					</select>
+				<h2>숙소 수정</h2>
+				<div id="list"></div>
+				<div id="callBackDiv">
+					<form role="form" id="form" name="form" method="post"
+						autocomplete="off" enctype="multipart/form-data"
+						class="registerForm">
+
+						<div class="inputArea">
+							<label>지역분류</label> <select class="category1" name="areaCode">
+								<c:forEach var="map" items="${areaMap}">
+									<option value="${map.key}"
+										${map.key == areaCode ? 'selected="selected"' : '' }>${map.value}</option>
+								</c:forEach>
+							</select>    <label>1차분류</label> <select class="category2"
+								name="smallCategory">
+								<c:forEach var="map" items="${itemMap}">
+									<option value="${map.key}"
+										${map.key == areaCode ? 'selected="selected"' : '' }>${map.value}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+						<div class="inputArea">
+							<label for="title">숙소이름</label> <input type="text" id="title"
+								name="title" value="${item.title}" />
+						</div>
+
+						<div class="inputArea">
+							<label for="address"> </label> <input type="button"
+								onClick="goPopup();" style="width: 90px;" value="주소등록"
+								class="btn btn-primary" />
+						</div>
+						<div class="inputArea">
+							<label for="address">주소</label> <input type="text" id="address"
+								name="address" readonly value="${item.address}"
+								style="width: 300px; background-color: #e9ecef;" />
+						</div>
+						<div class="inputArea">
+							<label for="address">X값</label> <input type="text" id="mapX"
+								name="mapX" readonly value="${item.mapX}"
+								style="width: 200px; background-color: #e9ecef;" />
+						</div>
+						<div class="inputArea">
+							<label for="address">Y값</label> <input type="text" id="mapY"
+								name="mapY" readonly value="${item.mapY}"
+								style="width: 200px; background-color: #e9ecef;" />
+						</div>
+
+
+						<div class="inputArea">
+							<label for="tel">전화번호</label> <input type="text" id="tel"
+								name="tel" value="${item.tel}" />
+						</div>
+
+						<div class="inputArea">
+							<label for="gdsStock">홈페이지 주소</label> <input type="text"
+								id="homepage" name="homepage" value="${item.homepage}" />
+						</div>
+
+						<div class="inputArea">
+							<label for="content">상품소개</label>
+							<textarea rows="5" cols="50" id="content" name="content">${item.content}</textarea>
+							<input type="hidden" name="contentTypeId" value="${item.contentTypeId}" />
+							<input type="hidden" name="middleCategory" value="${item.middleCategory}" />
+							<input type="hidden" name="readCnt" value="${item.readCnt}">
+							
+
+							<script>
+								var ckeditor_config = {
+									resize_enaleb : false,
+									enterMode : CKEDITOR.ENTER_BR,
+									shiftEnterMode : CKEDITOR.ENTER_P,
+									filebrowserUploadUrl : "/admin/goods/ckUpload"
+								};
+
+								CKEDITOR.replace("content", ckeditor_config);
+							</script>
+						</div>
+
+						<div class="inputArea">
+							<label for="gdsImg">이미지</label> <input type="file"
+								id="firstImage" name="file" />
+							<div class="select_img">
+								<img src="${item.firstImage}" /> <input type="hidden"
+									name="firstImage" value="${item.firstImage}" />
+							</div>
+
+							<script>
+								$("#firstImage")
+										.change(
+												function() {
+													if (this.files
+															&& this.files[0]) {
+														var reader = new FileReader;
+														reader.onload = function(
+																data) {
+															$(".select_img img")
+																	.attr(
+																			"src",
+																			data.target.result)
+																	.width(500);
+														}
+														reader
+																.readAsDataURL(this.files[0]);
+													}
+												});
+							</script>
+
+							<%=request.getRealPath("/")%>
+						</div>
+
+						<div class="inputArea" align="right" style="margin-right: 20px">
+						
+							<button type="submit" id="back_Btn" class="btn btn-warning">돌아가기</button>
+							<script>
+								$("#back_Btn").click(function(){
+									location.href="/admin/goods/list;
+								});
+							</script>
+							
+							<button type="button" id="register_Btn" class="btn btn-primary">수정</button>
+							<script>
+								$("#register_Btn").click(function() {
+									var regConfirm = confirm("정말로 등록하시겠습니까?");
+
+									if (regConfirm == true) {
+										$(".registerForm").submit();
+									} else {
+										return;
+									}
+								});
+							</script>
+						</div>
+					</form>
 				</div>
-				
-				<div class="inputArea">
-					<label for="gdsName">상품명</label>
-					<input type="text" id="gdsName" name="gdsName" value="${goods.gdsName }"/>
-				</div>
-				
-				<div class="inputArea">
-					<label for="gdsPrice">상품가격</label>
-					<input type="text" id="gdsPrice" name="gdsPrice" value="${goods.gdsPrice }"/>
-				</div>
-				
-				<div class="inputArea">
-					<label for="gdsStock">상품수량</label>
-					<input type="text" id="gdsStock" name="gdsStock" value="${goods.gdsStock }"/>
-				</div>
-				
-				<div class="inputArea">
-					<label for="gdsDes">상품소개</label>
-					<textarea rows="5" cols="50" id="gdsDes" name="gdsDes">${goods.gdsDes }</textarea>
-					<script>
-						var ckeditor_config = {
-							resize_enaleb : false,
-							enterMode : CKEDITOR.ENTER_BR,
-							shiftEnterMode : CKEDITOR.ENTER_P,
-							filebrowserUploadUrl : "/admin/goods/ckUpload"
-						};
-	
-						CKEDITOR.replace("gdsDes", ckeditor_config);
-					</script>
-				</div>
-				
-				<div class="inputArea">
-					<label for="gdsImg">이미지</label>
-					<input type="file" id="gdsImg" name="file" />
-					<div class="select_img">
-						<img src="${goods.gdsImg }" />
-						<input type="hidden" name="gdsImg" value="${goods.gdsImg }" />
-						<input type="hidden" name="gdsThumbImg" value="${goods.gdsThumbImg }" />
-					</div>
-					
-					<script>
-						$("#gdsImg").change(function(){
-							if(this.files && this.files[0]) {
-								var reader = new FileReader;
-								reader.onload = function(data){
-									$(".select_img img").attr("src", data.target.result).width(500);
-								}
-								reader.readAsDataURL(this.files[0]);
-							}
-						});
-					</script>
-					
-					<%=request.getRealPath("/") %>
-				</div>
-				
-				<div>
-					<button type="submit" id="update_Btn" class="btn btn-primary">완료</button>
-					<button type="submit" id="back_Btn" class="btn btn-warning">취소</button>
-					<script>
-						$("#back_Btn").click(function(){
-							location.href="/admin/goods/view?n=" + ${goods.gdsNum};
-						});
-					</script>
-				</div>
-				</form>
 			</div>
 		</section>
 	</div>
-	
-	<%@ include file="../include/TopBtn.jsp" %>
-	
-	<footer id="footer">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp"%>
-		</div>
-	</footer>
-	
-	<script>
-		if($("#root").height() >= 486){
-			$("#footer").css("position", "relative");
-		}
-	</script>
-
-	<script>
-		var select_cateCode = '${goods.cateCode}';
-		var select_cateCodeRef = '${goods.cateCodeRef}';
-		var select_cateName = '${goods.cateName}';
-		//document.write(select_cateCode + " " + select_cateCodeRef + " " + select_cateName);
-		
-		if(select_cateCodeRef != null && select_cateCodeRef != ''){
-			$(".catagory1").val(select_cateCodeRef);
-			$(".category2").val(select_cateCode);
-			$(".category2").children().remove();
-			$(".category2").append("<option value='" + select_cateCode + "'>" + select_cateName + "</option>");
-		} else{
-			$(".category1").val(select_cateCode);
-			//$(".category2").val(select_cateCode);
-			$(".category2").append("<option value='" + select_cateCode + "' selected='selected'>전체</option>");
-		}
-
-		var jsonData = JSON.parse('${category}');
-		console.log(jsonData);
-
-		var cate1Arr = new Array();
-		var cate1Obj = new Object();
-
-		for (var i = 0; i < jsonData.length; i++) {
-			if (jsonData[i].level == "1") {
-				cate1Obj = new Object(); 
-				cate1Obj.cateCode = jsonData[i].cateCode;
-				cate1Obj.cateName = jsonData[i].cateName;
-				cate1Arr.push(cate1Obj);
-			}
-		}
-
-		var cate1Select = $("select.category1")
-
-		for (var i = 0; i < cate1Arr.length; i++) {
-			cate1Select.append("<option value='" + cate1Arr[i].cateCode + "'>" + cate1Arr[i].cateName + "</option>");
-		}
-
-		
-		$(document).on("change", "select.category1", function(){
-
-			var cate2Arr = new Array();
-			var cate2Obj = new Object();
-			
-			for(var i = 0; i < jsonData.length; i++) {
-				if(jsonData[i].level == "2") {
-					cate2Obj = new Object(); 
-					cate2Obj.cateCode = jsonData[i].cateCode;
-					cate2Obj.cateName = jsonData[i].cateName;
-					cate2Obj.cateCodeRef = jsonData[i].cateCodeRef;
-				 	cate2Arr.push(cate2Obj);
-				}
-			}
-			 
-			var cate2Select = $("select.category2");
-			
-			cate2Select.children().remove();
-
-			$("option:selected", this).each(function(){
-				var selectVal = $(this).val();
-				cate2Select.append("<option value='" + selectVal + "'>전체</option>");
-
-				for(var i = 0; i < cate2Arr.length; i++){
-					if(selectVal == cate2Arr[i].cateCodeRef){
-						cate2Select.append("<option value='" + cate2Arr[i].cateCode + "'>" + cate2Arr[i].cateName + "</option>");
-					}
-				}
-			})
-		});
-				
-	</script>
+	<%@ include file="../include/TopBtn.jsp"%>
 </body>
 </html>

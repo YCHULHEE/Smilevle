@@ -58,6 +58,17 @@ public class TourRepository {
 		params.put("searchWord", searchWord);
 		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE +"selectList", params);
 	}
+
+	public void register(TourVO vo) {
+		sqlSessionTemplate.insert(MAPPER_NAME_SPACE +"register", vo);
+	}
+
+	public void modify(TourVO vo) {
+		sqlSessionTemplate.insert(MAPPER_NAME_SPACE +"modify", vo);
+	}
 	
+	public void delete(int contentId) {
+		sqlSessionTemplate.insert(MAPPER_NAME_SPACE +"delete", contentId);
+	}
 	
 }

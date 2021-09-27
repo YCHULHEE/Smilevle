@@ -48,7 +48,7 @@ public class CrawlingDao {
 			pstmt.setString(10, stay.getContentTypeId());
 			pstmt.setString(11, stay.getMiddleCategory());
 			pstmt.setString(12, stay.getSmallCategory());
-			pstmt.setString(13, stay.getHomePage());
+			pstmt.setString(13, stay.getHomepage());
 			pstmt.setString(14, stay.getImageList());
 			pstmt.setString(15, stay.getContent());
 

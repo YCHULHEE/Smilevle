@@ -3,22 +3,19 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <html>
 <head>
-
+	<script src="/static/js/jquery-3.2.1.min.js"></script>
 	<title>관리자모드</title>
-	
-	<script src="/resources/jquery/jquery-3.5.1.min.js"></script>
-	
-	<link rel="stylesheet" href="/resources/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet"
-		href="/resources/bootstrap/bootstrap-theme.min.css">
-	<script src="/resources/bootstrap/bootstrap.min.js"></script>
+		href="/static/bootstrap/bootstrap-theme.min.css">
+	<script src="/static/bootstrap/bootstrap.min.js"></script>
 	
-	<link rel="stylesheet" href="/resources/css/admin/index.css">
-	<link rel="stylesheet" href="/resources/css/admin/goods/view.css">
+	<link rel="stylesheet" href="/static/css/admin/index.css">
+	<link rel="stylesheet" href="/static/css/admin/goods/view.css">
 
-	<link rel="icon" href="/resources/images/gun.png" />
+	<link rel="icon" href="/static/images/gun.png" />
 </head>
 
 <body>
@@ -96,15 +93,9 @@
 	
 	<%@ include file="../include/TopBtn.jsp" %>
 	
-	<footer id="footer">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp"%>
-		</div>
-	</footer>
-	
 	<script>
 		var formObj = $("form[role='form']");
-
+		
 		$("#modify_Btn").click(function(){
 			formObj.attr("action", "/admin/goods/modify");
 			formObj.attr("method", "get");
@@ -118,7 +109,7 @@
 				formObj.submit();
 			}
 		});
-		
 	</script>
+	<script src="/static/js/page.js"></script>
 </body>
 </html>

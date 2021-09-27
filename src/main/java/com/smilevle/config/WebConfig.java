@@ -24,6 +24,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/static/**")
           .addResourceLocations("classpath:/static/")
           .setCachePeriod(604800);
+        
+        registry.addResourceHandler("/ckUpload/**")
+				.addResourceLocations("/resource/ckUpload/");
     }
 	
 //	@Bean

@@ -35,6 +35,7 @@
   <jsp:include page="/WEB-INF/views/include/common/menu.jsp"/>
     <!-- END nav -->
     
+    
     <div class="hero-wrap js-fullheight" style="background-image: url('/static/images/bg_1.jpg');">
       <div class="overlay"></div>
       <div class="container">

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="smilevle.mapper.reviewMapper">
+	<select id="selectReviewList" parameterType="java.util.HashMap" resultType="com.smilevle.review.model.PReviewVO">
+		<![CDATA[
+		select * 
+			from (select rownum as rnum, review_no, writer_id, writer_name, title, areacode, location_name, rate, content, regdate, moddate, read_cnt, photo_url 
+					from (select * from tbl_review rv natural join tbl_review_attach ac	order by review_no desc) 
+						where rownum <= #{end}) 
+			where rnum >= #{start}	
+		]]>
+		<if test='searchWord != ""'>
+			<![CDATA[and location_name LIKE '%'||#{searchWord}||'%']]>
+		</if>
+		<if test='searchAreacode != ""'>
+			<![CDATA[and areacode = #{searchAreacode}]]>
+		</if>
+		<if test='myId != ""'>
+			<![CDATA[and writer_id = #{myId}]]>
+		</if>
+		<if test='starRate != ""'>
+			<![CDATA[and rate = #{starRate}]]>
+		</if>		
+	</select>
+	
+	<select id="getReviewNo" resultType="int">
+		select review_seq.nextVal from dual
+	</select>
+	
+	<select id="reviewCount" parameterType="java.util.HashMap" resultType="int">
+		<![CDATA[select count(*) from tbl_review where 1=1]]>
+ 		<if test='searchWord != ""'>
+			<![CDATA[ and location_name LIKE '%'||#{searchWord}||'%']]>
+		</if>
+		<if test='searchAreacode != ""'>
+			<![CDATA[ and areacode = #{searchAreacode}]]>
+		</if>
+		<if test='myId != ""'>
+			<![CDATA[ and writer_id = #{myId}]]>
+		</if>
+		<if test='starRate != ""'>
+			<![CDATA[ and rate = #{starRate}]]>
+		</if>			
+	</select>
+	
+	<select id="selectById" parameterType="java.util.HashMap" resultType="com.smilevle.review.model.ReviewVO">
+		select * from tbl_review where review_no = #{reviewNo}
+	</select>
+	
+	<select id="selectAttachById" parameterType="java.lang.Integer" resultType="com.smilevle.review.model.AttachVO">
+		select * from tbl_review_attach
+			where review_no = #{review_no}
+	</select>
+	
+	<insert id="insertReview" parameterType="com.smilevle.review.model.ReviewVO">
+		<![CDATA[
+		insert into tbl_review values(#{review_no}, #{writer_id}, #{writer_name}, #{title}, #{areacode}, #{location_name}, #{rate}, #{content}, #{regDate}, #{modDate}, 0)
+		]]>
+	</insert>
+	
+	<insert id="insertAttach" parameterType="com.smilevle.review.model.AttachVO">
+		<![CDATA[
+		insert into tbl_review_attach values(photo_seq.nextVal, #{review_no}, #{photo_url})
+		]]>
+	</insert>
+	
+	<delete id="deleteReview" parameterType="java.lang.Integer">
+		delete from tbl_review where review_no = #{review_no}
+	</delete>
+	
+	<update id="modifyReview" parameterType="com.smilevle.review.model.ReviewVO">
+		update tbl_review 
+			set title = #{title}, areacode = #{areacode}, location_name = #{location_name}, rate = #{rate}, content = #{content}, moddate = #{modDate}
+			where review_no = #{review_no}
+	</update>
+	<update id="modifyAttach" parameterType="com.smilevle.review.model.AttachVO">
+		update tbl_review_attach
+			set photo_url = #{photo_url} 
+			where review_no = #{review_no}
+	</update>
+</mapper>
+

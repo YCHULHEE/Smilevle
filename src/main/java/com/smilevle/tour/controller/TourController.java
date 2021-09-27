@@ -35,7 +35,6 @@ public class TourController {
 	
 	@RequestMapping({"/", ""})
 	public String viewMainPage(Model model) throws IOException {
-//		coronaService.updateCorona();
 //		
 		CoronaVO corona = coronaService.selectCoronaLowOrderRandom(5);
 //		List<CoronaVO> coronaList = coronaService.selectCoronaList(10);
@@ -43,8 +42,8 @@ public class TourController {
 //		Random random = new Random();
 //		random.setSeed(System.currentTimeMillis());
 //		coronaList.remove(corona);
-
-	
+		
+		model.addAttribute("corona", corona);
 		model.addAttribute("travelDestList", tourService.getTourInfoContainer(corona.getAreaCode(), 20, "12"));
 		model.addAttribute("stayList", tourService.getTourInfoContainer("", 20, "32"));
 		model.addAttribute("eventList", tourService.getTourInfoContainer(corona.getAreaCode(), 8, "15"));
@@ -58,11 +57,12 @@ public class TourController {
 			@RequestParam(name = "searchWord", required = false)String searchWord, Model model) {
 		int pageNo = 1;
 		String where = "32";
+		int size = 6;
 		if (pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
 		
-		TourPage page =tourService.getTourPage(pageNo, areaCode, smallCategory, where, searchWord);
+		TourPage page =tourService.getTourPage(pageNo, areaCode, smallCategory, where, searchWord, size);
 		
 		model.addAttribute("page", page);
 		model.addAttribute("pageNo", pageNo +"");
@@ -84,7 +84,7 @@ public class TourController {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
 		
-		TourPage page =tourService.getTourPage(pageNo, areaCode, smallCategory, where, searchWord);
+		TourPage page =tourService.getTourPage(pageNo, areaCode, smallCategory, where, searchWord, 6);
 		
 		model.addAttribute("page", page);
 		model.addAttribute("pageNo", pageNo +"");
@@ -107,7 +107,7 @@ public class TourController {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
 		
-		TourPage page =tourService.getTourPage(pageNo, areaCode, smallCategory, where, searchWord);
+		TourPage page =tourService.getTourPage(pageNo, areaCode, smallCategory, where, searchWord, 6);
 		
 		model.addAttribute("page", page);
 		model.addAttribute("pageNo", pageNo +"");
@@ -154,17 +154,13 @@ public class TourController {
 	@GetMapping(value = "tour_search")
 	public String searchTour(@RequestParam(name = "pageNo", required = false) String pageNoVal, @RequestParam(name = "areaCode", required = false)String areaCode, @RequestParam(name = "smallCategory", required = false)String smallCategory, 
 			@RequestParam(name = "searchWord", required = false)String searchWord, @RequestParam(name = "where", required = false)String contentTypeId, Model model) {
-		
 		String viewPage;
-		
 		int pageNo = 1;
 		if (pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
-		
 		Map<String, String> itemMap = new HashMap<String, String>();
 
-		
 		if(contentTypeId.equals("32")) {
 			viewPage = "stay";
 			itemMap = mapInfomation.getStayMap();
@@ -178,7 +174,7 @@ public class TourController {
 			viewPage = "stay";
 		}
 		
-		TourPage page = tourService.getTourPage(pageNo, areaCode, smallCategory, contentTypeId, searchWord);
+		TourPage page = tourService.getTourPage(pageNo, areaCode, smallCategory, contentTypeId, searchWord, 6);
 		
 		model.addAttribute("page", page);
 		model.addAttribute("pageNo", pageNo+"");

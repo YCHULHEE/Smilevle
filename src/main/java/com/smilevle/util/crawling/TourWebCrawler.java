@@ -202,7 +202,7 @@ public class TourWebCrawler {
 					
 					
 					if (!getTagValue("readcount", eElement).equals("")) {
-						tour.setReadCnt(Integer.parseInt);
+						tour.setReadCnt(Integer.parseInt(getTagValue("readcount", eElement)));
 					} else {
 						tour.setReadCnt(0);
 					}
@@ -217,7 +217,7 @@ public class TourWebCrawler {
 						
 						System.out.print(tourContent.getContent());
 						
-						tour.setHomePage(tourContent.getHomePage());
+						tour.setHomepage(tourContent.getHomePage());
 						tour.setContent(tourContent.getContent());
 						tour.setImageList(tourContent.getImageList());
 						CrawlingDao.insertTour(tour);

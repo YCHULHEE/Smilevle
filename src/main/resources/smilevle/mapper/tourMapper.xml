@@ -59,6 +59,37 @@
 		</if>
 	</select>
 
+	<!-- 숙소등록 -->
+	<insert id="register">
+		insert into tbl_tour(content_id, title, areacode, address, first_image, map_x, map_y, tel, read_cnt, content_type_id, middle_category, small_category, homepage, image_list, content)
+		values(10, #{title}, #{areaCode}, #{address}, #{firstImage}, #{mapX}, #{mapY}, #{tel}, 0, '32', null, #{smallCategory}, #{homepage}, #{firstImage}, #{content})
+	</insert>
+	
+	<!-- 숙소 수정 -->
+	<update id="modify">
+		update tbl_tour
+		set
+			title = #{title}, 
+			areacode = #{areaCode}, 
+			address = #{address}, 
+			first_image = #{firstImage}, 
+			map_x = #{mapX}, 
+			map_y = #{mapY}, 
+			tel = #{tel}, 
+			read_cnt = #{readCnt}, 
+			content_type_id = #{contentTypeId}, 
+			middle_category = #{middleCategory}, 
+			small_category = #{smallCategory}, 
+			homepage = #{homepage}, 
+			image_list = #{firstImage}, 
+			content = #{content}
+		where content_Id = ${contentId}
+	</update>
+	
+	<delete id="delete">
+		delete tbl_tour
+		where content_id = #{contentId}
+	</delete>
 
 	<!--<select id="selectUserInfoAll" resultType="hashMap">
     <![CDATA[

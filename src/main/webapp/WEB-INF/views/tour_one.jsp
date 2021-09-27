@@ -50,8 +50,8 @@
 					data-scrollax=" properties: { translateY: '70%' }">
 					<p class="breadcrumbs"
 						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-						<span class="mr-2"><a href="index.do">Home</a></span> <span
-							class="mr-2"><a href="hotel.html">Smilevle</a></span> <span>Hotel
+						<span class="mr-2"><a href="/">Home</a></span> <span
+							class="mr-2"><a href="/">Smilevle</a></span> <span>Hotel
 							Single</span>
 					</p>
 					<h1 class="mb-3 bread"
@@ -89,9 +89,10 @@
 									class="star"> <i class="icon-star"></i> <i
 									class="icon-star"></i> <i class="icon-star"></i> <i
 									class="icon-star"></i> <i class="icon-star-o"></i> 8 Rating
-								</span></br> <span>${stourData.tourVO.homePage}</span>
+								</span></br> <span>${tourData.tourVO.homepage}</span>
 							<p>${tourData.tourVO.content}</p>
 						</div>
+						
 	</section>
 	<jsp:include
 		page="/WEB-INF/views/include/common/tour_one_container.jsp" />
@@ -106,8 +107,8 @@
 		<!-- 댓글 달기 -->
 
 		<div class="comment-form-wrap pt-5">
-			<h3 class="mb-5">댓글(10)</h3>
-			<form action="#" class="p-5 bg-light">
+			<!-- 댓글작성 -->
+			<!-- <form action="#" class="p-5 bg-light">
 				<div class="form-group">
 					<input type="hidden" class="form-control" id="name">
 				</div>
@@ -124,8 +125,9 @@
 					<input type="submit" value="댓글 작성"
 						class="btn py-3 px-4 btn-primary">
 				</div>
-			</form>
-		</div>
+			</form> -->
+		</div>	<h3 class="mb-5">댓글(10)</h3>
+		
 	</div>
 
 	</div>

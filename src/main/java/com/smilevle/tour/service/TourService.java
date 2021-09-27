@@ -37,8 +37,8 @@ public class TourService {
 	
 	
 
-	public TourPage getTourPage(int pageNum, String areaCode, String smallCategory, String where, String searchWord) {
-		int size = 6;
+	public TourPage getTourPage(int pageNum, String areaCode, String smallCategory, String where, String searchWord, int size) {
+
 			if(smallCategory == null) {
 				smallCategory = "";
 			}
@@ -57,5 +57,18 @@ public class TourService {
 			
 	
 			return new TourPage(total, pageNum, size, stayList);
+	}
+
+	public void register(TourVO vo) {
+		tourRepository.register(vo);
+	}
+
+	public void tourModify(TourVO vo) {
+		String hompepage = vo.getHomepage();		
+		tourRepository.modify(vo);
+	}
+
+	public void tourDelete(int contentId) {
+		tourRepository.delete(contentId);
 	}
 }
