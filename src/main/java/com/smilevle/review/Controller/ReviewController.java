@@ -24,15 +24,16 @@ public class ReviewController {
 	
 	@RequestMapping("/review")
 	public String reviewPage(HttpServletRequest request, HttpServletResponse response, ReviewPageVO reviewPageVO, Model model, 
-							@RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage, 
+							@RequestParam(value = "pageNo", required = false, defaultValue = "1") String nowPage, 
 							@RequestParam(value = "cntPerPage", required = false, defaultValue = "8") String cntPerPage,
 							@RequestParam(value = "searchWord", required = false, defaultValue = "") String searchWord, 
 							@RequestParam(value = "searchAreacode", required = false, defaultValue = "") String searchAreacode, 
-							@RequestParam(value = "myId", required = false, defaultValue = "") String myId) {
-		int reviewCnt = reviewService.reviewCount(searchWord, searchAreacode, myId);
+							@RequestParam(value = "myId", required = false, defaultValue = "") String myId,
+							@RequestParam(value = "starRate", required = false, defaultValue = "") String starRate) {
+		int reviewCnt = reviewService.reviewCount(searchWord, searchAreacode, myId, starRate);
 		reviewPageVO = new ReviewPageVO(reviewCnt, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("reviewPageVO", reviewPageVO);
-		model.addAttribute("reviewPage", reviewService.getReviewPage(reviewPageVO, searchWord, searchAreacode, myId));
+		model.addAttribute("reviewPage", reviewService.getReviewPage(reviewPageVO, searchWord, searchAreacode, myId, starRate));
 		
 		UserVO authUser = new UserVO("example123", "박예시");
 		request.getSession().setAttribute("authUser", authUser);

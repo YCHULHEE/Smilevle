@@ -9,18 +9,18 @@ import lombok.ToString;
 public class ReviewPageVO {
 	
 	// 현재페이지, 시작페이지, 끝페이지, 게시글 총 갯수, 페이지당 글 갯수, 마지막페이지, SQL쿼리에 쓸 start, end
-	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
+	private int pageNo, startPage, endPage, total, cntPerPage, lastPage, start, end;
 	private int cntPage = 5;
 	
 	public ReviewPageVO() {
 	}
-	public ReviewPageVO(int total, int nowPage, int cntPerPage) {
-		setNowPage(nowPage);
+	public ReviewPageVO(int total, int pageNo, int cntPerPage) {
+		setPageNo(pageNo);
 		setCntPerPage(cntPerPage);
 		setTotal(total);
 		calcLastPage(getTotal(), getCntPerPage());
-		calcStartEndPage(getNowPage(), cntPage);
-		calcStartEnd(getNowPage(), getCntPerPage());
+		calcStartEndPage(getPageNo(), cntPage);
+		calcStartEnd(getPageNo(), getCntPerPage());
 	}
 	// 제일 마지막 페이지 계산
 	public void calcLastPage(int total, int cntPerPage) {
@@ -28,11 +28,11 @@ public class ReviewPageVO {
 
 	}
 	// 시작, 끝 페이지 계산
-	public void calcStartEndPage(int nowPage, int cntPage) {
-		int modVal = nowPage % 5;
-		setStartPage(nowPage / cntPage * cntPage + 1);
+	public void calcStartEndPage(int pageNo, int cntPage) {
+		int modVal = pageNo % 5;
+		setStartPage(pageNo / cntPage * cntPage + 1);
 		if (modVal == 0) {
-			setStartPage(nowPage / cntPage * cntPage + 1 - 5);
+			setStartPage(pageNo / cntPage * cntPage + 1 - 5);
 		}
 		setEndPage(getStartPage() + 4);
 		if (getLastPage() < getEndPage()) {
@@ -40,16 +40,16 @@ public class ReviewPageVO {
 		}
 	}
 	// DB 쿼리에서 사용할 start, end값 계산
-	public void calcStartEnd(int nowPage, int cntPerPage) {
-		setEnd(nowPage * cntPerPage);
+	public void calcStartEnd(int pageNo, int cntPerPage) {
+		setEnd(pageNo * cntPerPage);
 		setStart(getEnd() - cntPerPage + 1);
 	}
 	
-	public int getNowPage() {
-		return nowPage;
+	public int getPageNo() {
+		return pageNo;
 	}
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
 	}
 	public int getStartPage() {
 		return startPage;

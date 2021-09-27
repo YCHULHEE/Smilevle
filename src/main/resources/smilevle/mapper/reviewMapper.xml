@@ -20,6 +20,9 @@
 		</if>
 		<if test='myId != ""'>
 			<![CDATA[and writer_id = #{myId}]]>
+		</if>
+		<if test='starRate != ""'>
+			<![CDATA[and rate = #{starRate}]]>
 		</if>		
 	</select>
 	
@@ -38,6 +41,9 @@
 		<if test='myId != ""'>
 			<![CDATA[ and writer_id = #{myId}]]>
 		</if>
+		<if test='starRate != ""'>
+			<![CDATA[ and rate = #{starRate}]]>
+		</if>			
 	</select>
 	
 	<select id="selectById" parameterType="java.util.HashMap" resultType="com.smilevle.review.model.ReviewVO">

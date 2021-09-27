@@ -19,7 +19,7 @@ public class ReviewRepository {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	public List<PReviewVO> getReviewList(ReviewPageVO reviewPageVO, String searchWord, String searchAreacode, String myId) {
+	public List<PReviewVO> getReviewList(ReviewPageVO reviewPageVO, String searchWord, String searchAreacode, String myId, String starRate) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		
 		params.put("start", reviewPageVO.getStart());
@@ -27,16 +27,18 @@ public class ReviewRepository {
 		params.put("searchWord", searchWord);
 		params.put("searchAreacode", searchAreacode);
 		params.put("myId", myId);
+		params.put("starRate", starRate);
 		
 		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE + "selectReviewList", params);
 	}
 	
-	public int reviewCount(String searchWord, String searchAreacode, String myId) {
+	public int reviewCount(String searchWord, String searchAreacode, String myId, String starRate) {
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		params.put("searchWord", searchWord);
 		params.put("searchAreacode", searchAreacode);
 		params.put("myId", myId);
+		params.put("starRate", starRate);
 		
 		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE + "reviewCount", params);
 	}

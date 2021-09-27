@@ -16,12 +16,12 @@ public class ReviewService {
 	@Autowired
 	private ReviewRepository reviewRepository;
 	
-	public List<PReviewVO> getReviewPage(ReviewPageVO reviewPageVO, String searchWord, String searchAreacode, String myId) {
-		return reviewRepository.getReviewList(reviewPageVO, searchWord, searchAreacode, myId);
+	public List<PReviewVO> getReviewPage(ReviewPageVO reviewPageVO, String searchWord, String searchAreacode, String myId, String starRate) {
+		return reviewRepository.getReviewList(reviewPageVO, searchWord, searchAreacode, myId, starRate);
 	}
 	
-	public int reviewCount(String searchWord, String searchAreacode, String myId) {
-		return reviewRepository.reviewCount(searchWord, searchAreacode, myId);
+	public int reviewCount(String searchWord, String searchAreacode, String myId, String starRate) {
+		return reviewRepository.reviewCount(searchWord, searchAreacode, myId, starRate);
 	}
 	
 	public ReviewVO selectById(Integer reviewNo) {
