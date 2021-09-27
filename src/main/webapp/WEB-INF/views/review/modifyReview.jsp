@@ -80,7 +80,7 @@
 				<div class="form-group row">
 					<label for="location_name" class="col-sm-2 col-form-label">플레이스</label>
 					<div class="col-sm-8">
-						<input type="text" name="location_name" class="form-control" id="location_name" value="${modReq.location_name }" required>
+						<input type="text" name="locationName" class="form-control" id="locationName" value="${modReq.locationName }" required>
 					</div>
 				</div>
 				<div class="form-group row">

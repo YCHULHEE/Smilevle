@@ -31,11 +31,12 @@ public class ReviewController {
 							@RequestParam(value = "myId", required = false, defaultValue = "") String myId,
 							@RequestParam(value = "starRate", required = false, defaultValue = "") String starRate) {
 		int reviewCnt = reviewService.reviewCount(searchWord, searchAreacode, myId, starRate);
-		reviewPageVO = new ReviewPageVO(reviewCnt, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		reviewPageVO = new ReviewPageVO(reviewCnt, Integer.parseInt(nowPage));
 		model.addAttribute("reviewPageVO", reviewPageVO);
+		System.out.println(reviewPageVO);
 		model.addAttribute("reviewPage", reviewService.getReviewPage(reviewPageVO, searchWord, searchAreacode, myId, starRate));
 		
-		reviewService.getReviewPage(reviewPageVO, searchWord, searchAreacode, myId, starRate).get(0).getReviewNo();
+		reviewService.getReviewPage(reviewPageVO, searchWord, searchAreacode, myId, starRate);
 		
 
 		

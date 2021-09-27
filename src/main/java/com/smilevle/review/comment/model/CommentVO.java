@@ -14,9 +14,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class CommentVO {
-	private Integer comment_no;
+	private Integer commentNo;
 	private Date regdate;
-	private Integer review_no;
-	private String writer_id;
+	private Integer reviewNo;
+	private String writerId;
 	private String content;
 }

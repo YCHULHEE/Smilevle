@@ -42,21 +42,21 @@
 			loadComment();
 		});
 		function loadComment() {
-			$.getJSON('/comment_list?no=${reviewData.review_no}', function(data) {
+			$.getJSON('/comment_list?no=${reviewData.reviewNo}', function(data) {
 				console.log(data);
 				if(data == "") {
 					$('#comment').append('<li class=comment><h5 class=text-center>작성된 댓글이 없습니다!</h5></li>');
 				}
 				else {
 					$.each(data, function() {
-						if(this.writer_id == '${authUser.id}') {
-							$('#comment').append('<li class=comment><div class=comment-body><h4>' + this.writer_id +
+						if(this.writerId == '${authUser.id}') {
+							$('#comment').append('<li class=comment><div class=comment-body><h4>' + this.writerId +
 									'</h4><div class=meta>' + this.regdate + '</div><p>' + this.content + '</p><p>' + 
 									'<form method=POST action=/comment_delete target=iframe1>' + 
-									'<input type=hidden name=commentNo id=commentNo value=' + this.comment_no + '>' + 
+									'<input type=hidden name=commentNo id=commentNo value=' + this.commentNo + '>' + 
 									'<input type=submit id=commentDelete value=삭제 class="btn btn-secondary btn-sm float-right" onclick=deleteCommentAlert();></form></p></div></li>');
 						} else {
-							$('#comment').append('<li class=comment><div class=comment-body><h3>' + this.writer_id +
+							$('#comment').append('<li class=comment><div class=comment-body><h3>' + this.writerId +
 									'</h3><div class=meta>' + this.regdate + '</div><p>' + this.content + '</p></div></li>');
 
 						}
@@ -104,9 +104,9 @@
               ${reviewData.content }
             </p>
             <div class="container">
-    			<c:if test="${authUser.id == reviewData.writer_id }">
+    			<c:if test="${authUser.id == reviewData.writerId }">
     			    <button type="button" class="btn btn btn-primary rounded float-right" data-toggle="modal" data-target="#myModal">삭제</button>
-    				<button type="button" class="btn btn btn-info rounded float-right btn-space" onclick="location.href='/review_modify?no=${reviewData.review_no}'">수정</button>
+    				<button type="button" class="btn btn btn-info rounded float-right btn-space" onclick="location.href='/review_modify?no=${reviewData.reviewNo}'">수정</button>
     			</c:if>
     		</div>
 
@@ -118,7 +118,7 @@
               <!-- END comment-list -->
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">댓글작성</h3>
-                <form id="commentForm" class="p-5 bg-light" method="post" action="/comment_write?no=${reviewData.review_no}" target="iframe1">
+                <form id="commentForm" class="p-5 bg-light" method="post" action="/comment_write?no=${reviewData.reviewNo}" target="iframe1">
                 <c:choose>
 					<c:when test="${authUser == null }">
 					  <div class="form-group">
@@ -152,7 +152,7 @@
 				<table class="table thead-light">
 					<tr>
 						<th scope="row" class="text-left">No.</th>
-						<td class="text-right">${reviewData.review_no }</td>	
+						<td class="text-right">${reviewData.reviewNo }</td>	
 					</tr>
 					<tr>
 						<th scope="row" class="text-left">작성일시</th>
@@ -160,7 +160,7 @@
 					</tr>					
 					<tr>
 						<th scope="row" class="text-left">작성자</th>
-						<td class="text-right">${reviewData.writer_name }</td>				
+						<td class="text-right">${reviewData.writerName }</td>				
 					</tr>
 					<tr>
 						<th scope="row" class="text-left">지역</th>
@@ -168,7 +168,7 @@
 					</tr>
 					<tr>
 						<th scope="row" class="text-left">플레이스</th>
-						<td class="text-right">${reviewData.location_name }</td>
+						<td class="text-right">${reviewData.locationName }</td>
 					</tr>
 					<tr>	
 						<th class="text-left">별점</th>
@@ -266,7 +266,7 @@
 	      </div>
 	      <div class="modal-footer">
 		<button type="button" id="toList" class="btn btn-default" data-dismiss="modal">취소</button>
-		<button type="button" id="toContent" class="btn btn-danger" onclick="location.href='/review_deleteAction?no=${reviewData.review_no}'">삭제</button>
+		<button type="button" id="toContent" class="btn btn-danger" onclick="location.href='/review_deleteAction?no=${reviewData.reviewNo}'">삭제</button>
 	      </div>
 	    </div>
 	  </div>
