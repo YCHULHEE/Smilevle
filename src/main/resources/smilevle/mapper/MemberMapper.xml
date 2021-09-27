@@ -13,8 +13,8 @@
 	
 	<insert id="insertMember" parameterType="com.smilevle.login.model.MemberVO">	 
          <![CDATA[
-        insert into member(memberid ,name, password,regdate,email,gender,birthday,phonenum)
-        values(#{memberId},#{name}, #{password},sysdate,#{email},#{gender},#{birthday},#{phonenum}) 
+        insert into member(memberid ,name, password,regdate,email,gender,birthday,phonenum,user_type,ban)
+        values(#{memberId},#{name}, #{password},sysdate,#{email},#{gender},#{birthday},#{phonenum},#{userType},#{ban}) 
         ]]> 
     </insert>
 

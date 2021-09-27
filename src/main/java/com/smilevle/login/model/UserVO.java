@@ -12,5 +12,7 @@ public class UserVO {
 	private String gender;
 	private String birthday;
 	private String phonenum;
+	private String userType;
+	private String ban;
 
 }

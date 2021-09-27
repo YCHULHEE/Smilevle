@@ -28,7 +28,7 @@ public UserVO login(String memberId, String password) {
 			throw new LoginFailException();
 		}
 		return new UserVO((memberVO).getMemberId(), (memberVO).getName(),(memberVO).getEmail(),(memberVO).getGender(),
-				(memberVO).getBirthday(),(memberVO).getPhonenum());
+				(memberVO).getBirthday(),(memberVO).getPhonenum(),(memberVO).getUserType(),(memberVO).getBan());
 			
 }
 

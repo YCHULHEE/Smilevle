@@ -25,7 +25,7 @@ public class PassSearchService {
 				throw new SearchFailException();
 			}
 			return new MemberVO((memberVO).getMemberId(), (memberVO).getName(),(memberVO).getPassword(),(memberVO).getRegDate(),(memberVO).getEmail(),(memberVO).getGender(),
-					(memberVO).getBirthday(),(memberVO).getPhonenum());
+					(memberVO).getBirthday(),(memberVO).getPhonenum(),(memberVO).getUserType(),(memberVO).getBan());
 		
 	}
 

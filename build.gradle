@@ -29,6 +29,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'javax.servlet:jstl'
+	
 }
 
 test {

@@ -16,7 +16,7 @@ public class LogoutController {
 		if(session!=null) {
 			session.invalidate();
 		}
-		response.sendRedirect("/index");
+		response.sendRedirect("/hi");
 		return null;
 	}
 

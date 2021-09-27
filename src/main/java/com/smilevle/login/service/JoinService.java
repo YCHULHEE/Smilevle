@@ -31,7 +31,10 @@ public JoinService(MemberRepository memberRepository) {
 					joinReq.getEmail(),
 					joinReq.getGender(),
 					joinReq.getBirthday(),
-					joinReq.getPhonenum())
+					joinReq.getPhonenum(),
+					"normal",
+					"0"
+					)
 					);
 			
 			

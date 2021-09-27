@@ -51,7 +51,7 @@
 				<h1>비밀번호는 ${searchUser.password} 입니다.</h1>
 				<br>
 				
-				<a href="/logout">첫화면으로 돌아가기</a>
+				<div align="right"><a href="/logout">첫화면으로 돌아가기</a></div>
 			</div>
 		</div>
     </section>

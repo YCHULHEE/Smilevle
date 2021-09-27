@@ -4,22 +4,42 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="smilevle.mapper.reservationMapper">
-	<!-- <select id="selectReservationAll" parameterType="java.util.HashMap" resultType="com.smilevle.reservation.model.ReservationVO">
-		 select res_num ,content_id, member_id,reg_date,checkin_date,checkout_date,title from (select * from tbl_reservation rs natural join tbl_tour tr where rs.content_id=tr.content_id )
+	<select id="selectReservationAll" parameterType="java.util.HashMap" resultType="com.smilevle.reservation.model.ReservationVO">
+		 select res_num ,content_id, memberid,regdate,checkin_date,checkout_date,title from (select * from tbl_reservation rs natural join tbl_tour tr where rs.content_id=tr.content_id )
 	</select>
 	
 	<insert id="addReservation" >
     <![CDATA[
-        insert into tbl_reservation(resNum ,contentId, memberId,regDate,checkInDate,checkOutDate)
-        values(#{resNum} ,#{contentId}, #{memberId},now(),#{checkInDate},#{checkOutDate})
+        insert into tbl_reservation(res_num ,content_id, memberid,regdate,checkIn_Date,checkOut_Date,title)
+        values(#{resNum} ,#{contentId}, #{memberId},#{regDate},#{checkInDate},#{checkOutDate},#{title})
      ]]>
     </insert>
     
-    <select id="selectByResNum" parameterType="map" resultMap="userResultMap">
+   <!--  <select id="selectByResNum" parameterType="map" resultMap="userResultMap">
 		SELECT
 			title, member_id, checkin_date, checkout_date 
 		FROM (select * from tbl_reservation rs natural join tbl_tour tr where rs.content_id=tr.content_id ) 
 		WHERE res_num = #{resNum}
 	</select> -->
+	
+	<resultMap type="com.smilevle.reservation.model.ReservationVO" id="resultMap">
+		<result property="resNum" column="res_num"/>
+		<result property="checkInDate" column="checkin_date"/>
+		<result property="checkOutDate" column="checkout_date"/>
+		<result property="memberId" column="memberid"/>
+		<result property="contentId" column="content_id"/>
+	</resultMap>
+	<select id="selectByMemberId" parameterType="map" resultType="com.smilevle.reservation.model.ReservationVO" resultMap="resultMap" >
+		SELECT * from tbl_reservation WHERE memberid = #{memberId}
+	</select>
+	
+	
+	<select id="getResNum" resultType="int">
+		select reservation_seq.nextVal from dual
+	</select>
+	
+	<delete id="deleteByResNum" parameterType="java.lang.Integer">
+		delete from tbl_reservation where res_num = #{resNum}
+	</delete>
     
 </mapper>

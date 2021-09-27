@@ -49,7 +49,7 @@
     	<div class="container">
     		<div class="login-card">
 				<h1>${param.name}님, Smilevle 회원가입에 성공했습니다.</h1>
-				<a href="/index">첫화면으로 돌아가기</a>
+				<div align="right"><a href="/index">첫화면으로 돌아가기</a></div>
 			</div>
 		</div>
     </section>

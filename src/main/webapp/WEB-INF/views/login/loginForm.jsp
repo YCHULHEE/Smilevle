@@ -61,6 +61,7 @@
     	<div class="container">
     		 <div class="login-card">
 				
+				
 				<form action="/login" method="post" onsubmit="check();" >
 				
 				<c:if test="${errors.idOrPwNotMatch}">
@@ -69,7 +70,7 @@
 					</script>
 				</c:if>
 				<p>
-					아이디:<input type="text" name="memberId" id="memberId" placeholder="ID" value="${param.memberId}" maxlength="20">
+					아이디:<input type="text"  name="memberId" id="memberId" placeholder="ID" value="${param.memberId}" maxlength="20">
 					<c:if test="${errors.memberId }">ID를 입력하세요.</c:if>
 				</p>
 				<p>
@@ -77,9 +78,15 @@
 					<c:if test="${errors.password }">패스워드를 입력하세요.</c:if>
 				</p>
 				<input type="submit" class="login login-submit" value="Login" id="submit"/>
-				<a href="/search">비밀번호 찾기 </a> &nbsp;/
-				<a href="/join">회원 가입</a>
+				<div align="right">
+					<a href="/search" >비밀번호 찾기 </a> &nbsp;/
+					<a href="/join">회원 가입</a>
+				</div>
+				
 				</form>
+				
+				
+				
 			</div>
     	</div>
     </section>

@@ -21,6 +21,7 @@ public class PassSearchController {
 	@Autowired
 	private PassSearchService passSearchService;
 
+	@RequestMapping("")
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		if(request.getMethod().equalsIgnoreCase("GET")) {
@@ -32,13 +33,13 @@ public class PassSearchController {
 			return null;
 		}
 	}
-	
+	@RequestMapping("/get")
 	private String processForm(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		return FORM_VIEW;
 	}
 	
-	@RequestMapping("")
+	@RequestMapping("/post")
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id=trim(request.getParameter("memberId"));
 		String email=trim(request.getParameter("email"));

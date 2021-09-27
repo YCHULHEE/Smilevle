@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.smilevle.login.service.DuplicateIdException;
@@ -21,8 +22,10 @@ public class JoinController {
 	private static final String FORM_VIEW="/login/joinForm";
 	@Autowired
 	private JoinService joinService;
-
+	
+	@RequestMapping("")
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
 		if(request.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(request,response);
 		}else if(request.getMethod().equalsIgnoreCase("POST")) {
@@ -31,18 +34,16 @@ public class JoinController {
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
 		}
-		
 	}
-
 	
-
+	@GetMapping("/get")
 	private String processForm(HttpServletRequest request, HttpServletResponse response) {
-	
 		return FORM_VIEW;
 	}
-	
-	@RequestMapping("")
+
+	@RequestMapping("/post")
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
+		
 		
 		JoinRequest joinReq=new JoinRequest();
 		joinReq.setMemberId(request.getParameter("memberId"));
@@ -69,7 +70,12 @@ public class JoinController {
 		}catch(DuplicateIdException | IOException e) {
 			errors.put("duplicateId", Boolean.TRUE);
 			return  FORM_VIEW;		
-		}		
+		}
+		
+		
+		
+		
+		
 	}
 
 }
