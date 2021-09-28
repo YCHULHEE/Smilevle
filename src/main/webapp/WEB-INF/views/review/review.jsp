@@ -144,7 +144,7 @@
 								<div class="form-check">
 									<input class="form-check-input" type="checkbox"
 										value="${authUser.id }" id="myId" name="myId"> <label
-										class="form-check-label" for="myId"> 내가 쓴 글 </label>
+										class="form-check-label" for="myId"> <h4 class="heading mb-4">내가 쓴 글</h4> </label>
 								</div>
 								<div class="form-group">
 									<input type="submit" value="Search"
