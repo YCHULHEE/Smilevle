@@ -64,11 +64,11 @@ public class TourRepository {
 	}
 
 	public void modify(TourVO vo) {
-		sqlSessionTemplate.insert(MAPPER_NAME_SPACE +"modify", vo);
+		sqlSessionTemplate.update(MAPPER_NAME_SPACE +"modify", vo);
 	}
 	
 	public void delete(int contentId) {
-		sqlSessionTemplate.insert(MAPPER_NAME_SPACE +"delete", contentId);
+		sqlSessionTemplate.delete(MAPPER_NAME_SPACE +"delete", contentId);
 	}
 	
 }

@@ -20,12 +20,12 @@ public class SmilevleApplication {
 		SpringApplication.run(SmilevleApplication.class, args);
 	}
 	
-//	@Bean
-//	public FilterRegistrationBean setFilterRegistration() {
-//		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new MyFilter());
-//		// filterRegistrationBean.setUrlPatterns(Collections.singletonList("/filtered/*")); // list 를 받는 메소드
-//		filterRegistrationBean.addUrlPatterns("/admin/*"); // string 여러개를 가변인자로 받는 메소드
-//		return filterRegistrationBean;
-//	}
+	@Bean
+	public FilterRegistrationBean setFilterRegistration() {
+		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new MyFilter());
+		// filterRegistrationBean.setUrlPatterns(Collections.singletonList("/filtered/*")); // list 를 받는 메소드
+		filterRegistrationBean.addUrlPatterns("/admin/*"); // string 여러개를 가변인자로 받는 메소드
+		return filterRegistrationBean;
+	}
 
 }

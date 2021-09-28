@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="smilevle.mapper.MemberMapper">
+	<select id="SelectById" parameterType="java.util.HashMap" resultType="com.smilevle.login.model.MemberVO">
+		 <![CDATA[
+		select * from member where memberid =#{memberId}
+		]]>
+	</select>
+	
+	
+	<insert id="insertMember" parameterType="com.smilevle.login.model.MemberVO">	 
+         <![CDATA[
+        insert into member(memberid ,name, password,regdate,email,gender,birthday,phonenum,user_type,ban,ban_date)
+        values(#{memberId},#{name}, #{password},sysdate,#{email},#{gender},#{birthday},#{phonenum},#{userType},#{ban},#{banDate}) 
+        ]]> 
+    </insert>
+    
+    <select id="selectCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		<![CDATA[
+		select count(*) from member]]>
+	</select>
+	
+	<select id="getMemberList" parameterType="java.util.HashMap" resultType="com.smilevle.login.model.MemberVO">
+		<![CDATA[
+		select * 
+		from (select rownum as rnum, memberid, name, regdate, email, gender, birthday, phonenum, user_type, ban, ban_date 
+		from (select * from member]]>
+		
+		<if test='memberId != ""'>
+			<![CDATA[ where memberid LIKE '%'||#{memberId}||'%']]>
+		</if>
+		
+		<![CDATA[ order by memberid) where rownum <= #{endRow}) where rnum >= #{startRow} ]]>
+	</select>
+
+    <!--<select id="selectUserInfoAll" resultType="hashMap">
+    <![CDATA[
+		SELECT id, username, password
+		FROM TBL_USER
+	]]>
+    </select>
+
+    <insert id="addUserInfo" >
+    <![CDATA[
+        insert into TBL_USER(id ,username, password)
+        values(#{id},#{userName}, #{passWord})
+     ]]>
+    </insert>-->
+	
+	<!-- map에 있는 키 값을 가지고 조회하여 파라미터값을 전달해준다.  -->
+	<!--<select id="findByUserNameLike" parameterType="map" resultType="hashMap">
+		SELECT
+			ID,
+			USERNAME,
+			PASSWORD
+		FROM TBL_USER
+		WHERE USERNAME LIKE '%${userName}%'
+	</select>-->
+	
+	<!--<select id="findByUserName" parameterType="map" resultMap="userResultMap">
+		SELECT
+			ID,
+			USERNAME,
+			PASSWORD
+		FROM TBL_USER
+		WHERE USERNAME = #{userName}
+	</select>-->
+	<!-- resultMap 태그를 이용해서 클래스 필드와 데이터베이스 필드를 매핑하는 역할을 한다. -->
+	<resultMap type="com.smilevle.login.model.MemberVO" id="userResultMap">
+		<result property="MemberId" column="memberid"/>
+		<result property="regDate" column="regdate"/>
+		<result property="passWord" column="password"/>
+	</resultMap>
+    
+ 
+    <!--<select id="foreachUserList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    	SELECT
+     ID,
+     USERNAME,
+     PASSWORD
+    FROM TBL_USER
+    WHERE ID IN
+    	<foreach collection="user_list" item="userId" index="index" open="(" close=")" separator=",">
+    		#{userId}
+    	</foreach>
+    </select>-->
+    
+</mapper>

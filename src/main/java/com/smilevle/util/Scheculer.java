@@ -13,10 +13,10 @@ public class Scheculer {
 	@Autowired
 	CoronaService coronaService;
 	
-	@Scheduled(cron = "0 20 17 * * *")
-	public void updateCorona() throws IOException {
+	@Scheduled(cron = "0 20 22 * * *")
+	public void insertCorona() throws IOException {
 		coronaService.insertCorona();
-		System.out.println("코로나 업데이트");
+		System.out.println("코로나 정보 받아오기");
 	 }
 }
 

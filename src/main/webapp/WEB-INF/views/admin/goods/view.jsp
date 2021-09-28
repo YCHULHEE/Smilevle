@@ -44,33 +44,33 @@
 				<input type="hidden" name="n" value="${goods.gdsNum }" />
 					<div class="inputArea"> 
 						<label>1차 분류</label>
-						<span class="category1">${goods.cateName }</span>   
+						<span class="category1">하이</span>   
 						
 						<br />
 						
 						<label>2차 분류</label>
-						<span class="category2">${goods.cateCode}</span>
+						<span class="category2">하이</span>
 					</div>
 					
 					<div class="inputArea">
 						<label for="gdsName">상품명</label>
-						<span>${goods.gdsName}</span>
+						<span>하이</span>
 					</div>
 					
 					<div class="inputArea">
 						<label for="gdsPrice">상품가격</label>
-						<span><fmt:formatNumber value="${goods.gdsPrice}" pattern="###,###,###"/></span>
+						<span><fmt:formatNumber value="12" pattern="###,###,###"/></span>
 					</div>
 					
 					<div class="inputArea">
 						<label for="gdsStock">상품수량</label>
-						<span><fmt:formatNumber value="${goods.gdsStock}" pattern="###,###,###"/></span>
+						<span><fmt:formatNumber value=12" pattern="###,###,###"/></span>
 					</div>
 					
 					<div class="inputArea">
 						<label for="gdsDes">상품소개</label>
 						<!--  <span>${goods.gdsDes}</span>-->
-						<div class="gdsDes">${goods.gdsDes }</div>
+						<div class="gdsDes">하이</div>
 					</div>
 					
 					<div class="inputArea">

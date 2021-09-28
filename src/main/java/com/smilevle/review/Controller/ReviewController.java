@@ -10,11 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import com.smilevle.login.model.UserVO;
 import com.smilevle.review.model.AttachVO;
 import com.smilevle.review.model.ReviewPageVO;
 import com.smilevle.review.model.ReviewVO;
-import com.smilevle.review.model.UserVO;
 import com.smilevle.review.service.ReviewService;
 
 @Controller
@@ -40,8 +39,6 @@ public class ReviewController {
 		
 
 		
-		UserVO authUser = new UserVO("example123", "박예시");
-		request.getSession().setAttribute("authUser", authUser);
 		return "/review/review";
 	}
 	@RequestMapping("/review_read")
@@ -57,8 +54,9 @@ public class ReviewController {
 	
 	@RequestMapping("/review_writeAction")
 	public String writeReview(HttpServletRequest request, HttpServletResponse response, Model model, ReviewVO reviewVO, AttachVO attachVO) {
-		reviewVO.setWriterId("example123");
-		reviewVO.setWriterName("박예시");
+		UserVO authUser = (UserVO) request.getSession().getAttribute("authUser");
+		reviewVO.setWriterId(authUser.getMemberId());
+		reviewVO.setWriterName(authUser.getName());
 		reviewVO.setRegDate(new Date());
 		reviewVO.setModDate(new Date());
 		reviewVO.setReviewNo(reviewService.getReviewNo());

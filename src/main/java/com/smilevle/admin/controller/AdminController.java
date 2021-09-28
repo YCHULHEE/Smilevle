@@ -1,16 +1,9 @@
-package com.smilevle.admin;
+package com.smilevle.admin.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.List;
-import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import org.eclipse.jdt.internal.compiler.ast.FalseLiteral;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.smilevle.admin.service.MemberService;
+import com.smilevle.login.service.MemberPage;
+import com.smilevle.review.model.PReviewVO;
+import com.smilevle.review.model.ReviewPageVO;
+import com.smilevle.review.model.ReviewVO;
+import com.smilevle.review.service.ReviewService;
 import com.smilevle.tour.model.TourVO;
 import com.smilevle.tour.service.TourData;
 import com.smilevle.tour.service.TourPage;
@@ -36,6 +36,10 @@ public class AdminController {
 	private TourService tourService;
 	@Autowired
 	MapInfomation mapInfomation;
+	@Autowired
+	ReviewService reviewService;
+	@Autowired
+	MemberService memberService;
 	
 	String uploadPath = "C:\\Users\\Admin\\Desktop\\Smile\\Smilevle\\src\\main\\resources\\static\\goodImages";
 	
@@ -147,14 +151,61 @@ public class AdminController {
 		return "redirect:/admin/goods/list?";
 	}
 	
-	@RequestMapping(value="/member/list", method=RequestMethod.GET)
-	public void getMemberList(Model model) throws Exception{
-		logger.info("get member list");
-		
+//	@RequestMapping(value="/member/list", method=RequestMethod.GET)
+//	public void getMemberList(Model model) throws Exception{
+//		logger.info("get member list");
+//		
 //		List<MemberVO> memberList = adminService.memberList();
 //		
 //		model.addAttribute("memberList", memberList);
+//	}
+//	
+	
+	@RequestMapping(value="/review/list", method=RequestMethod.GET)
+	public String getAllReview(ReviewPageVO reviewPageVO, Model model, 
+								@RequestParam(value = "pageNo", required = false, defaultValue = "1") String nowPage, 
+								@RequestParam(value = "cntPerPage", required = false, defaultValue = "8") String cntPerPage,
+								@RequestParam(value = "searchWord", required = false, defaultValue = "") String searchWord, 
+								@RequestParam(value = "searchAreacode", required = false, defaultValue = "") String searchAreacode, 
+								@RequestParam(value = "myId", required = false, defaultValue = "") String myId,
+								@RequestParam(value = "starRate", required = false, defaultValue = "") String starRate) {
+			int reviewCnt = reviewService.reviewCount(searchWord, searchAreacode, myId, starRate);
+			reviewPageVO = new ReviewPageVO(reviewCnt, Integer.parseInt(nowPage));
+			
+			model.addAttribute("reviewPageVO", reviewPageVO);
+			System.out.println(reviewPageVO);
+			model.addAttribute("reviewPage", reviewService.getReviewPage(reviewPageVO, searchWord, searchAreacode, myId, starRate));
+			
+			
+			
+		return "admin/goods/reviewList";
 	}
+	
+	
+	@RequestMapping(value="/reivew/delete", method=RequestMethod.POST)
+	public String DeleteReview(@RequestParam(value = "no") Integer reviewNo) throws Exception{
+		logger.info("reivew/delete");
+		reviewService.deleteReview(reviewNo);
+		
+		return "redirect:/admin/goods/reviewList";
+	}
+	
+	@RequestMapping(value="/member/list", method=RequestMethod.GET)
+	public void getMemberList(@RequestParam(value = "pageNo", required = false, defaultValue = "1") String pageNoVal,
+			@RequestParam(value = "memberId", required = false, defaultValue = "") String memberId,
+			@RequestParam(value = "type", required = false, defaultValue = "memberId") String type,
+			Model model) throws Exception{
+		logger.info("get member list");
+		int size = 5;
+		int pageNo = 1;
+		if (pageNoVal != null) {
+			pageNo = Integer.parseInt(pageNoVal);
+		}
+		MemberPage page =memberService.getMemberPage(pageNo, memberId, size);
+		
+		model.addAttribute("page", page);
+	}
+	
 
 	@RequestMapping(value = "/goods/Sample")
 	public void getJusoList(Model model) throws Exception {
@@ -164,5 +215,15 @@ public class AdminController {
 	public void getJusoSearch(Model model) throws Exception {
 
 	}
-
+	
+	@RequestMapping(value="/reservation/list", method=RequestMethod.GET)
+	public String getOrderList(Model model) throws Exception {
+		logger.info("get order list");
+		
+		//List<OrderVO> orderList = adminService.orderList();
+		
+//		model.addAttribute("reservationlist", orderList);
+		
+		return "admin/goods/reservationList";
+	}
 }

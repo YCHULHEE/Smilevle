@@ -49,7 +49,7 @@
 				}
 				else {
 					$.each(data, function() {
-						if(this.writerId == '${authUser.id}') {
+						if(this.writerId == '${authUser.memberId}') {
 							$('#comment').append('<li class=comment><div class=comment-body><h4>' + this.writerId +
 									'</h4><div class=meta>' + this.regdate + '</div><p>' + this.content + '</p><p>' + 
 									'<form method=POST action=/comment_delete target=iframe1>' + 
@@ -104,7 +104,7 @@
               ${reviewData.content }
             </p>
             <div class="container">
-    			<c:if test="${authUser.id == reviewData.writerId }">
+    			<c:if test="${authUser.memberId == reviewData.writerId }">
     			    <button type="button" class="btn btn btn-primary rounded float-right" data-toggle="modal" data-target="#myModal">삭제</button>
     				<button type="button" class="btn btn btn-info rounded float-right btn-space" onclick="location.href='/review_modify?no=${reviewData.reviewNo}'">수정</button>
     			</c:if>
@@ -127,7 +127,7 @@
 	                  </div>
 					</c:when>
 					<c:otherwise>
-						<h6>${authUser.id }</h6>
+						<h6>${authUser.memberId }</h6>
 						<div class="form-group">
 		                    <label for="content">내용</label>
 		                    <textarea name="content" id="content" cols="30" rows="5" class="form-control"></textarea>

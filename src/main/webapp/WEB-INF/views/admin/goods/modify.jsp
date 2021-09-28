@@ -185,12 +185,8 @@
 
 						<div class="inputArea" align="right" style="margin-right: 20px">
 						
-							<button type="submit" id="back_Btn" class="btn btn-warning">돌아가기</button>
-							<script>
-								$("#back_Btn").click(function(){
-									location.href="/admin/goods/list;
-								});
-							</script>
+							<button type="button" id="back_Btn" class="btn btn-warning" onclick="window.history.back()">돌아가기</button>
+							
 							
 							<button type="button" id="register_Btn" class="btn btn-primary">수정</button>
 							<script>

@@ -15,9 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.smilevle.login.model.UserVO;
 import com.smilevle.review.comment.model.CommentVO;
 import com.smilevle.review.comment.service.CommentService;
-import com.smilevle.review.model.UserVO;
+
 
 @Controller
 public class CommentController {
@@ -48,8 +49,8 @@ public class CommentController {
 							 @RequestParam(value = "no", required = true) Integer reviewNo, CommentVO commentVO) {
 		commentVO.setCommentNo(commentService.getCommentNo());
 		commentVO.setReviewNo(reviewNo);
-		UserVO authUser = (UserVO) request.getSession(false).getAttribute("authUser");
-		commentVO.setWriterId(authUser.getId());
+		UserVO authUser = (UserVO) request.getSession().getAttribute("authUser");
+		commentVO.setWriterId(authUser.getMemberId());
 		commentVO.setRegdate(new Date());
 		commentService.writeComment(commentVO);
 	}

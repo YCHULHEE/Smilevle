@@ -143,7 +143,7 @@
 								</div>
 								<div class="form-check">
 									<input class="form-check-input" type="checkbox"
-										value="${authUser.id }" id="myId" name="myId"> <label
+										value="${authUser.memberId }" id="myId" name="myId"> <label
 										class="form-check-label" for="myId"> 내가 쓴 글 </label>
 								</div>
 								<div class="form-group">
