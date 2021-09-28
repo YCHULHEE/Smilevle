@@ -10,16 +10,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.smilevle.config.util.AreacodeConverter;
 import com.smilevle.login.model.UserVO;
 import com.smilevle.review.model.AttachVO;
 import com.smilevle.review.model.ReviewPageVO;
 import com.smilevle.review.model.ReviewVO;
 import com.smilevle.review.service.ReviewService;
+import com.smilevle.tour.model.TourVO;
+import com.smilevle.tour.service.TourData;
+import com.smilevle.tour.service.TourService;
 
 @Controller
 public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	private TourService	tourService;
 	
 	@RequestMapping("/review")
 	public String reviewPage(HttpServletRequest request, HttpServletResponse response, ReviewPageVO reviewPageVO, Model model, 
@@ -48,7 +54,14 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/review_write")
-	public String viewWritePage() {
+	public String viewWritePage(Model model, @RequestParam(value = "stayId") Integer stayId) {
+		TourData tourData = tourService.getTour(stayId, false);
+		TourVO tourVO = tourData.getTourVO();
+		
+		model.addAttribute("stayId", stayId);
+		model.addAttribute("stayAreacode", tourVO.getAreaCode());
+		model.addAttribute("stayArea", AreacodeConverter.getKey(tourVO.getAreaCode()));
+		model.addAttribute("title", tourVO.getTitle());
 		return "/review/newReview";
 	}
 	
@@ -85,6 +98,7 @@ public class ReviewController {
 	public String viewModifyPage(Model model, @RequestParam(value = "no") Integer reviewNo) {
 		ReviewVO reviewVO = reviewService.selectById(reviewNo);
 		model.addAttribute("modReq", reviewVO);
+		model.addAttribute("stayArea", AreacodeConverter.getKey(reviewVO.getAreacode()));
 		return "/review/modifyReview";
 	}
 	

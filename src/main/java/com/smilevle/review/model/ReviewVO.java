@@ -26,5 +26,6 @@ public class ReviewVO {
 	private Date regDate;
 	private Date modDate;
 	private int readCnt;
+	private Integer contentId;
 		
 }

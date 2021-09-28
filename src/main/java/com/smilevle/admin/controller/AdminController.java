@@ -72,7 +72,7 @@ public class AdminController {
 		}
 
 		tourService.register(vo);
-		return "redirect:/admin/index";
+		return "admin/index";
 	}
 
 	@RequestMapping(value = "/goods/list", method = RequestMethod.GET)
@@ -141,14 +141,14 @@ public class AdminController {
 		}
 		
 		tourService.tourModify(vo);
-		return "redirect:/admin/index";
+		return "admin/index";
 	}
 	
 	@RequestMapping(value = "/goods/delete", method = RequestMethod.GET)
 	public String postGoodsDelete(@RequestParam("contentId") int contentId) throws Exception {
 		logger.info("goods delete");
 		tourService.tourDelete(contentId);
-		return "redirect:/admin/goods/list?";
+		return "admin/index";
 	}
 	
 //	@RequestMapping(value="/member/list", method=RequestMethod.GET)
@@ -168,13 +168,14 @@ public class AdminController {
 								@RequestParam(value = "searchWord", required = false, defaultValue = "") String searchWord, 
 								@RequestParam(value = "searchAreacode", required = false, defaultValue = "") String searchAreacode, 
 								@RequestParam(value = "myId", required = false, defaultValue = "") String myId,
-								@RequestParam(value = "starRate", required = false, defaultValue = "") String starRate) {
-			int reviewCnt = reviewService.reviewCount(searchWord, searchAreacode, myId, starRate);
+								@RequestParam(value = "starRate", required = false, defaultValue = "") String starRate,
+								@RequestParam(value = "memberId", required = false, defaultValue = "") String memberId) {
+			int reviewCnt = reviewService.reviewCount(memberId, searchAreacode, myId, starRate);
 			reviewPageVO = new ReviewPageVO(reviewCnt, Integer.parseInt(nowPage));
 			
 			model.addAttribute("reviewPageVO", reviewPageVO);
 			System.out.println(reviewPageVO);
-			model.addAttribute("reviewPage", reviewService.getReviewPage(reviewPageVO, searchWord, searchAreacode, myId, starRate));
+			model.addAttribute("reviewPage", reviewService.getReviewPage(reviewPageVO, memberId, searchAreacode, myId, starRate));
 			
 			
 			
@@ -182,12 +183,12 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping(value="/reivew/delete", method=RequestMethod.POST)
+	@RequestMapping(value="/reivew/delete", method=RequestMethod.GET)
 	public String DeleteReview(@RequestParam(value = "no") Integer reviewNo) throws Exception{
 		logger.info("reivew/delete");
 		reviewService.deleteReview(reviewNo);
 		
-		return "redirect:/admin/goods/reviewList";
+		return "admin/goods/reviewList?";
 	}
 	
 	@RequestMapping(value="/member/list", method=RequestMethod.GET)

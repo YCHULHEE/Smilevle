@@ -64,9 +64,9 @@
 	</div>
 
 	<section class="ftco-section ftco-degree-bg">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col-lg-3 sidebar">
+				<div class="col-lg-2 sidebar">
 					<div class="sidebar-wrap bg-light ftco-animate">
 						<h3 class="heading mb-4">리뷰 검색</h3>
 						<form action="/review" method="get">
@@ -144,7 +144,7 @@
 								<div class="form-check">
 									<input class="form-check-input" type="checkbox"
 										value="${authUser.memberId }" id="myId" name="myId"> <label
-										class="form-check-label" for="myId"> 내가 쓴 글 </label>
+										class="form-check-label" for="myId"> <h4 class="heading mb-4">내가 쓴 글</h4> </label>
 								</div>
 								<div class="form-group">
 									<input type="submit" value="Search"
@@ -155,7 +155,7 @@
 					</div>
 				</div>
 
-				<div class="col-lg-9">
+				<div class="col-lg-10">
 					<div class="row">
 						<c:if test="${reviewPageVO.hasNoReviews() }">
 							<div class="text-center">
@@ -163,7 +163,7 @@
 							</div>
 						</c:if>
 						<c:forEach var="review" items="${reviewPage}">
-							<div class="col-md-3 d-flex ftco-animate">
+							<div class="col-md-4 d-flex ftco-animate">
 								<div class="blog-entry align-self-stretch">
 								<c:choose>
 									<c:when test="${review.photoUrl eq null }">
@@ -181,11 +181,14 @@
 								</c:choose>	
 									<div class="text p-4 d-block">
 										<span class="tag">${AreacodeConverter.getKey(review.areacode) }</span>
-										<h3 class="heading mt-3">
+										<h3 class="heading mt-3" style="width: 400px">
 											<a
 												onClick="location.href='review_read?no=${review.reviewNo }&pageNo=${reviewPageVO.pageNo }'"
 												style="cursor: pointer;">${review.title }</a>
 										</h3>
+										<div>
+											<h6>${review.locationName }</h6>
+										</div>
 										<div class="meta mb-3">
 											<div>
 												<h6>

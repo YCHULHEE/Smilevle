@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.smilevle.tour.model.TourVO;
 import com.smilevle.util.MyFilter;
+import com.smilevle.util.WriterFilter;
 
 
 @EnableScheduling
@@ -25,6 +26,14 @@ public class SmilevleApplication {
 		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new MyFilter());
 		// filterRegistrationBean.setUrlPatterns(Collections.singletonList("/filtered/*")); // list 를 받는 메소드
 		filterRegistrationBean.addUrlPatterns("/admin/*"); // string 여러개를 가변인자로 받는 메소드
+		return filterRegistrationBean;
+	}
+	
+	@Bean
+	public FilterRegistrationBean setFilterWrter() {
+		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WriterFilter());
+		// filterRegistrationBean.setUrlPatterns(Collections.singletonList("/filtered/*")); // list 를 받는 메소드
+		filterRegistrationBean.addUrlPatterns("/review_write"); // string 여러개를 가변인자로 받는 메소드
 		return filterRegistrationBean;
 	}
 

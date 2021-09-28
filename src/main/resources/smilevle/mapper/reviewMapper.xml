@@ -57,7 +57,7 @@
 	
 	<insert id="insertReview" parameterType="com.smilevle.review.model.ReviewVO">
 		<![CDATA[
-		insert into tbl_review values(#{reviewNo}, #{writerId}, #{writerName}, #{title}, #{areacode}, #{locationName}, #{rate}, #{content}, #{regDate}, #{modDate}, 0)
+		insert into tbl_review values(#{reviewNo}, #{writerId}, #{writerName}, #{title}, #{areacode}, #{locationName}, #{rate}, #{content}, #{regDate}, #{modDate}, 0, #{contentId})
 		]]>
 	</insert>
 	

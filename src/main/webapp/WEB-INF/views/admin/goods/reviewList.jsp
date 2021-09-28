@@ -65,7 +65,6 @@ ul li {
 							<th>평점</th>
 							<th>글작성날짜</th>
 							<th>조회수</th>
-							<th>삭제</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -80,12 +79,6 @@ ul li {
 								<td><fmt:formatDate value="${review.modDate}"
 										pattern="yyyy-MM-dd" /></td>
 								<td>${review.readCnt}</td>
-								<td><ul>
-										<li class="btn btn btn-danger"><a style="color: white;"
-											href="delete?no=${review.reviewNo}"
-											onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a></li>
-									</ul></td>
-
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -126,19 +119,10 @@ ul li {
 							<form action="list" method="get">
 								<div class="fields" style="margin-left: 100px">
 									<div class="form-group">
-										<select style="width: 120px; height: 30px;" name="areaCode"
-											class="" placeholder="Keyword search">
-											<c:forEach var="map" items="${areaMap}">
-												<option value="${map.key}"
-													${map.key == areaCode ? 'selected="selected"' : '' }>${map.value}</option>
-											</c:forEach>
-										</select> <select name="smallCategory" class=""
+										<select  class=""
 											placeholder="Keyword search"
 											style="width: 120px; height: 30px;">
-											<c:forEach var="map" items="${itemMap}">
-												<option value="${map.key}"
-													${map.key == smallCategory ? 'selected="selected"' : '' }>${map.value}</option>
-											</c:forEach>
+											<option value="memberId" selected="selected">이름</option>
 										</select> <input type="text" class="" name="memberId" placeholder="검색"
 											style="width: 200px; height: 30px;"> <input
 											type="hidden" name="where" value="${where}"> <input
