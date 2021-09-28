@@ -34,6 +34,16 @@
 	</select>
 	
 	
+	<select id="selectByTitleToCheckIn" parameterType="map" resultType="java.util.Date"  >
+		SELECT checkin_date from tbl_reservation WHERE title = #{title}
+	</select>
+	
+	 
+	<select id="selectByTitleToCheckOut" parameterType="map" resultType="java.util.Date"  >
+		SELECT checkout_date from tbl_reservation WHERE title = #{title}
+	</select>
+	
+	
 	<select id="getResNum" resultType="int">
 		select reservation_seq.nextVal from dual
 	</select>
@@ -41,5 +51,10 @@
 	<delete id="deleteByResNum" parameterType="java.lang.Integer">
 		delete from tbl_reservation where res_num = #{resNum}
 	</delete>
+	
+	<select id="getCount" parameterType="map" resultType="int">
+		 <![CDATA[SELECT TO_DATE(#{checkOutDate}, 'YYYY-MM-DD') - TO_DATE(#{checkInDate}, 'YYYY-MM-DD') FROM DUAL]]>
+    </select>
+    
     
 </mapper>

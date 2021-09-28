@@ -34,7 +34,7 @@ public JoinService(MemberRepository memberRepository) {
 					joinReq.getPhonenum(),
 					"normal",
 					"0",
-					new Date(2999-12-31)
+					new Date(0)
 					)
 					);
 			

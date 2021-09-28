@@ -1,17 +1,12 @@
-package com.example.demo;
+package com.smilevle;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+public class test {
 
-@SpringBootTest
-class SmilevleApplicationTests {
-
-	@Test
-	void contextLoads() {
-		List list = new ArrayList<>();
+	public static void main(String[] args) {
+		List list = new ArrayList();
 		String checkInStr = "2021-09-29";
 		String[] str1 = checkInStr.split("-");
 		int[] yearMonthDay = new int[3];
@@ -25,6 +20,6 @@ class SmilevleApplicationTests {
 		for(int i : yearMonthDay) {
 			System.out.println(i);
 		}
-		
-	}	
+	}
+
 }

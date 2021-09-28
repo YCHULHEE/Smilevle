@@ -1,5 +1,6 @@
 package com.smilevle.reservation.repository;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +54,27 @@ public class ReservationRepository {
 	
 	public void deleteByResNum(int resNum) {
 		sqlSessionTemplate.delete(MAPPER_NAME_SPACE+"deleteByResNum",resNum);
+	}
+	
+	public List<Date> selectByTitleToCheckIn(String title) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("title", title);
+		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE +"selectByTitleToCheckIn", params);
+	}
+	
+	
+	public List<Date> selectByTitleToCheckOut(String title) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("title", title);
+		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE +"selectByTitleToCheckOut", params);
+	}
+	
+	public int getCount(String checkInDate,String checkOutDate) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("checkInDate", checkInDate);
+		params.put("checkOutDate", checkOutDate);
+		
+		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getCount", params);
 	}
 	
 

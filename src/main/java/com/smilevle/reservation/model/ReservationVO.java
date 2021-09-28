@@ -18,8 +18,8 @@ public class ReservationVO {
 	private String contentId;
 	private String memberId;
 	private Date regDate;
-	private String checkInDate;
-	private String checkOutDate;	
+	private Date checkInDate;
+	private Date checkOutDate;	
 	private String roomNum;
 	private String title;
 

@@ -1,5 +1,9 @@
 package com.smilevle.reservation.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -27,17 +31,66 @@ public class ReservationController {
 	@RequestMapping("/reservation")
 	public String reservationPage(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value = "contentId", required = false) String contentId, 
 			@RequestParam(value = "title", required = false) String title) {		
-		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		model.addAttribute("contentId", contentId);
 		model.addAttribute("title", title);
 		
+		UserVO userVO=(UserVO)request.getSession().getAttribute("authUser");		
+		//int count;
+		
+		
+		if (userVO==null) {
+			return "/login/loginForm";
+		}
+		List<Date> checkOutList=reservationService.selectByTitleToCheckOut(title);
+		List<Date> checkInList=reservationService.selectByTitleToCheckIn(title);
+		System.out.println("===========>"+checkInList.toString());
+		System.out.println("===========>"+checkOutList.toString());
+		int[] checkInCount = new int[checkInList.size()];
+		
+		
+		List<Date> reservationDateList = new ArrayList<Date>();
+		//List<String> reservationDate;
+		System.out.println("count length: " + checkInCount.length);
+		for(int i = 0; i < checkInCount.length; i++) {
+			int dates = reservationService.getCount(format.format(checkInList.get(i)), format.format(checkOutList.get(i)));
+			System.out.println("dates: " + dates);
+			checkInCount[i] = dates;
+			
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(checkInList.get(i));
+			for (int j=0; j< checkInCount[i]; j++) {
+				cal.add(Calendar.DATE, 1);
+				reservationDateList.add(new Date(cal.getTimeInMillis()));
+				
+			}
+			
+		}
+		System.out.println("size: " + reservationDateList.size());
+		String[] reservationDate = new String[reservationDateList.size()];
+		for(int k = 0; k < reservationDateList.size(); k++) {
+			
+			String date = format.format(reservationDateList.get(k));
+			System.out.println("예약된 날짜 : " + date);
+			reservationDate[k] = "'" + date + "'";
+		}
+		System.out.println(reservationDate.length);
+		String dateArray = Arrays.toString(reservationDate);
+		System.out.println(dateArray);
+		model.addAttribute("reservationDate", dateArray);
+		
+		
+		
+				
 		return "/reservation/reservation";
 	}
 	
 	
 	
 	@RequestMapping("/insertRes")
-	public String insertRes(HttpServletRequest request, HttpServletResponse response,Model model,ReservationVO reservationVO) {
+	public String insertRes(HttpServletRequest request, HttpServletResponse response,Model model,ReservationVO reservationVO, 
+			@RequestParam(value = "checkInD") String checkIn,
+			@RequestParam(value = "checkOutD") String checkOut) {
 
 		UserVO userVO=(UserVO)request.getSession().getAttribute("authUser");		
 		
@@ -48,10 +101,18 @@ public class ReservationController {
 		reservationVO.setMemberId(userVO.getMemberId());
 		reservationVO.setResNum(reservationService.getResNum());		
 		reservationVO.setRegDate(new Date());
+		reservationVO.setCheckInDate(java.sql.Date.valueOf(checkIn));
+		reservationVO.setCheckOutDate(java.sql.Date.valueOf(checkOut));
+		//if reservationVO.
+		
 		
 		reservationService.addReservation(reservationVO);		
+		model.addAttribute("contentId",reservationVO.getContentId());
+		model.addAttribute("title",reservationVO.getTitle());
 		
-		return"/reservation/reservation";
+		
+		
+		return"/reservation/reservationSuccess";
 		
 	}
 	
