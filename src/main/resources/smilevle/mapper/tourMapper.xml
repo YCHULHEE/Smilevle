@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="smilevle.mapper.tourMapper">
+
+
+	<select id="getTotalCount" resultType="com.smilevle.tour.model.TotalCountVO">
+		select common_name as local_name, count from (select areacode, count(*) as count from tbl_tour where 
+		content_type_id = 32 group by areacode order by areacode) t1,
+		tbl_common_code c1 where t1.areacode = c1.common_id
+	</select>
+
 	<select id="getTourList" parameterType="java.util.HashMap" resultType="com.smilevle.tour.model.TourVO">
 		<![CDATA[
 		select *
@@ -18,13 +26,13 @@
 		select * from tbl_tour where content_id = #{contentId}
 		]]>
 	</select>
-	
+
 	<update id="increaseReadCount" parameterType="java.util.HashMap">
 		<![CDATA[
 		update tbl_tour set read_cnt = read_cnt + 1 where content_id = #{contentId}
 		]]>
 	</update>
-	
+
 	<select id="selectList" parameterType="java.util.HashMap" resultType="com.smilevle.tour.model.TourVO">
 		<![CDATA[
 		select * 
@@ -35,7 +43,7 @@
 		<if test='areaCode != ""'>
 			<![CDATA[AND areaCode = #{areaCode}]]>
 		</if>
-		
+
 		<if test='searchWord != ""'>
 			<![CDATA[ AND title LIKE '%'||#{searchWord}||'%']]>
 		</if>
@@ -62,9 +70,9 @@
 	<!-- 숙소등록 -->
 	<insert id="register">
 		insert into tbl_tour(content_id, title, areacode, address, first_image, map_x, map_y, tel, read_cnt, content_type_id, middle_category, small_category, homepage, image_list, content)
-		values(10, #{title}, #{areaCode}, #{address}, #{firstImage}, #{mapX}, #{mapY}, #{tel}, 0, '32', null, #{smallCategory}, #{homepage}, #{firstImage}, #{content})
+		values(tour_id_seq.nextVal(), #{title}, #{areaCode}, #{address}, #{firstImage}, #{mapX}, #{mapY}, #{tel}, 0, '32', null, #{smallCategory}, #{homepage}, #{firstImage}, #{content})
 	</insert>
-	
+
 	<!-- 숙소 수정 -->
 	<update id="modify">
 		update tbl_tour
@@ -85,7 +93,7 @@
 			content = #{content}
 		where content_Id = ${contentId}
 	</update>
-	
+
 	<delete id="delete">
 		delete tbl_tour
 		where content_id = #{contentId}

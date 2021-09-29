@@ -41,6 +41,7 @@ public class TourController {
 //		Random random = new Random();
 //		random.setSeed(System.currentTimeMillis());
 //		coronaList.remove(corona);
+		tourService.getTotalCount();
 		CoronaVO corona = coronaService.selectCoronaLowOrderRandom(5);
 		model.addAttribute("corona", corona);
 		model.addAttribute("travelDestList", tourService.getTourInfoContainer(corona.getAreaCode(), 20, "12"));

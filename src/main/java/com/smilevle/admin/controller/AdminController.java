@@ -1,7 +1,9 @@
 package com.smilevle.admin.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.jdt.internal.compiler.ast.FalseLiteral;
 import org.slf4j.Logger;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.smilevle.admin.service.MemberService;
+import com.smilevle.login.model.MemberVO;
 import com.smilevle.login.service.MemberPage;
 import com.smilevle.review.model.PReviewVO;
 import com.smilevle.review.model.ReviewPageVO;
@@ -44,15 +47,21 @@ public class AdminController {
 	String uploadPath = "C:\\Users\\Admin\\Desktop\\Smile\\Smilevle\\src\\main\\resources\\static\\goodImages";
 	
 	@RequestMapping(value = "index")
-	public String getAdminIndex() throws Exception {
+	public String getAdminIndex(Model model) throws Exception {
+		model.addAttribute("totalCountList", tourService.getTotalCount());
 		return "admin/index";
 	}
 	
 	@RequestMapping(value = "/goods/register")
 	public void getGoodsResiger(Model model) throws Exception {
 		logger.info("get goods register");
-		model.addAttribute("areaMap", mapInfomation.getAreaMap());
-		model.addAttribute("itemMap", mapInfomation.getStayMap());
+		Map<String, String> areaMap = mapInfomation.getAreaMap();
+		areaMap.remove("");
+		Map<String, String> itemMap = mapInfomation.getStayMap();
+		itemMap.remove("");
+		
+		model.addAttribute("areaMap", areaMap);
+		model.addAttribute("itemMap", itemMap);
 	}
 	
 	
@@ -110,8 +119,13 @@ public class AdminController {
 	@RequestMapping(value = "/goods/modify", method = RequestMethod.GET)
 	public void getGoodsModify(@RequestParam("contentId") int contentId, Model model) throws Exception {
 		logger.info("get goods modify");
-		model.addAttribute("areaMap", mapInfomation.getAreaMap());
-		model.addAttribute("itemMap", mapInfomation.getStayMap());
+		Map<String, String> areaMap = mapInfomation.getAreaMap();
+		areaMap.remove("");
+		Map<String, String> itemMap = mapInfomation.getStayMap();
+		itemMap.remove("");
+		
+		model.addAttribute("areaMap", areaMap);
+		model.addAttribute("itemMap", itemMap);
 		TourData tourData = tourService.getTour(contentId, false); 
 		TourVO item = tourData.getTourVO(); 
 		item.setHomepage("홈페이지없음");
@@ -145,9 +159,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/goods/delete", method = RequestMethod.GET)
-	public String postGoodsDelete(@RequestParam("contentId") int contentId) throws Exception {
+	public String postGoodsDelete(@RequestParam("contentId") int contentId, Model model) throws Exception {
 		logger.info("goods delete");
 		tourService.tourDelete(contentId);
+		model.addAttribute("totalCountList", tourService.getTotalCount());
 		return "admin/index";
 	}
 	
@@ -172,6 +187,7 @@ public class AdminController {
 								@RequestParam(value = "memberId", required = false, defaultValue = "") String memberId) {
 			int reviewCnt = reviewService.reviewCount(memberId, searchAreacode, myId, starRate);
 			reviewPageVO = new ReviewPageVO(reviewCnt, Integer.parseInt(nowPage));
+			model.addAttribute("itemMap", mapInfomation.getStayMap());
 			
 			model.addAttribute("reviewPageVO", reviewPageVO);
 			System.out.println(reviewPageVO);
@@ -221,9 +237,9 @@ public class AdminController {
 	public String getOrderList(Model model) throws Exception {
 		logger.info("get order list");
 		
-		//List<OrderVO> orderList = adminService.orderList();
-		
-//		model.addAttribute("reservationlist", orderList);
+		String[] ab = new String[5];
+			
+		model.addAttribute("reservationList", ab);
 		
 		return "admin/goods/reservationList";
 	}

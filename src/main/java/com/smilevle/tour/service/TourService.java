@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.smilevle.tour.model.TotalCountVO;
 import com.smilevle.tour.model.TourVO;
 import com.smilevle.tour.repository.TourRepository;
 
@@ -18,6 +20,19 @@ public class TourService {
 	public List<TourVO> getTourInfoContainer(String areaCode, int size, String contentTypeId) {
 		return tourRepository.getTourList(areaCode, size, contentTypeId);
 	}
+	
+	public String getTotalCount() {
+		List<TotalCountVO> list = tourRepository.getTotalCount();
+		String totalCountStr = "";
+		
+		for(int i = 0; i < list.size(); i++) {
+			totalCountStr += ", ['"+list.get(i).getLocalName()+"', "+list.get(i).getCount()+"]";	
+		}
+		System.out.println(totalCountStr);
+		
+		return totalCountStr;
+	}
+	
 
 	public TourData getTour(int contentId, boolean increaseReadCount) {
 			//컨텐츠 정보를 통해 여행지 정보를 가져온다.

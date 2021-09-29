@@ -7,24 +7,23 @@
 		insert into tbl_corona values(#{areaCode}, #{localName}, #{count} ,#{regDate}, CORONA_SEQ.nextval)
 		]]>
 	</insert>
-	
+
 	<update id="update" parameterType="java.util.HashMap">
 		<![CDATA[
 		update tbl_corona set count = #{count} where areacode = #{localName}
 		]]>
 	</update>
-	
+
 	<select id="selectList" parameterType="java.util.HashMap" resultType="com.smilevle.corona.model.CoronaVO">
 		<![CDATA[
-			select * from (select rownum as rnum,
-					areacode, count from (SELECT avg(count) as count, areaCode FROM (SELECT * FROM TBL_corona WHERE TO_CHAR(regdate, 'YYYYMMDD') > sysdate - 7) group by areacode order by count) 
-					where rownum <= #{size})	
-					]]>
+			select c1.areacode, c2.local_name, c1.count 
+			from (select rownum, areacode, count 
+			from (select avg(count) as count, areaCode 
+			from (select * from TBL_corona where TO_CHAR(regdate, 'YYYYMMDD') > sysdate - 7) 
+			group by areacode order by count) where rownum <= #{size}) c1 inner join tbl_corona c2
+			on c1.areaCode = c2.areaCode where c2.regdate > sysdate - 1 order by c1.count
+		]]>
 	</select>
-
-
-	
-
 
 
 	<!--<select id="getTourList" parameterType="java.util.HashMap" resultType="com.smilevle.tour.model.TourVO">
@@ -37,16 +36,6 @@
 			<![CDATA[AND areaCode = #{areaCode}]]>
 		</if>
 	</select>-->
-
-
-
-
-
-
-
-
-
-
 
 
 </mapper>

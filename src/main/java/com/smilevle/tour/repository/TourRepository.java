@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.smilevle.tour.model.TotalCountVO;
 import com.smilevle.tour.model.TourVO;
 
 @Repository
@@ -69,6 +70,10 @@ public class TourRepository {
 	
 	public void delete(int contentId) {
 		sqlSessionTemplate.delete(MAPPER_NAME_SPACE +"delete", contentId);
+	}
+	public List<TotalCountVO> getTotalCount() {
+		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE + "getTotalCount");
+		
 	}
 	
 }

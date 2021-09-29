@@ -83,13 +83,13 @@
 							<label>지역분류</label> <select class="category1" name="areaCode">
 								<c:forEach var="map" items="${areaMap}">
 									<option value="${map.key}"
-										${map.key == areaCode ? 'selected="selected"' : '' }>${map.value}</option>
+										${map.key == item.areaCode ? 'selected="selected"' : '' }>${map.value}</option>
 								</c:forEach>
 							</select>    <label>1차분류</label> <select class="category2"
 								name="smallCategory">
 								<c:forEach var="map" items="${itemMap}">
 									<option value="${map.key}"
-										${map.key == areaCode ? 'selected="selected"' : '' }>${map.value}</option>
+										${map.key == item.smallCategory ? 'selected="selected"' : '' }>${map.value}</option>
 								</c:forEach>
 							</select>
 						</div>

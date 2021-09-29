@@ -72,7 +72,7 @@ ul li {
 							<tr>
 								<td>${review.reviewNo}</td>
 								<td><img src="${review.photoUrl}" style="height: 100px"></td>
-								<td><a href="">${review.title}</a></td>
+								<td><a href="/review_read?no=${review.reviewNo}">${review.title}</a></td>
 								<td>${review.writerId}</td>
 								<td>${review.rate}</td>
 								<td>${review.locationName}</td>
@@ -87,7 +87,7 @@ ul li {
 					<div class="col text-center">
 						<div class="block-27 pageBtn1">
 							</br>
-							<div style="margin-right: 300px ">
+							<div>
 								<ul>
 									<c:if test="${reviewPageVO.startPage > 5 }">
 										<li><a id="prevBtn"
@@ -117,12 +117,12 @@ ul li {
 							</div>
 							</br>
 							<form action="list" method="get">
-								<div class="fields" style="margin-left: 100px">
+								<div class="fields">
 									<div class="form-group">
-										<select  class=""
+										<select name="" class=""
 											placeholder="Keyword search"
 											style="width: 120px; height: 30px;">
-											<option value="memberId" selected="selected">이름</option>
+											<option>제목</option>
 										</select> <input type="text" class="" name="memberId" placeholder="검색"
 											style="width: 200px; height: 30px;"> <input
 											type="hidden" name="where" value="${where}"> <input

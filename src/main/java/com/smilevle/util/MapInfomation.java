@@ -55,6 +55,7 @@ public class MapInfomation {
 		}
 		return stayMap;
 	}
+	
 
 	public Map<String, String> getEventMap() {
 		String[] events = { "볼거리 전체", "문화관광축제", "일반축제", "전통공연", "연극", "뮤지컬", "오페라", "전시회", "박람회", "컨벤션", "무용", "클래식음악회",

@@ -28,7 +28,7 @@ ul li {
 	list-style-type: none;
 	display: inline;
 	line-height: 30px;
-}	
+}
 </style>
 
 </head>
@@ -72,9 +72,9 @@ ul li {
 							<tr>
 								<td>${stay.contentId}</td>
 								<td><img src="${stay.firstImage}" style="height: 100px"></td>
-								<td><a href="tourOne?contentId=${stay.contentId}">${stay.title}</a></td>
+								<td><a href="/tourOne?contentId=${stay.contentId}">${stay.title}</a></td>
 								<%-- <td>${list.cateCode }</td> --%>
-								<td></td>
+								<td>${itemMap.get(stay.smallCategory)}</td>
 								<td>${stay.address}</td>
 								<td>${stay.tel}</td>
 								<c:choose>
@@ -83,19 +83,23 @@ ul li {
 											숙소!)</td>
 									</c:when>
 									<c:when test="${stay.readCnt >= 2000}">
-										<td style="width: 200px;">${stay.readCnt  }</td>
+										<td style="width: 200px;">${stay.readCnt}</td>
 									</c:when>
 									<c:when test="${stay.readCnt  >= 0 }">
-										<td style="width: 200px;">${stay.readCnt}(새로
-											생긴 숙소!)</td>
+										<td style="width: 200px;">${stay.readCnt}(새로생긴 숙소!)</td>
 									</c:when>
 								</c:choose>
 
-								 <td><ul><li class="btn btn-default" style="margin-bottom: 8px;">
-								 <a style="color: black;" href="modify?contentId=${stay.contentId}">수정</a></li>
-								 <li class="btn btn btn-danger"><a style="color: white;" 
-								 href="delete?contentId=${stay.contentId}" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a></li></ul></td>
-								
+								<td><ul>
+										<li class="btn btn-default" style="margin-bottom: 8px;">
+											<a style="color: black;"
+											href="modify?contentId=${stay.contentId}">수정</a>
+										</li>
+										<li class="btn btn btn-danger"><a style="color: white;"
+											href="delete?contentId=${stay.contentId}"
+											onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a></li>
+									</ul></td>
+
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -104,50 +108,50 @@ ul li {
 					<div class="col text-center">
 						<div class="block-27 pageBtn1">
 							</br>
-							<div style="margin-right: 300px">
-							<ul>
-								<c:if test="${page.hasStays()}">
-									<c:if test="${page.startPage > 5}">
-										<li><a id="prevBtn">&lt;</a></li>
+							<div>
+								<ul>
+									<c:if test="${page.hasStays()}">
+										<c:if test="${page.startPage > 5}">
+											<li><a id="prevBtn">&lt;</a></li>
+										</c:if>
+										<c:forEach var="pNo" begin="${page.startPage}"
+											end="${page.endPage}">
+											<c:choose>
+												<c:when test="${pNo eq pageNo}">
+													<li class="active btn btn-default"><a class="pageBtn">${pNo}</a></li>
+												</c:when>
+												<c:otherwise>
+													<li><a class="pageBtn btn btn-default">${pNo}</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+										<c:if test="${page.endPage < page.totalPages}">
+											<li><a id="nextBtn">&gt;</a></li>
+										</c:if>
 									</c:if>
-									<c:forEach var="pNo" begin="${page.startPage}"
-										end="${page.endPage}">
-										<c:choose>
-											<c:when test="${pNo eq pageNo}">
-												<li class="active btn btn-default"><a class="pageBtn">${pNo}</a></li>
-											</c:when>
-											<c:otherwise>
-												<li><a class="pageBtn btn btn-default">${pNo}</a></li>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
-									<c:if test="${page.endPage < page.totalPages}">
-										<li><a id="nextBtn">&gt;</a></li>
-									</c:if>
-								</c:if>
-							</ul>
+								</ul>
 							</div>
 							</br>
 							<form action="list" method="get">
-								<div class="fields" style="margin-left: 100px">
+								<div class="fields">
 									<div class="form-group">
-										<select style="width: 120px; height: 30px;" name="areaCode" class=""
-											placeholder="Keyword search">
+										<select style="width: 120px; height: 30px;" name="areaCode"
+											class="" placeholder="Keyword search">
 											<c:forEach var="map" items="${areaMap}">
 												<option value="${map.key}"
 													${map.key == areaCode ? 'selected="selected"' : '' }>${map.value}</option>
 											</c:forEach>
 										</select> <select name="smallCategory" class=""
-											placeholder="Keyword search" style="width: 120px; height: 30px;">
+											placeholder="Keyword search"
+											style="width: 120px; height: 30px;">
 											<c:forEach var="map" items="${itemMap}">
 												<option value="${map.key}"
 													${map.key == smallCategory ? 'selected="selected"' : '' }>${map.value}</option>
 											</c:forEach>
 										</select> <input type="text" class="" name="searchWord"
-											placeholder="이름으로 검색" style="width: 200px; height: 30px;"> <input
-											type="hidden" name="where" value="${where}">
-											<input type="submit" value="검색"
-											class="btn btn-primary py-3 px-5">
+											placeholder="이름으로 검색" style="width: 200px; height: 30px;">
+										<input type="hidden" name="where" value="${where}"> <input
+											type="submit" value="검색" class="btn btn-primary py-3 px-5">
 									</div>
 								</div>
 							</form>

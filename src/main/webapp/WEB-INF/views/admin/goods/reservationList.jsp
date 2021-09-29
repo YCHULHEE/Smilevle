@@ -41,7 +41,7 @@
 			</aside>
 			<div id="container_box">
 				<ul class="orderList">
-					<c:forEach items="${reviewPage}" var="reviewVO">
+					<%-- <c:forEach items="${reservationList}" var="reviewVO"> --%>
 					<li>
 						<div>
 							<p><span>주문번호</span><a href="/admin/shop/orderView?n=">${orderList.orderId }</a></p>
@@ -52,7 +52,38 @@
 							<p><span>예약날짜</span>${orderList.delivery }</p>
 						</div>
 					</li>
-					</c:forEach>
+					<li>
+						<div>
+							<p><span>주문번호</span><a href="/admin/shop/orderView?n=">${orderList.orderId }</a></p>
+							<p><span>숙박명</span>${orderList.orderRec }</p>
+							<p><span>주문자</span>${orderList.userId }</p>
+							<p><span>주소</span> <br><p style="margin-left:100px;"> </p>
+							<p><span>전화번호</span></p>
+							<p><span>예약날짜</span>${orderList.delivery }</p>
+						</div>
+					</li>
+					<li>
+						<div>
+							<p><span>주문번호</span><a href="/admin/shop/orderView?n=">${orderList.orderId }</a></p>
+							<p><span>숙박명</span>${orderList.orderRec }</p>
+							<p><span>주문자</span>${orderList.userId }</p>
+							<p><span>주소</span> <br><p style="margin-left:100px;"> </p>
+							<p><span>전화번호</span></p>
+							<p><span>예약날짜</span>${orderList.delivery }</p>
+						</div>
+					</li>
+					<li>
+						<div>
+							<p><span>주문번호</span><a href="/admin/shop/orderView?n=">${orderList.orderId }</a></p>
+							<p><span>숙박명</span>${orderList.orderRec }</p>
+							<p><span>주문자</span>${orderList.userId }</p>
+							<p><span>주소</span> <br><p style="margin-left:100px;"> </p>
+							<p><span>전화번호</span></p>
+							<p><span>예약날짜</span>${orderList.delivery }</p>
+						</div>
+					</li>
+					
+					<%-- </c:forEach> --%>
 				</ul>
 			</div>
 		</section>

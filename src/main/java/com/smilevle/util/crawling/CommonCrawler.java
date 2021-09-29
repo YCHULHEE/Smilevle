@@ -22,7 +22,7 @@ public class CommonCrawler {
 		String id = contentId + "";
 		
 		StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); /*URL*/
-		String serviceKey = "xviXKlZp2ce8L%2Fai3UQnvIf7D6aHb6iQ%2Fv4OJHBSa2nMr%2BO%2F59xdH8yai46SXl%2Fk9ioVS3PsJGXak7PYfT2NHw%3D%3D";
+		String serviceKey = "ygq6ckNSsXQ8IGk3A5TnTfFiz6osFZwGkzBBfT6fJzmabC0H1Wd67USpVx3Oyfq88cAKcBpgQbvFz0VZQldbVA%3D%3D";
 		String serviceKeyDecoded = URLDecoder.decode(serviceKey, "UTF-8");
 		String parsingUrl;
 
@@ -70,7 +70,7 @@ public class CommonCrawler {
 		String id = contentId + "";
 		
 		 StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailImage");
-		 String serviceKey = "xviXKlZp2ce8L%2Fai3UQnvIf7D6aHb6iQ%2Fv4OJHBSa2nMr%2BO%2F59xdH8yai46SXl%2Fk9ioVS3PsJGXak7PYfT2NHw%3D%3D";
+		 String serviceKey = "ygq6ckNSsXQ8IGk3A5TnTfFiz6osFZwGkzBBfT6fJzmabC0H1Wd67USpVx3Oyfq88cAKcBpgQbvFz0VZQldbVA%3D%3D";
 		String serviceKeyDecoded = URLDecoder.decode(serviceKey, "UTF-8");
 		String parsingUrl;
 

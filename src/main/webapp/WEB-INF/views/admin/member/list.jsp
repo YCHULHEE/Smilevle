@@ -50,7 +50,7 @@ ul li {
 			<aside>
 				<%@ include file="../include/aside.jsp"%>
 			</aside>
-			<div id="container_box">
+			<div id="container_box" align="left">
 				<table border="1">
 					<thead>
 						<tr>
@@ -73,19 +73,18 @@ ul li {
 								<td>${memberList.email }</td>
 								<td style="width: 190px;">${memberList.gender }</td>
 								<td style="width: 190px;">${memberList.birthday }</td>
-								<td><fmt:formatDate value="${memberList.regDate }"
-										pattern="YYYY-MM-DD" /></td>
+								<td><fmt:formatDate value="${memberList.regDate}"
+										pattern="YYYY-MM-dd"/></td>
 								<td>${memberList.userType }</td>
 							</tr>
 						</c:forEach>
-
 					</tbody>
 				</table>
 				<div class="row mt-5">
 					<div class="col text-center">
 						<div class="block-27 pageBtn1">
 							</br>
-							<div style="margin-right: 300px">
+							<div>
 								<ul>
 									<c:if test="${page.hasStays()}">
 										<c:if test="${page.startPage > 5}">
@@ -110,7 +109,7 @@ ul li {
 							</div>
 							</br>
 							<form action="list" method="get">
-								<div class="fields" style="margin-left: 100px">
+								<div class="fields">
 									<div class="form-group">
 							
 										</select> <select name="type" class=""
