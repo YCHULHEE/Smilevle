@@ -36,7 +36,7 @@
 									<div class="two">
 										<p class="bottom-area d-flex">
 											<span></span> <span class="ml-auto"><a
-												href="#">예약</a></span>
+												href="/reservation?contentId=${stay.contentId}&title=${stay.title}">예약</a></span>
 										</p>
 									</div>
 								</div>

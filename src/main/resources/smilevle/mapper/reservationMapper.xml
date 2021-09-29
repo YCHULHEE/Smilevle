@@ -30,7 +30,7 @@
 		<result property="contentId" column="content_id"/>
 	</resultMap>
 	<select id="selectByMemberId" parameterType="map" resultType="com.smilevle.reservation.model.ReservationVO" resultMap="resultMap" >
-		SELECT * from tbl_reservation WHERE memberid = #{memberId}
+		SELECT * from tbl_reservation WHERE memberid = #{memberId} order by checkin_date
 	</select>
 	
 	

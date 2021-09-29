@@ -1,5 +1,7 @@
 package com.smilevle.reservation.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,8 +46,8 @@ public class ReservationController {
 		}
 		List<Date> checkOutList=reservationService.selectByTitleToCheckOut(title);
 		List<Date> checkInList=reservationService.selectByTitleToCheckIn(title);
-		System.out.println("===========>"+checkInList.toString());
-		System.out.println("===========>"+checkOutList.toString());
+//		System.out.println("===========>"+checkInList.toString());
+//		System.out.println("===========>"+checkOutList.toString());
 		int[] checkInCount = new int[checkInList.size()];
 		
 		
@@ -59,7 +61,8 @@ public class ReservationController {
 			
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(checkInList.get(i));
-			for (int j=0; j< checkInCount[i]; j++) {
+			reservationDateList.add(new Date(cal.getTimeInMillis()));
+			for (int j=0; j< checkInCount[i] - 1; j++) {
 				cal.add(Calendar.DATE, 1);
 				reservationDateList.add(new Date(cal.getTimeInMillis()));
 				
@@ -90,7 +93,7 @@ public class ReservationController {
 	@RequestMapping("/insertRes")
 	public String insertRes(HttpServletRequest request, HttpServletResponse response,Model model,ReservationVO reservationVO, 
 			@RequestParam(value = "checkInD") String checkIn,
-			@RequestParam(value = "checkOutD") String checkOut) {
+			@RequestParam(value = "checkOutD") String checkOut) throws IOException {
 
 		UserVO userVO=(UserVO)request.getSession().getAttribute("authUser");		
 		
@@ -106,13 +109,26 @@ public class ReservationController {
 		//if reservationVO.
 		
 		
-		reservationService.addReservation(reservationVO);		
-		model.addAttribute("contentId",reservationVO.getContentId());
-		model.addAttribute("title",reservationVO.getTitle());
 		
 		
 		
-		return"/reservation/reservationSuccess";
+		int check=reservationService.getCount(checkIn,checkOut);
+		if(check < 0) {			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('checkIn날짜가 checkOut날짜보다 빨라야 합니다.'); location.href='/reservation?contentId=" + reservationVO.getContentId() + "&title=" + reservationVO.getTitle() + "';</script>");
+			out.flush();
+			return null;
+			
+		} else {
+			reservationService.addReservation(reservationVO);		
+			model.addAttribute("contentId",reservationVO.getContentId());
+			model.addAttribute("title",reservationVO.getTitle());
+			return"/reservation/reservationSuccess";
+		}
+		
+		
+		
 		
 	}
 	

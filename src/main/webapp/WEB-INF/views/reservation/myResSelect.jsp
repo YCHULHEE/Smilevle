@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -73,8 +74,8 @@
 		<div style="border:1px solid black;">
 		호텔이름 : ${reservationVO.title}<br/>
 		예약번호 : ${reservationVO.resNum}<br>		  
-		체크인 날짜 : ${fn:substring(reservationVO.checkInDate,0,10)}<br>
-		체크아웃 날짜 : ${fn:substring(reservationVO.checkOutDate,0,10)} <br>
+		체크인 날짜 : <fmt:formatDate value="${reservationVO.checkInDate}" pattern="yyyy년 MM월 dd일" /><br/>
+		체크아웃 날짜 : <fmt:formatDate value="${reservationVO.checkOutDate}" pattern="yyyy년 MM월 dd일" /><br/>
 		<input type="hidden" id="resNum" name="resNum" value="${reservationVO.resNum }">
 		<button type="submit">예약취소</button>
 		<br>
