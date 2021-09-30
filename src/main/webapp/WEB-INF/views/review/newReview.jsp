@@ -78,7 +78,7 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="inputLocationName" class="col-sm-2 col-form-label">플레이스</label>
+					<label for="inputLocationName" class="col-sm-2 col-form-label">숙소 명</label>
 					<div class="col-sm-8">
 						<input type="text" name="locationName" class="form-control" id="inputLocationName" value="${title }" required>
 					</div>
