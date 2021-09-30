@@ -20,9 +20,6 @@
 <link rel="icon" href="/resources/images/gun.png" />
 
 <style>
-#pageBtn1 {
-	float: left;
-}
 
 ul li {
 	list-style-type: none;
@@ -71,11 +68,18 @@ ul li {
 								<td>${memberList.name }</td>
 								<td>${memberList.phonenum }</td>
 								<td>${memberList.email }</td>
-								<td style="width: 190px;">${memberList.gender }</td>
+								<td style="width: 190px;">
+								<c:if test="${memberList.gender eq 'male'}">남자</c:if>
+								<c:if test="${memberList.gender eq 'female'}">여자</c:if>	
+								</td>
 								<td style="width: 190px;">${memberList.birthday }</td>
 								<td><fmt:formatDate value="${memberList.regDate}"
 										pattern="YYYY-MM-dd"/></td>
-								<td>${memberList.userType }</td>
+								<td>
+								<c:if test="${memberList.userType eq 'user'}">일반회원</c:if>
+								<c:if test="${memberList.userType eq 'admin'}">관리자</c:if>	
+								
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -111,7 +115,6 @@ ul li {
 							<form action="list" method="get">
 								<div class="fields">
 									<div class="form-group">
-							
 										</select> <select name="type" class=""
 											placeholder="Keyword search" style="width: 120px; height: 30px;">
 												<option value="memberId" selected="selected">이름</option>
@@ -131,9 +134,6 @@ ul li {
 
 	<%@ include file="../include/TopBtn.jsp"%>
 
-	<footer id="footer">
-		<div id="footer_box"></div>
-	</footer>
 	<script src="/static/js/page.js"></script>
 </body>
 </html>

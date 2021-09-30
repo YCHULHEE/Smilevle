@@ -1,6 +1,7 @@
 package com.smilevle.tour.controller;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,12 +10,16 @@ import java.util.Random;
 
 import org.eclipse.jdt.internal.compiler.ast.FalseLiteral;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smilevle.corona.model.CoronaVO;
 import com.smilevle.corona.service.CoronaService;
@@ -36,13 +41,14 @@ public class TourController {
 	@RequestMapping({"/", ""})
 	public String viewMainPage(Model model) throws IOException {
 //		
-//		List<CoronaVO> coronaList = coronaService.selectCoronaList(10);
+		
+		
 //		
 //		Random random = new Random();
 //		random.setSeed(System.currentTimeMillis());
 //		coronaList.remove(corona);
 		tourService.getTotalCount();
-		CoronaVO corona = coronaService.selectCoronaLowOrderRandom(5);
+		CoronaVO corona = coronaService.selectCoronaLowOrderRandom(16);
 		model.addAttribute("corona", corona);
 		model.addAttribute("travelDestList", tourService.getTourInfoContainer(corona.getAreaCode(), 20, "12"));
 		model.addAttribute("stayList", tourService.getTourInfoContainer("", 20, "32"));
@@ -186,5 +192,16 @@ public class TourController {
 		model.addAttribute("itemMap", itemMap);
 		
 		return viewPage;
+	}
+	
+	@PostMapping(value = "/selectChart", produces = "application/text; charset=utf8")
+	@ResponseBody
+	String selectChart(@RequestBody String localName, Model model)  {
+		String decodeLocalName = URLDecoder.decode(localName).replace("=", "");
+		
+		
+		
+		String smallCategoryStr = "[['지역', '갯수']"+ tourService.getSmallCategoryCount(decodeLocalName) + "]";
+		return smallCategoryStr;
 	}
 }

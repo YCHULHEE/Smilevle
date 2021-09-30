@@ -59,12 +59,12 @@ ul li {
 						<tr>
 							<th>번호</th>
 							<th>썸네일</th>
-							<th>이름</th>
-							<th>카테고리</th>
-							<th>주소</th>
-							<th>전화번호</th>
-							<th>조회수</th>
-							<th>수정/삭제</th>
+							<th style="width: 500px">이름</th>
+							<th style="width: 500px">카테고리</th>
+							<th style="width: 500px">주소</th>
+							<th style="width: 400px">전화번호</th>
+							<th style="width: 550px">조회수</th>
+							<th style="width: 300px">수정/삭제</th>
 						</tr>
 					</thead>
 					<tbody>

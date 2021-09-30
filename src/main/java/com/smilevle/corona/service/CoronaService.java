@@ -98,6 +98,7 @@ public class CoronaService {
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMdd");
 		Date time = new Date();
 		String nowTime = format.format(time);
+		System.out.println(nowTime);
 		
 		StringBuilder urlBuilder = new StringBuilder("http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson"); /*URL*/
 		/* URL */ String serviceKey = "=ygq6ckNSsXQ8IGk3A5TnTfFiz6osFZwGkzBBfT6fJzmabC0H1Wd67USpVx3Oyfq88cAKcBpgQbvFz0VZQldbVA%3D%3D";
@@ -165,13 +166,25 @@ public class CoronaService {
 	public CoronaVO selectCoronaLowOrderRandom(int size){
 		MapInfomation mapInfomation = new MapInfomation();
 		List<CoronaVO> coronaList = coronaRepository.selectList(size);
+		
+		Map<String, Integer> popularMap = mapInfomation.getTotalPopulation();
+		
+		for(int i = 0; i < coronaList.size(); i++) {
+			double count = popularMap.get(coronaList.get(i).getLocalName()) * 1000;
+			count = coronaList.get(i).getCount() * 100 / count;
+			count = Double.parseDouble(String.format("%.7f",count));
+			
+			coronaList.get(i).setCount(count);
+			System.out.println(coronaList.get(i).getLocalName()+ " : " + coronaList.get(i).getCount() +"%");
+		}
+		
+		
 		Random random = new Random();
 		random.setSeed(System.currentTimeMillis());
 		
 		
 		CoronaVO corona = coronaList.get(random.nextInt(4));
 		corona.setLocalName(mapInfomation.getAreaMap().get(corona.getAreaCode()));
-		System.out.println(corona.getAreaCode()+ "하이");
 		
 		return corona;
 	}

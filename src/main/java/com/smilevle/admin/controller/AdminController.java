@@ -19,6 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.smilevle.admin.service.MemberService;
 import com.smilevle.login.model.MemberVO;
 import com.smilevle.login.service.MemberPage;
+import com.smilevle.reservation.repository.ReservationRepository;
+import com.smilevle.reservation.service.ReservationPage;
+import com.smilevle.reservation.service.ReservationService;
 import com.smilevle.review.model.PReviewVO;
 import com.smilevle.review.model.ReviewPageVO;
 import com.smilevle.review.model.ReviewVO;
@@ -43,6 +46,8 @@ public class AdminController {
 	ReviewService reviewService;
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	ReservationService reservationService;
 	
 	String uploadPath = "C:\\Users\\Admin\\Desktop\\Smile\\Smilevle\\src\\main\\resources\\static\\goodImages";
 	
@@ -165,16 +170,7 @@ public class AdminController {
 		model.addAttribute("totalCountList", tourService.getTotalCount());
 		return "admin/index";
 	}
-	
-//	@RequestMapping(value="/member/list", method=RequestMethod.GET)
-//	public void getMemberList(Model model) throws Exception{
-//		logger.info("get member list");
-//		
-//		List<MemberVO> memberList = adminService.memberList();
-//		
-//		model.addAttribute("memberList", memberList);
-//	}
-//	
+
 	
 	@RequestMapping(value="/review/list", method=RequestMethod.GET)
 	public String getAllReview(ReviewPageVO reviewPageVO, Model model, 
@@ -213,7 +209,7 @@ public class AdminController {
 			@RequestParam(value = "type", required = false, defaultValue = "memberId") String type,
 			Model model) throws Exception{
 		logger.info("get member list");
-		int size = 5;
+		int size = 10;
 		int pageNo = 1;
 		if (pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
@@ -234,13 +230,19 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/reservation/list", method=RequestMethod.GET)
-	public String getOrderList(Model model) throws Exception {
-		logger.info("get order list");
-		
-		String[] ab = new String[5];
-			
-		model.addAttribute("reservationList", ab);
-		
+	public String getReservationList(@RequestParam(value = "pageNo", required = false, defaultValue = "1") String pageNoVal,
+			@RequestParam(value = "memberId", required = false, defaultValue = "") String memberId,
+			@RequestParam(value = "type", required = false, defaultValue = "memberId") String type,
+			Model model) throws Exception{
+		logger.info("get reservaiton list");
+		int size = 6;
+		int pageNo = 1;
+		if (pageNoVal != null) {
+			pageNo = Integer.parseInt(pageNoVal);
+		}
+		ReservationPage page = reservationService.getReservationPage(pageNo, memberId, size);
+		System.out.println();
+		model.addAttribute("page", page);
 		return "admin/goods/reservationList";
 	}
 }

@@ -22,7 +22,7 @@
 <style>
 #pageBtn1 {
 	float: left;
-}	
+}
 
 ul li {
 	list-style-type: none;
@@ -57,14 +57,15 @@ ul li {
 					<thead>
 
 						<tr>
-							<th>리뷰번호</th>
+							<th style="width: 350px">리뷰번호</th>
 							<th>썸네일</th>
-							<th>이름</th>
+							<th style="width: 600px">제목</th>
 							<th>아이디</th>
-							<th>주소</th>
+							<th style="width: 400px">주소</th>
+							<th style="width: 300px">글작성날짜</th>
 							<th>평점</th>
-							<th>글작성날짜</th>
-							<th>조회수</th>
+							<th style="width: 200px">조회수</th>
+							<th>삭제</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -74,11 +75,13 @@ ul li {
 								<td><img src="${review.photoUrl}" style="height: 100px"></td>
 								<td><a href="/review_read?no=${review.reviewNo}">${review.title}</a></td>
 								<td>${review.writerId}</td>
-								<td>${review.rate}</td>
 								<td>${review.locationName}</td>
 								<td><fmt:formatDate value="${review.modDate}"
 										pattern="yyyy-MM-dd" /></td>
+								<td>${review.rate}</td>
 								<td>${review.readCnt}</td>
+								<td><a class="btn btn btn-default" style="color: black;" href="#"
+										onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -103,7 +106,9 @@ ul li {
 													href="review?pageNo=${pNo }">${pNo } </a></li>
 											</c:when>
 											<c:otherwise>
-												<li class="btn btn-default"><a class="pageBtn" href="review?pageNo=${pNo }" style="color: black">${pNo } </a></li>
+												<li class="btn btn-default"><a class="pageBtn"
+													href="review?pageNo=${pNo }" style="color: black">${pNo }
+												</a></li>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
@@ -119,8 +124,7 @@ ul li {
 							<form action="list" method="get">
 								<div class="fields">
 									<div class="form-group">
-										<select name="" class=""
-											placeholder="Keyword search"
+										<select name="" class="" placeholder="Keyword search"
 											style="width: 120px; height: 30px;">
 											<option>제목</option>
 										</select> <input type="text" class="" name="memberId" placeholder="검색"

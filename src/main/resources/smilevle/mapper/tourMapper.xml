@@ -3,6 +3,13 @@
 
 <mapper namespace="smilevle.mapper.tourMapper">
 
+	<select id="getSmallCategoryCount" parameterType="java.util.HashMap" resultType="com.smilevle.tour.model.TotalCountVO" >
+		<![CDATA[select c1.common_name as local_name, s1.count from 
+		(select count(*) as count, small_category from tbl_tour where content_type_id = 32 and areaCode = (
+select common_id from tbl_common_code where common_name = #{localName}) group by small_category) s1 
+inner join tbl_common_code c1 on s1.small_category = c1.common_id
+]]>
+	</select>
 
 	<select id="getTotalCount" resultType="com.smilevle.tour.model.TotalCountVO">
 		select common_name as local_name, count from (select areacode, count(*) as count from tbl_tour where 

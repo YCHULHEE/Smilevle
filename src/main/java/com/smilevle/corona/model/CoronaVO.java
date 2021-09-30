@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class CoronaVO {
 	private String coronaNo;
 	private String areaCode;
-	private int count;
+	private double count;
 	private String localName;
 	private Date regDate;
 }

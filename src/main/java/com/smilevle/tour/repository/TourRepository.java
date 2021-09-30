@@ -73,7 +73,12 @@ public class TourRepository {
 	}
 	public List<TotalCountVO> getTotalCount() {
 		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE + "getTotalCount");
-		
+	}
+	
+	public List<TotalCountVO> getSmallCategoryCount(String localName) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("localName",localName);
+		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE + "getSmallCategoryCount", params);
 	}
 	
 }

@@ -21,7 +21,7 @@
 			from (select avg(count) as count, areaCode 
 			from (select * from TBL_corona where TO_CHAR(regdate, 'YYYYMMDD') > sysdate - 7) 
 			group by areacode order by count) where rownum <= #{size}) c1 inner join tbl_corona c2
-			on c1.areaCode = c2.areaCode where c2.regdate > sysdate - 1 order by c1.count
+			on c1.areaCode = c2.areaCode where c2.regdate > sysdate - 1.2 order by c1.count
 		]]>
 	</select>
 

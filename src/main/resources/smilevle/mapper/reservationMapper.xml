@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="smilevle.mapper.reservationMapper">
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		<![CDATA[
+		select count(*) from tbl_reservation]]>
+	</select>
+	
+	<select id="getAdminReservationList" parameterType="java.util.HashMap" resultType="com.smilevle.reservation.model.ReservationVO">
+		<![CDATA[
+		select * 
+		from (select rownum as rnum, res_num ,content_id, memberid, regdate, checkin_date, checkout_date, title 
+		from (select * from tbl_reservation]]>
+		
+		<if test='memberId != ""'>
+			<![CDATA[ where memberid LIKE '%'||#{memberId}||'%']]>
+		</if>
+		
+		<![CDATA[order by memberid) where rownum <= #{endRow}) where rnum >= #{startRow}]]>
+	</select>
+
+	
+	<select id="selectReservationAll" parameterType="java.util.HashMap" resultType="com.smilevle.reservation.model.ReservationVO">
+		 select res_num ,content_id, memberid,regdate,checkin_date,checkout_date,title from (select * from tbl_reservation rs natural join tbl_tour tr where rs.content_id=tr.content_id )
+	</select>
+	
+	<insert id="addReservation" >
+    <![CDATA[
+        insert into tbl_reservation(res_num ,content_id, memberid,regdate,checkIn_Date,checkOut_Date,title)
+        values(#{resNum} ,#{contentId}, #{memberId},#{regDate},#{checkInDate},#{checkOutDate},#{title})
+     ]]>
+    </insert>
+    
+   <!--  <select id="selectByResNum" parameterType="map" resultMap="userResultMap">
+		SELECT
+			title, member_id, checkin_date, checkout_date 
+		FROM (select * from tbl_reservation rs natural join tbl_tour tr where rs.content_id=tr.content_id ) 
+		WHERE res_num = #{resNum}
+	</select> -->
+	
+	<resultMap type="com.smilevle.reservation.model.ReservationVO" id="resultMap">
+		<result property="resNum" column="res_num"/>
+		<result property="checkInDate" column="checkin_date"/>
+		<result property="checkOutDate" column="checkout_date"/>
+		<result property="memberId" column="memberid"/>
+		<result property="contentId" column="content_id"/>
+	</resultMap>
+	<select id="selectByMemberId" parameterType="map" resultType="com.smilevle.reservation.model.ReservationVO" resultMap="resultMap" >
+		SELECT * from tbl_reservation WHERE memberid = #{memberId} order by checkin_date
+	</select>
+	
+	
+	<select id="selectByTitleToCheckIn" parameterType="map" resultType="java.util.Date"  >
+		SELECT checkin_date from tbl_reservation WHERE title = #{title}
+	</select>
+	
+	 
+	<select id="selectByTitleToCheckOut" parameterType="map" resultType="java.util.Date"  >
+		SELECT checkout_date from tbl_reservation WHERE title = #{title}
+	</select>
+	
+	
+	<select id="getResNum" resultType="int">
+		select reservation_seq.nextVal from dual
+	</select>
+	
+	<delete id="deleteByResNum" parameterType="java.lang.Integer">
+		delete from tbl_reservation where res_num = #{resNum}
+	</delete>
+	
+	<select id="getCount" parameterType="map" resultType="int">
+		 <![CDATA[SELECT TO_DATE(#{checkOutDate}, 'YYYY-MM-DD') - TO_DATE(#{checkInDate}, 'YYYY-MM-DD') FROM DUAL]]>
+    </select>
+    
+    
+</mapper>

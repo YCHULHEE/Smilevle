@@ -33,6 +33,18 @@ public class TourService {
 		return totalCountStr;
 	}
 	
+	public String getSmallCategoryCount(String localName) {
+		List<TotalCountVO> list = tourRepository.getSmallCategoryCount(localName);
+		String totalCountStr = "";
+		
+		for(int i = 0; i < list.size(); i++) {
+			totalCountStr += ", ['"+list.get(i).getLocalName()+"', "+list.get(i).getCount()+"]";	
+		}
+		System.out.println(totalCountStr);
+		
+		return totalCountStr;
+	}
+	
 
 	public TourData getTour(int contentId, boolean increaseReadCount) {
 			//컨텐츠 정보를 통해 여행지 정보를 가져온다.
