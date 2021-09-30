@@ -72,27 +72,45 @@
 	<br>
 	<div align="center">
 		<%-- <c:if test="${today.time lt reservationVO.checkOutDate.time + 24 * 60 * 60 * 1000 * 30 }"> --%>
-			<c:forEach var="reservationVO" items="${reservationVO}">
 			<form action="/deleteRes" >
-			<div style="border:1px solid black; width: 400px;">
-			호텔이름 : ${reservationVO.title}<br/>
-			예약번호 : ${reservationVO.resNum}<br>	
-			등록일자 : <fmt:formatDate value="${reservationVO.regDate}" pattern="yyyy년 MM월 dd일" /><br/>	  
-			체크인 날짜 : <fmt:formatDate value="${reservationVO.checkInDate}" pattern="yyyy년 MM월 dd일" /><br/>
-			체크아웃 날짜 : <fmt:formatDate value="${reservationVO.checkOutDate}" pattern="yyyy년 MM월 dd일" /><br/>
-			<input type="hidden" id="resNum" name="resNum" value="${reservationVO.resNum }">
-			<c:if test="${reservationVO.checkInDate gt today }">
-				<button type="submit" class="btn btn-danger">예약취소</button>
-			</c:if>
-			<c:if test="${reservationVO.checkInDate le today }">
-				<button type="button" id="toList" class="btn btn-default"  onclick="location.href='/review_write?stayId=${reservationVO.contentId }'">리뷰작성</button>
-			</c:if>
-			<br>
+			
+			<div style="width: 60%;" id="container">
+			<table class="table table-hover">
+					<thead>
+
+						<tr align="center">
+							<th>예약번호</th>
+							<th>호텔이름</th>
+							<th>등록일자</th>
+							<th>예약날짜</th>
+							<th> </th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="reservationVO" items="${reservationVO}">
+						<input type="hidden" id="resNum" name="resNum" value="${reservationVO.resNum }">
+							<tr align="center">
+								<td>${reservationVO.resNum}</td>
+								<td>${reservationVO.title}</td>
+								<td><fmt:formatDate value="${reservationVO.regDate}" pattern="yyyy년 MM월 dd일" /></td>
+								<td><fmt:formatDate value="${reservationVO.checkInDate}" pattern="yyyy년 MM월 dd일" /> ~  <fmt:formatDate value="${reservationVO.checkOutDate}" pattern="yyyy년 MM월 dd일" /></td>
+								<c:if test="${reservationVO.checkInDate gt today }">
+									<td><button type="submit" class="btn btn-danger">예약취소</button></td>
+								</c:if>
+								<c:if test="${reservationVO.checkInDate le today }">
+									<td><button type="button" id="toList" class="btn btn-default"  onclick="location.href='/review_write?stayId=${reservationVO.contentId }'">리뷰작성</button></td>
+								</c:if>  
+								
+								
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
 			</form>
 			<br>
 			<br>
-			</c:forEach>
 	<%-- 	</c:if> --%>
 
 		
