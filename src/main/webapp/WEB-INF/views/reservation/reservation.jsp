@@ -153,10 +153,7 @@
 		if($("#checkInD").val().length==0){ alert("체크인 날짜를 입력하세요."); $("#checkInDate").focus(); return false; }
 		if($("#checkOutD").val().length==0){ alert("체크아웃 날짜를 입력하세요."); $("#checkOutDate").focus(); return false; }
 		});
-		$("#chechInD").change(function() {
-			var startDay = $(this).val();
-			alert(startDay);
-		});
+		
 	});
 	</script>
 	<script>	

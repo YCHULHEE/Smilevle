@@ -64,6 +64,7 @@ public class JoinController {
 			return FORM_VIEW;
 		}
 		
+		
 		try {
 			joinService.join(joinReq);
 			return "/login/joinSuccess";

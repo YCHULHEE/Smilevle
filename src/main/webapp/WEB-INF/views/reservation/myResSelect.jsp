@@ -68,20 +68,34 @@
 			</div>
 		</div>
 	</div>
+	<br>
+	<br>
 	<div align="center">
-		<c:forEach var="reservationVO" items="${reservationVO}">
-		<form action="/deleteRes" >
-		<div style="border:1px solid black;">
-		호텔이름 : ${reservationVO.title}<br/>
-		예약번호 : ${reservationVO.resNum}<br>		  
-		체크인 날짜 : <fmt:formatDate value="${reservationVO.checkInDate}" pattern="yyyy년 MM월 dd일" /><br/>
-		체크아웃 날짜 : <fmt:formatDate value="${reservationVO.checkOutDate}" pattern="yyyy년 MM월 dd일" /><br/>
-		<input type="hidden" id="resNum" name="resNum" value="${reservationVO.resNum }">
-		<button type="submit">예약취소</button>
-		<br>
-		</div>
-		</form>
-		</c:forEach>
+		<%-- <c:if test="${today.time lt reservationVO.checkOutDate.time + 24 * 60 * 60 * 1000 * 30 }"> --%>
+			<c:forEach var="reservationVO" items="${reservationVO}">
+			<form action="/deleteRes" >
+			<div style="border:1px solid black; width: 400px;">
+			호텔이름 : ${reservationVO.title}<br/>
+			예약번호 : ${reservationVO.resNum}<br>	
+			등록일자 : <fmt:formatDate value="${reservationVO.regDate}" pattern="yyyy년 MM월 dd일" /><br/>	  
+			체크인 날짜 : <fmt:formatDate value="${reservationVO.checkInDate}" pattern="yyyy년 MM월 dd일" /><br/>
+			체크아웃 날짜 : <fmt:formatDate value="${reservationVO.checkOutDate}" pattern="yyyy년 MM월 dd일" /><br/>
+			<input type="hidden" id="resNum" name="resNum" value="${reservationVO.resNum }">
+			<c:if test="${reservationVO.checkInDate gt today }">
+				<button type="submit" class="btn btn-danger">예약취소</button>
+			</c:if>
+			<c:if test="${reservationVO.checkInDate le today }">
+				<button type="button" id="toList" class="btn btn-default"  onclick="location.href='/review_write?stayId=${reservationVO.contentId }'">리뷰작성</button>
+			</c:if>
+			<br>
+			</div>
+			</form>
+			<br>
+			<br>
+			</c:forEach>
+	<%-- 	</c:if> --%>
+
+		
 	</div>
 	
 <jsp:include page="/WEB-INF/views/include/common/footer.jsp"

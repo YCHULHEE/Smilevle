@@ -55,9 +55,9 @@ public class ReservationController {
 		//List<String> reservationDate;
 		System.out.println("count length: " + checkInCount.length);
 		for(int i = 0; i < checkInCount.length; i++) {
-			int dates = reservationService.getCount(format.format(checkInList.get(i)), format.format(checkOutList.get(i)));
-			System.out.println("dates: " + dates);
-			checkInCount[i] = dates;
+			int dateCount = reservationService.getCount(format.format(checkInList.get(i)), format.format(checkOutList.get(i)));
+			System.out.println("dateCount: " + dateCount);
+			checkInCount[i] = dateCount;
 			
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(checkInList.get(i));
@@ -82,6 +82,7 @@ public class ReservationController {
 		System.out.println(dateArray);
 		model.addAttribute("reservationDate", dateArray);
 		
+		model.addAttribute("reservationDateList", reservationDateList);
 		
 		
 				
@@ -101,31 +102,65 @@ public class ReservationController {
 			return "/login/loginForm";
 		}
 		
+		Date checkInDate= java.sql.Date.valueOf(checkIn);
+		Date checkOutDate= java.sql.Date.valueOf(checkOut);
+		
 		reservationVO.setMemberId(userVO.getMemberId());
 		reservationVO.setResNum(reservationService.getResNum());		
 		reservationVO.setRegDate(new Date());
-		reservationVO.setCheckInDate(java.sql.Date.valueOf(checkIn));
-		reservationVO.setCheckOutDate(java.sql.Date.valueOf(checkOut));
+		reservationVO.setCheckInDate(checkInDate);
+		reservationVO.setCheckOutDate(checkOutDate);
 		//if reservationVO.
 		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		List<Date> checkOutList=reservationService.selectByTitleToCheckOut(reservationVO.getTitle());
+		List<Date> checkInList=reservationService.selectByTitleToCheckIn(reservationVO.getTitle());
+//		System.out.println("===========>"+checkInList.toString());
+//		System.out.println("===========>"+checkOutList.toString());
+		int[] checkInCount = new int[checkInList.size()];
 		
 		
-		
-		
-		int check=reservationService.getCount(checkIn,checkOut);
+		List<Date> reservationDateList = new ArrayList<Date>();
+		//List<String> reservationDate;
+		System.out.println("count length: " + checkInCount.length);
+		for(int i = 0; i < checkInCount.length; i++) {
+			int dateCount = reservationService.getCount(format.format(checkInList.get(i)), format.format(checkOutList.get(i)));
+			System.out.println("==============dateCount: " + dateCount);
+			checkInCount[i] = dateCount;
+			
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(checkInList.get(i));
+			reservationDateList.add(new Date(cal.getTimeInMillis()));
+			for (int j=0; j< checkInCount[i] - 1; j++) {
+				cal.add(Calendar.DATE, 1);
+				reservationDateList.add(new Date(cal.getTimeInMillis()));		
+			}
+			
+		}		
+		System.out.println("================="+reservationDateList);			
+	
+				
+		int check=reservationService.getCount(checkIn,checkOut);		
 		if(check < 0) {			
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('checkIn날짜가 checkOut날짜보다 빨라야 합니다.'); location.href='/reservation?contentId=" + reservationVO.getContentId() + "&title=" + reservationVO.getTitle() + "';</script>");
 			out.flush();
 			return null;
-			
-		} else {
-			reservationService.addReservation(reservationVO);		
-			model.addAttribute("contentId",reservationVO.getContentId());
-			model.addAttribute("title",reservationVO.getTitle());
-			return"/reservation/reservationSuccess";
 		}
+		for(int k=0;k < reservationDateList.size(); k++) {
+			if(checkInDate.compareTo(reservationDateList.get(k)) < 0 && checkOutDate.compareTo(reservationDateList.get(k)) > 0) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('예약날짜 사이에 이미 예약이 있는 날이 있습니다.'); location.href='/reservation?contentId=" + reservationVO.getContentId() + "&title=" + reservationVO.getTitle() + "';</script>");
+				out.flush();
+				return null;
+			}			
+		}
+		reservationService.addReservation(reservationVO);		
+		model.addAttribute("contentId",reservationVO.getContentId());
+		model.addAttribute("title",reservationVO.getTitle());
+		return"/reservation/reservationSuccess";
 		
 		
 		
@@ -162,6 +197,9 @@ public class ReservationController {
 //		System.out.println(reservationVO.getResNum());
 //		System.out.println(reservationVO.getCheckInDate());
 //		System.out.println(reservationVO.getCheckOutDate());		
+		
+		model.addAttribute("today", new Date());
+		
 		
 		model.addAttribute("reservationVO",reservationVO);
 		
