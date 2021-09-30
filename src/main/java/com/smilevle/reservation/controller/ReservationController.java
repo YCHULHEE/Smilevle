@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.smilevle.login.model.UserVO;
 import com.smilevle.reservation.model.ReservationVO;
 import com.smilevle.reservation.service.ReservationService;
+import com.smilevle.tour.model.TourVO;
+import com.smilevle.tour.service.TourData;
+import com.smilevle.tour.service.TourService;
 
 
 @Controller
@@ -28,15 +31,17 @@ public class ReservationController {
 	
 	@Autowired
 	private ReservationService reservationService;
+	@Autowired
+	private TourService tourService;
 	
 	
 	@RequestMapping("/reservation")
 	public String reservationPage(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value = "contentId", required = false) String contentId, 
 			@RequestParam(value = "title", required = false) String title) {		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		model.addAttribute("contentId", contentId);
-		model.addAttribute("title", title);
 		
+		TourData tourData = tourService.getTour(Integer.parseInt(contentId), false);
+		TourVO tourVO = tourData.getTourVO();
 		UserVO userVO=(UserVO)request.getSession().getAttribute("authUser");		
 		//int count;
 		
@@ -81,9 +86,8 @@ public class ReservationController {
 		String dateArray = Arrays.toString(reservationDate);
 		System.out.println(dateArray);
 		model.addAttribute("reservationDate", dateArray);
-		
 		model.addAttribute("reservationDateList", reservationDateList);
-		
+		model.addAttribute("item", tourVO);
 		
 				
 		return "/reservation/reservation";

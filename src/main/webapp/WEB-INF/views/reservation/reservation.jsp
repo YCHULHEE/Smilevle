@@ -9,11 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script src="/static/js/jquery-3.2.1.min.js"></script>
-<link
-	href="https://fonts.googleap-is.com/css?family=Poppins:300,400,500,600,700"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Alex+Brush"
-	rel="stylesheet">
+
 
 <link rel="stylesheet" href="/static/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="/static/css/animate.css">
@@ -36,8 +32,7 @@
 
 <link rel="stylesheet" href="/static/css/elegant-icons.css"
 	type="text/css">
-<link rel="stylesheet" href="/static/css/font-awesome.min.css"
-	type="text/css">
+
 <link rel="stylesheet" href="/static/css/jquery-ui.min.css"
 	type="text/css">
 <link rel="stylesheet" href="/static/css/nice-select.css"
@@ -50,7 +45,8 @@
 
 
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="/static/css/bootstrap-datepicker1.css">
 
 
@@ -82,49 +78,44 @@
 		</div>
 	</div>
 	<div>
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
+		<br /> <br /> <br /> <br /> <br /> <br />
 	</div>
 
 	<section class="room-details-section spad">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
-					<div class="room-details-item">
-						<img src="/static/img/room/room-details.jpg" alt="">
-						<div class="rd-text">
-							<div class="rd-title">
-								<h3>${title}</h3>
-								<div class="rdt-right"></div>
-							</div>
-
+					<div class="rd-text">
+						<div class="rd-title">
+							<h1>${item.title}</h1>
+							<div class="rdt-right"></div>
 						</div>
+					</div>
+					<div class="room-details-item">
+						<img src="${item.firstImage}" alt="">
 					</div>
 
 				</div>
 				<div class="col-lg-4">
 					<div class="room-booking">
-						<h3>Your Reservation</h3>
+						<h3>예약날짜</h3>
 						<form id="resForm" action="/insertRes">
-							<div class="check-date">							
+							<div class="check-date">
 								<input type="hidden" id="contentId" name="contentId"
-									value="${contentId }"> <input type="hidden" id="title"
-									name="title" value="${title }"> <label for="date-in">Check
-									In:</label> <input type="text" class="dateIn" id="checkInD"
-									name="checkInD" readonly="readonly"> <i class="icon_calendar"></i>
+									value="${item.contentId}"> <input type="hidden"
+									id="title" name="title" value="${item.title}"> <label
+									for="date-in">Check In:</label> <input type="text"
+									class="dateIn" id="checkInD" name="checkInD"
+									readonly="readonly"> <i class="icon_calendar"></i>
 							</div>
-							 <div class="check-date">
+							<div class="check-date">
 								<label for="date-out">Check Out:</label> <input type="text"
-									class="dateOut" id="checkOutD" name="checkOutD" readonly="readonly"> <i
-									class="icon_calendar"></i>
-							</div> 
+									class="dateOut" id="checkOutD" name="checkOutD"
+									readonly="readonly"> <i class="icon_calendar"></i>
+							</div>
 
 							<button type="submit" class="submit">에약하기</button>
-							
+
 						</form>
 					</div>
 				</div>
@@ -217,8 +208,8 @@
 		
 		
 	</script>
-	
-	
+
+
 	<script src="/static/js/jquery-3.2.1.min.js"></script>
 	<script src="/static/js/bootstrap.min.js"></script>
 	<script src="/static/js/jquery.magnific-popup.min.js"></script>
@@ -227,7 +218,7 @@
 	<script src="/static/js/jquery.slicknav.js"></script>
 	<script src="/static/js/owl.carousel.min.js"></script>
 	<script src="/static/js/main1.js"></script>
-	
+
 
 
 	<script src="/static/js/jquery.min.js"></script>
@@ -241,7 +232,7 @@
 	<script src="/static/js/jquery.magnific-popup.min.js"></script>
 	<script src="/static/js/aos.js"></script>
 	<script src="/static/js/jquery.animateNumber.min.js"></script>
-	<script src="/static/js/bootstrap-datepicker.js"></script> 
+	<script src="/static/js/bootstrap-datepicker.js"></script>
 	<script src="/static/js/bootstrap-datepicker.ko.js"></script>
 	<script src="/static/js/jquery.timepicker.min.js"></script>
 	<script src="/static/js/scrollax.min.js"></script>
@@ -249,7 +240,7 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="/static/js/google-map.js"></script>
 	<script src="/static/js/main.js"></script>
-	
-	
+
+
 </body>
 </html>
