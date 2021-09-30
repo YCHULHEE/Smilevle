@@ -77,7 +77,7 @@ inner join tbl_common_code c1 on s1.small_category = c1.common_id
 	<!-- 숙소등록 -->
 	<insert id="register">
 		insert into tbl_tour(content_id, title, areacode, address, first_image, map_x, map_y, tel, read_cnt, content_type_id, middle_category, small_category, homepage, image_list, content)
-		values(tour_id_seq.nextVal(), #{title}, #{areaCode}, #{address}, #{firstImage}, #{mapX}, #{mapY}, #{tel}, 0, '32', null, #{smallCategory}, #{homepage}, #{firstImage}, #{content})
+		values(tour_id_seq.nextval, #{title}, #{areaCode}, #{address}, #{firstImage}, #{mapX}, #{mapY}, #{tel}, 0, '32', null, #{smallCategory}, #{homepage}, #{firstImage}, #{content})
 	</insert>
 
 	<!-- 숙소 수정 -->

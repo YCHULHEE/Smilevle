@@ -49,7 +49,7 @@ public class AdminController {
 	@Autowired
 	ReservationService reservationService;
 	
-	String uploadPath = "C:\\Users\\Admin\\Desktop\\Smile\\Smilevle\\src\\main\\resources\\static\\goodImages";
+	String uploadPath = "C:/Users/Admin/Desktop/Smile/Smilevle/src/main/resources/static/goodImages";
 	
 	@RequestMapping(value = "index")
 	public String getAdminIndex(Model model) throws Exception {
