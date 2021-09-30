@@ -72,7 +72,6 @@
 	<br>
 	<div align="center">
 		<%-- <c:if test="${today.time lt reservationVO.checkOutDate.time + 24 * 60 * 60 * 1000 * 30 }"> --%>
-			<form action="/deleteRes" >
 			
 			<div style="width: 60%;" id="container">
 			<table class="table table-hover">
@@ -89,14 +88,13 @@
 					</thead>
 					<tbody>
 						<c:forEach var="reservationVO" items="${reservationVO}">
-						<input type="hidden" id="resNum" name="resNum" value="${reservationVO.resNum }">
 							<tr align="center">
 								<td>${reservationVO.resNum}</td>
 								<td>${reservationVO.title}</td>
 								<td><fmt:formatDate value="${reservationVO.regDate}" pattern="yyyy년 MM월 dd일" /></td>
 								<td><fmt:formatDate value="${reservationVO.checkInDate}" pattern="yyyy년 MM월 dd일" /> ~  <fmt:formatDate value="${reservationVO.checkOutDate}" pattern="yyyy년 MM월 dd일" /></td>
 								<c:if test="${reservationVO.checkInDate gt today }">
-									<td><button type="submit" class="btn btn-danger">예약취소</button></td>
+									<td><button type="button" class="btn btn-danger" onclick="location.href='/deleteRes?resNum=${reservationVO.resNum}'">예약취소</button></td>
 								</c:if>
 								<c:if test="${reservationVO.checkInDate le today }">
 									<td><button type="button" id="toList" class="btn btn-default"  onclick="location.href='/review_write?stayId=${reservationVO.contentId }'">리뷰작성</button></td>
@@ -108,7 +106,6 @@
 					</tbody>
 				</table>
 			</div>
-			</form>
 			<br>
 			<br>
 	<%-- 	</c:if> --%>

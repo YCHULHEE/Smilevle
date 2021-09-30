@@ -208,10 +208,10 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("/deleteRes")
-	public void deleteRes(@RequestParam(value = "resNum") Integer resNum) {
+	public String deleteRes(@RequestParam(value = "resNum") Integer resNum) {
 		System.out.println(resNum);
 		reservationService.deleteByResNum(resNum);
-		
+		return "/reservation/deleteRes";
 	}
 	
 		
