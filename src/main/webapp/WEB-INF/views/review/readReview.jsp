@@ -167,7 +167,7 @@
 						<td class="text-right">${AreacodeConverter.getKey(reviewData.areacode) }</td>
 					</tr>
 					<tr>
-						<th scope="row" class="text-left">플레이스</th>
+						<th scope="row" class="text-left">숙소 명</th>
 						<td class="text-right">${reviewData.locationName }</td>
 					</tr>
 					<tr>	
