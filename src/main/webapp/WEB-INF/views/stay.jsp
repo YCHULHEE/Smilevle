@@ -139,8 +139,6 @@
 											<div class="two">
 												<p class="bottom-area d-flex" style="margin-bottom: 5px">
 													<span class="ml-auto"><a href="/reservation?contentId=${item.contentId}&title=${item.title}">예약</a></span>
-												</p><p class="bottom-area d-flex">
-													<span class="ml-auto"><a href="/review_write?stayId=${item.contentId }">리뷰</a></span>
 												</p>
 											</div>
 										</div>

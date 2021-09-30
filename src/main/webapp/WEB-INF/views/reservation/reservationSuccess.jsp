@@ -37,7 +37,7 @@
     		   keyboard: false
     	   });
     	   $('#toList').click(function() {
-				$(location).attr('href','/reservation?contentId=${contentId}&title=${title}');
+				$(location).attr('href','/myResSelect');
 			});
     	});    	   
     </script>
@@ -53,7 +53,7 @@
 			예약을 완료했습니다!
 	      </div>
 	      <div class="modal-footer">
-		<button type="button" id="toList" class="btn btn-default"  onclick="location.href='/reservation?contentId=${contentId}&title=${title}'">예약창으로</button>
+		<button type="button" id="toList" class="btn btn-default"  onclick="location.href='/myResSelect'">예약창으로</button>
 	      </div>
 	    </div>
 	  </div>

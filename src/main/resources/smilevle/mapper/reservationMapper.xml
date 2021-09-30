@@ -54,12 +54,12 @@
 	
 	
 	<select id="selectByTitleToCheckIn" parameterType="map" resultType="java.util.Date"  >
-		SELECT checkin_date from tbl_reservation WHERE title = #{title}
+		SELECT checkin_date from tbl_reservation WHERE content_id = #{title}
 	</select>
 	
 	 
 	<select id="selectByTitleToCheckOut" parameterType="map" resultType="java.util.Date"  >
-		SELECT checkout_date from tbl_reservation WHERE title = #{title}
+		SELECT checkout_date from tbl_reservation WHERE content_id = #{title}
 	</select>
 	
 	

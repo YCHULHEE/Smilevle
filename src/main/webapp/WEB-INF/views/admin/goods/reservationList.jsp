@@ -73,8 +73,7 @@ ul li {
 									<fmt:formatDate value="${list.regDate}" pattern="YYYY-MM-dd" />
 								</p>			
 								<p align="right">
-									<a class="btn btn btn-default" style="color: black;" href="#">예약 확인</a>
-									<a class="btn btn btn-default" style="color: black;" href="#"
+									<a class="btn btn btn-default" style="color: black;" href="/deleteRes?resNum=${list.resNum}"
 										onclick="return confirm('정말로 삭제하시겠습니까?');">예약 취소</a>
 								</p>
 							</div>

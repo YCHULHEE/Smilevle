@@ -50,7 +50,7 @@ public class TourService {
 			//컨텐츠 정보를 통해 여행지 정보를 가져온다.
 			TourVO tourVO = tourRepository.selectById(contentId);
 			if (tourVO == null) {
-				throw new TravelDestNotFoundException();
+				
 			}
 			// 글번호를 통해 글의 내용을 가져온다.
 			// increaseReadCount가 true일시 조회수를 증가시킨다.

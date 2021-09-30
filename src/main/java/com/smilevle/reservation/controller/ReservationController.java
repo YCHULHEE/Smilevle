@@ -49,8 +49,8 @@ public class ReservationController {
 		if (userVO==null) {
 			return "/login/loginForm";
 		}
-		List<Date> checkOutList=reservationService.selectByTitleToCheckOut(title);
-		List<Date> checkInList=reservationService.selectByTitleToCheckIn(title);
+		List<Date> checkOutList=reservationService.selectByTitleToCheckOut(contentId);
+		List<Date> checkInList=reservationService.selectByTitleToCheckIn(contentId);
 //		System.out.println("===========>"+checkInList.toString());
 //		System.out.println("===========>"+checkOutList.toString());
 		int[] checkInCount = new int[checkInList.size()];
@@ -117,8 +117,8 @@ public class ReservationController {
 		//if reservationVO.
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		List<Date> checkOutList=reservationService.selectByTitleToCheckOut(reservationVO.getTitle());
-		List<Date> checkInList=reservationService.selectByTitleToCheckIn(reservationVO.getTitle());
+		List<Date> checkOutList=reservationService.selectByTitleToCheckOut(reservationVO.getContentId());
+		List<Date> checkInList=reservationService.selectByTitleToCheckIn(reservationVO.getContentId());
 //		System.out.println("===========>"+checkInList.toString());
 //		System.out.println("===========>"+checkOutList.toString());
 		int[] checkInCount = new int[checkInList.size()];

@@ -50,9 +50,8 @@
 					data-scrollax=" properties: { translateY: '70%' }">
 					<p class="breadcrumbs"
 						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-						<span class="mr-2"><a href="/">Home</a></span> <span
-							class="mr-2"><a href="/">Smilevle</a></span> <span>Hotel
-							Single</span>
+						<span class="mr-2"><a href="/">Home</a></span> <span class="mr-2"><a
+							href="/">Smilevle</a></span> <span>Hotel Single</span>
 					</p>
 					<h1 class="mb-3 bread"
 						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Smilevle</h1>
@@ -80,6 +79,11 @@
 							</div>
 						</div>
 						<div class="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
+							<p class="bottom-area d-flex" style="margin-bottom: 5px"
+								align="right">
+								<span class="ml-auto"><a class="btn"
+									href="/reservation?contentId=${tourData.tourVO.contentId}&title=${tourData.tourVO.title}">예약</a></span>
+							</p>
 							<span>관광지</span>
 							<h2>${tourData.tourVO.title}</h2>
 							<p class="rate mb-5">
@@ -92,23 +96,22 @@
 								</span></br> <span>${tourData.tourVO.homepage}</span>
 							<p>${tourData.tourVO.content}</p>
 						</div>
-						
 	</section>
 	<jsp:include
 		page="/WEB-INF/views/include/common/tour_one_container.jsp" />
 	<!-- 댓글 출력 -->
 
 	<section class="ftco-section ftco-degree-bg">
-	<div class="container">
-	<div class="pt-5 mt-5">
-		
-		<!-- END comment-list -->
+		<div class="container">
+			<div class="pt-5 mt-5">
 
-		<!-- 댓글 달기 -->
+				<!-- END comment-list -->
 
-		<div class="comment-form-wrap pt-5">
-			<!-- 댓글작성 -->
-			<!-- <form action="#" class="p-5 bg-light">
+				<!-- 댓글 달기 -->
+
+				<div class="comment-form-wrap pt-5">
+					<!-- 댓글작성 -->
+					<!-- <form action="#" class="p-5 bg-light">
 				<div class="form-group">
 					<input type="hidden" class="form-control" id="name">
 				</div>
@@ -126,12 +129,13 @@
 						class="btn py-3 px-4 btn-primary">
 				</div>
 			</form> -->
-		</div>	<h3 class="mb-5">댓글(10)</h3>
-		
-	</div>
+				</div>
+				<h3 class="mb-5">댓글(10)</h3>
 
-	</div>
-	<!-- .col-md-8 -->
+			</div>
+
+		</div>
+		<!-- .col-md-8 -->
 	</section>
 	<!-- .section -->
 
